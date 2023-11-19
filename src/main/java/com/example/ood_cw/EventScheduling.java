@@ -132,6 +132,15 @@ public class EventScheduling {
     }
 
     public void onScheduleActivityButtonClick() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SheduleActivities.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 600.0,  500.0);
+        stage.setTitle("Schedule Meetings");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage previousStage = (Stage) eventSchedulingAnchor.getScene().getWindow();
+        previousStage.close();
 
     }
 
