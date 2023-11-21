@@ -4,15 +4,34 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class HelloController {
+    public AnchorPane eventSchedulingAnchor;
     @FXML
     private AnchorPane sampleAnchor;
+    public TextField eventNameText;
+    public TextField eventLocationText;
+    public TextField eventTimeText;
+    public TextArea eventDescriptionText;
+    public Label nameError;
+    public Label locationError;
+    public Label timeError;
+    public Label dateError;
+    public DatePicker eventDateText;
+    public AnchorPane scheduleEventAnchor;
+    public Label eventNameTick;
+    public Label eventLocTick;
+    public Label eventTimeTick;
+    public Label eventDateTick;
 
     public void onYeranButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
@@ -33,5 +52,400 @@ public class HelloController {
     }
 
     public void onAvishkaButtonClick(ActionEvent actionEvent) {
+    }
+
+    public AnchorPane enterClubNameAnchor;
+    public void onEnterClubNameNextClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
+        stage.setTitle("Add items");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage previousStage = (Stage) enterClubNameAnchor.getScene().getWindow();
+        previousStage.close();
+    }
+
+    public void onScheduleEventButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScheduleEvents.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 600.0,  444.0);
+        stage.setTitle("Schedule Events");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage previousStage = (Stage) eventSchedulingAnchor.getScene().getWindow();
+        previousStage.close();
+    }
+
+    public void onScheduleMeetingButtonClick() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScheduleMeetings.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 600.0,  444.0);
+        stage.setTitle("Schedule Meetings");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage previousStage = (Stage) eventSchedulingAnchor.getScene().getWindow();
+        previousStage.close();
+    }
+
+    public void onScheduleActivityButtonClick() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SheduleActivities.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 600.0,  500.0);
+        stage.setTitle("Schedule Meetings");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage previousStage = (Stage) eventSchedulingAnchor.getScene().getWindow();
+        previousStage.close();
+
+    }
+    public void onBackEventScheduleButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
+        stage.setTitle("Add items");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage previousStage = (Stage) eventSchedulingAnchor.getScene().getWindow();
+        previousStage.close();
+    }
+
+
+    public void onScheduleEventsButtonClick() throws IOException {
+        while (true){
+            int errors = 0;
+            int year = 0;
+            int month = 0;
+            int day = 0;
+            LocalDate givenDate = null;
+            Event obj = new Event();
+            obj.setEventName(eventNameText.getText());
+            obj.setEventLocation(eventLocationText.getText());
+            obj.setEventTime(eventTimeText.getText());
+            obj.setEventDescription(eventDescriptionText.getText());
+            String enteredDate = String.valueOf(eventDateText.getValue());
+            if (obj.getEventName().isEmpty()){
+                nameError.setText("This field must be filled!");
+                eventNameText.setStyle("-fx-border-color: red;");
+                eventNameTick.setText("");
+                errors++;
+            } else {
+                nameError.setText("");
+                eventNameTick.setText("\u2713");
+                eventNameText.setStyle("-fx-border-color: #13e57d;");
+            }
+            if (obj.getEventLocation().isEmpty()){
+                locationError.setText("This field must be filled!");
+                eventLocationText.setStyle("-fx-border-color: red;");
+                eventLocTick.setText("");
+                errors++;
+            } else {
+                locationError.setText("");
+                eventLocTick.setText("\u2713");
+                eventLocationText.setStyle("-fx-border-color: #13e57d;");
+            }
+            if (obj.getEventTime().isEmpty()){
+                timeError.setText("This field must be filled!");
+                eventTimeText.setStyle("-fx-border-color: red;");
+                eventTimeTick.setText("");
+                errors++;
+            } else {
+                timeError.setText("");
+                eventTimeTick.setText("\u2713");
+                eventTimeText.setStyle("-fx-border-color: #13e57d;");
+            }
+            if (enteredDate.equals("null")){
+                dateError.setText("This field must be filled!");
+                eventDateText.setStyle("-fx-border-color: red;");
+                eventDateTick.setText("");
+                errors++;
+            } else {
+                try {
+                    year = Integer.parseInt(enteredDate.substring(0, 4));
+                    month = Integer.parseInt(enteredDate.substring(5, 7));
+                    day = Integer.parseInt(enteredDate.substring(8, 10));
+                    givenDate = LocalDate.of(year, month, day);
+                    LocalDate currentDate = LocalDate.now();
+                    if (givenDate.isBefore(currentDate)){
+                        dateError.setText("Please select a future date!");
+                        eventDateText.setStyle("-fx-border-color: red;");
+                        eventDateTick.setText("");
+                        errors++;
+                    } else {
+                        dateError.setText("");
+                        eventDateText.setStyle("-fx-border-color: #13e57d;");
+                        eventDateTick.setText("\u2713");
+                        obj.setEventDate(givenDate);
+                    }
+                } catch (Exception e){
+                    dateError.setText("Error in date");
+                    eventDateText.setStyle("-fx-border-color: red;");
+                    eventDateTick.setText("");
+                    errors++;
+                }
+            }
+            if (errors > 0)
+                break;
+            break;
+        }
+    }
+
+
+
+
+    public void onScheduleEventsBackButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
+        stage.setTitle("Add items");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage previousStage = (Stage) scheduleEventAnchor.getScene().getWindow();
+        previousStage.close();
+    }
+
+    public TextField meetingDurationText; //Schedule meetings
+    public TextField meetingLocationText;
+    public TextField meetingTimeText;
+    public TextArea meetingDescriptionText;
+    public Label meetingLocationError;
+    public Label meetingTimeError;
+    public Label meetingDateError;
+    public DatePicker meetingDateText;
+    public AnchorPane scheduleMeetingAnchor;
+    public Label meetLocTick;
+    public Label meetTimeTick;
+    public Label meetDateTick;
+
+    public void onScheduleMeetingsButtonClick()throws IOException {
+        while (true){
+            int year = 0;
+            int month = 0;
+            int day = 0;
+            LocalDate givenDate = null;
+            int errors = 0;
+            Meeting obj = new Meeting();
+            obj.setMeetDuration(meetingDurationText.getText());
+            obj.setEventLocation(meetingLocationText.getText());
+            obj.setEventTime(meetingTimeText.getText());
+            obj.setEventDescription(meetingDescriptionText.getText());
+            String enteredDate = String.valueOf(meetingDateText.getValue());
+            if (obj.getEventLocation().isEmpty()){
+                meetingLocationError.setText("This field must be filled!");
+                meetingLocationText.setStyle("-fx-border-color: red;");
+                meetLocTick.setText("");
+                errors++;
+            } else {
+                meetingLocationError.setText("");
+                meetLocTick.setText("\u2713");
+                meetingLocationText.setStyle("-fx-border-color: #13e57d;");
+            }
+            if (obj.getEventTime().isEmpty()){
+                meetingTimeError.setText("This field must be filled!");
+                meetingTimeText.setStyle("-fx-border-color: red;");
+                meetTimeTick.setText("");
+                errors++;
+            } else {
+                meetingTimeError.setText("");
+                meetTimeTick.setText("\u2713");
+                meetingTimeText.setStyle("-fx-border-color: #13e57d;");
+            }
+            if (enteredDate.equals("null")){
+                meetingDateError.setText("This field must be filled!");
+                meetingDateText.setStyle("-fx-border-color: red;");
+                meetDateTick.setText("");
+                errors++;
+            } else {
+                try {
+                    year = Integer.parseInt(enteredDate.substring(0, 4));
+                    month = Integer.parseInt(enteredDate.substring(5, 7));
+                    day = Integer.parseInt(enteredDate.substring(8, 10));
+                    givenDate = LocalDate.of(year, month, day);
+                    LocalDate currentDate = LocalDate.now();
+                    if (givenDate.isBefore(currentDate)){
+                        meetingDateError.setText("Please select a future date!");
+                        meetingDateText.setStyle("-fx-border-color: red;");
+                        meetDateTick.setText("");
+                        errors++;
+                    } else {
+                        meetingDateError.setText("");
+                        meetingDateText.setStyle("-fx-border-color: #13e57d;");
+                        meetDateTick.setText("\u2713");
+                        obj.setEventDate(givenDate);
+                    }
+                } catch (Exception e){
+                    meetingDateError.setText("Error in date");
+                    meetingDateText.setStyle("-fx-border-color: red;");
+                    meetDateTick.setText("");
+                    errors++;
+                }
+            }
+            if (errors > 0)
+                break;
+            break;
+        }
+    }
+
+    public void onSheduleMeetingsBackButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
+        stage.setTitle("Add items");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage previousStage = (Stage) scheduleMeetingAnchor.getScene().getWindow();
+        previousStage.close();
+    }
+
+    public AnchorPane scheduleActivityAnchor; //schedule Acivities
+    public TextField activityNameText;
+    public TextField activityLocationText;
+    public TextField activityTimeText;
+    public TextArea activityDescriptionText;
+    public Label activityNameError;
+    public Label activityLocationError;
+    public Label activityTimeError;
+    public Label activityStartDateError;
+    public DatePicker activityStartDateText;
+    public Label activityNameTick;
+    public Label activityLocTick;
+    public Label activityTimeTick;
+    public Label activityStartDateTick;
+    public Label activityEndDateError;
+    public DatePicker activityEndDateText;
+    public Label activityEndDateTick;
+
+    public void onActivityScheduleButtonClick() throws IOException {
+        while (true){
+            int errors = 0;
+            Activity obj = new Activity();
+            obj.setEventName(activityNameText.getText());
+            obj.setEventLocation(activityLocationText.getText());
+            obj.setEventTime(activityTimeText.getText());
+            obj.setEventDescription(activityDescriptionText.getText());
+            String startDate = String.valueOf(activityStartDateText.getValue());
+            String endDate = String.valueOf(activityEndDateText.getValue());
+            if (obj.getEventName().isEmpty()){
+                activityNameError.setText("This field must be filled!");
+                activityNameText.setStyle("-fx-border-color: red;");
+                activityNameTick.setText("");
+                errors++;
+            } else {
+                activityNameError.setText("");
+                activityNameTick.setText("\u2713");
+                activityNameText.setStyle("-fx-border-color: #13e57d;");
+            }
+            if (obj.getEventLocation().isEmpty()){
+                activityLocationError.setText("This field must be filled!");
+                activityLocationText.setStyle("-fx-border-color: red;");
+                activityLocTick.setText("");
+                errors++;
+            } else {
+                activityLocationError.setText("");
+                activityLocTick.setText("\u2713");
+                activityLocationText.setStyle("-fx-border-color: #13e57d;");
+            }
+            if (obj.getEventTime().isEmpty()){
+                activityTimeError.setText("This field must be filled!");
+                activityTimeText.setStyle("-fx-border-color: red;");
+                activityTimeTick.setText("");
+                errors++;
+            } else {
+                activityTimeError.setText("");
+                activityTimeTick.setText("\u2713");
+                activityTimeText.setStyle("-fx-border-color: #13e57d;");
+            }
+            int sYear = 0;
+            int sMonth = 0;
+            int sDay = 0;
+            LocalDate sGivenDate = null;
+
+            if (startDate.equals("null")){
+                activityStartDateError.setText("This field must be filled!");
+                activityStartDateText.setStyle("-fx-border-color: red;");
+                activityStartDateTick.setText("");
+                errors++;
+            } else {
+                try {
+                    sYear = Integer.parseInt(startDate.substring(0, 4));
+                    sMonth = Integer.parseInt(startDate.substring(5, 7));
+                    sDay = Integer.parseInt(startDate.substring(8, 10));
+                    sGivenDate = LocalDate.of(sYear, sMonth, sDay);
+                    LocalDate currentDate = LocalDate.now();
+                    if (sGivenDate.isBefore(currentDate)){
+                        activityStartDateError.setText("Please select a future date!");
+                        activityStartDateText.setStyle("-fx-border-color: red;");
+                        activityStartDateTick.setText("");
+                        errors++;
+                    } else {
+                        activityStartDateError.setText("");
+                        activityStartDateText.setStyle("-fx-border-color: #13e57d;");
+                        activityStartDateTick.setText("\u2713");
+                        obj.setEventDate(sGivenDate);
+                    }
+                } catch (Exception e){
+                    activityStartDateError.setText("Error in date!");
+                    activityStartDateText.setStyle("-fx-border-color: red;");
+                    activityStartDateTick.setText("");
+                    errors++;
+                }
+            }
+            int eYear = 0;
+            int eMonth = 0;
+            int eDay = 0;
+            LocalDate eGivenDate = null;
+            if (endDate.equals("null")){
+                activityEndDateError.setText("This field must be filled!");
+                activityEndDateText.setStyle("-fx-border-color: red;");
+                activityEndDateTick.setText("");
+                errors++;
+            }else {
+                try {
+                    eYear = Integer.parseInt(endDate.substring(0, 4));
+                    eMonth = Integer.parseInt(endDate.substring(5, 7));
+                    eDay = Integer.parseInt(endDate.substring(8, 10));
+                    eGivenDate = LocalDate.of(eYear, eMonth, eDay);
+                    LocalDate currentDate = LocalDate.now();
+                    if (eGivenDate.isBefore(currentDate)) {
+                        activityEndDateError.setText("Please select a future date!");
+                        activityEndDateText.setStyle("-fx-border-color: red;");
+                        activityEndDateTick.setText("");
+                        errors++;
+                    } else {
+                        activityEndDateError.setText("");
+                        activityEndDateText.setStyle("-fx-border-color: #13e57d;");
+                        activityEndDateTick.setText("\u2713");
+                        obj.setEndDate(eGivenDate);
+                    }
+                } catch (Exception e) {
+                    activityEndDateError.setText("Error in date!");
+                    activityEndDateText.setStyle("-fx-border-color: red;");
+                    activityEndDateTick.setText("");
+                    errors++;
+                }
+            }
+            if (errors > 0)
+                break;
+            break;
+        }
+    }
+
+    public void onActivityScheduleBackButtonClick() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
+        stage.setTitle("Add items");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage previousStage = (Stage) scheduleActivityAnchor.getScene().getWindow();
+        previousStage.close();
     }
 }

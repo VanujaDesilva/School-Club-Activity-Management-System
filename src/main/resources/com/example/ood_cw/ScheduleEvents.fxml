@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scheduleEventAnchor" prefHeight="444.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.EventScheduling">
+<AnchorPane fx:id="scheduleEventAnchor" prefHeight="444.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
    <children>
       <Label layoutX="96.0" layoutY="34.0" text="Event name: ">
          <font>
@@ -50,7 +50,7 @@
             <Font size="14.0" />
          </font>
       </TextArea>
-      <Button layoutX="503.0" layoutY="395.0" mnemonicParsing="false" onAction="#onScheduleButtonClick" text="Shedule">
+      <Button layoutX="503.0" layoutY="395.0" mnemonicParsing="false" onAction="#onScheduleEventsButtonClick" text="Shedule">
          <font>
             <Font size="15.0" />
          </font>
@@ -81,7 +81,7 @@
          </font>
       </Label>
       <DatePicker fx:id="eventDateText" layoutX="286.0" layoutY="201.0" prefHeight="37.0" prefWidth="200.0" />
-      <Button layoutX="25.0" layoutY="395.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back">
+      <Button layoutX="25.0" layoutY="395.0" mnemonicParsing="false" onAction="#onScheduleEventsBackButtonClick" text="Back">
          <font>
             <Font size="15.0" />
          </font>
