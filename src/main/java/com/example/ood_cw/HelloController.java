@@ -13,8 +13,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HelloController {
+    public static List<List<Object>> events = new ArrayList<>();
+    public static List<List<Object>> events1 = new ArrayList<>();
+    public static List<List<Object>> meetings = new ArrayList<>();
+    public static List<List<Object>> activity = new ArrayList<>();
     public AnchorPane eventSchedulingAnchor;
     @FXML
     private AnchorPane sampleAnchor;
@@ -34,6 +40,43 @@ public class HelloController {
     public Label eventDateTick;
 
     public void onYeranButtonClick() throws IOException {
+        List<Object> event1 = new ArrayList<>();
+        event1.add("S001");
+        event1.add("E01");
+        event1.add("Spandana");
+        event1.add("Viharamahadevi");
+        event1.add("18:00");
+        event1.add("Musical event");
+        event1.add("2023-12-16");
+        event1.add("C01");
+        event1.add("AD01");
+        events.add(event1);
+
+        List<Object> event2 = new ArrayList<>();
+        event2.add("S002");
+        event2.add("M01");
+        event2.add("Hilton");
+        event2.add("18:00");
+        event2.add("The monthly meeting");
+        event2.add("2023-12-18");
+        event2.add("2 hours");
+        event2.add("C01");
+        event2.add("AD01");
+        events.add(event2);
+
+        List<Object> event3 = new ArrayList<>();
+        event3.add("S003");
+        event3.add("A01");
+        event3.add("Game Fiesta");
+        event3.add("Hilton");
+        event3.add("18:00");
+        event3.add("Game event");
+        event3.add("2023-12-18");
+        event3.add("2023-12-20");
+        event3.add("C01");
+        event3.add("AD01");
+        events.add(event3);
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
@@ -68,6 +111,15 @@ public class HelloController {
     }
 
     public void onScheduleEventButtonClick() throws IOException {
+        events1.clear();
+        for (int i = 0; i<events.size(); i++){
+            String e = (String) events.get(i).get(1);
+            e = e.substring(0,1);
+            if (e.equals("E")){
+                events1.add(events.get(i));
+            }
+        }
+        System.out.println(events1);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScheduleEvents.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 600.0,  444.0);
@@ -80,6 +132,15 @@ public class HelloController {
     }
 
     public void onScheduleMeetingButtonClick() throws IOException{
+        meetings.clear();
+        for (int i = 0; i<events.size(); i++){
+            String e = (String) events.get(i).get(1);
+            e = e.substring(0,1);
+            if (e.equals("M")){
+                meetings.add(events.get(i));
+            }
+        }
+        System.out.println(meetings);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScheduleMeetings.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 600.0,  444.0);
@@ -92,6 +153,15 @@ public class HelloController {
     }
 
     public void onScheduleActivityButtonClick() throws IOException{
+        activity.clear();
+        for (int i = 0; i<events.size(); i++){
+            String e = (String) events.get(i).get(1);
+            e = e.substring(0,1);
+            if (e.equals("A")){
+                activity.add(events.get(i));
+            }
+        }
+        System.out.println(activity);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SheduleActivities.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 600.0,  500.0);
@@ -117,6 +187,8 @@ public class HelloController {
 
 
     public void onScheduleEventsButtonClick() throws IOException {
+        System.out.println(events1);
+        outerloop:
         while (true){
             int errors = 0;
             int year = 0;
@@ -191,6 +263,14 @@ public class HelloController {
             }
             if (errors > 0)
                 break;
+            String date = String.valueOf(obj.getEventDate());
+            for (int i = 0; i < events1.size(); i++){
+                if (events1.get(i).get(2).equals(obj.getEventName()) && events1.get(i).get(6).equals(date)){
+                    System.out.println("Event already exists");
+                    break outerloop;
+                }
+            }
+            System.out.println("Event should be added to the list");
             break;
         }
     }
