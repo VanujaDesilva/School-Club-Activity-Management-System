@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="scheduleActivityAnchor" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
+   <children>
+      <Label layoutX="96.0" layoutY="34.0" text="Activity name: ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="activityNameText" layoutX="286.0" layoutY="28.0" promptText="Enter Activity Name">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Label layoutX="96.0" layoutY="92.0" text="Activity Location: ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="activityLocationText" layoutX="286.0" layoutY="86.0" promptText="Enter Activity Location">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Label layoutX="96.0" layoutY="150.0" text="Activity Time: ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="activityTimeText" layoutX="286.0" layoutY="144.0" promptText="Enter Activity Time">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Label layoutX="96.0" layoutY="318.0" text="Activity Description: ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="activityDescriptionText" layoutX="286.0" layoutY="318.0" prefHeight="130.0" prefWidth="200.0" promptText="Enter Acitivity Description">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+      <Button layoutX="503.0" layoutY="448.0" mnemonicParsing="false" onAction="#onActivityScheduleButtonClick" text="Shedule">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="activityNameError" layoutX="286.0" layoutY="65.0" prefHeight="15.0" prefWidth="105.0" textFill="RED">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="activityLocationError" layoutX="286.0" layoutY="123.0" prefHeight="15.0" prefWidth="105.0" textFill="RED">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="activityTimeError" layoutX="286.0" layoutY="181.0" prefHeight="15.0" prefWidth="105.0" textFill="RED">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="96.0" layoutY="207.0" text="Activity Start Date: ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="activityStartDateError" layoutX="286.0" layoutY="238.0" prefHeight="15.0" prefWidth="158.0" textFill="RED">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="activityStartDateText" layoutX="286.0" layoutY="201.0" prefHeight="37.0" prefWidth="200.0" />
+      <Button layoutX="27.0" layoutY="448.0" mnemonicParsing="false" onAction="#onActivityScheduleBackButtonClick" text="Back">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="activityNameTick" layoutX="492.0" layoutY="36.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="activityLocTick" layoutX="492.0" layoutY="94.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="activityTimeTick" layoutX="492.0" layoutY="153.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="activityStartDateTick" layoutX="492.0" layoutY="210.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="96.0" layoutY="264.0" text="Activity End Date: ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="activityEndDateError" layoutX="286.0" layoutY="295.0" prefHeight="15.0" prefWidth="158.0" textFill="RED">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="activityEndDateText" layoutX="286.0" layoutY="258.0" prefHeight="37.0" prefWidth="200.0" />
+      <Label fx:id="activityEndDateTick" layoutX="492.0" layoutY="267.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
