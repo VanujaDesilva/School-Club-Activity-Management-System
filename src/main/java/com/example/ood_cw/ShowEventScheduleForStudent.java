@@ -2,28 +2,19 @@ package com.example.ood_cw;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ViewOrDeleteEvents implements Initializable {
-    public AnchorPane viewOrDeleteEventsAnchor;
-    public TextField eventIdDelete;
-    public Label deleteIdError;
+public class ShowEventScheduleForStudent implements Initializable {
+    public AnchorPane showEventScheduleForStudentAnchor;
     @FXML
     private TableView<EventView> eventTableView;
 
@@ -57,18 +48,6 @@ public class ViewOrDeleteEvents implements Initializable {
     @FXML
     private TableColumn<EventView, String> showTime;
 
-    public void onViewOrDeleteEventsBackButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
-        stage.setTitle("Add items");
-        stage.setScene(scene);
-        stage.show();
-
-        Stage previousStage = (Stage) viewOrDeleteEventsAnchor.getScene().getWindow();
-        previousStage.close();
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showId.setCellValueFactory(new PropertyValueFactory<EventView,String>("eventId"));
@@ -82,8 +61,8 @@ public class ViewOrDeleteEvents implements Initializable {
         showClubId.setCellValueFactory(new PropertyValueFactory<EventView,String>("clubId"));
         showAdvisorId.setCellValueFactory(new PropertyValueFactory<EventView,String>("advisorId"));
         ObservableList<EventView> stringEvents = FXCollections.observableArrayList();
-        List<List<Object>> eventView = HelloController.eventView;
-        for (List<Object> i : eventView){
+        List<List<Object>> eventSchedule = HelloController.eventView;
+        for (List<Object> i : eventSchedule){
             EventView newEventView = new EventView(
                     (String)i.get(0),
                     (String)i.get(1),
@@ -100,31 +79,5 @@ public class ViewOrDeleteEvents implements Initializable {
         }
         eventTableView.setItems(stringEvents);
     }
-
-    public void onViewOrDeleteEventsDeleteButtonClick() throws IOException {
-        List<List<Object>> events = HelloController.events;
-        String deleteId = eventIdDelete.getText();
-        int count =0;
-        for (int i = 0; i < events.size();i++){
-            if (String.valueOf(events.get(i).get(0)).equalsIgnoreCase(deleteId)){
-                events.remove(i);
-                count++;
-                break;
-            }
-        }
-        if (count==0){
-            deleteIdError.setStyle("-fx-text-fill: #ff0000;");
-            deleteIdError.setText("Entered Event ID doesn't exist!");
-        } else {
-            List<List<Object>> eventView = HelloController.eventView;
-            for (int i = 0; i <eventView.size();i++){
-                if (String.valueOf(eventView.get(i).get(0)).equalsIgnoreCase(deleteId)){
-                    eventView.remove(i);
-                    break;
-                }
-            }
-            deleteIdError.setStyle("-fx-text-fill: #13e57d;");
-            deleteIdError.setText("Event has been deleted!");
-        }
-    }
+    
 }

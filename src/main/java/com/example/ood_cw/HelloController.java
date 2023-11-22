@@ -111,7 +111,7 @@ public class HelloController{
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
         stage.setTitle("Enter club name");
         stage.setScene(scene);
         stage.show();
@@ -143,6 +143,14 @@ public class HelloController{
     }
 
     public void onScheduleEventButtonClick() throws IOException {
+        events1.clear();
+        for (int i = 0; i<events.size(); i++){
+            String e = (String) events.get(i).get(0);
+            e = e.substring(0,1);
+            if (e.equals("E")){
+                events1.add(events.get(i));
+            }
+        }
         System.out.println(events1);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScheduleEvents.fxml"));
         Stage stage = new Stage();
@@ -156,6 +164,14 @@ public class HelloController{
     }
 
     public void onScheduleMeetingButtonClick() throws IOException{
+        meetings.clear();
+        for (int i = 0; i<events.size(); i++){
+            String e = (String) events.get(i).get(0);
+            e = e.substring(0,1);
+            if (e.equals("M")){
+                meetings.add(events.get(i));
+            }
+        }
         System.out.println(meetings);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScheduleMeetings.fxml"));
         Stage stage = new Stage();
@@ -169,6 +185,14 @@ public class HelloController{
     }
 
     public void onScheduleActivityButtonClick() throws IOException{
+        activity.clear();
+        for (int i = 0; i<events.size(); i++){
+            String e = (String) events.get(i).get(0);
+            e = e.substring(0,1);
+            if (e.equals("A")){
+                activity.add(events.get(i));
+            }
+        }
         System.out.println(activity);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SheduleActivities.fxml"));
         Stage stage = new Stage();
@@ -184,7 +208,7 @@ public class HelloController{
     public void onBackEventScheduleButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
         stage.setTitle("Add items");
         stage.setScene(scene);
         stage.show();
@@ -614,9 +638,92 @@ public class HelloController{
         Stage previousStage = (Stage) eventSchedulingAnchor.getScene().getWindow();
         previousStage.close();
     }
+    public static List<List<Object>> eventSchedule = new ArrayList<>();
+    public void onShowEventScheduleForStudentButtonClick() throws IOException {
+        events1.clear();
+        for (int i = 0; i<events.size(); i++){
+            String e = (String) events.get(i).get(0);
+            e = e.substring(0,1);
+            if (e.equals("E")){
+                events1.add(events.get(i));
+            }
+        }
 
-    @FXML
-    private AnchorPane viewOrDeleteEventsAnchor;
+        meetings.clear();
+        for (int i = 0; i<events.size(); i++){
+            String e = (String) events.get(i).get(0);
+            e = e.substring(0,1);
+            if (e.equals("M")){
+                meetings.add(events.get(i));
+            }
+        }
+
+        activity.clear();
+        for (int i = 0; i<events.size(); i++){
+            String e = (String) events.get(i).get(0);
+            e = e.substring(0,1);
+            if (e.equals("A")){
+                activity.add(events.get(i));
+            }
+        }
+        eventView.clear();
+        for (int i=0; i<events1.size();i++){
+            List<Object> event = new ArrayList<>();
+            event.add(String.valueOf(events1.get(i).get(0)));
+            event.add(String.valueOf(events1.get(i).get(1)));
+            event.add(String.valueOf(events1.get(i).get(2)));
+            event.add(String.valueOf(events1.get(i).get(3)));
+            event.add(String.valueOf(events1.get(i).get(4)));
+            event.add(String.valueOf(events1.get(i).get(5)));
+            event.add(" - ");
+            event.add(" - ");
+            event.add(String.valueOf(events1.get(i).get(6)));
+            event.add(String.valueOf(events1.get(i).get(7)));
+            eventView.add(event);
+        }
+
+        for (int i = 0; i<meetings.size() ; i++){
+            List<Object> meeting = new ArrayList<>();
+            meeting.add(String.valueOf(meetings.get(i).get(0)));
+            meeting.add(" - ");
+            meeting.add(String.valueOf(meetings.get(i).get(1)));
+            meeting.add(String.valueOf(meetings.get(i).get(2)));
+            meeting.add(String.valueOf(meetings.get(i).get(3)));
+            meeting.add(String.valueOf(meetings.get(i).get(4)));
+            meeting.add(" - ");
+            meeting.add(String.valueOf(meetings.get(i).get(5)));
+            meeting.add(String.valueOf(meetings.get(i).get(6)));
+            meeting.add(String.valueOf(meetings.get(i).get(7)));
+            eventView.add(meeting);
+        }
+
+        for (int i = 0; i<activity.size();i++){
+            List<Object> activity1 = new ArrayList<>();
+            activity1.add(String.valueOf(activity.get(i).get(0)));
+            activity1.add(String.valueOf(activity.get(i).get(1)));
+            activity1.add(String.valueOf(activity.get(i).get(2)));
+            activity1.add(String.valueOf(activity.get(i).get(3)));
+            activity1.add(String.valueOf(activity.get(i).get(4)));
+            activity1.add(String.valueOf(activity.get(i).get(5)));
+            activity1.add(String.valueOf(activity.get(i).get(6)));
+            activity1.add(" - ");
+            activity1.add(String.valueOf(activity.get(i).get(7)));
+            activity1.add(String.valueOf(activity.get(i).get(8)));
+            eventView.add(activity1);
+        }
+        String clubId = "C01";
+        for (int i = 0; i < eventView.size(); i++){
+            if (String.valueOf(eventView.get(i).get(7)).equalsIgnoreCase(clubId)){
+                eventSchedule.add(eventView.get(i));
+            }
+        }
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowEventScheduleForStudent.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        stage.setTitle("Show event Schedule");
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
 }
