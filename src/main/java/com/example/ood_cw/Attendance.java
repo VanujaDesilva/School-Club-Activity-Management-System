@@ -1,8 +1,10 @@
 package com.example.ood_cw;
 
-import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import java.net.URL;
 import java.util.Objects;
@@ -11,37 +13,32 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class Attendance implements Initializable {
 
     @FXML
-    private ChoiceBox<Club> clubSelector;
+    TableView attendanceTable;
 
-    @FXML
-    private ChoiceBox<Event> eventSelector;
-
-    @FXML
-    private TableColumn<Student,String> name;
-
-    @FXML
-    private TableColumn<Student, Boolean> status;
-
-    @FXML
-    private TableColumn<?, ?> stdId;
-
-    @FXML
-    private TableColumn<?, ?> telNo;
-
+    ObservableList<Student> data;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        TableColumn stdIdCol = new TableColumn("stdId");
+        TableColumn nameCol = new TableColumn("Name");
+        TableColumn telNoCol = new TableColumn("telNo");
+        TableColumn attendanceStatusCol = new TableColumn("Attendance status");
+        this.attendanceTable.getColumns().addAll(new Object[]{stdIdCol, nameCol, telNoCol, attendanceStatusCol});
+        stdIdCol.setCellValueFactory(new PropertyValueFactory("firstName"));
+        nameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
+        telNoCol.setCellValueFactory(new PropertyValueFactory("email"));
+        attendanceStatusCol.setCellValueFactory(new PropertyValueFactory("remark"));
+        this.attendanceTable.setItems(this.data);
+    }
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("attendanceTracking.fxml")));
         Scene scene = new Scene(fxmlLoader.load(), 900,600 );
         stage.setScene(scene);
         stage.show();
-    }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        status.setCellFactory(CheckBoxTableCell.forTableColumn(status));
-
     }
 }
