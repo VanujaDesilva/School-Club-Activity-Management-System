@@ -21,14 +21,7 @@
                         <TableColumn fx:id="stdId" prefWidth="96.0" text="stdId" />
                         <TableColumn fx:id="name" prefWidth="268.0" text="Name" />
                         <TableColumn fx:id="telNo" prefWidth="128.0" text="telNo" />
-                        <TableColumn fx:id="status" prefWidth="123.0" text="Attendance status">
-                            <cellValueFactory>
-                                <!-- Add your cell value factory implementation here if needed -->
-                            </cellValueFactory>
-                            <cellFactory>
-                                <CheckBoxTableCell />
-                            </cellFactory>
-                        </TableColumn>
+                        <TableColumn fx:id="status" prefWidth="123.0" text="Attendance status" />
                     </columns>
                 </TableView>
                 <Button layoutX="703.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Show" />
