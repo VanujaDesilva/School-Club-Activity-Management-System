@@ -21,7 +21,7 @@ public class Attendance implements Initializable {
     @FXML
     TableView attendanceTable;
 
-    ObservableList<Person> data;
+    ObservableList<Student> data;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         TableColumn stdIdCol = new TableColumn("stdId");
