@@ -3,7 +3,7 @@ package com.example.ood_cw;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
+import javafx.scene.control.cell.CheckBoxTableCell;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -13,7 +13,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
 
-public class Attendance extends Application {
+public class Attendance implements Initializable {
 
     @FXML
     private ChoiceBox<Club> clubSelector;
@@ -25,7 +25,7 @@ public class Attendance extends Application {
     private TableColumn<Student,String> name;
 
     @FXML
-    private TableColumn<?, ?> status;
+    private TableColumn<Student, Boolean> status;
 
     @FXML
     private TableColumn<?, ?> stdId;
@@ -33,13 +33,15 @@ public class Attendance extends Application {
     @FXML
     private TableColumn<?, ?> telNo;
 
-    @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("attendanceTracking.fxml")));
         Scene scene = new Scene(fxmlLoader.load(), 900,600 );
         stage.setScene(scene);
         stage.show();
-
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        status.setCellFactory(CheckBoxTableCell.forTableColumn(status));
 
     }
 }

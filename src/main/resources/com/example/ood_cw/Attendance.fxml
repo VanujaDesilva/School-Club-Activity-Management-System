@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -8,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.Attendance">
     <children>
         <AnchorPane prefHeight="600.0" prefWidth="900.0">
             <children>
@@ -23,8 +21,14 @@
                         <TableColumn fx:id="stdId" prefWidth="96.0" text="stdId" />
                         <TableColumn fx:id="name" prefWidth="268.0" text="Name" />
                         <TableColumn fx:id="telNo" prefWidth="128.0" text="telNo" />
-                        <TableColumn fx:id="status" prefWidth="123.0" text="Attendance status" />
-                        <TableColumn fx:id="name" prefWidth="118.0" text="Name" />
+                        <TableColumn fx:id="status" prefWidth="123.0" text="Attendance status">
+                            <cellValueFactory>
+                                <!-- Add your cell value factory implementation here if needed -->
+                            </cellValueFactory>
+                            <cellFactory>
+                                <CheckBoxTableCell />
+                            </cellFactory>
+                        </TableColumn>
                     </columns>
                 </TableView>
                 <Button layoutX="703.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Show" />
