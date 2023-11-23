@@ -120,7 +120,13 @@ public class HelloController{
         previousStage.close();
     }
 
-    public void onVanujaButtonClick(ActionEvent actionEvent) {
+    public void onVanujaButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Attendance.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        stage.setTitle("Enter club name");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void onTharushaButtonClick(ActionEvent actionEvent) {
