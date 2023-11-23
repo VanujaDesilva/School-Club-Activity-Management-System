@@ -239,39 +239,25 @@ public class HelloController{
             obj.setEventDescription(eventDescriptionText.getText());
             String enteredDate = String.valueOf(eventDateText.getValue());
             if (obj.getEventName().isEmpty()){
-                nameError.setText("This field must be filled!");
-                eventNameText.setStyle("-fx-border-color: red;");
-                eventNameTick.setText("");
+                obj.setLabel(nameError,eventNameText,eventNameTick);
                 errors++;
             } else {
-                nameError.setText("");
-                    eventNameTick.setText("\u2713");
-                eventNameText.setStyle("-fx-border-color: #13e57d;");
+                obj.setLabelCorrect(nameError,eventNameTick,eventNameText);
             }
             if (obj.getEventLocation().isEmpty()){
-                locationError.setText("This field must be filled!");
-                eventLocationText.setStyle("-fx-border-color: red;");
-                eventLocTick.setText("");
+                obj.setLabel(locationError,eventLocationText,eventLocTick);
                 errors++;
             } else {
-                locationError.setText("");
-                eventLocTick.setText("\u2713");
-                eventLocationText.setStyle("-fx-border-color: #13e57d;");
+                obj.setLabelCorrect(locationError,eventLocTick,eventLocationText);
             }
             if (obj.getEventTime().isEmpty()){
-                timeError.setText("This field must be filled!");
-                eventTimeText.setStyle("-fx-border-color: red;");
-                eventTimeTick.setText("");
+                obj.setLabel(timeError,eventTimeText,eventTimeTick);
                 errors++;
             } else {
-                timeError.setText("");
-                eventTimeTick.setText("\u2713");
-                eventTimeText.setStyle("-fx-border-color: #13e57d;");
+                obj.setLabelCorrect(timeError,eventTimeTick,eventTimeText);
             }
             if (enteredDate.equals("null")){
-                dateError.setText("This field must be filled!");
-                eventDateText.setStyle("-fx-border-color: red;");
-                eventDateTick.setText("");
+                obj.setLabel(dateError,eventDateText,eventDateTick);
                 errors++;
             } else {
                 try {
@@ -286,9 +272,7 @@ public class HelloController{
                         eventDateTick.setText("");
                         errors++;
                     } else {
-                        dateError.setText("");
-                        eventDateText.setStyle("-fx-border-color: #13e57d;");
-                        eventDateTick.setText("\u2713");
+                        obj.setLabelCorrect(dateError,eventDateTick,eventDateText);
                         obj.setEventDate(givenDate);
                     }
                 } catch (Exception e){
@@ -355,29 +339,19 @@ public class HelloController{
             obj.setEventDescription(meetingDescriptionText.getText());
             String enteredDate = String.valueOf(meetingDateText.getValue());
             if (obj.getEventLocation().isEmpty()){
-                meetingLocationError.setText("This field must be filled!");
-                meetingLocationText.setStyle("-fx-border-color: red;");
-                meetLocTick.setText("");
+                obj.setLabel(meetingLocationError,meetingLocationText,meetLocTick);
                 errors++;
             } else {
-                meetingLocationError.setText("");
-                meetLocTick.setText("\u2713");
-                meetingLocationText.setStyle("-fx-border-color: #13e57d;");
+                obj.setLabelCorrect(meetingLocationError,meetLocTick,meetingLocationText);
             }
             if (obj.getEventTime().isEmpty()){
-                meetingTimeError.setText("This field must be filled!");
-                meetingTimeText.setStyle("-fx-border-color: red;");
-                meetTimeTick.setText("");
+                obj.setLabel(meetingTimeError,meetingTimeText,meetTimeTick);
                 errors++;
             } else {
-                meetingTimeError.setText("");
-                meetTimeTick.setText("\u2713");
-                meetingTimeText.setStyle("-fx-border-color: #13e57d;");
+                obj.setLabelCorrect(meetingTimeError,meetTimeTick,meetingTimeText);
             }
             if (enteredDate.equals("null")){
-                meetingDateError.setText("This field must be filled!");
-                meetingDateText.setStyle("-fx-border-color: red;");
-                meetDateTick.setText("");
+                obj.setLabel(meetingDateError,meetingDateText,meetDateTick);
                 errors++;
             } else {
                 try {
@@ -392,9 +366,7 @@ public class HelloController{
                         meetDateTick.setText("");
                         errors++;
                     } else {
-                        meetingDateError.setText("");
-                        meetingDateText.setStyle("-fx-border-color: #13e57d;");
-                        meetDateTick.setText("\u2713");
+                        obj.setLabelCorrect(meetingDateError,meetDateTick,meetingDateText);
                         obj.setEventDate(givenDate);
                     }
                 } catch (Exception e){
@@ -448,6 +420,7 @@ public class HelloController{
     public DatePicker activityEndDateText;
     public Label activityEndDateTick;
 
+
     public void onActivityScheduleButtonClick() throws IOException {
         outerloop:
         while (true){
@@ -460,34 +433,22 @@ public class HelloController{
             String startDate = String.valueOf(activityStartDateText.getValue());
             String endDate = String.valueOf(activityEndDateText.getValue());
             if (obj.getEventName().isEmpty()){
-                activityNameError.setText("This field must be filled!");
-                activityNameText.setStyle("-fx-border-color: red;");
-                activityNameTick.setText("");
+                obj.setLabel(activityNameError,activityNameText,activityNameTick);
                 errors++;
             } else {
-                activityNameError.setText("");
-                activityNameTick.setText("\u2713");
-                activityNameText.setStyle("-fx-border-color: #13e57d;");
+                obj.setLabelCorrect(activityNameError,activityNameTick,activityNameText);
             }
             if (obj.getEventLocation().isEmpty()){
-                activityLocationError.setText("This field must be filled!");
-                activityLocationText.setStyle("-fx-border-color: red;");
-                activityLocTick.setText("");
+                obj.setLabel(activityLocationError,activityLocationText,activityLocTick);
                 errors++;
             } else {
-                activityLocationError.setText("");
-                activityLocTick.setText("\u2713");
-                activityLocationText.setStyle("-fx-border-color: #13e57d;");
+                obj.setLabelCorrect(activityLocationError,activityLocTick,activityLocationText);
             }
             if (obj.getEventTime().isEmpty()){
-                activityTimeError.setText("This field must be filled!");
-                activityTimeText.setStyle("-fx-border-color: red;");
-                activityTimeTick.setText("");
+                obj.setLabel(activityTimeError,activityTimeText,activityTimeTick);
                 errors++;
             } else {
-                activityTimeError.setText("");
-                activityTimeTick.setText("\u2713");
-                activityTimeText.setStyle("-fx-border-color: #13e57d;");
+                obj.setLabelCorrect(activityTimeError,activityTimeTick,activityTimeText);
             }
             int sYear = 0;
             int sMonth = 0;
@@ -495,9 +456,7 @@ public class HelloController{
             LocalDate sGivenDate = null;
 
             if (startDate.equals("null")){
-                activityStartDateError.setText("This field must be filled!");
-                activityStartDateText.setStyle("-fx-border-color: red;");
-                activityStartDateTick.setText("");
+                obj.setLabel(activityStartDateError,activityStartDateText,activityStartDateTick);
                 errors++;
             } else {
                 try {
@@ -512,9 +471,7 @@ public class HelloController{
                         activityStartDateTick.setText("");
                         errors++;
                     } else {
-                        activityStartDateError.setText("");
-                        activityStartDateText.setStyle("-fx-border-color: #13e57d;");
-                        activityStartDateTick.setText("\u2713");
+                        obj.setLabelCorrect(activityStartDateError,activityStartDateTick,activityStartDateText);
                         obj.setEventDate(sGivenDate);
                     }
                 } catch (Exception e){
@@ -529,9 +486,7 @@ public class HelloController{
             int eDay = 0;
             LocalDate eGivenDate = null;
             if (endDate.equals("null")){
-                activityEndDateError.setText("This field must be filled!");
-                activityEndDateText.setStyle("-fx-border-color: red;");
-                activityEndDateTick.setText("");
+                obj.setLabel(activityEndDateError,activityEndDateText,activityEndDateTick);
                 errors++;
             }else {
                 try {
@@ -546,9 +501,7 @@ public class HelloController{
                         activityEndDateTick.setText("");
                         errors++;
                     } else {
-                        activityEndDateError.setText("");
-                        activityEndDateText.setStyle("-fx-border-color: #13e57d;");
-                        activityEndDateTick.setText("\u2713");
+                        obj.setLabelCorrect(activityEndDateError,activityEndDateTick,activityEndDateText);
                         obj.setEndDate(eGivenDate);
                     }
                 } catch (Exception e) {
