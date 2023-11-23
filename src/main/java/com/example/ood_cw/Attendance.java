@@ -62,8 +62,13 @@ public class Attendance implements Initializable {
 
         // Print the saved attendance data (you can replace this with your saving logic)
         for (Student student : savedAttendanceList) {
-            System.out.println("Student ID: " + student.getStdId() +
-                    ", Attendance Status: " + student.isStatus());
+            String atten;
+            if (student.isStatus().isSelected()) {
+                atten = "Present";
+            } else {
+                atten = "Absent";
+            }
+            System.out.println("Student ID: " + student.getStdId() + ", Attendance Status: " + atten);
         }
     }
 
