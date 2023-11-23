@@ -117,7 +117,7 @@ public class ViewOrDeleteEvents implements Initializable {
         if (count==0){
             deleteIdError.setStyle("-fx-text-fill: #ff0000;");
             deleteIdError.setText("Entered Event ID doesn't exist!");
-            PauseTransition pause = new PauseTransition(Duration.seconds(4));
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
             // Set the action to be performed when the pause is finished
             pause.setOnFinished(event -> {
                 // Remove the text after 5 seconds
@@ -156,7 +156,7 @@ public class ViewOrDeleteEvents implements Initializable {
             }
             deleteIdError.setStyle("-fx-text-fill: #13e57d;");
             deleteIdError.setText("Event has been deleted!");
-            PauseTransition pause = new PauseTransition(Duration.seconds(4));
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
             pause.setOnFinished(event -> {
                 deleteIdError.setText("");
             });

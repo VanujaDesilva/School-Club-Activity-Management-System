@@ -239,7 +239,7 @@ public class HelloController{
                 errors++;
             } else {
                 nameError.setText("");
-                eventNameTick.setText("\u2713");
+                    eventNameTick.setText("\u2713");
                 eventNameText.setStyle("-fx-border-color: #13e57d;");
             }
             if (obj.getEventLocation().isEmpty()){
