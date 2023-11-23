@@ -1,5 +1,6 @@
 package com.example.ood_cw;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -115,6 +117,14 @@ public class ViewOrDeleteEvents implements Initializable {
         if (count==0){
             deleteIdError.setStyle("-fx-text-fill: #ff0000;");
             deleteIdError.setText("Entered Event ID doesn't exist!");
+            PauseTransition pause = new PauseTransition(Duration.seconds(4));
+            // Set the action to be performed when the pause is finished
+            pause.setOnFinished(event -> {
+                // Remove the text after 5 seconds
+                deleteIdError.setText("");
+            });
+            // Start the pause transition
+            pause.play();
         } else {
             List<List<Object>> eventView = HelloController.eventView;
             for (int i = 0; i <eventView.size();i++){
@@ -123,8 +133,34 @@ public class ViewOrDeleteEvents implements Initializable {
                     break;
                 }
             }
+            List<List<Object>> events1 = HelloController.events1;
+            for (int i =0 ; i < events1.size();i++){
+                if (String.valueOf(events1.get(i).get(0)).equalsIgnoreCase(deleteId)){
+                    events1.remove(i);
+                    break;
+                }
+            }
+            List<List<Object>> meetings = HelloController.meetings;
+            for (int i =0 ; i < meetings.size();i++){
+                if (String.valueOf(meetings.get(i).get(0)).equalsIgnoreCase(deleteId)){
+                    meetings.remove(i);
+                    break;
+                }
+            }
+            List<List<Object>> activity = HelloController.activity;
+            for (int i =0 ; i < activity.size();i++){
+                if (String.valueOf(activity.get(i).get(0)).equalsIgnoreCase(deleteId)){
+                    activity.remove(i);
+                    break;
+                }
+            }
             deleteIdError.setStyle("-fx-text-fill: #13e57d;");
             deleteIdError.setText("Event has been deleted!");
+            PauseTransition pause = new PauseTransition(Duration.seconds(4));
+            pause.setOnFinished(event -> {
+                deleteIdError.setText("");
+            });
+            pause.play();
         }
     }
 }

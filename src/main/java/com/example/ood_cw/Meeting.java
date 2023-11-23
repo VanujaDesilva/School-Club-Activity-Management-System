@@ -1,6 +1,6 @@
 package com.example.ood_cw;
 
-public class Meeting extends Event{
+public class Meeting extends Events{
     private String meetDuration;
 
     public Meeting() {
