@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane fx:id="enterClubNameAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
     <children>
@@ -25,11 +26,17 @@
                 <Font size="16.0" />
             </font>
         </Button>
-      <TableView layoutX="335.0" layoutY="109.0" prefHeight="214.0" prefWidth="262.0">
+      <TableView layoutX="350.0" layoutY="108.0" prefHeight="214.0" prefWidth="262.0">
         <columns>
           <TableColumn prefWidth="100.79998779296875" text="Club ID" />
           <TableColumn prefWidth="158.39999389648438" text="Club name" />
         </columns>
       </TableView>
+      <Button layoutX="80.0" layoutY="140.0" mnemonicParsing="false">
+         <graphic>
+            <FontIcon iconLiteral="fab-accessible-icon" iconSize="50" />
+         </graphic>
+      </Button>
+      <FontIcon />
     </children>
 </AnchorPane>

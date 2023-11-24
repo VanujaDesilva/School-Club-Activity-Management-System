@@ -99,7 +99,6 @@ public class HelloController{
                 meetings.add(events.get(i));
             }
         }
-
         activity.clear();
         for (int i = 0; i<events.size(); i++){
             String e = (String) events.get(i).get(0);
