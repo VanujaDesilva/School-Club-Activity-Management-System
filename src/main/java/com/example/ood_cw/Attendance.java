@@ -45,15 +45,15 @@ public class Attendance implements Initializable {
                 new Student("S001", "Jacob", "Smith", "0704594151", "2003-01-23"),
                 new Student("S002", "Emma", "Johnson", "0712345678", "2002-05-15"),
                 new Student("S003", "Velma", "Johnson", "0713345678", "2004-05-15"));
-        for (int i = 0; i < events.size(); i++) {
-            String eName =  String.valueOf(events.get(i).get(1));
-            eventNames.add(eName);
-        }
-        System.out.println();
-        for (int i = 0; i < eventNames.size(); i++) {
-            System.out.println(eventNames.get(i));
-
-        }
+//        for (int i = 0; i < events.size(); i++) {
+//            String eName =  String.valueOf(events.get(i).get(1));
+//            eventNames.add(eName);
+//        }
+//        System.out.println();
+//        for (int i = 0; i < eventNames.size(); i++) {
+//            System.out.println(eventNames.get(i));
+//
+//        }
         List<String> events = Arrays.asList("Event1", "Event2", "Event3");
         eventSelector.getItems().addAll(events);
         List<String> clubs = Arrays.asList("Club 1", "Club 2", "Club 3");
@@ -91,7 +91,7 @@ public class Attendance implements Initializable {
                 attendance = "Absent";
             }
             System.out.println("Student ID: " + student.getStdId() + ", Attendance Status: " + attendance);
-            insertAttendance("","","");
+            insertAttendance(student.getStdId(), String.valueOf(eventSelector.getValue()),attendance);
         }
     }
 
