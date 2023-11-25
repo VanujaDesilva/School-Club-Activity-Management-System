@@ -28,8 +28,12 @@ public class Attendance implements Initializable {
     @FXML
     private Button saveButton;
 
-    private List<String> eventNames;
+    private List<Object> eventNames = new ArrayList<>();
+    private List<Object> eNames = new ArrayList<>();
     private ObservableList<Student> data;
+
+    public Attendance() {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -45,17 +49,17 @@ public class Attendance implements Initializable {
                 new Student("S001", "Jacob", "Smith", "0704594151", "2003-01-23"),
                 new Student("S002", "Emma", "Johnson", "0712345678", "2002-05-15"),
                 new Student("S003", "Velma", "Johnson", "0713345678", "2004-05-15"));
-//        for (int i = 0; i < events.size(); i++) {
-//            String eName =  String.valueOf(events.get(i).get(1));
-//            eventNames.add(eName);
-//        }
-//        System.out.println();
-//        for (int i = 0; i < eventNames.size(); i++) {
-//            System.out.println(eventNames.get(i));
-//
-//        }
-        List<String> events = Arrays.asList("Event1", "Event2", "Event3");
-        eventSelector.getItems().addAll(events);
+        System.out.println(events);
+        for (int i = 0; i < events.size(); i++) {
+            String eName =  String.valueOf(events.get(i).get(1));
+            if(eName == " - "){
+                eName =  String.valueOf(events.get(i).get(0));
+            }
+            System.out.println(eName);
+            eNames.add(eName);
+        }
+
+        eventSelector.getItems().addAll(eNames);
         List<String> clubs = Arrays.asList("Club 1", "Club 2", "Club 3");
         clubSelector.getItems().addAll(clubs);
         stdIdCol.setCellValueFactory(new PropertyValueFactory<>("stdId"));
