@@ -2,7 +2,6 @@ package com.example.ood_cw;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,13 +10,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import static com.example.ood_cw.HelloController.events;
 import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
+
+import java.sql.*;
+import java.io.*;
 
 public class Attendance implements Initializable {
     public ChoiceBox eventSelector;
@@ -28,7 +28,7 @@ public class Attendance implements Initializable {
     @FXML
     private Button saveButton;
 
-
+    private List<String> eventNames;
     private ObservableList<Student> data;
 
     @Override
@@ -45,6 +45,10 @@ public class Attendance implements Initializable {
                 new Student("S001", "Jacob", "Smith", "0704594151", "2003-01-23"),
                 new Student("S002", "Emma", "Johnson", "0712345678", "2002-05-15"),
                 new Student("S002", "Emma", "Johnson", "0712345678", "2002-05-15"));
+        for (int i = 0; i < events.size(); i++) {
+            String eName =  String.valueOf(events.get(i).get(1));
+            eventNames.add(eName);
+        }
         List<String> events = Arrays.asList("Event1", "Event2", "Event3");
         eventSelector.getItems().addAll(events);
         List<String> clubs = Arrays.asList("Club 1", "Club 2", "Club 3");
@@ -57,7 +61,19 @@ public class Attendance implements Initializable {
         attendanceStatusCol.setCellValueFactory(new PropertyValueFactory<Student,String>("status"));
 
     }
-
+    public static void insertAttendance(String studentId, String sessionId, String studentStatus) throws SQLException {
+        try (Connection connection = getConnection()) {
+            String query = "INSERT INTO attendance (studentId , sessionId, studentStatus) VALUES (?, ?, ?)";
+            try (PreparedStatement atten = connection.prepareStatement(query)) {
+                atten.setString(1, studentId);
+                atten.setString(2, sessionId);
+                atten.setString(3, studentStatus);
+                atten.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void handleSaveButtonAction() {
@@ -70,6 +86,7 @@ public class Attendance implements Initializable {
                 attendance = "Absent";
             }
             System.out.println("Student ID: " + student.getStdId() + ", Attendance Status: " + attendance);
+            insertAttendance();
         }
     }
 
@@ -91,4 +108,35 @@ public class Attendance implements Initializable {
             System.out.println("Please select both club and event");
         }
     }
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sacms", "root", "");
+    }
+
+    public static void main(String[] args) {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }catch (ClassNotFoundException e){
+            System.out.println("Class not found");
+            e.printStackTrace();
+        }
+
+        System.out.println("Driver class registered");
+        Connection sample = null;
+
+        try {
+            sample = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams", "root", "");
+        }catch (SQLException e2) {
+            System.out.println("sql exception found");
+            e2.printStackTrace();
+            return;
+        }
+
+        if (sample != null){
+            System.out.println("success");
+        }else {
+            System.out.println("failed to connect");
+        }
+    }
+
 }
