@@ -380,7 +380,6 @@ public class HelloController{
                     break outerloop;
                 }
             }
-            System.out.println("Meeting should be added to the list");
             int max =0;
             for (int i = 0 ; i < meetings.size() ; i++){
                 String e = (String) meetings.get(i).get(0);
@@ -545,6 +544,17 @@ public class HelloController{
                 }
             }
             System.out.println("Activity should be added to the list");
+            int max =0;
+            for (int i = 0 ; i < meetings.size() ; i++){
+                String e = (String) meetings.get(i).get(0);
+                int curValue = Integer.parseInt(e.substring(1,4));
+                if (max < curValue){
+                    max = curValue;
+                }
+            }
+            max = max + 1;
+            String id = String.format("%03d",max);
+            id = "M"+id;
             break;
         }
     }
