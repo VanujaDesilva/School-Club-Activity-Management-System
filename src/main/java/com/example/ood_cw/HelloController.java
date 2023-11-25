@@ -102,31 +102,31 @@ public class HelloController{
         event.add("AD01");
         events.add(event);
 
-        event.clear();
-        event.add("M001");
-        event.add(" - ");
-        event.add("Hilton");
-        event.add("08:30");
-        event.add("Batch meeting");
-        event.add("2023-12-23");
-        event.add(" - ");
-        event.add("2-hours");
-        event.add("C001");
-        event.add("AD01");
-        events.add(event);
+        List<Object> event1 = new ArrayList<>();
+        event1.add("M001");
+        event1.add(" - ");
+        event1.add("Hilton");
+        event1.add("08:30");
+        event1.add("Batch meeting");
+        event1.add("2023-12-23");
+        event1.add(" - ");
+        event1.add("2-hours");
+        event1.add("C001");
+        event1.add("AD01");
+        events.add(event1);
 
-        event.clear();
-        event.add("A001");
-        event.add("Game Fiesta");
-        event.add("Club Fusion");
-        event.add("08:30");
-        event.add("A game event");
-        event.add("2023-12-23");
-        event.add("2023-12-25");
-        event.add(" - ");
-        event.add("C001");
-        event.add("AD01");
-        events.add(event);
+        List<Object> event2 = new ArrayList<>();
+        event2.add("A001");
+        event2.add("Game Fiesta");
+        event2.add("Club Fusion");
+        event2.add("08:30");
+        event2.add("A game event");
+        event2.add("2023-12-23");
+        event2.add("2023-12-25");
+        event2.add(" - ");
+        event2.add("C001");
+        event2.add("AD01");
+        events.add(event2);
 
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Attendance.fxml"));
@@ -579,12 +579,11 @@ public class HelloController{
             String date = String.valueOf(obj.getEventDate());
             String date1 = String.valueOf(obj.getEndDate());
             for (int i = 0; i < activity.size(); i++){
-                if (activity.get(i).get(1).equals(obj.getEventName()) && activity.get(i).get(5).equals(date) && activity.get(i).get(6).equals(date1)){
+                if (activity.get(i).get(1).equals(obj.getEventName()) && String.valueOf(activity.get(i).get(5)).equals(date) && String.valueOf(activity.get(i).get(6)).equals(date1)){
                     System.out.println("Activity already exists");
                     break outerloop;
                 }
             }
-            System.out.println("Activity should be added to the list");
             int max =0;
             for (int i = 0 ; i < activity.size() ; i++){
                 String e = (String) activity.get(i).get(0);
