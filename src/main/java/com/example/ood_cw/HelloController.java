@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,39 +50,7 @@ public class HelloController{
     public Label eventDateTick;
 
     public void onYeranButtonClick() throws IOException {
-        List<Object> event1 = new ArrayList<>();
-        event1.add("E01");
-        event1.add("Spandana");
-        event1.add("Viharamahadevi");
-        event1.add("18:00");
-        event1.add("Musical event");
-        event1.add("2023-12-16");
-        event1.add("C01");
-        event1.add("AD01");
-        events.add(event1);
-
-        List<Object> event2 = new ArrayList<>();
-        event2.add("M01");
-        event2.add("Hilton");
-        event2.add("18:00");
-        event2.add("The monthly meeting");
-        event2.add("2023-12-18");
-        event2.add("2 hours");
-        event2.add("C01");
-        event2.add("AD01");
-        events.add(event2);
-
-        List<Object> event3 = new ArrayList<>();
-        event3.add("A01");
-        event3.add("Game Fiesta");
-        event3.add("Hilton");
-        event3.add("18:00");
-        event3.add("Game event");
-        event3.add("2023-12-18");
-        event3.add("2023-12-20");
-        event3.add("C01");
-        event3.add("AD01");
-        events.add(event3);
+        DatabaseConnect.getSchedule();
         events1.clear();
         for (int i = 0; i<events.size(); i++){
             String e = (String) events.get(i).get(0);
@@ -99,7 +68,6 @@ public class HelloController{
                 meetings.add(events.get(i));
             }
         }
-
         activity.clear();
         for (int i = 0; i<events.size(); i++){
             String e = (String) events.get(i).get(0);
@@ -124,7 +92,7 @@ public class HelloController{
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Attendance.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Enter club name");
+        stage.setTitle("Attendance");
         stage.setScene(scene);
         stage.show();
     }
@@ -224,7 +192,7 @@ public class HelloController{
     }
 
 
-    public void onScheduleEventsButtonClick() throws IOException {
+    public void onScheduleEventsButtonClick() throws IOException, SQLException {
         outerloop:
         while (true){
             int errors = 0;
@@ -256,6 +224,9 @@ public class HelloController{
             } else {
                 obj.setLabelCorrect(timeError,eventTimeTick,eventTimeText);
             }
+            if (obj.getEventDescription().isEmpty()){
+                obj.setEventDescription(" - ");
+            }
             if (enteredDate.equals("null")){
                 obj.setLabel(dateError,eventDateText,eventDateTick);
                 errors++;
@@ -285,19 +256,44 @@ public class HelloController{
             if (errors > 0)
                 break;
             String date = String.valueOf(obj.getEventDate());
+            System.out.println(events1);
             for (int i = 0; i < events1.size(); i++){
-                if (events1.get(i).get(1).equals(obj.getEventName()) && events1.get(i).get(5).equals(date)){
+                if (events1.get(i).get(1).equals(obj.getEventName()) && String.valueOf(events1.get(i).get(5)).equals(date)){
                     System.out.println("Event already exists");
                     break outerloop;
                 }
             }
-            System.out.println("Event should be added to the list");
+            int max =0;
+            for (int i = 0 ; i < events1.size() ; i++){
+                String e = (String) events1.get(i).get(0);
+                int curValue = Integer.parseInt(e.substring(1,4));
+                if (max < curValue){
+                    max = curValue;
+                }
+            }
+            max = max + 1;
+            String id = String.format("%03d",max);
+            id = "E"+id;
+            List<Object> event = new ArrayList<>();
+            event.add(id);
+            event.add(obj.getEventName());
+            event.add(obj.getEventLocation());
+            event.add(obj.getEventTime());
+            event.add(obj.getEventDescription());
+            event.add(obj.getEventDate());
+            event.add(" - ");
+            event.add(" - ");
+            event.add("C001");
+            event.add("AD01");
+            events.add(event);
+            events1.add(event);
+            DatabaseConnect.clearTable();
+            for (int i=0 ;i<events.size(); i++){
+                DatabaseConnect.insertSchedule(String.valueOf(events.get(i).get(0)),String.valueOf(events.get(i).get(1)),String.valueOf(events.get(i).get(2)),String.valueOf(events.get(i).get(3)),String.valueOf(events.get(i).get(4)),String.valueOf(events.get(i).get(5)),String.valueOf(events.get(i).get(6)),String.valueOf(events.get(i).get(7)),String.valueOf(events.get(i).get(8)),String.valueOf(events.get(i).get(9)));
+            }
             break;
         }
     }
-
-
-
 
     public void onScheduleEventsBackButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
@@ -324,7 +320,7 @@ public class HelloController{
     public Label meetTimeTick;
     public Label meetDateTick;
 
-    public void onScheduleMeetingsButtonClick()throws IOException {
+    public void onScheduleMeetingsButtonClick() throws IOException, SQLException {
         outerloop:
         while (true){
             int year = 0;
@@ -380,12 +376,40 @@ public class HelloController{
                 break;
             String date = String.valueOf(obj.getEventDate());
             for (int i = 0; i < meetings.size(); i++){
-                if (meetings.get(i).get(1).equals(obj.getEventLocation()) && meetings.get(i).get(4).equals(date)){
+                if (meetings.get(i).get(1).equals(obj.getEventLocation()) && String.valueOf(meetings.get(i).get(4)).equals(date)){
                     System.out.println("Meeting already exists");
                     break outerloop;
                 }
             }
             System.out.println("Meeting should be added to the list");
+            int max =0;
+            for (int i = 0 ; i < meetings.size() ; i++){
+                String e = (String) meetings.get(i).get(0);
+                int curValue = Integer.parseInt(e.substring(1,4));
+                if (max < curValue){
+                    max = curValue;
+                }
+            }
+            max = max + 1;
+            String id = String.format("%03d",max);
+            id = "M"+id;
+            List<Object> meeting = new ArrayList<>();
+            meeting.add(id);
+            meeting.add(" - ");
+            meeting.add(obj.getEventLocation());
+            meeting.add(obj.getEventTime());
+            meeting.add(obj.getEventDescription());
+            meeting.add(obj.getEventDate());
+            meeting.add(" - ");
+            meeting.add(obj.getMeetDuration());
+            meeting.add("C001");
+            meeting.add("AD01");
+            events.add(meeting);
+            meetings.add(meeting);
+            DatabaseConnect.clearTable();
+            for (int i=0 ;i<events.size(); i++){
+                DatabaseConnect.insertSchedule(String.valueOf(events.get(i).get(0)),String.valueOf(events.get(i).get(1)),String.valueOf(events.get(i).get(2)),String.valueOf(events.get(i).get(3)),String.valueOf(events.get(i).get(4)),String.valueOf(events.get(i).get(5)),String.valueOf(events.get(i).get(6)),String.valueOf(events.get(i).get(7)),String.valueOf(events.get(i).get(8)),String.valueOf(events.get(i).get(9)));
+            }
             break;
         }
     }
@@ -549,25 +573,25 @@ public class HelloController{
             event.add(String.valueOf(events1.get(i).get(3)));
             event.add(String.valueOf(events1.get(i).get(4)));
             event.add(String.valueOf(events1.get(i).get(5)));
-            event.add(" - ");
-            event.add(" - ");
             event.add(String.valueOf(events1.get(i).get(6)));
             event.add(String.valueOf(events1.get(i).get(7)));
+            event.add(String.valueOf(events1.get(i).get(8)));
+            event.add(String.valueOf(events1.get(i).get(9)));
             eventView.add(event);
         }
 
         for (int i = 0; i<meetings.size() ; i++){
             List<Object> meeting = new ArrayList<>();
             meeting.add(String.valueOf(meetings.get(i).get(0)));
-            meeting.add(" - ");
             meeting.add(String.valueOf(meetings.get(i).get(1)));
             meeting.add(String.valueOf(meetings.get(i).get(2)));
             meeting.add(String.valueOf(meetings.get(i).get(3)));
             meeting.add(String.valueOf(meetings.get(i).get(4)));
-            meeting.add(" - ");
             meeting.add(String.valueOf(meetings.get(i).get(5)));
             meeting.add(String.valueOf(meetings.get(i).get(6)));
             meeting.add(String.valueOf(meetings.get(i).get(7)));
+            meeting.add(String.valueOf(meetings.get(i).get(8)));
+            meeting.add(String.valueOf(meetings.get(i).get(9)));
             eventView.add(meeting);
         }
 
@@ -580,9 +604,9 @@ public class HelloController{
             activity1.add(String.valueOf(activity.get(i).get(4)));
             activity1.add(String.valueOf(activity.get(i).get(5)));
             activity1.add(String.valueOf(activity.get(i).get(6)));
-            activity1.add(" - ");
             activity1.add(String.valueOf(activity.get(i).get(7)));
             activity1.add(String.valueOf(activity.get(i).get(8)));
+            activity1.add(String.valueOf(activity.get(i).get(9)));
             eventView.add(activity1);
         }
 
