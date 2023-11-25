@@ -28,6 +28,7 @@ public class Attendance implements Initializable {
     @FXML
     private Button saveButton;
 
+
     private ObservableList<Student> data;
 
     @Override
@@ -42,6 +43,7 @@ public class Attendance implements Initializable {
         this.attendanceTable.getColumns().addAll(stdIdCol, firstNameCol, lastNameCol, telNoCol, dobCol, attendanceStatusCol);
         this.data = FXCollections.observableArrayList(
                 new Student("S001", "Jacob", "Smith", "0704594151", "2003-01-23"),
+                new Student("S002", "Emma", "Johnson", "0712345678", "2002-05-15"),
                 new Student("S002", "Emma", "Johnson", "0712345678", "2002-05-15"));
         List<String> events = Arrays.asList("Event1", "Event2", "Event3");
         eventSelector.getItems().addAll(events);
