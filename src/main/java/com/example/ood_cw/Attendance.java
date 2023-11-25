@@ -27,6 +27,7 @@ public class Attendance implements Initializable {
     @FXML
     private Button saveButton;
 
+
     private ObservableList<Student> data;
 
     @Override
@@ -44,6 +45,7 @@ public class Attendance implements Initializable {
                 new Student("S001", "Jacob", "Smith", "0704594151", "2003-01-23"),
                 new Student("S002", "Emma", "Johnson", "0712345678", "2002-05-15")
         );
+
 
         stdIdCol.setCellValueFactory(new PropertyValueFactory<>("stdId"));
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
