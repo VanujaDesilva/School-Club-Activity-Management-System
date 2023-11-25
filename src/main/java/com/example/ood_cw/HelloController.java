@@ -50,6 +50,7 @@ public class HelloController{
     public Label eventDateTick;
 
     public void onYeranButtonClick() throws IOException {
+        DatabaseConnect.getSchedule();
         events1.clear();
         for (int i = 0; i<events.size(); i++){
             String e = (String) events.get(i).get(0);
@@ -483,7 +484,7 @@ public class HelloController{
     public Label activityEndDateTick;
 
 
-    public void onActivityScheduleButtonClick() throws IOException {
+    public void onActivityScheduleButtonClick() throws IOException, SQLException {
         outerloop:
         while (true){
             int errors = 0;
@@ -594,8 +595,24 @@ public class HelloController{
             }
             max = max + 1;
             String id = String.format("%03d",max);
-            id = "M"+id;
-
+            id = "A"+id;
+            List<Object> activity1 = new ArrayList<>();
+            activity1.add(id);
+            activity1.add(obj.getEventName());
+            activity1.add(obj.getEventLocation());
+            activity1.add(obj.getEventTime());
+            activity1.add(obj.getEventDescription());
+            activity1.add(obj.getEventDate());
+            activity1.add(obj.getEndDate());
+            activity1.add(" - ");
+            activity1.add("C001");
+            activity1.add("AD01");
+            events.add(activity1);
+            activity.add(activity1);
+            DatabaseConnect.clearTable();
+            for (int i=0 ;i<events.size(); i++){
+                DatabaseConnect.insertSchedule(String.valueOf(events.get(i).get(0)),String.valueOf(events.get(i).get(1)),String.valueOf(events.get(i).get(2)),String.valueOf(events.get(i).get(3)),String.valueOf(events.get(i).get(4)),String.valueOf(events.get(i).get(5)),String.valueOf(events.get(i).get(6)),String.valueOf(events.get(i).get(7)),String.valueOf(events.get(i).get(8)),String.valueOf(events.get(i).get(9)));
+            }
             break;
         }
     }
