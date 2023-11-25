@@ -123,7 +123,7 @@ public class HelloController{
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Attendance.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Enter club name");
+        stage.setTitle("Attendance");
         stage.setScene(scene);
         stage.show();
     }
