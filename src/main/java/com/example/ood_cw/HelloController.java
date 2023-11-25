@@ -88,6 +88,46 @@ public class HelloController{
     }
 
     public void onVanujaButtonClick(ActionEvent actionEvent) throws IOException {
+        List<Object> event = new ArrayList<>();
+        event.add("E001");
+        event.add("Spandana");
+        event.add("Viharamahadevi");
+        event.add("08:30");
+        event.add("musical event");
+        event.add("2023-12-23");
+        event.add(" - ");
+        event.add(" - ");
+        event.add("C001");
+        event.add("AD01");
+        events.add(event);
+
+        event.clear();
+        event.add("M001");
+        event.add(" - ");
+        event.add("Hilton");
+        event.add("08:30");
+        event.add("Batch meeting");
+        event.add("2023-12-23");
+        event.add(" - ");
+        event.add("2-hours");
+        event.add("C001");
+        event.add("AD01");
+        events.add(event);
+
+        event.clear();
+        event.add("A001");
+        event.add("Game Fiesta");
+        event.add("Club Fusion");
+        event.add("08:30");
+        event.add("A game event");
+        event.add("2023-12-23");
+        event.add("2023-12-25");
+        event.add(" - ");
+        event.add("C001");
+        event.add("AD01");
+        events.add(event);
+
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Attendance.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
@@ -545,8 +585,8 @@ public class HelloController{
             }
             System.out.println("Activity should be added to the list");
             int max =0;
-            for (int i = 0 ; i < meetings.size() ; i++){
-                String e = (String) meetings.get(i).get(0);
+            for (int i = 0 ; i < activity.size() ; i++){
+                String e = (String) activity.get(i).get(0);
                 int curValue = Integer.parseInt(e.substring(1,4));
                 if (max < curValue){
                     max = curValue;
@@ -555,6 +595,7 @@ public class HelloController{
             max = max + 1;
             String id = String.format("%03d",max);
             id = "M"+id;
+
             break;
         }
     }
