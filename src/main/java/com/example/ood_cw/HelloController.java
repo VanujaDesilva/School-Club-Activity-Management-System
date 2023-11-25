@@ -1,5 +1,6 @@
 package com.example.ood_cw;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,12 +27,17 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.util.Duration;
+
 public class HelloController{
     public static List<List<Object>> events = new ArrayList<>();
     public static List<List<Object>> events1 = new ArrayList<>();
     public static List<List<Object>> meetings = new ArrayList<>();
     public static List<List<Object>> activity = new ArrayList<>();
     public AnchorPane eventSchedulingAnchor;
+    public Label eventAddSuccessfull;
+    public Label meetingAddSuccessfull;
+    public Label activityAddSuccessfull;
     @FXML
     private AnchorPane sampleAnchor;
     public TextField eventNameText;
@@ -147,7 +153,7 @@ public class HelloController{
     public void onEnterClubNameNextClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
         stage.setTitle("Add items");
         stage.setScene(scene);
         stage.show();
@@ -168,7 +174,7 @@ public class HelloController{
         System.out.println(events1);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScheduleEvents.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600.0,  444.0);
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
         stage.setTitle("Schedule Events");
         stage.setScene(scene);
         stage.show();
@@ -189,7 +195,7 @@ public class HelloController{
         System.out.println(meetings);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScheduleMeetings.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600.0,  444.0);
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
         stage.setTitle("Schedule Meetings");
         stage.setScene(scene);
         stage.show();
@@ -210,7 +216,7 @@ public class HelloController{
         System.out.println(activity);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SheduleActivities.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600.0,  500.0);
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
         stage.setTitle("Schedule Meetings");
         stage.setScene(scene);
         stage.show();
@@ -299,7 +305,16 @@ public class HelloController{
             System.out.println(events1);
             for (int i = 0; i < events1.size(); i++){
                 if (events1.get(i).get(1).equals(obj.getEventName()) && String.valueOf(events1.get(i).get(5)).equals(date)){
-                    System.out.println("Event already exists");
+                    eventAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
+                    eventAddSuccessfull.setText("Entered Event already exist!");
+                    PauseTransition pause = new PauseTransition(Duration.seconds(4));
+                    // Set the action to be performed when the pause is finished
+                    pause.setOnFinished(event -> {
+                        // Remove the text after 5 seconds
+                        eventAddSuccessfull.setText("");
+                    });
+                    // Start the pause transition
+                    pause.play();
                     break outerloop;
                 }
             }
@@ -331,6 +346,16 @@ public class HelloController{
             for (int i=0 ;i<events.size(); i++){
                 DatabaseConnect.insertSchedule(String.valueOf(events.get(i).get(0)),String.valueOf(events.get(i).get(1)),String.valueOf(events.get(i).get(2)),String.valueOf(events.get(i).get(3)),String.valueOf(events.get(i).get(4)),String.valueOf(events.get(i).get(5)),String.valueOf(events.get(i).get(6)),String.valueOf(events.get(i).get(7)),String.valueOf(events.get(i).get(8)),String.valueOf(events.get(i).get(9)));
             }
+            eventAddSuccessfull.setStyle("-fx-text-fill: #13e57d;");
+            eventAddSuccessfull.setText("Event added Successfully");
+            PauseTransition pause = new PauseTransition(Duration.seconds(4));
+            // Set the action to be performed when the pause is finished
+            pause.setOnFinished(event1 -> {
+                // Remove the text after 5 seconds
+                eventAddSuccessfull.setText("");
+            });
+            // Start the pause transition
+            pause.play();
             break;
         }
     }
@@ -338,7 +363,7 @@ public class HelloController{
     public void onScheduleEventsBackButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
         stage.setTitle("Add items");
         stage.setScene(scene);
         stage.show();
@@ -386,6 +411,9 @@ public class HelloController{
             } else {
                 obj.setLabelCorrect(meetingTimeError,meetTimeTick,meetingTimeText);
             }
+            if (obj.getEventDescription().isEmpty()){
+                obj.setEventDescription(" - ");
+            }
             if (enteredDate.equals("null")){
                 obj.setLabel(meetingDateError,meetingDateText,meetDateTick);
                 errors++;
@@ -417,7 +445,16 @@ public class HelloController{
             String date = String.valueOf(obj.getEventDate());
             for (int i = 0; i < meetings.size(); i++){
                 if (meetings.get(i).get(2).equals(obj.getEventLocation()) && String.valueOf(meetings.get(i).get(5)).equals(date) && meetings.get(i).get(3).equals(obj.getEventTime())){
-                    System.out.println("Meeting already exists");
+                    meetingAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
+                    meetingAddSuccessfull.setText("Entered Meeting already exist!");
+                    PauseTransition pause = new PauseTransition(Duration.seconds(4));
+                    // Set the action to be performed when the pause is finished
+                    pause.setOnFinished(event -> {
+                        // Remove the text after 5 seconds
+                        meetingAddSuccessfull.setText("");
+                    });
+                    // Start the pause transition
+                    pause.play();
                     break outerloop;
                 }
             }
@@ -449,6 +486,16 @@ public class HelloController{
             for (int i=0 ;i<events.size(); i++){
                 DatabaseConnect.insertSchedule(String.valueOf(events.get(i).get(0)),String.valueOf(events.get(i).get(1)),String.valueOf(events.get(i).get(2)),String.valueOf(events.get(i).get(3)),String.valueOf(events.get(i).get(4)),String.valueOf(events.get(i).get(5)),String.valueOf(events.get(i).get(6)),String.valueOf(events.get(i).get(7)),String.valueOf(events.get(i).get(8)),String.valueOf(events.get(i).get(9)));
             }
+            meetingAddSuccessfull.setStyle("-fx-text-fill: #13e57d;");
+            meetingAddSuccessfull.setText("Meeting added Successfully");
+            PauseTransition pause = new PauseTransition(Duration.seconds(4));
+            // Set the action to be performed when the pause is finished
+            pause.setOnFinished(event -> {
+                // Remove the text after 5 seconds
+                meetingAddSuccessfull.setText("");
+            });
+            // Start the pause transition
+            pause.play();
             break;
         }
     }
@@ -456,7 +503,7 @@ public class HelloController{
     public void onSheduleMeetingsBackButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
         stage.setTitle("Add items");
         stage.setScene(scene);
         stage.show();
@@ -512,6 +559,9 @@ public class HelloController{
                 errors++;
             } else {
                 obj.setLabelCorrect(activityTimeError,activityTimeTick,activityTimeText);
+            }
+            if (obj.getEventDescription().isEmpty()){
+                obj.setEventDescription(" - ");
             }
             int sYear = 0;
             int sMonth = 0;
@@ -580,7 +630,16 @@ public class HelloController{
             String date1 = String.valueOf(obj.getEndDate());
             for (int i = 0; i < activity.size(); i++){
                 if (activity.get(i).get(1).equals(obj.getEventName()) && String.valueOf(activity.get(i).get(5)).equals(date) && String.valueOf(activity.get(i).get(6)).equals(date1)){
-                    System.out.println("Activity already exists");
+                    activityAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
+                    activityAddSuccessfull.setText("Entered Activity already exist!");
+                    PauseTransition pause = new PauseTransition(Duration.seconds(4));
+                    // Set the action to be performed when the pause is finished
+                    pause.setOnFinished(event -> {
+                        // Remove the text after 5 seconds
+                        activityAddSuccessfull.setText("");
+                    });
+                    // Start the pause transition
+                    pause.play();
                     break outerloop;
                 }
             }
@@ -612,6 +671,16 @@ public class HelloController{
             for (int i=0 ;i<events.size(); i++){
                 DatabaseConnect.insertSchedule(String.valueOf(events.get(i).get(0)),String.valueOf(events.get(i).get(1)),String.valueOf(events.get(i).get(2)),String.valueOf(events.get(i).get(3)),String.valueOf(events.get(i).get(4)),String.valueOf(events.get(i).get(5)),String.valueOf(events.get(i).get(6)),String.valueOf(events.get(i).get(7)),String.valueOf(events.get(i).get(8)),String.valueOf(events.get(i).get(9)));
             }
+            activityAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
+            activityAddSuccessfull.setText("Activity added Successfully");
+            PauseTransition pause = new PauseTransition(Duration.seconds(4));
+            // Set the action to be performed when the pause is finished
+            pause.setOnFinished(event -> {
+                // Remove the text after 5 seconds
+                activityAddSuccessfull.setText("");
+            });
+            // Start the pause transition
+            pause.play();
             break;
         }
     }
@@ -619,7 +688,7 @@ public class HelloController{
     public void onActivityScheduleBackButtonClick() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
         stage.setTitle("Add items");
         stage.setScene(scene);
         stage.show();

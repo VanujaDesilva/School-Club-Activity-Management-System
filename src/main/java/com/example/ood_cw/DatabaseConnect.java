@@ -88,7 +88,6 @@ public class DatabaseConnect {
                     "2023-12-23", "2023-12-25", " - ", "C001", "AD01");
 
             getSchedule();
-            System.out.println(events);
         } catch (Exception e) {
             e.printStackTrace();
         }
