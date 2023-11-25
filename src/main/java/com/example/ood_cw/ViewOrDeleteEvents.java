@@ -19,6 +19,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -62,7 +63,7 @@ public class ViewOrDeleteEvents implements Initializable {
     public void onViewOrDeleteEventsBackButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600.0,  400.0);
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
         stage.setTitle("Add items");
         stage.setScene(scene);
         stage.show();
@@ -103,7 +104,7 @@ public class ViewOrDeleteEvents implements Initializable {
         eventTableView.setItems(stringEvents);
     }
 
-    public void onViewOrDeleteEventsDeleteButtonClick() throws IOException {
+    public void onViewOrDeleteEventsDeleteButtonClick() throws IOException, SQLException {
         List<List<Object>> events = HelloController.events;
         String deleteId = eventIdDelete.getText();
         int count =0;
@@ -113,6 +114,10 @@ public class ViewOrDeleteEvents implements Initializable {
                 count++;
                 break;
             }
+        }
+        DatabaseConnect.clearTable();
+        for (int i=0 ;i<events.size(); i++){
+            DatabaseConnect.insertSchedule(String.valueOf(events.get(i).get(0)),String.valueOf(events.get(i).get(1)),String.valueOf(events.get(i).get(2)),String.valueOf(events.get(i).get(3)),String.valueOf(events.get(i).get(4)),String.valueOf(events.get(i).get(5)),String.valueOf(events.get(i).get(6)),String.valueOf(events.get(i).get(7)),String.valueOf(events.get(i).get(8)),String.valueOf(events.get(i).get(9)));
         }
         if (count==0){
             deleteIdError.setStyle("-fx-text-fill: #ff0000;");
@@ -154,6 +159,7 @@ public class ViewOrDeleteEvents implements Initializable {
                     break;
                 }
             }
+            
             deleteIdError.setStyle("-fx-text-fill: #13e57d;");
             deleteIdError.setText("Event has been deleted!");
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
