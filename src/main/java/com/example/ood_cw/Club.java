@@ -261,14 +261,15 @@ public class Club {
         }
     }
 
-    private boolean isValidContactNo(String newValue) {
+    private boolean isValidContactNo(String contactNo) {
+        return contactNo.matches("\\d{9}");
     }
 
     private boolean isValidDate(LocalDate date) {
         return !date.isAfter(LocalDate.now());
     }
 
-    private boolean isValidEmail(String emailEntered) {
+    private boolean isValidEmail(String email) {
         //using a regular expression for the validation
         String emailRegExpress = "^[A-Za-z0-9+_.-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
         return email.matches(emailRegExpress);
