@@ -50,7 +50,6 @@ public class HelloController{
     public Label eventDateTick;
 
     public void onYeranButtonClick() throws IOException {
-        DatabaseConnect.getSchedule();
         events1.clear();
         for (int i = 0; i<events.size(); i++){
             String e = (String) events.get(i).get(0);
@@ -376,7 +375,7 @@ public class HelloController{
                 break;
             String date = String.valueOf(obj.getEventDate());
             for (int i = 0; i < meetings.size(); i++){
-                if (meetings.get(i).get(1).equals(obj.getEventLocation()) && String.valueOf(meetings.get(i).get(4)).equals(date)){
+                if (meetings.get(i).get(2).equals(obj.getEventLocation()) && String.valueOf(meetings.get(i).get(5)).equals(date) && meetings.get(i).get(3).equals(obj.getEventTime())){
                     System.out.println("Meeting already exists");
                     break outerloop;
                 }
