@@ -72,7 +72,7 @@ public class Attendance implements Initializable {
     }
     public static void insertAttendance(String studentId, String sessionId, String studentStatus) throws SQLException {
         try (Connection connection = getConnection()) {
-            String query = "INSERT INTO attendance (studentId , sessionId, studentStatus) VALUES (?, ?, ?)";
+            String query = "INSERT INTO attendance (studentId ,sessionId,studentStatus) VALUES (?, ?, ?)";
             try (PreparedStatement atten = connection.prepareStatement(query)) {
                 atten.setString(1, studentId);
                 atten.setString(2, sessionId);
@@ -95,7 +95,13 @@ public class Attendance implements Initializable {
                 attendance = "Absent";
             }
             System.out.println("Student ID: " + student.getStdId() + ", Attendance Status: " + attendance);
-            insertAttendance(student.getStdId(), String.valueOf(eventSelector.getValue()),attendance);
+            String eventId = null;
+            for (int i = 0; i < events.size(); i++) {
+                if (eventSelector.getValue() == events.get(i).get(1)) {
+                    eventId = String.valueOf(events.get(i).get(0));
+                }
+            }
+            insertAttendance(student.getStdId(), eventId, attendance);
         }
     }
 
@@ -119,7 +125,7 @@ public class Attendance implements Initializable {
     }
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sacms", "root", "");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/scams", "root", "");
     }
 
     public static void main(String[] args) {
