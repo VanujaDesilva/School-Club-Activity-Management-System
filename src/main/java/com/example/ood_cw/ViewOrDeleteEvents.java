@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ViewOrDeleteEvents implements Initializable {
-    public AnchorPane viewOrDeleteEventsAnchor;
+    public AnchorPane viewOrDeleteEventsAnchor ;
     public TextField eventIdDelete;
     public Label deleteIdError;
     @FXML
@@ -61,15 +61,8 @@ public class ViewOrDeleteEvents implements Initializable {
     private TableColumn<EventView, String> showTime;
 
     public void onViewOrDeleteEventsBackButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Add items");
-        stage.setScene(scene);
-        stage.show();
-
-        Stage previousStage = (Stage) viewOrDeleteEventsAnchor.getScene().getWindow();
-        previousStage.close();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("EventScheduling.fxml"));
+        viewOrDeleteEventsAnchor.getChildren().setAll(pane);
     }
 
     @Override
@@ -115,10 +108,6 @@ public class ViewOrDeleteEvents implements Initializable {
                 break;
             }
         }
-        DatabaseConnect.clearTable();
-        for (int i=0 ;i<events.size(); i++){
-            DatabaseConnect.insertSchedule(String.valueOf(events.get(i).get(0)),String.valueOf(events.get(i).get(1)),String.valueOf(events.get(i).get(2)),String.valueOf(events.get(i).get(3)),String.valueOf(events.get(i).get(4)),String.valueOf(events.get(i).get(5)),String.valueOf(events.get(i).get(6)),String.valueOf(events.get(i).get(7)),String.valueOf(events.get(i).get(8)),String.valueOf(events.get(i).get(9)));
-        }
         if (count==0){
             deleteIdError.setStyle("-fx-text-fill: #ff0000;");
             deleteIdError.setText("Entered Event ID doesn't exist!");
@@ -131,6 +120,18 @@ public class ViewOrDeleteEvents implements Initializable {
             // Start the pause transition
             pause.play();
         } else {
+            List<List<Object>> allEvents = HelloController.allEvents;
+            for (int i = 0; i <allEvents.size();i++){
+                if (String.valueOf(allEvents.get(i).get(0)).equalsIgnoreCase(deleteId)){
+                    allEvents.remove(i);
+                    break;
+                }
+            }
+
+            DatabaseConnect.clearTable();
+            for (int i=0 ;i<allEvents.size(); i++){
+                DatabaseConnect.insertSchedule(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
+            }
             List<List<Object>> eventView = HelloController.eventView;
             for (int i = 0; i <eventView.size();i++){
                 if (String.valueOf(eventView.get(i).get(0)).equalsIgnoreCase(deleteId)){
@@ -159,7 +160,9 @@ public class ViewOrDeleteEvents implements Initializable {
                     break;
                 }
             }
-            
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("ViewOrDeleteEvents.fxml"));
+            viewOrDeleteEventsAnchor.getChildren().setAll(pane);
+
             deleteIdError.setStyle("-fx-text-fill: #13e57d;");
             deleteIdError.setText("Event has been deleted!");
             PauseTransition pause = new PauseTransition(Duration.seconds(3));

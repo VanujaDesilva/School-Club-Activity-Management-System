@@ -23,6 +23,7 @@ public class DatabaseConnect {
             e.printStackTrace();
         }
     }
+    public static List<List<Object>> allEvents = HelloController.allEvents;
     public static List<List<Object>> events = HelloController.events;
 
     public static void getSchedule(){
@@ -31,7 +32,9 @@ public class DatabaseConnect {
             try (PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
                  ResultSet resultSet = selectStmt.executeQuery()) {
 
+
                 // Clear existing data in the events list
+                allEvents.clear();
                 events.clear();
 
                 // Iterate through the result set and populate the events list
@@ -48,12 +51,12 @@ public class DatabaseConnect {
                     event.add(resultSet.getString("clubId"));
                     event.add(resultSet.getString("advisorId"));
 
-                    events.add(event);
+                    allEvents.add(event);
                 }
             }
         } catch (Exception e) {
         e.printStackTrace();
-    }
+        }
     }
     public static void insertSchedule(String scheduleId, String name, String location, String time, String description,
                                       String startDate, String endDate, String duration, String clubId, String advisorId) throws SQLException {
@@ -82,10 +85,10 @@ public class DatabaseConnect {
             clearTable();
             insertSchedule("E001", "Spandana", "Viharamahadevi", "08:30", "musical event",
                     "2023-12-23", " - ", " - ", "C001", "AD01");
-            insertSchedule("M001", " - ", "Hilton", "08:30", "Batch meeting",
+            insertSchedule("E002", " - ", "Hilton", "08:30", "Batch meeting",
                     "2023-12-23", " - ", "2-hours", "C001", "AD01");
             insertSchedule("A001", "Game Fiesta", "Club Fusion", "08:30", "A game event",
-                    "2023-12-23", "2023-12-25", " - ", "C001", "AD01");
+                    "2023-11-23", "2023-12-25", " - ", "C001", "AD01");
 
             getSchedule();
         } catch (Exception e) {

@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -20,24 +17,28 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.util.Duration;
 
 public class HelloController{
     public static List<List<Object>> events = new ArrayList<>();
+    public static List<List<Object>> allEvents = new ArrayList<>();
     public static List<List<Object>> events1 = new ArrayList<>();
     public static List<List<Object>> meetings = new ArrayList<>();
     public static List<List<Object>> activity = new ArrayList<>();
+    public static List<String> advisorID = EnterClubName.advisorID;
+    public static List<String> clubID = EnterClubName.clubID;
     public AnchorPane eventSchedulingAnchor;
     public Label eventAddSuccessfull;
     public Label meetingAddSuccessfull;
     public Label activityAddSuccessfull;
+    public TextField clubNameText;
+    public Label clubNameError;
     @FXML
     private AnchorPane sampleAnchor;
     public TextField eventNameText;
@@ -56,33 +57,6 @@ public class HelloController{
     public Label eventDateTick;
 
     public void onYeranButtonClick() throws IOException {
-        DatabaseConnect.getSchedule();
-        events1.clear();
-        for (int i = 0; i<events.size(); i++){
-            String e = (String) events.get(i).get(0);
-            e = e.substring(0,1);
-            if (e.equals("E")){
-                events1.add(events.get(i));
-            }
-        }
-
-        meetings.clear();
-        for (int i = 0; i<events.size(); i++){
-            String e = (String) events.get(i).get(0);
-            e = e.substring(0,1);
-            if (e.equals("M")){
-                meetings.add(events.get(i));
-            }
-        }
-        activity.clear();
-        for (int i = 0; i<events.size(); i++){
-            String e = (String) events.get(i).get(0);
-            e = e.substring(0,1);
-            if (e.equals("A")){
-                activity.add(events.get(i));
-            }
-        }
-
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
@@ -150,17 +124,9 @@ public class HelloController{
     }
 
     public AnchorPane enterClubNameAnchor;
-    public void onEnterClubNameNextClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Add items");
-        stage.setScene(scene);
-        stage.show();
+    public ListView<String> clubNamesView;
 
-        Stage previousStage = (Stage) enterClubNameAnchor.getScene().getWindow();
-        previousStage.close();
-    }
+
 
     public void onScheduleEventButtonClick() throws IOException {
         events1.clear();
@@ -172,15 +138,8 @@ public class HelloController{
             }
         }
         System.out.println(events1);
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScheduleEvents.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Schedule Events");
-        stage.setScene(scene);
-        stage.show();
-
-        Stage previousStage = (Stage) eventSchedulingAnchor.getScene().getWindow();
-        previousStage.close();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("ScheduleEvents.fxml"));
+        eventSchedulingAnchor.getChildren().setAll(pane);
     }
 
     public void onScheduleMeetingButtonClick() throws IOException{
@@ -193,15 +152,8 @@ public class HelloController{
             }
         }
         System.out.println(meetings);
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScheduleMeetings.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Schedule Meetings");
-        stage.setScene(scene);
-        stage.show();
-
-        Stage previousStage = (Stage) eventSchedulingAnchor.getScene().getWindow();
-        previousStage.close();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("ScheduleMeetings.fxml"));
+        eventSchedulingAnchor.getChildren().setAll(pane);
     }
 
     public void onScheduleActivityButtonClick() throws IOException{
@@ -214,27 +166,13 @@ public class HelloController{
             }
         }
         System.out.println(activity);
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SheduleActivities.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Schedule Meetings");
-        stage.setScene(scene);
-        stage.show();
-
-        Stage previousStage = (Stage) eventSchedulingAnchor.getScene().getWindow();
-        previousStage.close();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("SheduleActivities.fxml"));
+        eventSchedulingAnchor.getChildren().setAll(pane);
 
     }
     public void onBackEventScheduleButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Add items");
-        stage.setScene(scene);
-        stage.show();
-
-        Stage previousStage = (Stage) eventSchedulingAnchor.getScene().getWindow();
-        previousStage.close();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("EnterClubName.fxml"));
+        eventSchedulingAnchor.getChildren().setAll(pane);
     }
 
 
@@ -302,9 +240,19 @@ public class HelloController{
             if (errors > 0)
                 break;
             String date = String.valueOf(obj.getEventDate());
-            System.out.println(events1);
-            for (int i = 0; i < events1.size(); i++){
-                if (events1.get(i).get(1).equals(obj.getEventName()) && String.valueOf(events1.get(i).get(5)).equals(date)){
+
+            List<List<Object>> allEvents1 = new ArrayList<>();
+            for (int j = 0; j<allEvents.size(); j++){
+                String e = (String) allEvents.get(j).get(0);
+                e = e.substring(0,1);
+                if (e.equals("E")){
+                    allEvents1.add(allEvents.get(j));
+                }
+            }
+
+            System.out.println(allEvents1);
+            for (int i = 0; i < allEvents1.size(); i++){
+                if (allEvents1.get(i).get(1).equals(obj.getEventName()) && String.valueOf(allEvents1.get(i).get(5)).equals(date)){
                     eventAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
                     eventAddSuccessfull.setText("Entered Event already exist!");
                     PauseTransition pause = new PauseTransition(Duration.seconds(4));
@@ -319,8 +267,8 @@ public class HelloController{
                 }
             }
             int max =0;
-            for (int i = 0 ; i < events1.size() ; i++){
-                String e = (String) events1.get(i).get(0);
+            for (int i = 0 ; i < allEvents1.size() ; i++){
+                String e = (String) allEvents1.get(i).get(0);
                 int curValue = Integer.parseInt(e.substring(1,4));
                 if (max < curValue){
                     max = curValue;
@@ -338,13 +286,15 @@ public class HelloController{
             event.add(obj.getEventDate());
             event.add(" - ");
             event.add(" - ");
-            event.add("C001");
-            event.add("AD01");
+            event.add(clubID.get(0));
+            event.add(advisorID.get(0));
             events.add(event);
             events1.add(event);
+            allEvents1.add(event);
+            allEvents.add(event);
             DatabaseConnect.clearTable();
-            for (int i=0 ;i<events.size(); i++){
-                DatabaseConnect.insertSchedule(String.valueOf(events.get(i).get(0)),String.valueOf(events.get(i).get(1)),String.valueOf(events.get(i).get(2)),String.valueOf(events.get(i).get(3)),String.valueOf(events.get(i).get(4)),String.valueOf(events.get(i).get(5)),String.valueOf(events.get(i).get(6)),String.valueOf(events.get(i).get(7)),String.valueOf(events.get(i).get(8)),String.valueOf(events.get(i).get(9)));
+            for (int i=0 ;i<allEvents.size(); i++){
+                DatabaseConnect.insertSchedule(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
             }
             eventAddSuccessfull.setStyle("-fx-text-fill: #13e57d;");
             eventAddSuccessfull.setText("Event added Successfully");
@@ -361,15 +311,8 @@ public class HelloController{
     }
 
     public void onScheduleEventsBackButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Add items");
-        stage.setScene(scene);
-        stage.show();
-
-        Stage previousStage = (Stage) scheduleEventAnchor.getScene().getWindow();
-        previousStage.close();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("EventScheduling.fxml"));
+        scheduleEventAnchor.getChildren().setAll(pane);
     }
 
     public TextField meetingDurationText; //Schedule meetings
@@ -443,8 +386,18 @@ public class HelloController{
             if (errors > 0)
                 break;
             String date = String.valueOf(obj.getEventDate());
-            for (int i = 0; i < meetings.size(); i++){
-                if (meetings.get(i).get(2).equals(obj.getEventLocation()) && String.valueOf(meetings.get(i).get(5)).equals(date) && meetings.get(i).get(3).equals(obj.getEventTime())){
+
+            List<List<Object>> allMeetings = new ArrayList<>();
+            for (int j = 0; j<allEvents.size(); j++){
+                String e = (String) allEvents.get(j).get(0);
+                e = e.substring(0,1);
+                if (e.equals("M")){
+                    allMeetings.add(allEvents.get(j));
+                }
+            }
+
+            for (int i = 0; i < allMeetings.size(); i++){
+                if (allMeetings.get(i).get(2).equals(obj.getEventLocation()) && String.valueOf(allMeetings.get(i).get(5)).equals(date) && allMeetings.get(i).get(3).equals(obj.getEventTime())){
                     meetingAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
                     meetingAddSuccessfull.setText("Entered Meeting already exist!");
                     PauseTransition pause = new PauseTransition(Duration.seconds(4));
@@ -459,8 +412,8 @@ public class HelloController{
                 }
             }
             int max =0;
-            for (int i = 0 ; i < meetings.size() ; i++){
-                String e = (String) meetings.get(i).get(0);
+            for (int i = 0 ; i < allMeetings.size() ; i++){
+                String e = (String) allMeetings.get(i).get(0);
                 int curValue = Integer.parseInt(e.substring(1,4));
                 if (max < curValue){
                     max = curValue;
@@ -478,13 +431,14 @@ public class HelloController{
             meeting.add(obj.getEventDate());
             meeting.add(" - ");
             meeting.add(obj.getMeetDuration());
-            meeting.add("C001");
-            meeting.add("AD01");
+            meeting.add(clubID.get(0));
+            meeting.add(advisorID.get(0));
             events.add(meeting);
             meetings.add(meeting);
+            allEvents.add(meeting);
             DatabaseConnect.clearTable();
-            for (int i=0 ;i<events.size(); i++){
-                DatabaseConnect.insertSchedule(String.valueOf(events.get(i).get(0)),String.valueOf(events.get(i).get(1)),String.valueOf(events.get(i).get(2)),String.valueOf(events.get(i).get(3)),String.valueOf(events.get(i).get(4)),String.valueOf(events.get(i).get(5)),String.valueOf(events.get(i).get(6)),String.valueOf(events.get(i).get(7)),String.valueOf(events.get(i).get(8)),String.valueOf(events.get(i).get(9)));
+            for (int i=0 ;i<allEvents.size(); i++){
+                DatabaseConnect.insertSchedule(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
             }
             meetingAddSuccessfull.setStyle("-fx-text-fill: #13e57d;");
             meetingAddSuccessfull.setText("Meeting added Successfully");
@@ -501,15 +455,8 @@ public class HelloController{
     }
 
     public void onSheduleMeetingsBackButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Add items");
-        stage.setScene(scene);
-        stage.show();
-
-        Stage previousStage = (Stage) scheduleMeetingAnchor.getScene().getWindow();
-        previousStage.close();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("EventScheduling.fxml"));
+        scheduleMeetingAnchor.getChildren().setAll(pane);
     }
 
     public AnchorPane scheduleActivityAnchor; //schedule Acivities
@@ -628,8 +575,18 @@ public class HelloController{
                 break;
             String date = String.valueOf(obj.getEventDate());
             String date1 = String.valueOf(obj.getEndDate());
-            for (int i = 0; i < activity.size(); i++){
-                if (activity.get(i).get(1).equals(obj.getEventName()) && String.valueOf(activity.get(i).get(5)).equals(date) && String.valueOf(activity.get(i).get(6)).equals(date1)){
+
+            List<List<Object>> allActivities = new ArrayList<>();
+            for (int j = 0; j<allEvents.size(); j++){
+                String e = (String) allEvents.get(j).get(0);
+                e = e.substring(0,1);
+                if (e.equals("M")){
+                    allActivities.add(allEvents.get(j));
+                }
+            }
+
+            for (int i = 0; i < allActivities.size(); i++){
+                if (allActivities.get(i).get(1).equals(obj.getEventName()) && String.valueOf(allActivities.get(i).get(5)).equals(date) && String.valueOf(allActivities.get(i).get(6)).equals(date1)){
                     activityAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
                     activityAddSuccessfull.setText("Entered Activity already exist!");
                     PauseTransition pause = new PauseTransition(Duration.seconds(4));
@@ -644,8 +601,8 @@ public class HelloController{
                 }
             }
             int max =0;
-            for (int i = 0 ; i < activity.size() ; i++){
-                String e = (String) activity.get(i).get(0);
+            for (int i = 0 ; i < allActivities.size() ; i++){
+                String e = (String) allActivities.get(i).get(0);
                 int curValue = Integer.parseInt(e.substring(1,4));
                 if (max < curValue){
                     max = curValue;
@@ -663,13 +620,14 @@ public class HelloController{
             activity1.add(obj.getEventDate());
             activity1.add(obj.getEndDate());
             activity1.add(" - ");
-            activity1.add("C001");
-            activity1.add("AD01");
+            activity1.add(clubID.get(0));
+            activity1.add(advisorID.get(0));
             events.add(activity1);
             activity.add(activity1);
+            allEvents.add(activity1);
             DatabaseConnect.clearTable();
-            for (int i=0 ;i<events.size(); i++){
-                DatabaseConnect.insertSchedule(String.valueOf(events.get(i).get(0)),String.valueOf(events.get(i).get(1)),String.valueOf(events.get(i).get(2)),String.valueOf(events.get(i).get(3)),String.valueOf(events.get(i).get(4)),String.valueOf(events.get(i).get(5)),String.valueOf(events.get(i).get(6)),String.valueOf(events.get(i).get(7)),String.valueOf(events.get(i).get(8)),String.valueOf(events.get(i).get(9)));
+            for (int i=0 ;i<allEvents.size(); i++){
+                DatabaseConnect.insertSchedule(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
             }
             activityAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
             activityAddSuccessfull.setText("Activity added Successfully");
@@ -686,155 +644,58 @@ public class HelloController{
     }
 
     public void onActivityScheduleBackButtonClick() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EventScheduling.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Add items");
-        stage.setScene(scene);
-        stage.show();
-
-        Stage previousStage = (Stage) scheduleActivityAnchor.getScene().getWindow();
-        previousStage.close();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("EventScheduling.fxml"));
+        scheduleActivityAnchor.getChildren().setAll(pane);
     }
 
     public static List<List<Object>> eventView = new ArrayList<>();
     public void onEventSchedulingViewOrDeleteButtonClick() throws IOException {
         eventView.clear();
-        for (int i=0; i<events1.size();i++){
+        for (int i=0; i<events.size();i++){
             List<Object> event = new ArrayList<>();
-            event.add(String.valueOf(events1.get(i).get(0)));
-            event.add(String.valueOf(events1.get(i).get(1)));
-            event.add(String.valueOf(events1.get(i).get(2)));
-            event.add(String.valueOf(events1.get(i).get(3)));
-            event.add(String.valueOf(events1.get(i).get(4)));
-            event.add(String.valueOf(events1.get(i).get(5)));
-            event.add(String.valueOf(events1.get(i).get(6)));
-            event.add(String.valueOf(events1.get(i).get(7)));
-            event.add(String.valueOf(events1.get(i).get(8)));
-            event.add(String.valueOf(events1.get(i).get(9)));
+            event.add(String.valueOf(events.get(i).get(0)));
+            event.add(String.valueOf(events.get(i).get(1)));
+            event.add(String.valueOf(events.get(i).get(2)));
+            event.add(String.valueOf(events.get(i).get(3)));
+            event.add(String.valueOf(events.get(i).get(4)));
+            event.add(String.valueOf(events.get(i).get(5)));
+            event.add(String.valueOf(events.get(i).get(6)));
+            event.add(String.valueOf(events.get(i).get(7)));
+            event.add(String.valueOf(events.get(i).get(8)));
+            event.add(String.valueOf(events.get(i).get(9)));
             eventView.add(event);
         }
-
-        for (int i = 0; i<meetings.size() ; i++){
-            List<Object> meeting = new ArrayList<>();
-            meeting.add(String.valueOf(meetings.get(i).get(0)));
-            meeting.add(String.valueOf(meetings.get(i).get(1)));
-            meeting.add(String.valueOf(meetings.get(i).get(2)));
-            meeting.add(String.valueOf(meetings.get(i).get(3)));
-            meeting.add(String.valueOf(meetings.get(i).get(4)));
-            meeting.add(String.valueOf(meetings.get(i).get(5)));
-            meeting.add(String.valueOf(meetings.get(i).get(6)));
-            meeting.add(String.valueOf(meetings.get(i).get(7)));
-            meeting.add(String.valueOf(meetings.get(i).get(8)));
-            meeting.add(String.valueOf(meetings.get(i).get(9)));
-            eventView.add(meeting);
-        }
-
-        for (int i = 0; i<activity.size();i++){
-            List<Object> activity1 = new ArrayList<>();
-            activity1.add(String.valueOf(activity.get(i).get(0)));
-            activity1.add(String.valueOf(activity.get(i).get(1)));
-            activity1.add(String.valueOf(activity.get(i).get(2)));
-            activity1.add(String.valueOf(activity.get(i).get(3)));
-            activity1.add(String.valueOf(activity.get(i).get(4)));
-            activity1.add(String.valueOf(activity.get(i).get(5)));
-            activity1.add(String.valueOf(activity.get(i).get(6)));
-            activity1.add(String.valueOf(activity.get(i).get(7)));
-            activity1.add(String.valueOf(activity.get(i).get(8)));
-            activity1.add(String.valueOf(activity.get(i).get(9)));
-            eventView.add(activity1);
-        }
-
-        System.out.println(eventView);
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ViewOrDeleteEvents.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("View or Delete Events");
-        stage.setScene(scene);
-        stage.show();
-
-        Stage previousStage = (Stage) eventSchedulingAnchor.getScene().getWindow();
-        previousStage.close();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("ViewOrDeleteEvents.fxml"));
+        eventSchedulingAnchor.getChildren().setAll(pane);
     }
     public static List<List<Object>> eventSchedule = new ArrayList<>();
     public void onShowEventScheduleForStudentButtonClick() throws IOException {
-        events1.clear();
-        for (int i = 0; i<events.size(); i++){
-            String e = (String) events.get(i).get(0);
-            e = e.substring(0,1);
-            if (e.equals("E")){
-                events1.add(events.get(i));
+        DatabaseConnect.getSchedule();
+        for (int j=0; j<allEvents.size();j++){
+            int sYear = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(0, 4));
+            int sMonth = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(5, 7));
+            int sDay = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(8, 10));
+            LocalDate date = LocalDate.of(sYear, sMonth, sDay);
+            allEvents.get(j).set(5,date);
+        }
+        LocalDate currentDate = LocalDate.now();
+        for (int j=0;j<allEvents.size();j++){
+            if (currentDate.isAfter((LocalDate) allEvents.get(j).get(5))){
+                allEvents.remove(j);
             }
         }
-
-        meetings.clear();
-        for (int i = 0; i<events.size(); i++){
-            String e = (String) events.get(i).get(0);
-            e = e.substring(0,1);
-            if (e.equals("M")){
-                meetings.add(events.get(i));
-            }
-        }
-
-        activity.clear();
-        for (int i = 0; i<events.size(); i++){
-            String e = (String) events.get(i).get(0);
-            e = e.substring(0,1);
-            if (e.equals("A")){
-                activity.add(events.get(i));
-            }
-        }
+        List<Object> studentClubs = new ArrayList<>();
+        studentClubs.add("C001");
+        studentClubs.add("C002");
         eventView.clear();
-        for (int i=0; i<events1.size();i++){
-            List<Object> event = new ArrayList<>();
-            event.add(String.valueOf(events1.get(i).get(0)));
-            event.add(String.valueOf(events1.get(i).get(1)));
-            event.add(String.valueOf(events1.get(i).get(2)));
-            event.add(String.valueOf(events1.get(i).get(3)));
-            event.add(String.valueOf(events1.get(i).get(4)));
-            event.add(String.valueOf(events1.get(i).get(5)));
-            event.add(" - ");
-            event.add(" - ");
-            event.add(String.valueOf(events1.get(i).get(6)));
-            event.add(String.valueOf(events1.get(i).get(7)));
-            eventView.add(event);
-        }
-
-        for (int i = 0; i<meetings.size() ; i++){
-            List<Object> meeting = new ArrayList<>();
-            meeting.add(String.valueOf(meetings.get(i).get(0)));
-            meeting.add(" - ");
-            meeting.add(String.valueOf(meetings.get(i).get(1)));
-            meeting.add(String.valueOf(meetings.get(i).get(2)));
-            meeting.add(String.valueOf(meetings.get(i).get(3)));
-            meeting.add(String.valueOf(meetings.get(i).get(4)));
-            meeting.add(" - ");
-            meeting.add(String.valueOf(meetings.get(i).get(5)));
-            meeting.add(String.valueOf(meetings.get(i).get(6)));
-            meeting.add(String.valueOf(meetings.get(i).get(7)));
-            eventView.add(meeting);
-        }
-
-        for (int i = 0; i<activity.size();i++){
-            List<Object> activity1 = new ArrayList<>();
-            activity1.add(String.valueOf(activity.get(i).get(0)));
-            activity1.add(String.valueOf(activity.get(i).get(1)));
-            activity1.add(String.valueOf(activity.get(i).get(2)));
-            activity1.add(String.valueOf(activity.get(i).get(3)));
-            activity1.add(String.valueOf(activity.get(i).get(4)));
-            activity1.add(String.valueOf(activity.get(i).get(5)));
-            activity1.add(String.valueOf(activity.get(i).get(6)));
-            activity1.add(" - ");
-            activity1.add(String.valueOf(activity.get(i).get(7)));
-            activity1.add(String.valueOf(activity.get(i).get(8)));
-            eventView.add(activity1);
-        }
-        String clubId = "C01";
-        for (int i = 0; i < eventView.size(); i++){
-            if (String.valueOf(eventView.get(i).get(7)).equalsIgnoreCase(clubId)){
-                eventSchedule.add(eventView.get(i));
+        for (int i=0;i<studentClubs.size();i++){
+            for (int j=0;j<allEvents.size();j++){
+                if (allEvents.get(j).get(8).equals(studentClubs.get(i))){
+                    eventView.add(allEvents.get(j));
+                }
             }
         }
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowEventScheduleForStudent.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
