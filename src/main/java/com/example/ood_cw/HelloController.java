@@ -684,14 +684,15 @@ public class HelloController{
                 allEvents.remove(j);
             }
         }
+        //need to be changed
         List<Object> studentClubs = new ArrayList<>();
         studentClubs.add("C001");
         studentClubs.add("C002");
-        eventView.clear();
+        eventSchedule.clear();
         for (int i=0;i<studentClubs.size();i++){
             for (int j=0;j<allEvents.size();j++){
                 if (allEvents.get(j).get(8).equals(studentClubs.get(i))){
-                    eventView.add(allEvents.get(j));
+                    eventSchedule.add(allEvents.get(j));
                 }
             }
         }

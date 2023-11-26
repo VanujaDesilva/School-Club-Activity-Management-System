@@ -2,6 +2,7 @@ package com.example.ood_cw;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -28,6 +29,7 @@ public class EnterClubName implements Initializable {
     public static List<List<Object>> meetings = HelloController.meetings;
     public static List<List<Object>> activity = HelloController.activity;
     public static List<List<Object>> clubs = new ArrayList<>();
+    public Button nextButton;
 
     public void onEnterClubNameNextClick() throws IOException {
         String clubName = clubNameText.getText();
@@ -89,6 +91,7 @@ public class EnterClubName implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        enterClubNameAnchor.getChildren().remove(nextButton);
         clubs.clear();
         List<Object> club = new ArrayList<>();
         club.add("C001");
