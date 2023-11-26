@@ -13,7 +13,17 @@
                 <Label layoutX="428.0" layoutY="95.0" prefHeight="17.0" prefWidth="87.0" text="Select Event:" />
                 <ChoiceBox fx:id="clubSelector" layoutX="229.0" layoutY="91.0" prefWidth="150.0" />
                 <ChoiceBox fx:id="eventSelector" layoutX="515.0" layoutY="91.0" prefWidth="150.0" />
-                <TableView fx:id="attendanceTable" layoutX="142.0" layoutY="141.0" prefHeight="377.0" prefWidth="616.0" />
+                <TableView fx:id="attendanceTable" layoutX="142.0" layoutY="141.0" prefHeight="377.0" prefWidth="616.0">
+                <columns>
+                    <!-- Existing columns -->
+                    <TableColumn fx:id="stdIdCol" prefWidth="83.0" text="Student ID" />
+                    <TableColumn fx:id="firstNameCol" prefWidth="97.0" text="First Name" />
+                    <TableColumn fx:id="lastNameCol" prefWidth="100.0" text="Last Name" />
+                    <TableColumn fx:id="telNoCol" prefWidth="120.0" text="Telephone Number" />
+                    <TableColumn fx:id="dobCol" prefWidth="90.0" text="Date of Birth" />
+                    <TableColumn fx:id="attendanceStatusCol" prefWidth="125.0" text="Attendance Status" />
+                </columns>
+                </TableView>
                 <Button fx:id="showButton" layoutX="703.0" layoutY="91.0" mnemonicParsing="false" onAction="#onShowButtonClick" prefHeight="25.0" prefWidth="55.0" text="Show" />
                 <Button layoutX="413.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" prefHeight="36.0" prefWidth="74.0" text="Save" />
                 <Label alignment="CENTER" layoutX="294.0" layoutY="27.0" prefHeight="39.0" prefWidth="312.0" text="Attendance">
