@@ -17,7 +17,6 @@ import java.net.URL;
 import java.util.*;
 
 import java.sql.*;
-import java.io.*;
 
 public class Attendance implements Initializable {
     public ChoiceBox eventSelector;
@@ -52,7 +51,7 @@ public class Attendance implements Initializable {
         System.out.println(events);
         for (int i = 0; i < events.size(); i++) {
             String eName =  String.valueOf(events.get(i).get(1));
-            if(eName == " - "){
+            if(Objects.equals(eName, " - ")){
                 eName =  String.valueOf(events.get(i).get(0));
             }
             System.out.println(eName);
@@ -73,11 +72,11 @@ public class Attendance implements Initializable {
     public static void insertAttendance(String studentId, String sessionId, String studentStatus) throws SQLException {
         try (Connection connection = getConnection()) {
             String query = "INSERT INTO attendance (studentId ,sessionId,studentStatus) VALUES (?, ?, ?)";
-            try (PreparedStatement atten = connection.prepareStatement(query)) {
-                atten.setString(1, studentId);
-                atten.setString(2, sessionId);
-                atten.setString(3, studentStatus);
-                atten.executeUpdate();
+            try (PreparedStatement attend = connection.prepareStatement(query)) {
+                attend.setString(1, studentId);
+                attend.setString(2, sessionId);
+                attend.setString(3, studentStatus);
+                attend.executeUpdate();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,21 +86,21 @@ public class Attendance implements Initializable {
     @FXML
     private void handleSaveButtonAction() throws SQLException {
         List<Student> savedAttendanceList = new ArrayList<>(attendanceTable.getItems());
-        for (Student student : savedAttendanceList) {
+        for (Student std : savedAttendanceList) {
             String attendance;
-            if (student.isStatus().isSelected()) {
+            if (std.getStatus().isSelected()) {
                 attendance = "Present";
             } else {
                 attendance = "Absent";
             }
-            System.out.println("Student ID: " + student.getStdId() + ", Attendance Status: " + attendance);
+            System.out.println("Student ID: " + std.getStdId() + ", Attendance Status: " + attendance);
             String eventId = null;
             for (int i = 0; i < events.size(); i++) {
                 if (eventSelector.getValue() == events.get(i).get(1)) {
                     eventId = String.valueOf(events.get(i).get(0));
                 }
             }
-            insertAttendance(student.getStdId(), eventId, attendance);
+            insertAttendance(std.getStdId(), eventId, attendance);
         }
     }
 
