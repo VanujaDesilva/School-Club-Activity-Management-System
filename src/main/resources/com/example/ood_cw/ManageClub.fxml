@@ -17,13 +17,8 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <VBox layoutX="13.0" layoutY="176.0" prefHeight="210.0" prefWidth="129.0" spacing="35.0">
+      <VBox layoutX="13.0" layoutY="189.0" prefHeight="210.0" prefWidth="129.0" spacing="35.0">
          <children>
-            <Label text="Name : ">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
             <Label layoutX="10.0" layoutY="10.0" text="Founding Date : ">
                <font>
                   <Font size="15.0" />
@@ -41,15 +36,14 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="145.0" layoutY="175.0" prefHeight="234.0" prefWidth="268.0" spacing="30.0">
+      <VBox layoutX="145.0" layoutY="188.0" prefHeight="234.0" prefWidth="268.0" spacing="30.0">
          <children>
-            <TextField fx:id="updateClubName" />
             <DatePicker fx:id="updateClubDate" />
             <TextField fx:id="updateClubMission" />
             <TextArea fx:id="updateClubDescription" prefHeight="115.0" prefWidth="252.0" />
          </children>
       </VBox>
-      <VBox layoutX="469.0" layoutY="174.0" prefHeight="210.0" prefWidth="129.0" spacing="35.0">
+      <VBox layoutX="469.0" layoutY="187.0" prefHeight="210.0" prefWidth="129.0" spacing="35.0">
          <children>
             <Label text="Club President : ">
                <font>
@@ -73,7 +67,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="601.0" layoutY="173.0" prefHeight="214.0" prefWidth="251.0" spacing="30.0">
+      <VBox layoutX="601.0" layoutY="186.0" prefHeight="214.0" prefWidth="251.0" spacing="30.0">
          <children>
             <TextField fx:id="updateClubPresident" />
             <TextField fx:id="updateClubAdvisor" />
