@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.Attendance">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.Attendance">
     <children>
         <AnchorPane prefHeight="600.0" prefWidth="900.0">
             <children>
@@ -25,12 +29,14 @@
                 </columns>
                 </TableView>
                 <Button fx:id="showButton" layoutX="703.0" layoutY="91.0" mnemonicParsing="false" onAction="#onShowButtonClick" prefHeight="25.0" prefWidth="55.0" text="Show" />
-                <Button layoutX="413.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" prefHeight="36.0" prefWidth="74.0" text="Save" />
+                <Button layoutX="413.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" prefHeight="36.0" prefWidth="74.0" text="Save" />
                 <Label alignment="CENTER" layoutX="294.0" layoutY="27.0" prefHeight="39.0" prefWidth="312.0" text="Attendance">
                     <font>
                         <Font size="30.0" />
                     </font>
                 </Label>
+            <Label fx:id="clubSelectionError" layoutX="229.0" layoutY="73.0" prefHeight="18.0" prefWidth="150.0" />
+            <Label fx:id="eventSelectionError" layoutX="515.0" layoutY="73.0" prefHeight="18.0" prefWidth="150.0" />
             </children>
         </AnchorPane>
     </children>

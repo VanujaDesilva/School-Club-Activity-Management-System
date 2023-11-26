@@ -115,6 +115,8 @@ public class HelloController{
         stage.setTitle("Attendance");
         stage.setScene(scene);
         stage.show();
+        Stage preStage = (Stage) sampleAnchor.getScene().getWindow();
+        preStage.close();
     }
 
     public void onTharushaButtonClick(ActionEvent actionEvent) {

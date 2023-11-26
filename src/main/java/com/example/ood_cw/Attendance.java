@@ -2,15 +2,16 @@ package com.example.ood_cw;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import static com.example.ood_cw.HelloController.events;
 import java.net.URL;
@@ -28,6 +29,10 @@ public class Attendance implements Initializable {
     public TableColumn telNoCol;
     public TableColumn dobCol;
     public TableColumn attendanceStatusCol;
+    public Label clubSelectionError;
+    public Label eventSelectionError;
+    public Button closeButton;
+    public AnchorPane notificationPane;
     @FXML
     private TableView<Student> attendanceTable;
     @FXML
@@ -40,14 +45,6 @@ public class Attendance implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        stdIdCol.setCellValueFactory(new PropertyValueFactory<>("stdId"));
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        telNoCol.setCellValueFactory(new PropertyValueFactory<>("telNo"));
-        dobCol.setCellValueFactory(new PropertyValueFactory<>("dob"));
-        attendanceStatusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
-        this.attendanceTable.getColumns().addAll(stdIdCol, firstNameCol, lastNameCol, telNoCol, dobCol, attendanceStatusCol);
         this.data = FXCollections.observableArrayList(
                 new Student("S001", "Jacob", "Smith", "0704594151", "2003-01-23"),
                 new Student("S002", "Emma", "Johnson", "0712345678", "2002-05-15"),
@@ -85,7 +82,7 @@ public class Attendance implements Initializable {
         }
     }
     @FXML
-    private void handleSaveButtonAction() throws SQLException {
+    private void handleSaveButtonAction(ActionEvent actionEvent) throws SQLException, Exception {
         List<Student> savedAttendanceList = new ArrayList<>(attendanceTable.getItems());
         String attendance;
         String eventId = null;
@@ -105,13 +102,6 @@ public class Attendance implements Initializable {
         }
     }
 
-    public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("attendanceTracking.fxml")));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void onShowButtonClick() {
         String selectedClub = clubSelector.getValue();
         String selectedEvent = (String) eventSelector.getValue();
@@ -119,8 +109,11 @@ public class Attendance implements Initializable {
         // Check if both club and event are selected
         if (selectedClub != null && selectedEvent != null) {
             this.attendanceTable.setItems(this.data);
+        } else if (selectedClub == null) {
+            clubSelectionError.setText("Select club first");
         } else {
-            System.out.println("Please select both club and event");
+            eventSelectionError.setText("Select event");
+
         }
     }
 
@@ -154,4 +147,8 @@ public class Attendance implements Initializable {
         }
     }
 
+    public void onCloseButtonClick(ActionEvent actionEvent) {
+        Stage preStage = (Stage) notificationPane.getScene().getWindow();
+        preStage.close();
+    }
 }
