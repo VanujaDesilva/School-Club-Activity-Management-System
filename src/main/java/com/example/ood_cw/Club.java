@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class Club {
 
     private String name;
-    private DatePicker foundingDate;
+    private LocalDate foundingDate;
     private String mission;
     private String description;
     private String email;
@@ -17,7 +17,7 @@ public class Club {
 
     public Club(){}
 
-    public Club(String name, DatePicker foundingDate, String mission, String description, String email, String contactNo, String icon, String presidentName, String clubAdvisorName){
+    public Club(String name, LocalDate foundingDate, String mission, String description, String email, String contactNo, String icon, String presidentName, String clubAdvisorName){
         this.name = name;
         this.foundingDate = foundingDate;
         this.mission = mission;
@@ -39,10 +39,10 @@ public class Club {
     }
 
     public LocalDate getFoundingDate() {
-        return foundingDate.getValue();
+        return foundingDate;
     }
 
-    public void setFoundingDate(DatePicker foundingDate) {
+    public void setFoundingDate(LocalDate foundingDate) {
         this.foundingDate = foundingDate;
     }
 

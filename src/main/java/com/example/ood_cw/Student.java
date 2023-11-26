@@ -70,7 +70,7 @@ public class Student {
         this.dob = dob;
     }
 
-    public CheckBox isStatus() {
+    public CheckBox getStatus() {
         return status;
     }
 

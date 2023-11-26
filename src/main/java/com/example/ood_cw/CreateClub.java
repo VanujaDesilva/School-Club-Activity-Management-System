@@ -7,6 +7,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class CreateClub {
     public Button clubCreate;
     public Button imageInsert;
 
-    public File fileAID;
+    public File createFile;
     public Label dateTick;
     public Label emailTick;
     public Label contactTick;
@@ -34,7 +35,7 @@ public class CreateClub {
 
 
     public void onCreateButtonClick() throws IOException {
-        Club clubInstance = new Club();
+        Club createClubInstance = new Club();
 
 //        outer:
         //while (true){
@@ -46,16 +47,17 @@ public class CreateClub {
         if (!clubName.getText().trim().isEmpty()) {
             //checking if the same club name exists
             for (List<Object> a : mainList) {
-                if (a.get(0).equals(clubInstance.getName())) {
+                if (a.get(0).equals(createClubInstance.getName())) {
                     clubName.setStyle("-fx-text-fill: red;");
                     nameTick.setText("\u2717");
                 } else {
-                    clubInstance.setName(clubName.getText());
+                    createClubInstance.setName(clubName.getText());
                     clubName.setStyle("-fx-text-fill: green;");
                     nameTick.setText("\u2713");
                 }
             }
-        } else {
+        }
+        else {
             clubName.setStyle("-fx-text-fill: red;");
             nameTick.setText("\u2605");
         }
@@ -66,7 +68,8 @@ public class CreateClub {
             if (newValue != null) {
                 //checking if the entered date is valid
                 if (Club.isValidDate(newValue)) {
-                    clubInstance.setFoundingDate(clubDate);
+                    LocalDate foundingDate = clubDate.getValue();
+                    createClubInstance.setFoundingDate(foundingDate);
                     clubDate.setStyle("-fx-text-fill: green;");
                     dateTick.setText("\u2713"); //tick
                 } else {
@@ -81,21 +84,21 @@ public class CreateClub {
 
 
         //setting the club mission
-        clubInstance.setMission(clubMission.getText());
+        createClubInstance.setMission(clubMission.getText());
 
         //setting the club description
-        clubInstance.setDescription(clubDescription.getText());
+        createClubInstance.setDescription(clubDescription.getText());
 
         //setting the club president
         //checking if the club president name is empty
         if (!clubPresident.getText().trim().isEmpty()) {
             //checking if the same club president exists
             for (List<Object> b : mainList) {
-                if (b.get(4).equals(clubInstance.getClubPresidentName())) {
+                if (b.get(4).equals(createClubInstance.getClubPresidentName())) {
                     clubPresident.setStyle("-fx-text-fill: red;");
                     presidentTick.setText("\u2717");
                 } else {
-                    clubInstance.setClubPresidentName(clubPresident.getText());
+                    createClubInstance.setClubPresidentName(clubPresident.getText());
                     clubPresident.setStyle("-fx-text-fill: green;");
                     nameTick.setText("\u2713");
                 }
@@ -110,11 +113,11 @@ public class CreateClub {
         if (!clubAdvisor.getText().trim().isEmpty()) {
             //checking if the same club advisor exists
             for (List<Object> c : mainList) {
-                if (c.get(5).equals(clubInstance.getClubAdvisorName())) {
+                if (c.get(5).equals(createClubInstance.getClubAdvisorName())) {
                     clubAdvisor.setStyle("-fx-text-fill: red;");
                     advisorTick.setText("\u2717");
                 } else {
-                    clubInstance.setClubAdvisorName(clubAdvisor.getText());
+                    createClubInstance.setClubAdvisorName(clubAdvisor.getText());
                     clubAdvisor.setStyle("-fx-text-fill: green;");
                     advisorTick.setText("\u2713");
                 }
@@ -130,7 +133,7 @@ public class CreateClub {
         if (!clubEmail.getText().trim().isEmpty()) {
             //checking if the entered email is valid
             if (Club.isValidEmail(clubEmail.getText())) {
-                clubInstance.setEmail(clubEmail.getText());
+                createClubInstance.setEmail(clubEmail.getText());
                 clubEmail.setStyle("-fx-text-fill: green;");
                 emailTick.setText("\u2713");
             } else {
@@ -144,11 +147,11 @@ public class CreateClub {
 
 
         clubContactNo.textProperty().addListener((observable, oldValue, newValue) -> {
-            //checking if the founding date is empty
+            //checking if the contact number is empty
             if (newValue != null) {
                 if (Club.isValidContactNo(newValue)) {
                     String contactNumFull = "+94" + newValue;
-                    clubInstance.setContactNo(contactNumFull);
+                    createClubInstance.setContactNo(contactNumFull);
                     clubContactNo.setStyle("-fx-text-fill: green;");
                     contactTick.setText("\u2713");
                 } else {
@@ -162,8 +165,8 @@ public class CreateClub {
         });
 
 
-        //clubInstance.setIcon();
-        if (fileAID == null){
+
+        if (createFile == null){
 //            Stage emptyImageInput = new Stage(); //loading the error window
 //            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("errorImage.fxml"));
 //            Scene scene = new Scene(fxmlLoader.load(), 400, 200);
@@ -173,22 +176,22 @@ public class CreateClub {
             //break;
         }
         else {
-            clubInstance.setIcon(fileAID.getAbsolutePath());
+            createClubInstance.setIcon(createFile.getAbsolutePath());
         }
 
         //creating a sublist
         List<Object> subList = new ArrayList<>();
 
         //adding the item instances to the sublist
-        subList.add(clubInstance.getName());
-        subList.add(clubInstance.getFoundingDate());
-        subList.add(clubInstance.getMission());
-        subList.add(clubInstance.getDescription());
-        subList.add(clubInstance.getClubPresidentName());
-        subList.add(clubInstance.getClubAdvisorName());
-        subList.add(clubInstance.getEmail());
-        subList.add(clubInstance.getContactNo());
-        subList.add(clubInstance.getIcon());
+        subList.add(createClubInstance.getName());
+        subList.add(createClubInstance.getFoundingDate());
+        subList.add(createClubInstance.getMission());
+        subList.add(createClubInstance.getDescription());
+        subList.add(createClubInstance.getClubPresidentName());
+        subList.add(createClubInstance.getClubAdvisorName());
+        subList.add(createClubInstance.getEmail());
+        subList.add(createClubInstance.getContactNo());
+        subList.add(createClubInstance.getIcon());
 
         mainList.add(subList); //adding the sublist to the main list
         //break;
@@ -200,9 +203,9 @@ public class CreateClub {
     public void onInsertImageClick() throws IOException {
         FileChooser filePath = new FileChooser();
         filePath.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.webp"));
-        fileAID = filePath.showOpenDialog(null); //assign file path to a File variable
-        if (fileAID != null) { //check whether user select image or not
-            Image image = new Image(fileAID.getAbsolutePath()); // get image path
+        createFile = filePath.showOpenDialog(null); //assign file path to a File variable
+        if (createFile != null) { //check whether user select image or not
+            Image image = new Image(createFile.getAbsolutePath()); // get image path
             clubIcon.setImage(image);
         }
     }
