@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -175,7 +176,16 @@ public class HelloController{
         previousStage.close();
     }
 
-    public void onAvishkaButtonClick(ActionEvent actionEvent) {
+    public void onAvishkaButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Welcome.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        stage.setTitle("Enter club name");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage previousStage = (Stage) sampleAnchor.getScene().getWindow();
+        previousStage.close();
     }
 
     public AnchorPane enterClubNameAnchor;
@@ -782,5 +792,67 @@ public class HelloController{
     public void onCloseButtonClick(ActionEvent actionEvent) { //attendance notification close button
         Stage preStage = (Stage) notificationPane.getScene().getWindow();
         preStage.close();
+    }
+
+    @FXML
+    private Button StartID;
+    public void onStartClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SecondPage.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) StartID.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+
+    }
+    @FXML
+    private Button StudentButtonID;
+    @FXML
+    private Button advisorbuttonID;
+    @FXML
+    private Button SecondBackButtonId;
+
+    public void onStudentClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ThirdPage.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) StudentButtonID.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
+
+    public void onAdvisorClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ThirdPage.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) advisorbuttonID.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+
+
+    }
+
+    public void SecondBackButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Welcome.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) SecondBackButtonId.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
+
+    public void StuSignUpClickID(ActionEvent actionEvent) {
+    }
+
+    public void StuSignUpBackClick(ActionEvent actionEvent) {
+        
     }
 }
