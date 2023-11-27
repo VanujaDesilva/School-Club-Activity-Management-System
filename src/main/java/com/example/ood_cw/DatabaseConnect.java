@@ -31,12 +31,9 @@ public class DatabaseConnect {
             String selectQuery = "SELECT * FROM clubsession";
             try (PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
                  ResultSet resultSet = selectStmt.executeQuery()) {
-
-
                 // Clear existing data in the events list
                 allEvents.clear();
                 events.clear();
-
                 // Iterate through the result set and populate the events list
                 while (resultSet.next()) {
                     List<Object> event = new ArrayList<>();
