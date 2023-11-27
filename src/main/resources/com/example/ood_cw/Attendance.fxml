@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.Attendance">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.Attendance">
     <children>
         <AnchorPane fx:id="attendancePane" prefHeight="600.0" prefWidth="900.0">
             <children>
@@ -12,7 +16,7 @@
                 <Label layoutX="142.0" layoutY="95.0" prefHeight="17.0" prefWidth="87.0" text="Select Club:" />
                 <Label layoutX="428.0" layoutY="95.0" prefHeight="17.0" prefWidth="87.0" text="Select Event:" />
                 <ChoiceBox fx:id="clubSelector" layoutX="229.0" layoutY="91.0" prefWidth="150.0" />
-                <ChoiceBox fx:id="eventSelector" layoutX="515.0" layoutY="91.0" prefWidth="150.0" />
+                <ChoiceBox fx:id="eventSelector" layoutX="515.0" layoutY="91.0" onMouseClicked="#onClubSelectorClick" prefWidth="150.0" />
                 <TableView fx:id="attendanceTable" layoutX="142.0" layoutY="141.0" prefHeight="377.0" prefWidth="616.0">
                 <columns>
                     <!-- Existing columns -->

@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -55,30 +56,12 @@ public class Attendance implements Initializable {
                 new Student("S002", "Emma", "Johnson", "0712345678", "2002-05-15"),
                 new Student("S003", "Velma", "Johnson", "0713345678", "2004-05-15"));
         System.out.println(events);
-        eventSelector.getItems().addAll(eventNames);
         for(List<Object> club: checkList){
             String cName = String.valueOf(club.get(1));
             System.out.println(cName);
             clubNames.add(cName);
         }
         clubSelector.getItems().addAll(clubNames);
-
-
-        for (List<Object> clubs : checkList) {
-            if(clubSelector.getValue() == clubs.get(1)){
-                selectedClubId = String.valueOf(clubs.get(0));
-            }
-        }
-        for (List<Object> event : events) {
-            if(event.get(8) == selectedClubId) {
-                String eName = String.valueOf(event.get(1));
-                if (Objects.equals(eName, " - ")) {
-                    eName = String.valueOf(event.get(0));
-                }
-                System.out.println(eName);
-                eventNames.add(eName);
-            }
-        }
 
         stdIdCol.setCellValueFactory(new PropertyValueFactory<>("stdId"));
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -209,5 +192,26 @@ public class Attendance implements Initializable {
         stage.show();
         Stage preStage = (Stage) attendancePane.getScene().getWindow();
         preStage.close();
+    }
+
+    public void onClubSelectorClick(MouseEvent mouseEvent) {
+        Object selectedClubId = null;
+        for (List<Object> clubs : checkList) {
+            if(clubSelector.getValue() == clubs.get(1)){
+                selectedClubId = String.valueOf(clubs.get(0));
+            }
+        }
+        for (List<Object> event : events) {
+            if(event.get(8) == selectedClubId) {
+                String eName = String.valueOf(event.get(1));
+                if (Objects.equals(eName, " - ")) {
+                    eName = String.valueOf(event.get(0));
+                }
+                System.out.println(eName);
+                eventSelector.getItems().add(eName);
+                eventNames.add(eName);
+            }
+        }
+
     }
 }
