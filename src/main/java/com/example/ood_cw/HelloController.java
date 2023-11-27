@@ -211,8 +211,8 @@ public class HelloController{
         stage.setScene(scene);
         stage.show();
 
-        Stage previousStage = (Stage) sampleAnchor.getScene().getWindow();
-        previousStage.close();
+//        Stage previousStage = (Stage) sampleAnchor.getScene().getWindow();
+//        previousStage.close();
     }
 
     public AnchorPane enterClubNameAnchor;
