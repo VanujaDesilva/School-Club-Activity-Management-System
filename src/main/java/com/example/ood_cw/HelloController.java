@@ -34,6 +34,7 @@ public class HelloController{
     public static List<List<Object>> activity = new ArrayList<>();
     public static List<String> advisorID = EnterClubName.advisorID;
     public static List<String> clubID = EnterClubName.clubID;
+    public static List<List<Object>> mainList;
     public AnchorPane eventSchedulingAnchor;
     public Label eventAddSuccessfull;
     public Label meetingAddSuccessfull;
@@ -210,8 +211,8 @@ public class HelloController{
         stage.setScene(scene);
         stage.show();
 
-        Stage previousStage = (Stage) sampleAnchor.getScene().getWindow();
-        previousStage.close();
+//        Stage previousStage = (Stage) sampleAnchor.getScene().getWindow();
+//        previousStage.close();
     }
 
     public AnchorPane enterClubNameAnchor;

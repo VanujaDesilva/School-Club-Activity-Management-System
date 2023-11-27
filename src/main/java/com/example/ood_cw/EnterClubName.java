@@ -29,6 +29,7 @@ public class EnterClubName implements Initializable {
     public static List<List<Object>> meetings = HelloController.meetings;
     public static List<List<Object>> activity = HelloController.activity;
     public static List<List<Object>> clubs = new ArrayList<>();
+    public static List<List<Object>> advisorClubs = new ArrayList<>();
     public Button nextButton;
 
     public void onEnterClubNameNextClick() throws IOException {
@@ -38,16 +39,17 @@ public class EnterClubName implements Initializable {
             clubNameError.setText("Please enter a club name!");
             return;
         } else {
-            for (int i=0; i<clubs.size();i++){
-                if (clubName.equalsIgnoreCase((String) clubs.get(i).get(1))){
+            for (int i=0; i<advisorClubs.size();i++){
+                if (clubName.equalsIgnoreCase((String) advisorClubs.get(i).get(1))){
+                    System.out.println(advisorID.get(0));
                     count++;
                     DatabaseConnect.getScheduleOfClubSesion();
-                    String clubId = String.valueOf(clubs.get(i).get(0));
-                    String advisorId = String.valueOf(clubs.get(i).get(6));
+                    String clubId = String.valueOf(advisorClubs.get(i).get(0));
+                    String advisorId = String.valueOf(advisorClubs.get(i).get(6));
                     clubID.clear();
                     clubID.add(clubId);
-                    advisorID.clear();
-                    advisorID.add(advisorId);
+//                    advisorID.clear();
+//                    advisorID.add(advisorId);
                     for (int j=0; j<allEvents.size();j++){ //getting the events according to the clubID and advisorID
                         if (allEvents.get(j).get(8).equals(clubId) && allEvents.get(j).get(9).equals(advisorId)){
                             events.add(allEvents.get(j));
@@ -111,7 +113,7 @@ public class EnterClubName implements Initializable {
         club1.add("Dakuna perata");
         club1.add("Club description");
         club1.add("Sumahinda raja");
-        club1.add("AD01");
+        club1.add("AD02");
         club1.add("leo@gmail.com");
         club1.add("0771234567");
         clubs.add(club1);
@@ -119,7 +121,10 @@ public class EnterClubName implements Initializable {
 
         List<String> clubNames = new ArrayList<>();
         for (int i=0; i<clubs.size();i++){
-            clubNames.add(String.valueOf(clubs.get(i).get(1)));
+            if (clubs.get(i).get(6).equals(advisorID.get(0))) {
+                clubNames.add(String.valueOf(clubs.get(i).get(1)));
+                advisorClubs.add(clubs.get(i));
+            }
         }
         clubNamesView.getItems().addAll(clubNames);
 
