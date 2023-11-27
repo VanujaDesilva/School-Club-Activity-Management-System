@@ -35,7 +35,6 @@ public class HelloController{
     public static List<String> advisorID = EnterClubName.advisorID;
     public static List<String> clubID = EnterClubName.clubID;
     public static List<List<Object>> mainList = new ArrayList<>();
-
     public AnchorPane eventSchedulingAnchor;
     public Label eventAddSuccessfull;
     public Label meetingAddSuccessfull;
@@ -69,6 +68,7 @@ public class HelloController{
     public static List<List<Object>> studentDetails = new ArrayList<>();
     public static List<List<Object>> advisorDetails = new ArrayList<>();
     public static List<Object> studentID = new ArrayList<>();
+    public static List<List<Object>> clubs = new ArrayList<>();
 
     public void onYeranButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
@@ -175,21 +175,44 @@ public class HelloController{
     }
 
     public void onTharushaButtonClick() throws IOException {
-
+        mainList.clear();
         List<Object> subCheck1 = new ArrayList<>();
-        subCheck1.add("C001");
+        subCheck1.add("C003");
         subCheck1.add("Interact Club");
         subCheck1.add("2023-11-25");
         subCheck1.add("Light from heaven");
         subCheck1.add("Social Service");
         subCheck1.add("Tharusha Fernando");
-        subCheck1.add("Uththara Godahenage");
+        subCheck1.add("AD01");
         subCheck1.add("interact@gmail.com");
         subCheck1.add("+94712345672");
         subCheck1.add("C:\\Users\\Tharusha\\Pictures\\abc.jpg");
         mainList.add(subCheck1);
+        List<Object> club = new ArrayList<>();
+        club.add("C001");
+        club.add("Rotrack");
+        club.add("2023-11-25");
+        club.add("Dakuna perata");
+        club.add("Club description");
+        club.add("Mahinda raja");
+        club.add("AD01");
+        club.add("rotrack@gmail.com");
+        club.add("0771234567");
+        club.add("path");
+        mainList.add(club);
+        List<Object> club1 = new ArrayList<>();
+        club1.add("C002");
+        club1.add("Leo");
+        club1.add("2023-11-25");
+        club1.add("Dakuna perata");
+        club1.add("Club description");
+        club1.add("Sumahinda raja");
+        club1.add("AD02");
+        club1.add("leo@gmail.com");
+        club1.add("0771234567");
+        club1.add("path");
+        mainList.add(club1);
         System.out.println(mainList);
-
         AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
         sampleAnchor.getChildren().setAll(pane);
     }

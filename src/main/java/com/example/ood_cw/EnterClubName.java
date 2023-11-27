@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static com.example.ood_cw.HelloController.clubs;
+
 public class EnterClubName implements Initializable {
     public AnchorPane enterClubNameAnchor;
     public TextField clubNameText;
@@ -28,7 +30,7 @@ public class EnterClubName implements Initializable {
     public static List<List<Object>> events1 = HelloController.events1;
     public static List<List<Object>> meetings = HelloController.meetings;
     public static List<List<Object>> activity = HelloController.activity;
-    public static List<List<Object>> clubs = new ArrayList<>();
+
     public static List<List<Object>> advisorClubs = new ArrayList<>();
     public Button nextButton;
 
@@ -39,15 +41,17 @@ public class EnterClubName implements Initializable {
             clubNameError.setText("Please enter a club name!");
             return;
         } else {
+            System.out.println(advisorClubs);
             for (int i=0; i<advisorClubs.size();i++){
                 if (clubName.equalsIgnoreCase((String) advisorClubs.get(i).get(1))){
-                    System.out.println(advisorID.get(0));
                     count++;
                     DatabaseConnect.getScheduleOfClubSesion();
                     String clubId = String.valueOf(advisorClubs.get(i).get(0));
-                    String advisorId = String.valueOf(advisorClubs.get(i).get(6));
+                    String advisorId = String.valueOf(advisorID.get(0));
+                    System.out.println(clubId);
                     clubID.clear();
                     clubID.add(clubId);
+                    System.out.println(allEvents);
 //                    advisorID.clear();
 //                    advisorID.add(advisorId);
                     for (int j=0; j<allEvents.size();j++){ //getting the events according to the clubID and advisorID
@@ -55,6 +59,7 @@ public class EnterClubName implements Initializable {
                             events.add(allEvents.get(j));
                         }
                     }
+                    System.out.println(events);
                     events1.clear();
                     for (int j = 0; j<events.size(); j++){
                         String e = (String) events.get(j).get(0);
@@ -93,6 +98,7 @@ public class EnterClubName implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
 //        enterClubNameAnchor.getChildren().remove(nextButton);
         clubs.clear();
         List<Object> club = new ArrayList<>();
@@ -118,9 +124,9 @@ public class EnterClubName implements Initializable {
         club1.add("0771234567");
         clubs.add(club1);
 
-        
+
         List<String> clubNames = new ArrayList<>();
-        for (int i=0; i<clubs.size();i++){
+        for (int i=0; i<clubs.size();i++){ //getting the clubs relevant for that particular  club advisor
             if (clubs.get(i).get(6).equals(advisorID.get(0))) {
                 clubNames.add(String.valueOf(clubs.get(i).get(1)));
                 advisorClubs.add(clubs.get(i));
