@@ -128,9 +128,9 @@ public class ViewOrDeleteEvents implements Initializable {
                 }
             }
 
-            DatabaseConnect.clearTable();
+            DatabaseConnect.clearTableOfClubSession();
             for (int i=0 ;i<allEvents.size(); i++){
-                DatabaseConnect.insertSchedule(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
+                DatabaseConnect.insertScheduleOfClubSession(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
             }
             List<List<Object>> eventView = HelloController.eventView;
             for (int i = 0; i <eventView.size();i++){
@@ -165,6 +165,8 @@ public class ViewOrDeleteEvents implements Initializable {
 
             deleteIdError.setStyle("-fx-text-fill: #13e57d;");
             deleteIdError.setText("Event has been deleted!");
+
+
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
             pause.setOnFinished(event -> {
                 deleteIdError.setText("");

@@ -13,15 +13,21 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import static com.example.ood_cw.HelloController.events;
 import static com.example.ood_cw.HelloController.checkList;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-import java.sql.*;
+import static com.example.ood_cw.HelloController.checkList;
+import static com.example.ood_cw.HelloController.events;
 
 public class Attendance implements Initializable {
     public ChoiceBox eventSelector;

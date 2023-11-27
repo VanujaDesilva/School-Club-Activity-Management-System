@@ -11,7 +11,7 @@ public class DatabaseConnect {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/sacms", "root", "");
     }
 
-    public static void clearTable(){
+    public static void clearTableOfClubSession(){
         try (Connection connection = getConnection()) {
             String deleteQuery = "DELETE FROM clubsession";
 
@@ -26,7 +26,7 @@ public class DatabaseConnect {
     public static List<List<Object>> allEvents = HelloController.allEvents;
     public static List<List<Object>> events = HelloController.events;
 
-    public static void getSchedule(){
+    public static void getScheduleOfClubSesion(){
         try (Connection connection = getConnection()) {
             String selectQuery = "SELECT * FROM clubsession";
             try (PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
@@ -55,7 +55,7 @@ public class DatabaseConnect {
         e.printStackTrace();
         }
     }
-    public static void insertSchedule(String scheduleId, String name, String location, String time, String description,
+    public static void insertScheduleOfClubSession(String scheduleId, String name, String location, String time, String description,
                                       String startDate, String endDate, String duration, String clubId, String advisorId) throws SQLException {
         try (Connection connection = getConnection()) {
             String query = "INSERT INTO clubsession (sessionId , name, location, time, description, startDate, endDate, duration, clubId, advisorId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -79,15 +79,15 @@ public class DatabaseConnect {
 
     public static void main(String[] args) {
         try {
-            clearTable();
-            insertSchedule("E001", "Spandana", "Viharamahadevi", "08:30", "musical event",
+            clearTableOfClubSession();
+            insertScheduleOfClubSession("E001", "Spandana", "Viharamahadevi", "08:30", "musical event",
                     "2023-12-23", " - ", " - ", "C001", "AD01");
-            insertSchedule("E002", " - ", "Hilton", "08:30", "Batch meeting",
+            insertScheduleOfClubSession("E002", " - ", "Hilton", "08:30", "Batch meeting",
                     "2023-12-23", " - ", "2-hours", "C001", "AD01");
-            insertSchedule("A001", "Game Fiesta", "Club Fusion", "08:30", "A game event",
+            insertScheduleOfClubSession("A001", "Game Fiesta", "Club Fusion", "08:30", "A game event",
                     "2023-11-23", "2023-12-25", " - ", "C001", "AD01");
 
-            getSchedule();
+            getScheduleOfClubSesion();
         } catch (Exception e) {
             e.printStackTrace();
         }

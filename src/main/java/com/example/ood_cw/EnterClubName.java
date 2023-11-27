@@ -41,7 +41,7 @@ public class EnterClubName implements Initializable {
             for (int i=0; i<clubs.size();i++){
                 if (clubName.equalsIgnoreCase((String) clubs.get(i).get(1))){
                     count++;
-                    DatabaseConnect.getSchedule();
+                    DatabaseConnect.getScheduleOfClubSesion();
                     String clubId = String.valueOf(clubs.get(i).get(0));
                     String advisorId = String.valueOf(clubs.get(i).get(6));
                     clubID.clear();
