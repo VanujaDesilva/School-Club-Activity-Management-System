@@ -848,8 +848,85 @@ public class HelloController{
         primaryStage.show();
 
     }
+    public TextField StuSignUpLNameID;
+    public TextField StuSignUpFNameID;
+    public TextField StuSignUpContactNoID;
+    public TextField StuSignUpEmailID;
+    public DatePicker StuSignUpDOBID;
+    public AnchorPane StuSignUpAnchorID;
+    public PasswordField stuSignUpPass;
+    public static List<List<Object>> studentDetails = new ArrayList<>();
+    public void StuSignUpClickID() throws IOException {
+        Student obj = new Student();
+        obj.setFirstName(StuSignUpFNameID.getText());
+        obj.setLastName(StuSignUpLNameID.getText());
+        obj.setDob(String.valueOf(StuSignUpDOBID.getValue()));
+        obj.setTelNo(StuSignUpContactNoID.getText());
+        obj.setEmail(StuSignUpEmailID.getText());
+        String password = stuSignUpPass.getText();
+        int count =0;
+        if (obj.getFirstName().isEmpty()){
+            StuSignUpFNameID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            StuSignUpFNameID.setStyle("-fx-border-color: none;");
+        }
 
-    public void StuSignUpClickID(ActionEvent actionEvent) {
+        if (obj.getLastName().isEmpty()){
+            StuSignUpLNameID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            StuSignUpLNameID.setStyle("-fx-border-color: none;");
+        }
+
+        if (obj.getDob().equals("null")){
+            StuSignUpDOBID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            StuSignUpDOBID.setStyle("-fx-border-color: none;");
+        }
+
+        if (obj.getEmail().isEmpty()){
+            StuSignUpEmailID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            StuSignUpEmailID.setStyle("-fx-border-color: none;");
+        }
+
+        if (obj.getTelNo().isEmpty()){
+            StuSignUpContactNoID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            StuSignUpContactNoID.setStyle("-fx-border-color: none;");
+        }
+
+        if (obj.getEmail().isEmpty()){
+            StuSignUpEmailID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            StuSignUpEmailID.setStyle("-fx-border-color: none;");
+        }
+
+        if (password.isEmpty()){
+            stuSignUpPass.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            stuSignUpPass.setStyle("-fx-border-color: none;");
+        }
+
+        if (count>0){
+            return;
+        }
+        List<Object> student = new ArrayList<>();
+        student.add(obj.getFirstName());
+        student.add(obj.getLastName());
+        student.add(obj.getDob());
+        student.add(obj.getTelNo());
+        student.add(obj.getEmail());
+        student.add(password);
+        studentDetails.add(student);
+        System.out.println("Student details successfully added to the list and should be added to the database");
+
     }
 
     public void StuSignUpBackClick(ActionEvent actionEvent) {
