@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.AccessibleRole;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import static com.example.ood_cw.HelloController.events;
 import static com.example.ood_cw.HelloController.checkList;
 import java.io.IOException;
@@ -25,9 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
-import static com.example.ood_cw.HelloController.checkList;
-import static com.example.ood_cw.HelloController.events;
 
 public class Attendance implements Initializable {
     public ChoiceBox eventSelector;
@@ -110,7 +109,7 @@ public class Attendance implements Initializable {
         }
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AttendanceSave.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        Scene scene = new Scene(fxmlLoader.load(), 600,  400);
         stage.setTitle("Enter club name");
         stage.setScene(scene);
         stage.show();
@@ -200,7 +199,10 @@ public class Attendance implements Initializable {
         preStage.close();
     }
 
-    public void onClubSelectorClick(MouseEvent mouseEvent) {
+    public void onOkButtonClick(ActionEvent actionEvent) {
+        clubSelector.setStyle("-fx-border-color: green;");
+        eventNames.clear();
+        eventSelector.getItems().clear();
         Object selectedClubId = null;
         for (List<Object> clubs : checkList) {
             if(clubSelector.getValue() == clubs.get(1)){
@@ -214,10 +216,10 @@ public class Attendance implements Initializable {
                     eName = String.valueOf(event.get(0));
                 }
                 System.out.println(eName);
-                eventSelector.getItems().add(eName);
                 eventNames.add(eName);
             }
         }
+        eventSelector.getItems().addAll(eventNames);
 
     }
 }
