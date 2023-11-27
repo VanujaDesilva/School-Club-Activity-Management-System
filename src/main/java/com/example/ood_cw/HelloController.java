@@ -93,7 +93,7 @@ public class HelloController{
         event1.add("2023-12-23");
         event1.add(" - ");
         event1.add("2-hours");
-        event1.add("C001");
+        event1.add("C002");
         event1.add("AD01");
         events.add(event1);
 
@@ -106,7 +106,7 @@ public class HelloController{
         event2.add("2023-12-23");
         event2.add("2023-12-25");
         event2.add(" - ");
-        event2.add("C001");
+        event2.add("C003");
         event2.add("AD01");
         events.add(event2);
 
@@ -719,7 +719,7 @@ public class HelloController{
     }
 
 
-    public void onCloseButtonClick(ActionEvent actionEvent) {
+    public void onCloseButtonClick(ActionEvent actionEvent) { //attendance notification close button
         Stage preStage = (Stage) notificationPane.getScene().getWindow();
         preStage.close();
     }

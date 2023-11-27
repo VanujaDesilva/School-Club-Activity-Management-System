@@ -6,9 +6,9 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.Attendance">
     <children>
-        <AnchorPane prefHeight="600.0" prefWidth="900.0">
+        <AnchorPane fx:id="attendancePane" prefHeight="600.0" prefWidth="900.0">
             <children>
-                <Button layoutX="42.0" layoutY="37.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="46.0" text="Back" />
+                <Button fx:id="atendanceBackButton" layoutX="42.0" layoutY="37.0" mnemonicParsing="false" onAction="#onAttendanceBackButtonClick" prefHeight="25.0" prefWidth="46.0" text="Back" />
                 <Label layoutX="142.0" layoutY="95.0" prefHeight="17.0" prefWidth="87.0" text="Select Club:" />
                 <Label layoutX="428.0" layoutY="95.0" prefHeight="17.0" prefWidth="87.0" text="Select Event:" />
                 <ChoiceBox fx:id="clubSelector" layoutX="229.0" layoutY="91.0" prefWidth="150.0" />

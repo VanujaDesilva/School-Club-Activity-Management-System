@@ -38,6 +38,8 @@ public class Attendance implements Initializable {
     public Label eventSelectionError;
     public Button closeButton;
     public AnchorPane notificationPane;
+    public Button atendanceBackButton;
+    public AnchorPane attendancePane;
     @FXML
     private TableView<Student> attendanceTable;
     @FXML
@@ -115,6 +117,8 @@ public class Attendance implements Initializable {
         attendanceTable.getItems().clear();
         eventSelector.getItems().clear();
         clubSelector.getItems().clear();
+        clubSelector.setStyle("-fx-border-color: none;");
+        eventSelector.setStyle("-fx-border-color: none;");
     }
 
     public void onShowButtonClick() throws IOException {
@@ -124,6 +128,8 @@ public class Attendance implements Initializable {
         // Check if both club and event are selected
         if (selectedClub != null && selectedEvent != null) {
             this.attendanceTable.setItems(this.data);
+            eventSelector.setStyle("-fx-border-color: green;");
+            clubSelector.setStyle("-fx-border-color: green;");
         } else if (selectedClub == null) {
             clubSelectionError.setText("Select club first");
             eventSelectionError.setText("Select event");
@@ -180,5 +186,16 @@ public class Attendance implements Initializable {
         }else {
             System.out.println("failed to connect");
         }
+    }
+
+    public void onAttendanceBackButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        stage.setTitle("Enter club name");
+        stage.setScene(scene);
+        stage.show();
+        Stage preStage = (Stage) attendancePane.getScene().getWindow();
+        preStage.close();
     }
 }
