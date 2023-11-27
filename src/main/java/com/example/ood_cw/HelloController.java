@@ -60,6 +60,8 @@ public class HelloController{
     public Label eventDateTick;
     public static List<List<Object>> checkList = new ArrayList<>();
     public static List<List<Object>> studentDetails = new ArrayList<>();
+    public static List<List<Object>> advisorDetails = new ArrayList<>();
+    public static List<Object> studentID = new ArrayList<>();
 
     public void onYeranButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
@@ -187,6 +189,20 @@ public class HelloController{
         student.add("avishkashenan@gmail.com");
         student.add("avishka123");
         studentDetails.add(student);
+
+
+        List<Object> advisor = new ArrayList<>();
+        advisor.add("AD01");
+        advisor.add("Avishka");
+        advisor.add("Shenan");
+        advisor.add("2002-07-07");
+        advisor.add("0771234567");
+        advisor.add("avishka@gmail.com");
+        advisor.add("avishka123");
+        advisorDetails.add(advisor);
+        System.out.println(studentDetails);
+        System.out.println(advisorDetails);
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Welcome.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
@@ -836,7 +852,7 @@ public class HelloController{
     }
 
     public void onAdvisorClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ThirdPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorLogin.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
@@ -865,9 +881,10 @@ public class HelloController{
     public DatePicker StuSignUpDOBID;
     public AnchorPane StuSignUpAnchorID;
     public PasswordField stuSignUpPass;
+    @FXML
+    private Button StuSignUpBackID;
 
     public void StuSignUpClickID() throws IOException {
-        System.out.println(studentDetails);
         Student obj = new Student();
         obj.setFirstName(StuSignUpFNameID.getText());
         obj.setLastName(StuSignUpLNameID.getText());
@@ -935,7 +952,20 @@ public class HelloController{
         if (count>0){
             return;
         }
+        int max =0;
+        for (int i = 0 ; i < studentDetails.size() ; i++){
+            String e = (String) studentDetails.get(i).get(0);
+            int curValue = Integer.parseInt(e.substring(1,4));
+            if (max < curValue){
+                max = curValue;
+            }
+        }
+        max = max + 1;
+        String id = String.format("%03d",max);
+        id = "S"+id;
+        System.out.println(id);
         List<Object> student = new ArrayList<>();
+        student.add(id);
         student.add(obj.getFirstName());
         student.add(obj.getLastName());
         student.add(obj.getDob());
@@ -943,20 +973,139 @@ public class HelloController{
         student.add(obj.getEmail());
         student.add(password);
         studentDetails.add(student);
+        System.out.println(studentDetails);
         System.out.println("Student details successfully added to the list and should be added to the database");
 
     }
 
-    public void StuSignUpBackClick(ActionEvent actionEvent) {
+    public void StuSignUpBackClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentLogin.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) StuSignUpAnchorID.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
         
     }
-    List<List<Object>> advisorDetails = new ArrayList<>();
 
-    public void AdvisorSignUpClick(ActionEvent actionEvent) {
+
+    @FXML
+    private AnchorPane AdvisorSignUpAnchorID;
+
+    @FXML
+    private Button AdvisorSignUpBackID;
+
+    @FXML
+    private TextField AdvisorSignUpContactNoID;
+
+    @FXML
+    private DatePicker AdvisorSignUpDOBID;
+
+    @FXML
+    private TextField AdvisorSignUpEmailID;
+
+    @FXML
+    private TextField AdvisorSignUpFNameID;
+
+    @FXML
+    private Button AdvisorSignUpID;
+
+    @FXML
+    private TextField AdvisorSignUpLNameID;
+
+    @FXML
+    private PasswordField AdvisorSignUpPasswordID;
+
+    public void AdvisorSignUpClick() throws IOException {
+        System.out.println(advisorDetails);
+        Advisor obj = new Advisor();
+        obj.setFirstName(AdvisorSignUpFNameID.getText());
+        obj.setLastName(AdvisorSignUpLNameID.getText());
+        obj.setDob(String.valueOf(AdvisorSignUpDOBID.getValue()));
+        obj.setTelNo(AdvisorSignUpContactNoID.getText());
+        obj.setEmail(AdvisorSignUpEmailID.getText());
+        String password = AdvisorSignUpPasswordID.getText();
+        int count =0;
+        if (obj.getFirstName().isEmpty()){
+            AdvisorSignUpFNameID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            AdvisorSignUpFNameID.setStyle("-fx-border-color: none;");
+        }
+
+        if (obj.getLastName().isEmpty()){
+            AdvisorSignUpLNameID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            AdvisorSignUpLNameID.setStyle("-fx-border-color: none;");
+        }
+        for (List<Object> i : advisorDetails){
+            if(String.valueOf(i.get(5)).equals(obj.getEmail())){
+                count++;
+                //label.setText("Email already exixts!");
+                System.out.println("email already exists");
+            }
+        }
+
+        if (obj.getDob().equals("null")){
+            AdvisorSignUpDOBID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            AdvisorSignUpDOBID.setStyle("-fx-border-color: none;");
+        }
+
+        if (obj.getEmail().isEmpty()){
+            AdvisorSignUpEmailID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            AdvisorSignUpEmailID.setStyle("-fx-border-color: none;");
+        }
+
+        if (obj.getTelNo().isEmpty()){
+            AdvisorSignUpContactNoID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            AdvisorSignUpContactNoID.setStyle("-fx-border-color: none;");
+        }
+
+        if (obj.getEmail().isEmpty()){
+            AdvisorSignUpEmailID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            AdvisorSignUpEmailID.setStyle("-fx-border-color: none;");
+        }
+
+        if (password.isEmpty()){
+            AdvisorSignUpPasswordID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            AdvisorSignUpPasswordID.setStyle("-fx-border-color: none;");
+        }
+
+        if (count>0){
+            return;
+        }
+        List<Object> advisor = new ArrayList<>();
+        advisor.add(obj.getFirstName());
+        advisor.add(obj.getLastName());
+        advisor.add(obj.getDob());
+        advisor.add(obj.getTelNo());
+        advisor.add(obj.getEmail());
+        advisor.add(password);
+        advisorDetails.add(advisor);
+        System.out.println("Advisor details successfully added to the list and should be added to the database");
 
     }
 
-    public void AdvisorSignUpBackClick(ActionEvent actionEvent) {
+    public void AdvisorSignUpBackClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorLogin.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) AdvisorSignUpBackID.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
     @FXML
     private AnchorPane StudentLoginAnchor;
@@ -977,6 +1126,35 @@ public class HelloController{
     private TextField StudentLoginUserNameID;
 
     public void StudentLoginButtonClick(ActionEvent actionEvent) {
+        Student obj = new Student();
+        obj.setEmail(StudentLoginUserNameID.getText());
+        String password = StudentLoginPasswordID.getText();
+        int count =0;
+        if (obj.getEmail().isEmpty()){
+            StudentLoginUserNameID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            StudentLoginUserNameID.setStyle("-fx-border-color: none;");
+        }
+        if (password.isEmpty()){
+            StudentLoginPasswordID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            StudentLoginPasswordID.setStyle("-fx-border-color: none;");
+        }
+        for (int i = 0; i<studentDetails.size();i++){
+            if (studentDetails.get(i).get(5).equals(obj.getEmail()) && studentDetails.get(i).get(6).equals(password)){
+                studentID.clear();
+                studentID.add(String.valueOf(studentDetails.get(i).get(0)));
+                System.out.println("Load the menu for students");
+                return;
+            }
+        }
+        if (count>0){
+            return;
+        } else {
+            System.out.println("No student for the given information!");
+        }
     }
 
     public void StudentLoginPageSignUpButtonClick(ActionEvent actionEvent) throws IOException {
@@ -999,5 +1177,73 @@ public class HelloController{
         primaryStage.setScene(scene);
         primaryStage.show();
 
+    }
+    @FXML
+    private AnchorPane AdvisorLoginAnchor;
+
+    @FXML
+    private Button AdvisorLoginBackID;
+
+    @FXML
+    private Button AdvisorLoginButtonID;
+
+    @FXML
+    private PasswordField AdvisorLoginPasswordID;
+
+    @FXML
+    private TextField AdvisorLoginUserNameID;
+
+    @FXML
+    private Button AdvisorLoginPageSignUpId;
+    public void AdvisorLoginButtonClick(ActionEvent actionEvent) {
+        Advisor obj = new Advisor();
+        obj.setEmail(AdvisorLoginUserNameID.getText());
+        String password = AdvisorLoginPasswordID.getText();
+        int count =0;
+        if (obj.getEmail().isEmpty()){
+            AdvisorLoginUserNameID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            AdvisorLoginUserNameID.setStyle("-fx-border-color: none;");
+        }
+        if (password.isEmpty()){
+            AdvisorLoginPasswordID.setStyle("-fx-border-color: red;");
+            count++;
+        } else {
+            AdvisorLoginPasswordID.setStyle("-fx-border-color: none;");
+        }
+        for (int i = 0; i<advisorDetails.size();i++){
+            if (advisorDetails.get(i).get(5).equals(obj.getEmail()) && advisorDetails.get(i).get(6).equals(password)){
+                advisorID.clear();
+                advisorID.add(String.valueOf(advisorDetails.get(i).get(0)));
+                System.out.println("Load the menu for advisor");
+                return;
+            }
+        }
+        if (count>0){
+            return;
+        } else {
+            System.out.println("No advisor for the given information!");
+        }
+    }
+
+    public void AdvisorLoginPageSignUpButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorSignUp.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) AdvisorLoginPageSignUpId.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public void AdvisorLoginBackButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SecondPage.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) AdvisorLoginBackID.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

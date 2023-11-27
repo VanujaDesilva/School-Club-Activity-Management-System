@@ -9,6 +9,9 @@ public class Advisor {
     private String telNo;
     private String dob;
     private String email;
+    Advisor(){
+
+    }
 
     public void setAdId(String adId) {
         AdId = adId;
