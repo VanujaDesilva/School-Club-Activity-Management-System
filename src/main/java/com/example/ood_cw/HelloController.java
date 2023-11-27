@@ -39,6 +39,8 @@ public class HelloController{
     public Label activityAddSuccessfull;
     public TextField clubNameText;
     public Label clubNameError;
+    public Button closeButton;
+    public AnchorPane notificationPane;
     @FXML
     private AnchorPane sampleAnchor;
     public TextField eventNameText;
@@ -55,6 +57,7 @@ public class HelloController{
     public Label eventLocTick;
     public Label eventTimeTick;
     public Label eventDateTick;
+    public static List<List<Object>> checkList = new ArrayList<>();
 
     public void onYeranButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
@@ -69,6 +72,7 @@ public class HelloController{
     }
 
     public void onVanujaButtonClick(ActionEvent actionEvent) throws IOException {
+        //sample event data
         List<Object> event = new ArrayList<>();
         event.add("E001");
         event.add("Spandana");
@@ -91,7 +95,7 @@ public class HelloController{
         event1.add("2023-12-23");
         event1.add(" - ");
         event1.add("2-hours");
-        event1.add("C001");
+        event1.add("C002");
         event1.add("AD01");
         events.add(event1);
 
@@ -104,9 +108,49 @@ public class HelloController{
         event2.add("2023-12-23");
         event2.add("2023-12-25");
         event2.add(" - ");
-        event2.add("C001");
+        event2.add("C003");
         event2.add("AD01");
         events.add(event2);
+
+        //sample club data
+        List<Object> subCheck1 = new ArrayList<>();
+        subCheck1.add("C001");
+        subCheck1.add("Interact Club");
+        subCheck1.add("2023-11-25");
+        subCheck1.add("Light from heaven");
+        subCheck1.add("Social Service");
+        subCheck1.add("Tharusha Fernando");
+        subCheck1.add("Uththara Godahenage");
+        subCheck1.add("interact@gmail.com");
+        subCheck1.add("+94712345672");
+        subCheck1.add("C:\\Users\\Tharusha\\Pictures\\abc.jpg");
+        checkList.add(subCheck1);
+
+        List<Object> subCheck2 = new ArrayList<>();
+        subCheck2.add("C002");
+        subCheck2.add("Leo Club");
+        subCheck2.add("2023-11-15");
+        subCheck2.add("We lead others follow");
+        subCheck2.add("Helping others");
+        subCheck2.add("Yeran Fernando");
+        subCheck2.add("Sarath Bandara");
+        subCheck2.add("leo@gmail.com");
+        subCheck2.add("+94771231167");
+        subCheck2.add("C:\\Users\\Tharusha\\Pictures\\def.jpg");
+        checkList.add(subCheck2);
+
+        List<Object> subCheck3 = new ArrayList<>();
+        subCheck3.add("C003");
+        subCheck3.add("IEEE Club");
+        subCheck3.add("2023-11-08");
+        subCheck3.add("Experimenting new virtues");
+        subCheck3.add("Spreading knowledge");
+        subCheck3.add("Vanuja Silva");
+        subCheck3.add("Oggy Perera");
+        subCheck3.add("ieee@gmail.com");
+        subCheck3.add("+94781231167");
+        subCheck3.add("C:\\Users\\Tharusha\\Pictures\\ghi.jpg");
+        checkList.add(subCheck3);
 
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Attendance.fxml"));
@@ -735,4 +779,8 @@ public class HelloController{
     }
 
 
+    public void onCloseButtonClick(ActionEvent actionEvent) { //attendance notification close button
+        Stage preStage = (Stage) notificationPane.getScene().getWindow();
+        preStage.close();
+    }
 }
