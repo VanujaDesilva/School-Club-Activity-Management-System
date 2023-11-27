@@ -1302,7 +1302,7 @@ public class HelloController{
     }
 
     public void onBackClubMenuClick() throws IOException{
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("AdvisorMenu.fxml"));
         clubMenuPane.getChildren().setAll(pane);
     }
 }
