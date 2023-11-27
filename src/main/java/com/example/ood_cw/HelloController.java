@@ -189,15 +189,9 @@ public class HelloController{
         subCheck1.add("C:\\Users\\Tharusha\\Pictures\\abc.jpg");
         mainList.add(subCheck1);
         System.out.println(mainList);
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CreateClub.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Enter club name");
-        stage.setScene(scene);
-        stage.show();
 
-        Stage previousStage = (Stage) sampleAnchor.getScene().getWindow();
-        previousStage.close();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
+        sampleAnchor.getChildren().setAll(pane);
     }
 
     public void onAvishkaButtonClick() throws IOException {
@@ -1278,6 +1272,8 @@ public class HelloController{
         clubMenuPane.getChildren().setAll(pane);
     }
 
-    public void onBackClubMenuClick(ActionEvent actionEvent) {
+    public void onBackClubMenuClick() throws IOException{
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        clubMenuPane.getChildren().setAll(pane);
     }
 }
