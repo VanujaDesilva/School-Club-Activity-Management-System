@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.ood_cw.StudentLogin"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oodcw3.HelloController">
+   <children>
+      <Text layoutX="94.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name:" wrappingWidth="81.33673095703125" />
+      <Text layoutX="94.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" wrappingWidth="81.33673095703125" />
+      <TextField layoutX="183.0" layoutY="83.0" promptText="Enter Name" />
+      <TextField layoutX="184.0" layoutY="134.0" promptText="Password" />
+      <Button fx:id="LogInButtonId" layoutX="140.0" layoutY="187.0" mnemonicParsing="false" onAction="#LogInClick" prefHeight="26.0" prefWidth="88.0" text="Log In" />
+      <Text layoutX="94.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account" wrappingWidth="149.5999999999999" />
+      <Button fx:id="ThirdPageSignUpId" layoutX="244.0" layoutY="265.0" mnemonicParsing="false" onAction="#ThirdPageSignUpClick" prefHeight="26.0" prefWidth="68.0" text="Sign Up" />
+      <Button layoutX="14.0" layoutY="48.0" mnemonicParsing="false" onAction="#ThirdBackButtonClick" text="BACK" />
+   </children>
 </AnchorPane>
