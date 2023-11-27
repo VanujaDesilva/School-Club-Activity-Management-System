@@ -168,7 +168,7 @@ public class HelloController{
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CreateClub.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Create Club");
+        stage.setTitle("Enter club name");
         stage.setScene(scene);
         stage.show();
 
@@ -815,7 +815,7 @@ public class HelloController{
     private Button SecondBackButtonId;
 
     public void onStudentClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentSignUp.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ThirdPage.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
@@ -826,7 +826,7 @@ public class HelloController{
     }
 
     public void onAdvisorClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorSignUp.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ThirdPage.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
@@ -848,137 +848,11 @@ public class HelloController{
         primaryStage.show();
 
     }
-    public TextField StuSignUpLNameID;
-    public TextField StuSignUpFNameID;
-    public TextField StuSignUpContactNoID;
-    public TextField StuSignUpEmailID;
-    public DatePicker StuSignUpDOBID;
-    public AnchorPane StuSignUpAnchorID;
-    public PasswordField stuSignUpPass;
-    public static List<List<Object>> studentDetails = new ArrayList<>();
 
-    public void StuSignUpClickID() throws IOException {
-        Student obj = new Student();
-        obj.setFirstName(StuSignUpFNameID.getText());
-        obj.setLastName(StuSignUpLNameID.getText());
-        obj.setDob(String.valueOf(StuSignUpDOBID.getValue()));
-        obj.setTelNo(StuSignUpContactNoID.getText());
-        obj.setEmail(StuSignUpEmailID.getText());
-        String password = stuSignUpPass.getText();
-        int count =0;
-        if (obj.getFirstName().isEmpty()){
-            StuSignUpFNameID.setStyle("-fx-border-color: red;");
-            count++;
-        } else {
-            StuSignUpFNameID.setStyle("-fx-border-color: none;");
-        }
-
-        if (obj.getLastName().isEmpty()){
-            StuSignUpLNameID.setStyle("-fx-border-color: red;");
-            count++;
-        } else {
-            StuSignUpLNameID.setStyle("-fx-border-color: none;");
-        }
-
-        if (obj.getDob().equals("null")){
-            StuSignUpDOBID.setStyle("-fx-border-color: red;");
-            count++;
-        } else {
-            StuSignUpDOBID.setStyle("-fx-border-color: none;");
-        }
-
-        if (obj.getEmail().isEmpty()){
-            StuSignUpEmailID.setStyle("-fx-border-color: red;");
-            count++;
-        } else {
-            StuSignUpEmailID.setStyle("-fx-border-color: none;");
-        }
-
-        if (obj.getTelNo().isEmpty()){
-            StuSignUpContactNoID.setStyle("-fx-border-color: red;");
-            count++;
-        } else {
-            StuSignUpContactNoID.setStyle("-fx-border-color: none;");
-        }
-
-        if (obj.getEmail().isEmpty()){
-            StuSignUpEmailID.setStyle("-fx-border-color: red;");
-            count++;
-        } else {
-            StuSignUpEmailID.setStyle("-fx-border-color: none;");
-        }
-
-        if (password.isEmpty()){
-            stuSignUpPass.setStyle("-fx-border-color: red;");
-            count++;
-        } else {
-            stuSignUpPass.setStyle("-fx-border-color: none;");
-        }
-
-        if (count>0){
-            return;
-        }
-        List<Object> student = new ArrayList<>();
-        student.add(obj.getFirstName());
-        student.add(obj.getLastName());
-        student.add(obj.getDob());
-        student.add(obj.getTelNo());
-        student.add(obj.getEmail());
-        student.add(password);
-        studentDetails.add(student);
-        //clear the student database and add the updated list to the database
-        System.out.println("Student details successfully added to the list and should be added to the database");
+    public void StuSignUpClickID(ActionEvent actionEvent) {
     }
 
-    public void StuSignUpBackClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SecondPage.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-
-        Stage primaryStage = (Stage) StuSignUpAnchorID.getScene().getWindow();
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-    }
-    @FXML
-    private AnchorPane AdvisorSignUpAnchorID;
-
-    @FXML
-    private Button AdvisorSignUpBackID;
-
-    @FXML
-    private TextField AdvisorSignUpContactNoID;
-
-    @FXML
-    private DatePicker AdvisorSignUpDOBID;
-
-    @FXML
-    private TextField AdvisorSignUpEmailID;
-
-    @FXML
-    private TextField AdvisorSignUpFNameID;
-
-    @FXML
-    private Button AdvisorSignUpID;
-
-    @FXML
-    private TextField AdvisorSignUpLNameID;
-
-    @FXML
-    private PasswordField AdvisorSignUpPasswordID;
-
-
-    public void AdvisorSignUpClick(ActionEvent actionEvent) {
-    }
-
-    public void AdvisorSignUpBackClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SecondPage.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-
-        Stage primaryStage = (Stage) AdvisorSignUpBackID.getScene().getWindow();
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
+    public void StuSignUpBackClick(ActionEvent actionEvent) {
+        
     }
 }
