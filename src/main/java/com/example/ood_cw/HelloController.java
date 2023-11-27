@@ -39,6 +39,8 @@ public class HelloController{
     public Label activityAddSuccessfull;
     public TextField clubNameText;
     public Label clubNameError;
+    public Button closeButton;
+    public AnchorPane notificationPane;
     @FXML
     private AnchorPane sampleAnchor;
     public TextField eventNameText;
@@ -717,4 +719,8 @@ public class HelloController{
     }
 
 
+    public void onCloseButtonClick(ActionEvent actionEvent) {
+        Stage preStage = (Stage) notificationPane.getScene().getWindow();
+        preStage.close();
+    }
 }

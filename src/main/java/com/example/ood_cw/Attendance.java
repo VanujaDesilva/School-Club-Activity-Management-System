@@ -1,5 +1,6 @@
 package com.example.ood_cw;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +14,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import static com.example.ood_cw.HelloController.events;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -100,9 +105,19 @@ public class Attendance implements Initializable {
             System.out.println("Student ID: " + std.getStdId() + ", Attendance Status: " + attendance);
             insertAttendance(std.getStdId(), eventId, attendance);
         }
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AttendanceSave.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        stage.setTitle("Enter club name");
+        stage.setScene(scene);
+        stage.show();
+
+        attendanceTable.getItems().clear();
+        eventSelector.getItems().clear();
+        clubSelector.getItems().clear();
     }
 
-    public void onShowButtonClick() {
+    public void onShowButtonClick() throws IOException {
         String selectedClub = clubSelector.getValue();
         String selectedEvent = (String) eventSelector.getValue();
 
@@ -111,8 +126,28 @@ public class Attendance implements Initializable {
             this.attendanceTable.setItems(this.data);
         } else if (selectedClub == null) {
             clubSelectionError.setText("Select club first");
+            eventSelectionError.setText("Select event");
+            clubSelector.setStyle("-fx-border-color: red;");
+            eventSelector.setStyle("-fx-border-color: red;");
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            pause.setOnFinished(event -> {
+                clubSelectionError.setText("");
+                eventSelectionError.setText("");
+                clubSelector.setStyle("-fx-border-color: none;");
+                eventSelector.setStyle("-fx-border-color: none;");
+            });
+            pause.play();
         } else {
             eventSelectionError.setText("Select event");
+            eventSelector.setStyle("-fx-border-color: red;");
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            pause.setOnFinished(event -> {
+                clubSelectionError.setText("");
+                eventSelectionError.setText("");
+                clubSelector.setStyle("-fx-border-color: none;");
+                eventSelector.setStyle("-fx-border-color: none;");
+            });
+            pause.play();
 
         }
     }
@@ -145,10 +180,5 @@ public class Attendance implements Initializable {
         }else {
             System.out.println("failed to connect");
         }
-    }
-
-    public void onCloseButtonClick(ActionEvent actionEvent) {
-        Stage preStage = (Stage) notificationPane.getScene().getWindow();
-        preStage.close();
     }
 }
