@@ -1,5 +1,4 @@
 package com.example.ood_cw;
-
 import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +14,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import static com.example.ood_cw.HelloController.events;
-import static com.example.ood_cw.CreateClub.checkList;
+import static com.example.ood_cw.HelloController.checkList;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,7 +44,7 @@ public class Attendance implements Initializable {
     private Button saveButton;
     private final List<Object> eventNames = new ArrayList<>();
 
-    private final List<Object> clubNames = new ArrayList<>();
+    private final List<String> clubNames = new ArrayList<>();
     private ObservableList<Student> data;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -62,7 +61,7 @@ public class Attendance implements Initializable {
             System.out.println(cName);
             clubNames.add(cName);
         }
-        clubSelector.getItems().addAll(String.valueOf(clubNames));
+        clubSelector.getItems().addAll(clubNames);
 
 
         for (List<Object> clubs : checkList) {
