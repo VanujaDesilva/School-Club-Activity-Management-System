@@ -9,7 +9,28 @@ public class Student {
     private String telNo;
     private String dob;
     private CheckBox status;
+    private String email;
 
+    public Student(String stdId, String firstName, String lastName, String telNo, String dob, CheckBox status, String email) {
+        this.stdId = stdId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.telNo = telNo;
+        this.dob = dob;
+        this.status = status;
+        this.email = email;
+    }
+    Student(){
+
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     public Student(String stdId, String firstName, String lastName, String telNo, String dob) {
         this.stdId = stdId;
