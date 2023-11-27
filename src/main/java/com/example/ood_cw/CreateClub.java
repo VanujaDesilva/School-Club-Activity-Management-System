@@ -218,12 +218,7 @@ public class CreateClub {
                 promptLabelCreate.setText("Please add an icon!");
                 promptLabelCreate.setStyle("-fx-text-fill: red;");
                 imagePane.setStyle("-fx-border-color: red; -fx-border-width: 3;");
-//            Stage emptyImageInput = new Stage(); //loading the error window
-//            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("errorImage.fxml"));
-//            Scene scene = new Scene(fxmlLoader.load(), 400, 200);
-//            emptyImageInput.setTitle("ERROR!");
-//            emptyImageInput.setScene(scene);
-//            emptyImageInput.show();
+//
                 errorCheck++;
             } else {
                 imagePane.setStyle("-fx-border-color: green; -fx-border-width: 3;");
