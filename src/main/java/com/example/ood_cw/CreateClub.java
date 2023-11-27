@@ -41,16 +41,10 @@ public class CreateClub {
     public Label nameTick;
     public AnchorPane imagePane;
     public Label promptLabelCreate;
-    
-
-
-
 
     public void onCreateButtonClick() throws IOException {
         //creating an instance of the club object
         Club createClubInstance = new Club();
-
-
 
         outer:
         while (true) {

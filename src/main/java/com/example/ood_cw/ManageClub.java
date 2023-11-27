@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManageClub {
-    public TextField updateClubName;
     public DatePicker updateClubDate;
     public TextField updateClubMission;
     public TextArea updateClubDescription;
@@ -38,19 +38,21 @@ public class ManageClub {
     public File updateFile;
 
     public static List<List<Object>> mainList = CreateClub.mainList;
+    public Label showPromptUpdate;
+    public AnchorPane updatePane;
 
     Club updateClubInstance = new Club();
 
     public void onShowClubButtonClick() throws IOException {
-        updateClubInstance.setName(updateClubName.getText());  //setting the club name input from the textField to the club object
+        updateClubInstance.setName(showName.getText());  //setting the club name input from the textField to the club object
 
         //checking if the club name is empty
-        if (!updateClubInstance.getName().isEmpty()) {
+        try {
             //checking if the same club name exists
             for (List<Object> d : mainList) {
                 if (d.get(0).equals(updateClubInstance.getName())) {
                     listIndex =mainList.indexOf(d);
-                    updateClubName.setStyle("-fx-text-fill: green;");
+                    showName.setStyle("-fx-border-color: green;");
                     showTick.setText("\u2713");
 
                     //displays the existing item details
@@ -71,179 +73,235 @@ public class ManageClub {
                     updateClubIcon.setImage(updateImage);
 
                 } else {
-                    updateClubName.setStyle("-fx-text-fill: red;");
-                    uNameTick.setText("\u2717");
+                    showName.setStyle("-fx-border-color: red;");
+                    showTick.setText("\u2717");
                 }
             }
-
         }
-        else {
-            updateClubName.setStyle("-fx-text-fill: red;");
-            uNameTick.setText("\u2605");
+        catch (NullPointerException e) {
+            showName.setStyle("-fx-border-color: red;");
+            showTick.setText("\u2605");
         }
     }
 
 
 
     public void onUpdateButtonClick() throws IOException{
-        updateClubInstance.setIcon(mainList.get(listIndex).get(7).toString());
+        updateClubInstance.setIcon(mainList.get(listIndex).get(8).toString());
         mainList.remove(listIndex); //removing the old item data from the list
 
-        //setting the club name
-        //checking if the club name is empty
-        if (!updateClubName.getText().trim().isEmpty()) {
-            //checking if the same club name exists
-            for (List<Object> e : mainList) {
-                if (e.get(0).equals(updateClubInstance.getName())) {
-                    updateClubName.setStyle("-fx-text-fill: red;");
-                    uNameTick.setText("\u2717");
-                } else {
-                    updateClubInstance.setName(updateClubName.getText());
-                    updateClubName.setStyle("-fx-text-fill: green;");
-                    uNameTick.setText("\u2713");
-                }
-            }
-        }
-        else {
-            updateClubName.setStyle("-fx-text-fill: red;");
-            uNameTick.setText("\u2605");
-        }
+        outer:
+        while (true) {
+            int errorCheck = 0;
+            int emptyCheck = 0;
 
-        //setting the club date
-        updateClubDate.valueProperty().addListener((observable, oldValue, newValue) -> {
+            //setting the club name
+            updateClubInstance.setName(showName.getText());
+            //checking if the club name is empty
+            if (!updateClubInstance.getName().isEmpty()) {
+                //checking if the club name is only alphabetical
+//                if (!newValue.matches("[a-zA-Z]*")){
+//                    clubName.setText(oldValue); //if not reverts back the text
+//                    clubName.setStyle("-fx-text-fill: red;");
+//                    nameTick.setText("\u2717");
+//                }
+//                else {
+
+//                }
+                //checking if the same club name exists
+                for (List<Object> a : mainList) {
+                    if (a.get(0).equals(updateClubInstance.getName())) {
+                        showPromptUpdate.setText("Club already exists!");
+                        showPromptUpdate.setStyle("-fx-text-fill: red;");
+                        showName.setStyle("-fx-border-color: red;");
+                        showTick.setText("\u2717");
+                        errorCheck++;
+                    }
+                }
+                showName.setStyle("-fx-border-color: green;");
+                showTick.setText("\u2713");
+            } else {
+                showPromptUpdate.setText("Please fill out all required inputs!");
+                showPromptUpdate.setStyle("-fx-text-fill: red;");
+                showName.setStyle("-fx-border-color: red;");
+                showTick.setText("\u2605");
+                emptyCheck++;
+            }
+
+
+            //setting the club date
+            LocalDate foundingDate = updateClubDate.getValue();
+            updateClubInstance.setFoundingDate(foundingDate);
             //checking if the founding date is empty
-            if (newValue != null) {
+            if (updateClubInstance.getFoundingDate() != null) {
                 //checking if the entered date is valid
-                if (Club.isValidDate(newValue)) {
-                    LocalDate foundingDate = updateClubDate.getValue();
-                    updateClubInstance.setFoundingDate(foundingDate);
-                    updateClubDate.setStyle("-fx-text-fill: green;");
+                if (Club.isValidDate(updateClubInstance.getFoundingDate())) {
+                    updateClubDate.setStyle("-fx-border-color: green;");
                     uDateTick.setText("\u2713"); //tick
                 } else {
-                    updateClubDate.setStyle("-fx-text-fill: red;");
+                    showPromptUpdate.setText("Founding Date cannot be in the future!");
+                    showPromptUpdate.setStyle("-fx-text-fill: red;");
+                    updateClubDate.setStyle("-fx-border-color: red;");
                     uDateTick.setText("\u2717"); //cross
+                    errorCheck++;
                 }
             } else {
-                updateClubDate.setStyle("-fx-text-fill: red;");
-                uNameTick.setText("\u2605");  //star
+                showPromptUpdate.setText("Please fill out all required inputs!");
+                showPromptUpdate.setStyle("-fx-text-fill: red;");
+                updateClubDate.setStyle("-fx-border-color: red;");
+                uDateTick.setText("\u2605");  //star
+                emptyCheck++;
             }
-        });
 
 
-        //setting the club mission
-        updateClubInstance.setMission(updateClubMission.getText());
+            //setting the club mission
+            updateClubInstance.setMission(updateClubMission.getText());
 
-        //setting the club description
-        updateClubInstance.setDescription(updateClubDescription.getText());
+            //setting the club description
+            updateClubInstance.setDescription(updateClubDescription.getText());
 
-        //setting the club president
-        //checking if the club president name is empty
-        if (!updateClubPresident.getText().trim().isEmpty()) {
-            //checking if the same club president exists
-            for (List<Object> f : mainList) {
-                if (f.get(4).equals(updateClubInstance.getClubPresidentName())) {
-                    updateClubPresident.setStyle("-fx-text-fill: red;");
-                    uPresidentTick.setText("\u2717");
-                } else {
-                    updateClubInstance.setClubPresidentName(updateClubPresident.getText());
-                    updateClubPresident.setStyle("-fx-text-fill: green;");
-                    uPresidentTick.setText("\u2713");
+            //setting the club president
+            updateClubInstance.setClubPresidentName(updateClubPresident.getText());
+            //checking if the club president name is empty
+            if (!updateClubInstance.getClubPresidentName().isEmpty()) {
+                //checking if the same club president exists
+                for (List<Object> b : mainList) {
+                    if (b.get(4).equals(updateClubInstance.getClubPresidentName())) {
+                        showPromptUpdate.setText("Club President already exists!");
+                        showPromptUpdate.setStyle("-fx-text-fill: red;");
+                        updateClubPresident.setStyle("-fx-border-color: red;");
+                        uPresidentTick.setText("\u2717");
+                        errorCheck++;
+                    }
                 }
-            }
-        } else {
-            updateClubPresident.setStyle("-fx-text-fill: red;");
-            uPresidentTick.setText("\u2605");
-        }
-
-        //setting the club advisor
-        //checking if the club advisor name is empty
-        if (!updateClubAdvisor.getText().trim().isEmpty()) {
-            //checking if the same club advisor exists
-            for (List<Object> g : mainList) {
-                if (g.get(5).equals(updateClubInstance.getClubAdvisorName())) {
-                    updateClubAdvisor.setStyle("-fx-text-fill: red;");
-                    uAdvisorTick.setText("\u2717");
-                } else {
-                    updateClubInstance.setClubAdvisorName(updateClubAdvisor.getText());
-                    updateClubAdvisor.setStyle("-fx-text-fill: green;");
-                    uAdvisorTick.setText("\u2713");
-                }
-            }
-        } else {
-            updateClubAdvisor.setStyle("-fx-text-fill: red;");
-            uAdvisorTick.setText("\u2605");
-        }
-
-
-        //setting the club email
-        //checking if the club email is empty
-        if (!updateClubEmail.getText().trim().isEmpty()) {
-            //checking if the entered email is valid
-            if (Club.isValidEmail(updateClubEmail.getText())) {
-                updateClubInstance.setEmail(updateClubEmail.getText());
-                updateClubEmail.setStyle("-fx-text-fill: green;");
-                uEmailTick.setText("\u2713");
+                updateClubPresident.setStyle("-fx-border-color: green;");
+                uPresidentTick.setText("\u2713");
             } else {
-                updateClubEmail.setStyle("-fx-text-fill: red;");
-                uEmailTick.setText("\u2717");
+                showPromptUpdate.setText("Please fill out all required inputs!");
+                showPromptUpdate.setStyle("-fx-text-fill: red;");
+                updateClubPresident.setStyle("-fx-border-color: red;");
+                uPresidentTick.setText("\u2605");
+                emptyCheck++;
             }
-        } else {
-            updateClubEmail.setStyle("-fx-text-fill: red;");
-            uEmailTick.setText("\u2605");
-        }
+
+            //setting the club advisor
+            updateClubInstance.setClubAdvisorName(updateClubAdvisor.getText());
+            //checking if the club advisor name is empty
+            if (!updateClubInstance.getClubAdvisorName().isEmpty()) {
+                //checking if the same club advisor exists
+                for (List<Object> c : mainList) {
+                    if (c.get(5).equals(updateClubInstance.getClubAdvisorName())) {
+                        showPromptUpdate.setText("Club Advisor already exists!");
+                        showPromptUpdate.setStyle("-fx-text-fill: red;");
+                        updateClubAdvisor.setStyle("-fx-border-color: red;");
+                        uAdvisorTick.setText("\u2717");
+                        errorCheck++;
+                    }
+                }
+                updateClubAdvisor.setStyle("-fx-border-color: green;");
+                uAdvisorTick.setText("\u2713");
+            } else {
+                showPromptUpdate.setText("Please fill out all required inputs!");
+                showPromptUpdate.setStyle("-fx-text-fill: red;");
+                updateClubAdvisor.setStyle("-fx-border-color: red;");
+                uAdvisorTick.setText("\u2605");
+                emptyCheck++;
+            }
 
 
-        updateClubContactNo.textProperty().addListener((observable, oldValue, newValue) -> {
+            //setting the club email
+            updateClubInstance.setEmail(updateClubEmail.getText());
+            //checking if the club email is empty
+            if (!updateClubInstance.getEmail().isEmpty()) {
+                //checking if the entered email is valid
+                if (Club.isValidEmail(updateClubInstance.getEmail())) {
+                    updateClubEmail.setStyle("-fx-border-color: green;");
+                    uEmailTick.setText("\u2713");
+                } else {
+                    showPromptUpdate.setText("Please enter valid email!");
+                    showPromptUpdate.setStyle("-fx-text-fill: red;");
+                    updateClubEmail.setStyle("-fx-border-color: red;");
+                    uEmailTick.setText("\u2717");
+                    errorCheck++;
+                }
+            } else {
+                showPromptUpdate.setText("Please fill out all required inputs!");
+                showPromptUpdate.setStyle("-fx-text-fill: red;");
+                updateClubEmail.setStyle("-fx-border-color: red;");
+                uEmailTick.setText("\u2605");
+                emptyCheck++;
+            }
+
+            //setting the club contact number
+            //String contactNumFull = "+94" + clubContactNo.getText();
+            updateClubInstance.setContactNo("+94" + updateClubContactNo.getText());
             //checking if the contact number is empty
-            if (newValue != null) {
-                if (Club.isValidContactNo(newValue)) {
-                    String contactNumFull = "+94" + newValue;
-                    updateClubInstance.setContactNo(contactNumFull);
-                    updateClubContactNo.setStyle("-fx-text-fill: green;");
+            if (updateClubContactNo.getText() != null) {
+                if (Club.isValidContactNo(updateClubContactNo.getText())) {
+                    updateClubContactNo.setStyle("-fx-border-color: green;");
                     uContactTick.setText("\u2713");
                 } else {
-                    updateClubContactNo.setStyle("-fx-text-fill: red;");
+                    showPromptUpdate.setText("Please enter valid contact number!");
+                    showPromptUpdate.setStyle("-fx-text-fill: red;");
+                    updateClubContactNo.setStyle("-fx-border-color: red;");
                     uContactTick.setText("\u2717");
+                    errorCheck++;
                 }
             } else {
-                updateClubContactNo.setStyle("-fx-text-fill: red;");
+                showPromptUpdate.setText("Please fill out all required inputs!");
+                showPromptUpdate.setStyle("-fx-text-fill: red;");
+                updateClubContactNo.setStyle("-fx-border-color: red;");
                 uContactTick.setText("\u2605");
+                emptyCheck++;
             }
-        });
 
-
-
-        if (updateFile == null){
+            //checking if image input is empty
+            if (updateFile == null) {
+                showPromptUpdate.setText("Please add an icon!");
+                showPromptUpdate.setStyle("-fx-text-fill: red;");
+                updatePane.setStyle("-fx-border-color: red; -fx-border-width: 3;");
 //            Stage emptyImageInput = new Stage(); //loading the error window
 //            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("errorImage.fxml"));
 //            Scene scene = new Scene(fxmlLoader.load(), 400, 200);
 //            emptyImageInput.setTitle("ERROR!");
 //            emptyImageInput.setScene(scene);
 //            emptyImageInput.show();
-            //break;
+                errorCheck++;
+            } else {
+                updatePane.setStyle("-fx-border-color: green; -fx-border-width: 3;");
+                updateClubInstance.setIcon(updateFile.getAbsolutePath());
+            }
+
+            if (emptyCheck != 0) { //checking for any empty inputs
+                break;
+            }
+            if(errorCheck != 0){ //checking for any errors
+                break;
+            }
+
+            //creating a sublist
+            List<Object> subList = new ArrayList<>();
+
+            //adding the item instances to the sublist
+            subList.add(updateClubInstance.getName());
+            subList.add(updateClubInstance.getFoundingDate());
+            subList.add(updateClubInstance.getMission());
+            subList.add(updateClubInstance.getDescription());
+            subList.add(updateClubInstance.getClubPresidentName());
+            subList.add(updateClubInstance.getClubAdvisorName());
+            subList.add(updateClubInstance.getEmail());
+            subList.add(updateClubInstance.getContactNo());
+            subList.add(updateClubInstance.getIcon());
+
+            mainList.add(subList); //adding the sublist to the main list
+
+            System.out.println(subList);
+            System.out.println(mainList);
+            showPromptUpdate.setText("Club Successfully Created!");
+            showPromptUpdate.setStyle("-fx-text-fill: green;");
+            break;
         }
-        else {
-            updateClubInstance.setIcon(updateFile.getAbsolutePath());
-        }
-
-        //creating a sublist
-        List<Object> subList = new ArrayList<>();
-
-        //adding the item instances to the sublist
-        subList.add(updateClubInstance.getName());
-        subList.add(updateClubInstance.getFoundingDate());
-        subList.add(updateClubInstance.getMission());
-        subList.add(updateClubInstance.getDescription());
-        subList.add(updateClubInstance.getClubPresidentName());
-        subList.add(updateClubInstance.getClubAdvisorName());
-        subList.add(updateClubInstance.getEmail());
-        subList.add(updateClubInstance.getContactNo());
-        subList.add(updateClubInstance.getIcon());
-
-        mainList.add(subList); //adding the sublist to the main list
-        //break;
     }
-
 
     public void onUpdateIconClick() throws IOException{
         FileChooser filePath = new FileChooser();
