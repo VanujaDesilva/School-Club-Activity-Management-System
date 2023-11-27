@@ -187,7 +187,7 @@ public class HelloController{
         student.add("avishkashenan@gmail.com");
         student.add("avishka123");
         studentDetails.add(student);
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("StudentSignUp.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Welcome.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
         stage.setTitle("Enter club name");
@@ -825,7 +825,7 @@ public class HelloController{
     private Button SecondBackButtonId;
 
     public void onStudentClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ThirdPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentLogin.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
@@ -953,9 +953,51 @@ public class HelloController{
     List<List<Object>> advisorDetails = new ArrayList<>();
 
     public void AdvisorSignUpClick(ActionEvent actionEvent) {
-        
+
     }
 
     public void AdvisorSignUpBackClick(ActionEvent actionEvent) {
+    }
+    @FXML
+    private AnchorPane StudentLoginAnchor;
+
+    @FXML
+    private Button StudentLoginBackID;
+
+    @FXML
+    private Button StudentLoginButtonID;
+
+    @FXML
+    private Button StudentLoginPageSignUpId;
+
+    @FXML
+    private PasswordField StudentLoginPasswordID;
+
+    @FXML
+    private TextField StudentLoginUserNameID;
+
+    public void StudentLoginButtonClick(ActionEvent actionEvent) {
+    }
+
+    public void StudentLoginPageSignUpButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentSignUp.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) StudentLoginPageSignUpId.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
+
+    public void StudentLoginBackButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SecondPage.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) StudentLoginBackID.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
     }
 }
