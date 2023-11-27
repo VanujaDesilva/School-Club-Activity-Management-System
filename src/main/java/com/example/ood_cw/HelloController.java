@@ -119,7 +119,16 @@ public class HelloController{
         preStage.close();
     }
 
-    public void onTharushaButtonClick(ActionEvent actionEvent) {
+    public void onTharushaButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CreateClub.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        stage.setTitle("Enter club name");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage previousStage = (Stage) sampleAnchor.getScene().getWindow();
+        previousStage.close();
     }
 
     public void onAvishkaButtonClick(ActionEvent actionEvent) {
