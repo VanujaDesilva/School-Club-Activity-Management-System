@@ -7,8 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import static com.example.ood_cw.HelloController.events;
+import static com.example.ood_cw.CreateClub.checkList;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,30 +43,44 @@ public class Attendance implements Initializable {
     private TableView<Student> attendanceTable;
     @FXML
     private Button saveButton;
-    private final List<Object> eNames = new ArrayList<>();
+    private final List<Object> eventNames = new ArrayList<>();
+
+    private final List<Object> clubNames = new ArrayList<>();
     private ObservableList<Student> data;
-
-    public Attendance() {
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        String selectedClubId = null;
+        System.out.println(checkList);
         this.data = FXCollections.observableArrayList(
                 new Student("S001", "Jacob", "Smith", "0704594151", "2003-01-23"),
                 new Student("S002", "Emma", "Johnson", "0712345678", "2002-05-15"),
                 new Student("S003", "Velma", "Johnson", "0713345678", "2004-05-15"));
         System.out.println(events);
-        for (List<Object> event : events) {
-            String eName = String.valueOf(event.get(1));
-            if (Objects.equals(eName, " - ")) {
-                eName = String.valueOf(event.get(0));
-            }
-            System.out.println(eName);
-            eNames.add(eName);
+        eventSelector.getItems().addAll(eventNames);
+        for(List<Object> club: checkList){
+            String cName = String.valueOf(club.get(1));
+            System.out.println(cName);
+            clubNames.add(cName);
         }
-        eventSelector.getItems().addAll(eNames);
-        List<String> clubs = Arrays.asList("Club 1", "Club 2", "Club 3");
-        clubSelector.getItems().addAll(clubs);
+        clubSelector.getItems().addAll(String.valueOf(clubNames));
+
+
+        for (List<Object> clubs : checkList) {
+            if(clubSelector.getValue() == clubs.get(1)){
+                selectedClubId = String.valueOf(clubs.get(0));
+            }
+        }
+        for (List<Object> event : events) {
+            if(event.get(8) == selectedClubId) {
+                String eName = String.valueOf(event.get(1));
+                if (Objects.equals(eName, " - ")) {
+                    eName = String.valueOf(event.get(0));
+                }
+                System.out.println(eName);
+                eventNames.add(eName);
+            }
+        }
+
         stdIdCol.setCellValueFactory(new PropertyValueFactory<>("stdId"));
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));

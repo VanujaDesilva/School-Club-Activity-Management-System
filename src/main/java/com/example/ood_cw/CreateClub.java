@@ -44,6 +44,7 @@ public class CreateClub {
 
     public static List<List<Object>> checkList = new ArrayList<>();
 
+
     public void initialize() {
 
         List<Object> subCheck1 = new ArrayList<>();
