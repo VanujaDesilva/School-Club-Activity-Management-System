@@ -168,7 +168,7 @@ public class HelloController{
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CreateClub.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Enter club name");
+        stage.setTitle("Create Club");
         stage.setScene(scene);
         stage.show();
 

@@ -12,12 +12,12 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.ManageClub">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="308.0" layoutY="8.0" prefHeight="45.0" prefWidth="311.0" text="CLUB MANAGEMENT" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="308.0" layoutY="4.0" prefHeight="45.0" prefWidth="311.0" text="CLUB MANAGEMENT" textAlignment="CENTER">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <VBox layoutX="13.0" layoutY="189.0" prefHeight="210.0" prefWidth="129.0" spacing="35.0">
+      <VBox layoutX="13.0" layoutY="153.0" prefHeight="210.0" prefWidth="129.0" spacing="35.0">
          <children>
             <Label layoutX="10.0" layoutY="10.0" text="Founding Date : ">
                <font>
@@ -36,14 +36,14 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="145.0" layoutY="188.0" prefHeight="234.0" prefWidth="268.0" spacing="30.0">
+      <VBox layoutX="145.0" layoutY="152.0" prefHeight="206.0" prefWidth="268.0" spacing="30.0">
          <children>
             <DatePicker fx:id="updateClubDate" />
             <TextField fx:id="updateClubMission" />
-            <TextArea fx:id="updateClubDescription" prefHeight="115.0" prefWidth="252.0" />
+            <TextArea fx:id="updateClubDescription" prefHeight="86.0" prefWidth="268.0" />
          </children>
       </VBox>
-      <VBox layoutX="469.0" layoutY="187.0" prefHeight="210.0" prefWidth="129.0" spacing="35.0">
+      <VBox layoutX="469.0" layoutY="151.0" prefHeight="210.0" prefWidth="129.0" spacing="35.0">
          <children>
             <Label text="Club President : ">
                <font>
@@ -67,7 +67,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="601.0" layoutY="186.0" prefHeight="214.0" prefWidth="251.0" spacing="30.0">
+      <VBox layoutX="601.0" layoutY="150.0" prefHeight="214.0" prefWidth="251.0" spacing="30.0">
          <children>
             <TextField fx:id="updateClubPresident" />
             <TextField fx:id="updateClubAdvisor" />
@@ -75,39 +75,43 @@
             <TextField fx:id="updateClubContactNo" />
          </children>
       </VBox>
-      <Label layoutX="265.0" layoutY="493.0" text="Club Icon : ">
+      <Label layoutX="238.0" layoutY="432.0" text="Club Icon : ">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <ImageView fx:id="updateClubIcon" fitHeight="150.0" fitWidth="200.0" layoutX="369.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="showClub" layoutX="578.0" layoutY="100.0" mnemonicParsing="false" onAction="#onShowClubButtonClick" text="SHOW">
+      <Button fx:id="showClub" layoutX="654.0" layoutY="95.0" mnemonicParsing="false" onAction="#onShowClubButtonClick" text="SHOW">
          <font>
-            <Font size="17.0" />
+            <Font size="15.0" />
          </font>
       </Button>
-      <Label layoutX="65.0" layoutY="103.0" text="Club Name : ">
+      <Label layoutX="141.0" layoutY="98.0" text="Club Name : ">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="showName" layoutX="192.0" layoutY="107.0" prefHeight="25.0" prefWidth="369.0" />
-      <Button fx:id="updateClub" layoutX="770.0" layoutY="101.0" mnemonicParsing="false" onAction="#onUpdateButtonClick" text="UPDATE">
+      <TextField fx:id="showName" layoutX="268.0" layoutY="102.0" prefHeight="25.0" prefWidth="369.0" />
+      <Button fx:id="updateClub" layoutX="414.0" layoutY="544.0" mnemonicParsing="false" onAction="#onUpdateButtonClick" text="UPDATE">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Label fx:id="uNameTick" layoutX="418.0" layoutY="179.0" />
-      <Label fx:id="uPresidentTick" layoutX="855.0" layoutY="179.0" />
-      <Label fx:id="uAdvisorTick" layoutX="854.0" layoutY="231.0" />
-      <Label fx:id="uEmailTick" layoutX="854.0" layoutY="287.0" />
-      <Label fx:id="uContactTick" layoutX="855.0" layoutY="342.0" />
-      <Label fx:id="uDateTick" layoutX="419.0" layoutY="233.0" />
-      <Label fx:id="showTick" layoutX="665.0" layoutY="112.0" />
-      <Button fx:id="uInsertIcon" layoutX="602.0" layoutY="487.0" mnemonicParsing="false" onAction="#onUpdateIconClick" text="INSERT ICON">
+      <Button fx:id="uInsertIcon" layoutX="577.0" layoutY="427.0" mnemonicParsing="false" onAction="#onUpdateIconClick" text="INSERT ICON">
          <font>
-            <Font size="17.0" />
+            <Font size="15.0" />
          </font>
       </Button>
+      <Label fx:id="showPromptUpdate" alignment="CENTER" layoutX="291.0" layoutY="56.0" prefHeight="28.0" prefWidth="318.0" text="`" />
+      <AnchorPane fx:id="updatePane" layoutX="344.0" layoutY="363.0" prefHeight="161.0" prefWidth="213.0">
+         <children>
+            <ImageView fx:id="updateClubIcon" fitHeight="150.0" fitWidth="200.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="showTick" layoutX="730.0" layoutY="102.0" />
+      <Label fx:id="uDateTick" layoutX="418.0" layoutY="156.0" />
+      <Label fx:id="uPresidentTick" layoutX="868.0" layoutY="152.0" />
+      <Label fx:id="uAdvisorTick" layoutX="867.0" layoutY="208.0" prefHeight="17.0" prefWidth="0.0" />
+      <Label fx:id="uEmailTick" layoutX="867.0" layoutY="266.0" />
+      <Label fx:id="uContactTick" layoutX="870.0" layoutY="320.0" />
    </children>
 </AnchorPane>
