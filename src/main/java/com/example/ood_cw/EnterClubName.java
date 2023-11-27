@@ -118,7 +118,7 @@ public class EnterClubName implements Initializable {
         club1.add("0771234567");
         clubs.add(club1);
 
-
+        
         List<String> clubNames = new ArrayList<>();
         for (int i=0; i<clubs.size();i++){
             if (clubs.get(i).get(6).equals(advisorID.get(0))) {

@@ -1101,7 +1101,19 @@ public class HelloController{
         if (count>0){
             return;
         }
+        int max =0;
+        for (int i = 0 ; i < advisorDetails.size() ; i++){
+            String e = (String) advisorDetails.get(i).get(0);
+            int curValue = Integer.parseInt(e.substring(2,4));
+            if (max < curValue){
+                max = curValue;
+            }
+        }
+        max = max + 1;
+        String id = String.format("%02d",max);
+        id = "AD"+id;
         List<Object> advisor = new ArrayList<>();
+        advisor.add(id);
         advisor.add(obj.getFirstName());
         advisor.add(obj.getLastName());
         advisor.add(obj.getDob());
@@ -1110,7 +1122,6 @@ public class HelloController{
         advisor.add(password);
         advisorDetails.add(advisor);
         System.out.println("Advisor details successfully added to the list and should be added to the database");
-
     }
 
     public void AdvisorSignUpBackClick(ActionEvent actionEvent) throws IOException {
@@ -1140,7 +1151,8 @@ public class HelloController{
     @FXML
     private TextField StudentLoginUserNameID;
 
-    public void StudentLoginButtonClick(ActionEvent actionEvent) {
+    public void StudentLoginButtonClick(ActionEvent actionEvent) throws IOException {
+
         Student obj = new Student();
         obj.setEmail(StudentLoginUserNameID.getText());
         String password = StudentLoginPasswordID.getText();
@@ -1162,6 +1174,14 @@ public class HelloController{
                 studentID.clear();
                 studentID.add(String.valueOf(studentDetails.get(i).get(0)));
                 System.out.println("Load the menu for students");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentMenu.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+
+                Stage primaryStage = (Stage) StudentLoginButtonID.getScene().getWindow();
+                primaryStage.setScene(scene);
+                primaryStage.show();
+
                 return;
             }
         }
@@ -1210,7 +1230,7 @@ public class HelloController{
 
     @FXML
     private Button AdvisorLoginPageSignUpId;
-    public void AdvisorLoginButtonClick(ActionEvent actionEvent) {
+    public void AdvisorLoginButtonClick(ActionEvent actionEvent) throws IOException {
         Advisor obj = new Advisor();
         obj.setEmail(AdvisorLoginUserNameID.getText());
         String password = AdvisorLoginPasswordID.getText();
@@ -1232,6 +1252,15 @@ public class HelloController{
                 advisorID.clear();
                 advisorID.add(String.valueOf(advisorDetails.get(i).get(0)));
                 System.out.println("Load the menu for advisor");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorMenu.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+
+
+                Stage primaryStage = (Stage) AdvisorLoginButtonID.getScene().getWindow();
+                primaryStage.setScene(scene);
+                primaryStage.show();
+
                 return;
             }
         }
