@@ -9,10 +9,10 @@
         <AnchorPane fx:id="attendancePane" prefHeight="600.0" prefWidth="900.0">
             <children>
                 <Button fx:id="atendanceBackButton" layoutX="42.0" layoutY="37.0" mnemonicParsing="false" onAction="#onAttendanceBackButtonClick" prefHeight="25.0" prefWidth="46.0" text="Back" />
-                <Label layoutX="142.0" layoutY="95.0" prefHeight="17.0" prefWidth="87.0" text="Select Club:" />
-                <Label layoutX="428.0" layoutY="95.0" prefHeight="17.0" prefWidth="87.0" text="Select Event:" />
-                <ChoiceBox fx:id="clubSelector" layoutX="229.0" layoutY="91.0" prefWidth="150.0" />
-                <ChoiceBox fx:id="eventSelector" layoutX="515.0" layoutY="91.0" prefWidth="150.0" />
+                <Label layoutX="130.0" layoutY="95.0" prefHeight="17.0" prefWidth="87.0" text="Select Club:" />
+                <Label layoutX="450.0" layoutY="95.0" prefHeight="17.0" prefWidth="87.0" text="Select Event:" />
+                <ChoiceBox fx:id="clubSelector" layoutX="212.0" layoutY="91.0" prefWidth="150.0" />
+                <ChoiceBox fx:id="eventSelector" layoutX="531.0" layoutY="91.0" prefWidth="150.0" />
                 <TableView fx:id="attendanceTable" layoutX="142.0" layoutY="141.0" prefHeight="377.0" prefWidth="616.0">
                 <columns>
                     <!-- Existing columns -->
@@ -33,6 +33,7 @@
                 </Label>
             <Label fx:id="clubSelectionError" layoutX="229.0" layoutY="73.0" prefHeight="18.0" prefWidth="150.0" textFill="RED" />
             <Label fx:id="eventSelectionError" layoutX="515.0" layoutY="73.0" prefHeight="18.0" prefWidth="150.0" textFill="RED" />
+            <Button fx:id="ok" layoutX="376.0" layoutY="91.0" mnemonicParsing="false" onAction="#onOkButtonClick" prefHeight="26.0" prefWidth="40.0" text="ok" />
             </children>
         </AnchorPane>
     </children>
