@@ -59,6 +59,7 @@ public class HelloController{
     public Label eventTimeTick;
     public Label eventDateTick;
     public static List<List<Object>> checkList = new ArrayList<>();
+    public static List<List<Object>> studentDetails = new ArrayList<>();
 
     public void onYeranButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
@@ -177,6 +178,15 @@ public class HelloController{
     }
 
     public void onAvishkaButtonClick() throws IOException {
+        List<Object> student = new ArrayList<>();
+        student.add("S001");
+        student.add("Avishka");
+        student.add("Shenan");
+        student.add("2002-07-07");
+        student.add("0771234567");
+        student.add("avishkashenan@gmail.com");
+        student.add("avishka123");
+        studentDetails.add(student);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("StudentSignUp.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
@@ -855,8 +865,9 @@ public class HelloController{
     public DatePicker StuSignUpDOBID;
     public AnchorPane StuSignUpAnchorID;
     public PasswordField stuSignUpPass;
-    public static List<List<Object>> studentDetails = new ArrayList<>();
+
     public void StuSignUpClickID() throws IOException {
+        System.out.println(studentDetails);
         Student obj = new Student();
         obj.setFirstName(StuSignUpFNameID.getText());
         obj.setLastName(StuSignUpLNameID.getText());
@@ -877,6 +888,13 @@ public class HelloController{
             count++;
         } else {
             StuSignUpLNameID.setStyle("-fx-border-color: none;");
+        }
+        for (List<Object> i : studentDetails){
+            if(String.valueOf(i.get(5)).equals(obj.getEmail())){
+                count++;
+                //label.setText("Email already exixts!");
+                System.out.println("email already exists");
+            }
         }
 
         if (obj.getDob().equals("null")){
@@ -931,5 +949,13 @@ public class HelloController{
 
     public void StuSignUpBackClick(ActionEvent actionEvent) {
         
+    }
+    List<List<Object>> advisorDetails = new ArrayList<>();
+
+    public void AdvisorSignUpClick(ActionEvent actionEvent) {
+        
+    }
+
+    public void AdvisorSignUpBackClick(ActionEvent actionEvent) {
     }
 }
