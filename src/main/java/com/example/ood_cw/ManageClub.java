@@ -44,6 +44,7 @@ public class ManageClub {
     public Label showPromptUpdate;
     public AnchorPane updatePane;
     public Button backClubManage;
+    public AnchorPane clubManagePane;
 
     Club updateClubInstance = new Club();
 
@@ -54,26 +55,26 @@ public class ManageClub {
         try {
             //checking if the same club name exists
             for (List<Object> d : mainList) {
-                if (d.get(0).equals(updateClubInstance.getName())) {
+                if (d.get(1).equals(updateClubInstance.getName())) {
                     listIndex =mainList.indexOf(d);
                     showPromptUpdate.setText("Club found!");
                     showName.setStyle("-fx-border-color: green;");
                     showTick.setText("\u2713");
 
                     //displays the existing item details
-                    showName.setText(String.valueOf(d.get(0)));
+                    showName.setText(String.valueOf(d.get(1)));
 
 //                    LocalDate updateFoundingDate = updateClubDate.getValue();
-                    updateClubDate.setValue((LocalDate) d.get(1));
+                    updateClubDate.setValue((LocalDate) d.get(2));
 
-                    updateClubMission.setText(String.valueOf(d.get(2)));
-                    updateClubDescription.setText(String.valueOf(d.get(3)));
-                    updateClubPresident.setText(String.valueOf(d.get(4)));
-                    updateClubAdvisor.setText(String.valueOf(d.get(5)));
-                    updateClubEmail.setText(String.valueOf(d.get(6)));
-                    updateClubContactNo.setText(String.valueOf(d.get(7)));
+                    updateClubMission.setText(String.valueOf(d.get(3)));
+                    updateClubDescription.setText(String.valueOf(d.get(4)));
+                    updateClubPresident.setText(String.valueOf(d.get(5)));
+                    updateClubAdvisor.setText(String.valueOf(d.get(6)));
+                    updateClubEmail.setText(String.valueOf(d.get(7)));
+                    updateClubContactNo.setText(String.valueOf(d.get(8)));
 
-                    File Updatefile = new File(String.valueOf(d.get(8)));
+                    File Updatefile = new File(String.valueOf(d.get(9)));
                     Image updateImage = new Image(Updatefile.toURI().toString());
                     updateClubIcon.setImage(updateImage);
 
@@ -92,7 +93,7 @@ public class ManageClub {
 
 
     public void onUpdateButtonClick() throws IOException{
-        updateClubInstance.setIcon(mainList.get(listIndex).get(8).toString());
+        updateClubInstance.setIcon(mainList.get(listIndex).get(9).toString());
         mainList.remove(listIndex); //removing the old item data from the list
 
         outer:
@@ -115,7 +116,7 @@ public class ManageClub {
 //                }
                 //checking if the same club name exists
                 for (List<Object> a : mainList) {
-                    if (a.get(0).equals(updateClubInstance.getName())) {
+                    if (a.get(1).equals(updateClubInstance.getName())) {
                         showPromptUpdate.setText("Club already exists!");
                         showPromptUpdate.setStyle("-fx-text-fill: red;");
                         showName.setStyle("-fx-border-color: red;");
@@ -171,7 +172,7 @@ public class ManageClub {
             if (!updateClubInstance.getClubPresidentName().isEmpty()) {
                 //checking if the same club president exists
                 for (List<Object> b : mainList) {
-                    if (b.get(4).equals(updateClubInstance.getClubPresidentName())) {
+                    if (b.get(5).equals(updateClubInstance.getClubPresidentName())) {
                         showPromptUpdate.setText("Club President already exists!");
                         showPromptUpdate.setStyle("-fx-text-fill: red;");
                         updateClubPresident.setStyle("-fx-border-color: red;");
@@ -195,7 +196,7 @@ public class ManageClub {
             if (!updateClubInstance.getClubAdvisorName().isEmpty()) {
                 //checking if the same club advisor exists
                 for (List<Object> c : mainList) {
-                    if (c.get(5).equals(updateClubInstance.getClubAdvisorName())) {
+                    if (c.get(6).equals(updateClubInstance.getClubAdvisorName())) {
                         showPromptUpdate.setText("Club Advisor already exists!");
                         showPromptUpdate.setStyle("-fx-text-fill: red;");
                         updateClubAdvisor.setStyle("-fx-border-color: red;");
@@ -285,10 +286,24 @@ public class ManageClub {
                 break;
             }
 
+            int max =0;
+            for (int i = 0 ; i < mainList.size() ; i++){
+                String c = (String) mainList.get(i).get(0);
+                int currentValue = Integer.parseInt(c.substring(1,4));
+                if (max < currentValue){
+                    max = currentValue;
+                }
+            }
+            max++;
+            String clubID = String.format("%03d",max);
+            clubID="C"+clubID;
+
+
             //creating a sublist
             List<Object> subList = new ArrayList<>();
 
             //adding the item instances to the sublist
+            subList.add(clubID);
             subList.add(updateClubInstance.getName());
             subList.add(updateClubInstance.getFoundingDate());
             subList.add(updateClubInstance.getMission());
@@ -319,14 +334,7 @@ public class ManageClub {
     }
 
     public void onBackClubManageClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("clubMenu.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Club Menu");
-        stage.setScene(scene);
-        stage.show();
-
-        //Stage previousStage = (Stage) clubMenuPane.getScene().getWindow();
-        //previousStage.close();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
+        clubManagePane.getChildren().setAll(pane);
     }
 }

@@ -34,6 +34,7 @@ public class HelloController{
     public static List<List<Object>> activity = new ArrayList<>();
     public static List<String> advisorID = EnterClubName.advisorID;
     public static List<String> clubID = EnterClubName.clubID;
+    public static List<List<Object>> mainList = new ArrayList<>();
     public AnchorPane eventSchedulingAnchor;
     public Label eventAddSuccessfull;
     public Label meetingAddSuccessfull;
@@ -42,6 +43,11 @@ public class HelloController{
     public Label clubNameError;
     public Button closeButton;
     public AnchorPane notificationPane;
+    public AnchorPane clubMenuPane;
+    public Button createClubs;
+    public Button showClubs;
+    public Button manageClubs;
+    public Button backClubMenu;
     @FXML
     private AnchorPane sampleAnchor;
     public TextField eventNameText;
@@ -168,6 +174,20 @@ public class HelloController{
     }
 
     public void onTharushaButtonClick() throws IOException {
+
+        List<Object> subCheck1 = new ArrayList<>();
+        subCheck1.add("C001");
+        subCheck1.add("Interact Club");
+        subCheck1.add("2023-11-25");
+        subCheck1.add("Light from heaven");
+        subCheck1.add("Social Service");
+        subCheck1.add("Tharusha Fernando");
+        subCheck1.add("Uththara Godahenage");
+        subCheck1.add("interact@gmail.com");
+        subCheck1.add("+94712345672");
+        subCheck1.add("C:\\Users\\Tharusha\\Pictures\\abc.jpg");
+        mainList.add(subCheck1);
+        System.out.println(mainList);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CreateClub.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
@@ -1245,5 +1265,18 @@ public class HelloController{
         Stage primaryStage = (Stage) AdvisorLoginBackID.getScene().getWindow();
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public void onCreateClubClick() throws IOException{
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("CreateClub.fxml"));
+        clubMenuPane.getChildren().setAll(pane);
+    }
+
+    public void onManageClubClick() throws IOException{
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("ManageClub.fxml"));
+        clubMenuPane.getChildren().setAll(pane);
+    }
+
+    public void onBackClubMenuClick(ActionEvent actionEvent) {
     }
 }

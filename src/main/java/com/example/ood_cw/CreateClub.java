@@ -68,7 +68,7 @@ public class CreateClub {
 //                }
                 //checking if the same club name exists
                 for (List<Object> a : mainList) {
-                    if (a.get(0).equals(createClubInstance.getName())) {
+                    if (a.get(1).equals(createClubInstance.getName())) {
                         promptLabelCreate.setText("Club already exists!");
                         promptLabelCreate.setStyle("-fx-text-fill: red;");
                         clubName.setStyle("-fx-border-color: red;");
@@ -124,7 +124,7 @@ public class CreateClub {
             if (!createClubInstance.getClubPresidentName().isEmpty()) {
                 //checking if the same club president exists
                 for (List<Object> b : mainList) {
-                    if (b.get(4).equals(createClubInstance.getClubPresidentName())) {
+                    if (b.get(5).equals(createClubInstance.getClubPresidentName())) {
                         promptLabelCreate.setText("Club President already exists!");
                         promptLabelCreate.setStyle("-fx-text-fill: red;");
                         clubPresident.setStyle("-fx-border-color: red;");
@@ -148,7 +148,7 @@ public class CreateClub {
             if (!createClubInstance.getClubAdvisorName().isEmpty()) {
                 //checking if the same club advisor exists
                 for (List<Object> c : mainList) {
-                    if (c.get(5).equals(createClubInstance.getClubAdvisorName())) {
+                    if (c.get(6).equals(createClubInstance.getClubAdvisorName())) {
                         promptLabelCreate.setText("Club Advisor already exists!");
                         promptLabelCreate.setStyle("-fx-text-fill: red;");
                         clubAdvisor.setStyle("-fx-border-color: red;");
@@ -237,10 +237,24 @@ public class CreateClub {
                 break;
             }
 
+            //adding ClubID
+            int max =0;
+            for (int i = 0 ; i < mainList.size() ; i++){
+                String c = (String) mainList.get(i).get(0);
+                int currentValue = Integer.parseInt(c.substring(1,4));
+                if (max < currentValue){
+                    max = currentValue;
+                }
+            }
+            max++;
+            String clubID = String.format("%03d",max);
+            clubID="C"+clubID;
+
             //creating a sublist
             List<Object> subList = new ArrayList<>();
 
             //adding the item instances to the sublist
+            subList.add(clubID);
             subList.add(createClubInstance.getName());
             subList.add(createClubInstance.getFoundingDate());
             subList.add(createClubInstance.getMission());
