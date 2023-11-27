@@ -1,11 +1,14 @@
 package com.example.ood_cw;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,9 +40,10 @@ public class ManageClub {
     public static int listIndex;
     public File updateFile;
 
-    public static List<List<Object>> mainList = CreateClub.mainList;
+    public static List<List<Object>> mainList = HelloController.mainList;
     public Label showPromptUpdate;
     public AnchorPane updatePane;
+    public Button backClubManage;
 
     Club updateClubInstance = new Club();
 
@@ -52,14 +56,15 @@ public class ManageClub {
             for (List<Object> d : mainList) {
                 if (d.get(0).equals(updateClubInstance.getName())) {
                     listIndex =mainList.indexOf(d);
+                    showPromptUpdate.setText("Club found!");
                     showName.setStyle("-fx-border-color: green;");
                     showTick.setText("\u2713");
 
                     //displays the existing item details
                     showName.setText(String.valueOf(d.get(0)));
 
-                    LocalDate updateFoundingDate = updateClubDate.getValue();
-                    updateClubDate.setValue(updateFoundingDate);
+//                    LocalDate updateFoundingDate = updateClubDate.getValue();
+                    updateClubDate.setValue((LocalDate) d.get(1));
 
                     updateClubMission.setText(String.valueOf(d.get(2)));
                     updateClubDescription.setText(String.valueOf(d.get(3)));
@@ -233,8 +238,9 @@ public class ManageClub {
             }
 
             //setting the club contact number
-            //String contactNumFull = "+94" + clubContactNo.getText();
-            updateClubInstance.setContactNo("+94" + updateClubContactNo.getText());
+            String contactNumSub = updateClubContactNo.getText();
+            String contactNumReduced = contactNumSub.substring(3);
+            updateClubInstance.setContactNo(contactNumReduced);
             //checking if the contact number is empty
             if (updateClubContactNo.getText() != null) {
                 if (Club.isValidContactNo(updateClubContactNo.getText())) {
@@ -310,5 +316,17 @@ public class ManageClub {
             Image image = new Image(updateFile.getAbsolutePath()); // get image path
             updateClubIcon.setImage(image);
         }
+    }
+
+    public void onBackClubManageClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("clubMenu.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        stage.setTitle("Club Menu");
+        stage.setScene(scene);
+        stage.show();
+
+        //Stage previousStage = (Stage) clubMenuPane.getScene().getWindow();
+        //previousStage.close();
     }
 }
