@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="clubMenuPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
+   <children>
+      <Button fx:id="createClubs" layoutX="87.0" layoutY="272.0" mnemonicParsing="false" onAction="#onCreateClubClick" text="Create Club">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="showClubs" layoutX="672.0" layoutY="274.0" mnemonicParsing="false" text="Show Club">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="manageClubs" layoutX="372.0" layoutY="274.0" mnemonicParsing="false" onAction="#onManageClubClick" text="Manage Club">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="backClubMenu" layoutX="13.0" layoutY="545.0" mnemonicParsing="false" onAction="#onBackClubMenuClick" text="Back">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

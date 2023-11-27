@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class CreateClub {
-    public static List<List<Object>> mainList = new ArrayList<>();
+    public static List<List<Object>> mainList = HelloController.mainList;
     public TextField clubName;
     public DatePicker clubDate;
     public TextField clubMission;
@@ -41,6 +41,8 @@ public class CreateClub {
     public Label nameTick;
     public AnchorPane imagePane;
     public Label promptLabelCreate;
+    public AnchorPane clubCreationPane;
+    public Button backClubCreate;
 
     public void onCreateButtonClick() throws IOException {
         //creating an instance of the club object
@@ -268,5 +270,10 @@ public class CreateClub {
             Image image = new Image(createFile.getAbsolutePath()); // get image path
             clubIcon.setImage(image);
         }
+    }
+
+    public void onBackClubCreateClick() throws IOException{
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
+        clubCreationPane.getChildren().setAll(pane);
     }
 }

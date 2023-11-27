@@ -112,6 +112,11 @@
       <Label fx:id="uPresidentTick" layoutX="868.0" layoutY="152.0" />
       <Label fx:id="uAdvisorTick" layoutX="867.0" layoutY="208.0" prefHeight="17.0" prefWidth="0.0" />
       <Label fx:id="uEmailTick" layoutX="867.0" layoutY="266.0" />
+      <Button fx:id="backClubManage" layoutX="14.0" layoutY="545.0" mnemonicParsing="false" onAction="#onBackClubManageClick" text="Back">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
       <Label fx:id="uContactTick" layoutX="870.0" layoutY="320.0" />
    </children>
 </AnchorPane>
