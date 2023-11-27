@@ -248,8 +248,26 @@ public class HelloController{
                     errors++;
                 }
             }
-            if (errors > 0)
+            if (errors > 0){
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(event -> {
+                    nameError.setText("");
+                    locationError.setText("");
+                    timeError.setText("");
+                    dateError.setText("");
+                    eventDateTick.setText("");
+                    eventTimeTick.setText("");
+                    eventLocTick.setText("");
+                    eventNameTick.setText("");
+                    eventNameText.setStyle("-fx-border-color: none;");
+                    eventLocationText.setStyle("-fx-border-color: none;");
+                    eventTimeText.setStyle("-fx-border-color: none;");
+                    eventDateText.setStyle("-fx-border-color: none;");
+
+                });
+                pause.play();
                 break;
+            }
             String date = String.valueOf(obj.getEventDate());
 
             List<List<Object>> allEvents1 = new ArrayList<>();
@@ -303,9 +321,9 @@ public class HelloController{
             events1.add(event);
             allEvents1.add(event);
             allEvents.add(event);
-            DatabaseConnect.clearTable();
+            DatabaseConnect.clearTableOfClubSession();
             for (int i=0 ;i<allEvents.size(); i++){
-                DatabaseConnect.insertSchedule(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
+                DatabaseConnect.insertScheduleOfClubSession(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
             }
             eventAddSuccessfull.setStyle("-fx-text-fill: #13e57d;");
             eventAddSuccessfull.setText("Event added Successfully");
@@ -447,9 +465,9 @@ public class HelloController{
             events.add(meeting);
             meetings.add(meeting);
             allEvents.add(meeting);
-            DatabaseConnect.clearTable();
+            DatabaseConnect.clearTableOfClubSession();
             for (int i=0 ;i<allEvents.size(); i++){
-                DatabaseConnect.insertSchedule(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
+                DatabaseConnect.insertScheduleOfClubSession(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
             }
             meetingAddSuccessfull.setStyle("-fx-text-fill: #13e57d;");
             meetingAddSuccessfull.setText("Meeting added Successfully");
@@ -636,9 +654,9 @@ public class HelloController{
             events.add(activity1);
             activity.add(activity1);
             allEvents.add(activity1);
-            DatabaseConnect.clearTable();
+            DatabaseConnect.clearTableOfClubSession();
             for (int i=0 ;i<allEvents.size(); i++){
-                DatabaseConnect.insertSchedule(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
+                DatabaseConnect.insertScheduleOfClubSession(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
             }
             activityAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
             activityAddSuccessfull.setText("Activity added Successfully");
@@ -681,7 +699,7 @@ public class HelloController{
     }
     public static List<List<Object>> eventSchedule = new ArrayList<>();
     public void onShowEventScheduleForStudentButtonClick() throws IOException {
-        DatabaseConnect.getSchedule();
+        DatabaseConnect.getScheduleOfClubSesion();
         for (int j=0; j<allEvents.size();j++){
             int sYear = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(0, 4));
             int sMonth = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(5, 7));
