@@ -1,11 +1,10 @@
 package com.example.ood_cw;
-import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 
 import java.time.LocalDate;
 
 public class Club {
 
+    //variable declarations
     private String id;
     private String name;
     private LocalDate foundingDate;
@@ -18,9 +17,10 @@ public class Club {
     private String clubAdvisorId;
     private String stringDate;
 
-
+    //default constructor
     public Club(){}
 
+    //parameterized constructors
     public Club(String name, LocalDate foundingDate, String mission, String description, String presidentName, String email, String contactNo, String icon){
         this.name = name;
         this.foundingDate = foundingDate;
@@ -30,22 +30,6 @@ public class Club {
         this.email = email;
         this.contactNo = contactNo;
         this.icon = icon;
-    }
-
-    public void setClubAdvisorId(String clubAdvisorId) {
-        this.clubAdvisorId = clubAdvisorId;
-    }
-
-    public void setStringDate(String stringDate) {
-        this.stringDate = stringDate;
-    }
-
-    public String getClubAdvisorId() {
-        return clubAdvisorId;
-    }
-
-    public String getStringDate() {
-        return stringDate;
     }
 
     public Club(String id, String name, String stringDate, String mission, String description, String presidentName, String clubAdvisorId, String email, String contactNo, String icon){
@@ -62,7 +46,6 @@ public class Club {
     }
 
     //getters and setters
-
     public String getId() {
         return id;
     }
@@ -142,21 +125,36 @@ public class Club {
     public void setAdvisorId(String advisorId) {
         this.clubAdvisorId = clubAdvisorId;
     }
+    public void setClubAdvisorId(String clubAdvisorId) {
+        this.clubAdvisorId = clubAdvisorId;
+    }
 
+    public void setStringDate(String stringDate) {
+        this.stringDate = stringDate;
+    }
+
+    public String getClubAdvisorId() {
+        return clubAdvisorId;
+    }
+
+    public String getStringDate() {
+        return stringDate;
+    }
+
+    //validation for the contact number input
     public static boolean isValidContactNo(String contactNumber) {
         return contactNumber.matches("\\d{9}");
     }
 
+    //validation for the date input
     public static boolean isValidDate(LocalDate date) {
         return !date.isAfter(LocalDate.now());
     }
 
+    //validation for the email input
     public static boolean isValidEmail(String email) {
         //using a regular expression for the validation
         String emailRegExpress = "^[A-Za-z0-9+_.-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
         return email.matches(emailRegExpress);
     }
-
-
-
 }

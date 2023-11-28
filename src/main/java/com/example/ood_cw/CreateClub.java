@@ -1,52 +1,67 @@
 package com.example.ood_cw;
 
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class CreateClub {
+    @FXML
     public static List<List<Object>> mainList = HelloController.mainList;
+    @FXML
     public static List<String> advisorList = HelloController.advisorID;
+    @FXML
     public TextField clubName;
+    @FXML
     public DatePicker clubDate;
+    @FXML
     public TextField clubMission;
+    @FXML
     public TextArea clubDescription;
+    @FXML
     public TextField clubPresident;
-    //public TextField clubAdvisor;
+    @FXML
     public TextField clubEmail;
+    @FXML
     public TextField clubContactNo;
+    @FXML
     public ImageView clubIcon;
+    @FXML
     public Button clubCreate;
+    @FXML
     public Button imageInsert;
-
+    @FXML
     public File createFile;
+    @FXML
     public Label dateTick;
+    @FXML
     public Label emailTick;
+    @FXML
     public Label contactTick;
+    @FXML
     public Label presidentTick;
-    //public Label advisorTick;
+    @FXML
     public Label nameTick;
+    @FXML
     public AnchorPane imagePane;
+    @FXML
     public Label promptLabelCreate;
+    @FXML
     public AnchorPane clubCreationPane;
+    @FXML
     public Button backClubCreate;
 
-    public void onCreateButtonClick() throws IOException, SQLException {
+    public void onCreateButtonClick() throws SQLException {
         //creating an instance of the club object
         Club createClubInstance = new Club();
 
@@ -144,31 +159,6 @@ public class CreateClub {
                 emptyCheck++;
             }
 
-            //setting the club advisor
-//            createClubInstance.setClubAdvisorName(clubAdvisor.getText());
-//            //checking if the club advisor name is empty
-//            if (!createClubInstance.getClubAdvisorName().isEmpty()) {
-//                //checking if the same club advisor exists
-//                for (List<Object> c : mainList) {
-//                    if (c.get(6).equals(createClubInstance.getClubAdvisorName())) {
-//                        promptLabelCreate.setText("Club Advisor already exists!");
-//                        promptLabelCreate.setStyle("-fx-text-fill: red;");
-//                        clubAdvisor.setStyle("-fx-border-color: red;");
-//                        advisorTick.setText("\u2717");
-//                        errorCheck++;
-//                    }
-//                }
-//                clubAdvisor.setStyle("-fx-border-color: green;");
-//                advisorTick.setText("\u2713");
-//            } else {
-//                promptLabelCreate.setText("Please fill out all required inputs!");
-//                promptLabelCreate.setStyle("-fx-text-fill: red;");
-//                clubAdvisor.setStyle("-fx-border-color: red;");
-//                advisorTick.setText("\u2605");
-//                emptyCheck++;
-//            }
-
-
             //setting the club email
             createClubInstance.setEmail(clubEmail.getText());
             //checking if the club email is empty
@@ -251,7 +241,7 @@ public class CreateClub {
 
             //adding advisorID
             String advisorID = advisorList.get(0);
-            System.out.println(advisorID);
+
 
             //creating a sublist
             List<Object> subList = new ArrayList<>();
@@ -264,12 +254,12 @@ public class CreateClub {
             subList.add(createClubInstance.getDescription());
             subList.add(createClubInstance.getClubPresidentName());
             subList.add(advisorID);
-//            subList.add(createClubInstance.getClubAdvisorName());
             subList.add(createClubInstance.getEmail());
             subList.add(createClubInstance.getContactNo());
             subList.add(createClubInstance.getIcon());
 
             mainList.add(subList); //adding the sublist to the main list
+            HelloController.clubs.add(subList);
 
             System.out.println(mainList);
             promptLabelCreate.setText("Club Successfully Created!");
