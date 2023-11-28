@@ -57,36 +57,6 @@ public class Attendance implements Initializable {
     private ObservableList<Student> data;
 
     private String sessionId,studentId,studentStatus;
-
-    public Attendance(String sessionId, String studentId, String studentStatus) {
-        this.sessionId = sessionId;
-        this.studentId = studentId;
-        this.studentStatus = studentStatus;
-    }
-    public String getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
-    }
-
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
-    public String getStudentStatus() {
-        return studentStatus;
-    }
-
-    public void setStudentStatus(String studentStatus) {
-        this.studentStatus = studentStatus;
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         data = FXCollections.observableArrayList();

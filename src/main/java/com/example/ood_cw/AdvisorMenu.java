@@ -61,7 +61,7 @@ public class AdvisorMenu {
                 registeredCount++;
             }
         }
-
+        System.out.println(registeredCount);
         List<Object> eventIds = new ArrayList<>();
         List<Object> eventNames = new ArrayList<>();
         List<Object> scheduleDates = new ArrayList<>();
@@ -105,14 +105,8 @@ public class AdvisorMenu {
     }
 
     public void AdvisorMenuAttendanceTrackingButtonClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Attendance.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-
-
-        Stage primaryStage = (Stage) AdvisorMenuAttendanceTrackingButtonID.getScene().getWindow();
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("Attendance.fxml"));
+        AdvisorMenuAnchorID.getChildren().setAll(pane);
     }
 
     public void AdvisorMenuBackButtonClick(ActionEvent actionEvent) throws IOException {
