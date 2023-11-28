@@ -61,7 +61,7 @@ public class AdvisorMenu {
                 registeredCount++;
             }
         }
-
+        System.out.println(registeredCount);
         List<Object> eventIds = new ArrayList<>();
         List<Object> eventNames = new ArrayList<>();
         List<Object> scheduleDates = new ArrayList<>();
