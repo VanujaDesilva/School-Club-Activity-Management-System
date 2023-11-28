@@ -16,6 +16,7 @@ public class Club {
     private String icon;
     private String clubPresidentName;
     private String clubAdvisorId;
+    private String stringDate;
 
 
     public Club(){}
@@ -31,10 +32,26 @@ public class Club {
         this.icon = icon;
     }
 
-    public Club(String id,String name, LocalDate foundingDate, String mission, String description, String presidentName, String clubAdvisorId,String email, String contactNo, String icon){
+    public void setClubAdvisorId(String clubAdvisorId) {
+        this.clubAdvisorId = clubAdvisorId;
+    }
+
+    public void setStringDate(String stringDate) {
+        this.stringDate = stringDate;
+    }
+
+    public String getClubAdvisorId() {
+        return clubAdvisorId;
+    }
+
+    public String getStringDate() {
+        return stringDate;
+    }
+
+    public Club(String id, String name, String stringDate, String mission, String description, String presidentName, String clubAdvisorId, String email, String contactNo, String icon){
         this.id = id;
         this.name = name;
-        this.foundingDate = foundingDate;
+        this.stringDate = stringDate;
         this.mission = mission;
         this.description = description;
         this.clubPresidentName = presidentName;

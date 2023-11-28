@@ -95,7 +95,7 @@ public class ShowClubs implements Initializable {
             Club viewClubs = new Club(
                     (String)i.get(0),
                     (String)i.get(1),
-                    (LocalDate) i.get(2),
+                    (String) i.get(2),
                     (String)i.get(3),
                     (String)i.get(4),
                     (String)i.get(5),
