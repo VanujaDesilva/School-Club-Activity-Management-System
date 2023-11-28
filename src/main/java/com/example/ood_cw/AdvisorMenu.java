@@ -10,9 +10,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-import static com.example.ood_cw.HelloController.clubs;
-import static com.example.ood_cw.HelloController.mainList;
+import static com.example.ood_cw.HelloController.*;
 
 public class AdvisorMenu {
     @FXML
@@ -43,11 +45,51 @@ public class AdvisorMenu {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+    List<List<Object>> reporting = new ArrayList<>();
+    public void AdvisorMenuReportingButtonClcik() throws IOException {
+        String clubName = "";
+        String clubId = "";
+        for (List<Object> club : clubs){
+            if (club.get(6).equals(advisorID.get(0))){
+                clubName = String.valueOf(club.get(1));
+                clubId = String.valueOf(club.get(0));
+            }
+        }
+        int registeredCount = 0;
+        for (List<Object> i: registration){
+            if (i.get(1).equals(clubId)){
+                registeredCount++;
+            }
+        }
 
-    public void AdvisorMenuReportingButtonClcik(ActionEvent actionEvent) {
+        List<Object> eventIds = new ArrayList<>();
+        List<Object> eventNames = new ArrayList<>();
+        List<Object> scheduleDates = new ArrayList<>();
+        for (List<Object> event : allEvents){
+            if (event.get(8).equals(clubId)){
+                eventIds.add(event.get(0));
+                eventNames.add(event.get(1));
+                scheduleDates.add(event.get(5));
+            }
+        }
+        List<List<Object>> eventAttendance = new ArrayList<>();
+        for (int i =0 ; i < eventIds.size() ;i++){
+            int attendCount=0;
+            List<Object> eventAttend = new ArrayList<>();
+            for (List<Object> attend : attendance){
+                if (attend.get(1).equals(eventIds.get(i)) && attend.get(2).equals("Present")){
+                    attendCount++;
+                }
+            }
+            eventAttend.add(eventNames.get(i));
+            eventAttend.add(scheduleDates.get(i));
+            eventAttend.add(attendCount);
+            eventAttendance.add(eventAttend);
+        }
+        System.out.println(eventAttendance);
     }
 
-    public void AdvisorMenuClubCreationButtonClick(ActionEvent actionEvent) throws IOException {
+    public void AdvisorMenuClubCreationButtonClick() throws IOException {
         for (int i =0; i < clubs.size();i++){
             mainList.add(clubs.get(i));
         }
