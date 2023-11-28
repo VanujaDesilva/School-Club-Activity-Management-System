@@ -47,7 +47,6 @@ public class DatabaseConnect {
                     event.add(resultSet.getString("duration"));
                     event.add(resultSet.getString("clubId"));
                     event.add(resultSet.getString("advisorId"));
-
                     allEvents.add(event);
                 }
             }
@@ -82,7 +81,7 @@ public class DatabaseConnect {
             clearTableOfClubSession();
             insertScheduleOfClubSession("E001", "Spandana", "Viharamahadevi", "08:30", "musical event",
                     "2023-12-23", " - ", " - ", "C001", "AD01");
-            insertScheduleOfClubSession("E002", " - ", "Hilton", "08:30", "Batch meeting",
+            insertScheduleOfClubSession("M001", " - ", "Hilton", "08:30", "Batch meeting",
                     "2023-12-23", " - ", "2-hours", "C001", "AD01");
             insertScheduleOfClubSession("A001", "Game Fiesta", "Club Fusion", "08:30", "A game event",
                     "2023-11-23", "2023-12-25", " - ", "C001", "AD01");
