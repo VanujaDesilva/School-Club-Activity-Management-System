@@ -75,19 +75,6 @@ public class Attendance implements Initializable {
         dobCol.setCellValueFactory(new PropertyValueFactory<>("dob"));
         attendanceStatusCol.setCellValueFactory(new PropertyValueFactory<Student,String>("status"));
     }
-    public static void insertAttendance(String studentId, String sessionId, String studentStatus) throws SQLException {
-        try (Connection connection = getConnection()) {
-            String query = "INSERT INTO attendance (studentId ,sessionId,studentStatus) VALUES (?, ?, ?)";
-            try (PreparedStatement attend = connection.prepareStatement(query)) {
-                attend.setString(1, studentId);
-                attend.setString(2, sessionId);
-                attend.setString(3, studentStatus);
-                attend.executeUpdate();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     @FXML
     private void handleSaveButtonAction(ActionEvent actionEvent) throws SQLException, Exception {
         List<Student> savedAttendanceList = new ArrayList<>(attendanceTable.getItems());
@@ -105,8 +92,9 @@ public class Attendance implements Initializable {
                 attendance = "Absent";
             }
             System.out.println("Student ID: " + std.getStdId() + ", Attendance Status: " + attendance);
-            insertAttendance(std.getStdId(), eventId, attendance);
+            DatabaseConnect.insertAttendance(std.getStdId(), eventId, attendance);
         }
+        DatabaseConnect.getAttendance();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AttendanceSave.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 600,  400);
@@ -155,36 +143,6 @@ public class Attendance implements Initializable {
             });
             pause.play();
 
-        }
-    }
-
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/scams", "root", "");
-    }
-
-    public static void main(String[] args) {
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch (ClassNotFoundException e){
-            System.out.println("Class not found");
-            e.printStackTrace();
-        }
-
-        System.out.println("Driver class registered");
-        Connection sample = null;
-
-        try {
-            sample = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams", "root", "");
-        }catch (SQLException e2) {
-            System.out.println("sql exception found");
-            e2.printStackTrace();
-            return;
-        }
-
-        if (sample != null){
-            System.out.println("success");
-        }else {
-            System.out.println("failed to connect");
         }
     }
 

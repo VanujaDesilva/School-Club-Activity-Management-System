@@ -101,29 +101,6 @@ public class EnterClubName implements Initializable {
 
 
 //        enterClubNameAnchor.getChildren().remove(nextButton);
-        clubs.clear();
-        List<Object> club = new ArrayList<>();
-        club.add("C001");
-        club.add("Rotrack");
-        club.add("2023-11-25");
-        club.add("Dakuna perata");
-        club.add("Club description");
-        club.add("Mahinda raja");
-        club.add("AD01");
-        club.add("rotrack@gmail.com");
-        club.add("0771234567");
-        clubs.add(club);
-        List<Object> club1 = new ArrayList<>();
-        club1.add("C002");
-        club1.add("Leo");
-        club1.add("2023-11-25");
-        club1.add("Dakuna perata");
-        club1.add("Club description");
-        club1.add("Sumahinda raja");
-        club1.add("AD01");
-        club1.add("leo@gmail.com");
-        club1.add("0771234567");
-        clubs.add(club1);
 
 
         List<String> clubNames = new ArrayList<>();
