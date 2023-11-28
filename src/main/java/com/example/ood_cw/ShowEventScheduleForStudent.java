@@ -2,13 +2,18 @@ package com.example.ood_cw;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -61,7 +66,7 @@ public class ShowEventScheduleForStudent implements Initializable {
         showClubId.setCellValueFactory(new PropertyValueFactory<EventView,String>("clubId"));
         showAdvisorId.setCellValueFactory(new PropertyValueFactory<EventView,String>("advisorId"));
         ObservableList<EventView> stringEvents = FXCollections.observableArrayList();
-        List<List<Object>> eventSchedule = HelloController.eventView;
+        List<List<Object>> eventSchedule = HelloController.eventSchedule;
         for (List<Object> i : eventSchedule){
             EventView newEventView = new EventView(
                     (String)i.get(0),
@@ -79,5 +84,15 @@ public class ShowEventScheduleForStudent implements Initializable {
         }
         eventTableView.setItems(stringEvents);
     }
-    
+
+    public void onShowEventsForStudentsBackButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("StudentMenu.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        stage.setTitle("Show event Schedule");
+        stage.setScene(scene);
+        stage.show();
+        Stage preStage = (Stage) showEventScheduleForStudentAnchor.getScene().getWindow();
+        preStage.close();
+    }
 }

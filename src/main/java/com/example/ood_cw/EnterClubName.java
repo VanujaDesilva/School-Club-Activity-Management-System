@@ -1,5 +1,6 @@
 package com.example.ood_cw;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -112,5 +113,10 @@ public class EnterClubName implements Initializable {
         }
         clubNamesView.getItems().addAll(clubNames);
 
+    }
+
+    public void onEnterClubNameBackButtonClick() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("AdvisorMenu.fxml"));
+        enterClubNameAnchor.getChildren().setAll(pane);
     }
 }

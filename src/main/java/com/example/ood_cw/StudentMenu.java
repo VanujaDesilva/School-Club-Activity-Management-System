@@ -62,6 +62,7 @@ public class StudentMenu  {
 
     public void StudentMenuViewEventButtonClick(ActionEvent actionEvent) throws IOException {
             DatabaseConnect.getScheduleOfClubSesion();
+        System.out.println(allEvents);
             for (int j=0; j<allEvents.size();j++){
                 int sYear = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(0, 4));
                 int sMonth = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(5, 7));
@@ -72,28 +73,31 @@ public class StudentMenu  {
             LocalDate currentDate = LocalDate.now();
             List<List<Object>> dateValidEvents = new ArrayList<>();
             for (int j=0;j<allEvents.size();j++){
-                if (currentDate.isAfter((LocalDate) allEvents.get(j).get(5))){
+                if (currentDate.isBefore((LocalDate) allEvents.get(j).get(5))){
                     dateValidEvents.add(allEvents.get(j));
                 }
             }
+        System.out.println(dateValidEvents);
             //need to be changed
             List<Object> studentClubs = new ArrayList<>();
-            studentClubs.add("C001");
-            studentClubs.add("C002");
             DatabaseConnect.getRegistrationDetails();
             for (List<Object> i : registration){
                 if (String.valueOf(i.get(0)).equals(String.valueOf(studentID.get(0)))){
-                    studentClubs.add(i.get(2));
+                    studentClubs.add(i.get(1));
                 }
             }
             eventSchedule.clear();
+        System.out.println(studentClubs);
             for (int i=0;i<studentClubs.size();i++){
                 for (int j=0;j<dateValidEvents.size();j++){
+                    String date = String.valueOf(dateValidEvents.get(j).get(5));
+                    dateValidEvents.get(j).set(5,date);
                     if (dateValidEvents.get(j).get(8).equals(studentClubs.get(i))){
                         eventSchedule.add(dateValidEvents.get(j));
                     }
                 }
             }
+        System.out.println(eventSchedule);
 
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowEventScheduleForStudent.fxml"));
             Stage stage = new Stage();
@@ -101,7 +105,9 @@ public class StudentMenu  {
             stage.setTitle("Show event Schedule");
             stage.setScene(scene);
             stage.show();
-        
+        Stage preStage = (Stage) StudentMenuAnchor.getScene().getWindow();
+        preStage.close();
+
     }
 
 
