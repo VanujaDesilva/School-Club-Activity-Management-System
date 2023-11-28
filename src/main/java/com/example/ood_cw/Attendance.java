@@ -119,6 +119,7 @@ public class Attendance implements Initializable {
             }
             System.out.println("Student ID: " + std.getStdId() + ", Attendance Status: " + attendance);
             DatabaseConnect.insertAttendance(std.getStdId(), eventId, attendance);
+            DatabaseConnect.getAttendance();
         }
         DatabaseConnect.getAttendance();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AttendanceSave.fxml"));
