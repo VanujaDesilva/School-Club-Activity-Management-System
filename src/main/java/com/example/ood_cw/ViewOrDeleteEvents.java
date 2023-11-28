@@ -128,10 +128,11 @@ public class ViewOrDeleteEvents implements Initializable {
                 }
             }
 
-            DatabaseConnect.clearTableOfClubSession();
-            for (int i=0 ;i<allEvents.size(); i++){
-                DatabaseConnect.insertScheduleOfClubSession(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
-            }
+//            DatabaseConnect.clearTableOfClubSession();
+//            for (int i=0 ;i<allEvents.size(); i++){
+//                DatabaseConnect.insertScheduleOfClubSession(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
+//            }
+            DatabaseConnect.deleteRowOfSessionTable(deleteId);
             List<List<Object>> eventView = HelloController.eventView;
             for (int i = 0; i <eventView.size();i++){
                 if (String.valueOf(eventView.get(i).get(0)).equalsIgnoreCase(deleteId)){

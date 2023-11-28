@@ -66,7 +66,7 @@ public class HelloController{
 
     public AnchorPane enterClubNameAnchor;
     public ListView<String> clubNamesView;
-    
+
     public void onScheduleEventButtonClick() throws IOException {
         events1.clear();
         for (int i = 0; i<events.size(); i++){

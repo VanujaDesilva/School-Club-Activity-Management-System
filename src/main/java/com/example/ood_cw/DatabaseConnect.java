@@ -311,6 +311,32 @@ public class DatabaseConnect {
         }
     }
 
+    public static void deleteRowOfSessionTable(String sessionId) {
+        String sessionIdToDelete = sessionId;
+
+        // SQL query to delete a row based on sessionId
+        String deleteQuery = "DELETE FROM clubsession WHERE sessionId = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+
+            // Set the sessionId parameter
+            preparedStatement.setString(1, sessionIdToDelete);
+
+            // Execute the delete query
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Row with sessionId " + sessionIdToDelete + " deleted successfully.");
+            } else {
+                System.out.println("No rows deleted. Row with sessionId " + sessionIdToDelete + " not found.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         try {
             clearTableOfClubSession();
