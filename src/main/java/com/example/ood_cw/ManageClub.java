@@ -1,14 +1,12 @@
 package com.example.ood_cw;
 
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,32 +15,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManageClub {
+    @FXML
     public DatePicker updateClubDate;
+    @FXML
     public TextField updateClubMission;
+    @FXML
     public TextArea updateClubDescription;
+    @FXML
     public TextField updateClubPresident;
-    //public TextField updateClubAdvisor;
+    @FXML
     public TextField updateClubEmail;
+    @FXML
     public TextField updateClubContactNo;
+    @FXML
     public ImageView updateClubIcon;
+    @FXML
     public Button showClub;
-
+    @FXML
     public TextField showName;
+    @FXML
     public Button updateClub;
+    @FXML
     public Label uPresidentTick;
-    //public Label uAdvisorTick;
+    @FXML
     public Label uEmailTick;
+    @FXML
     public Label uContactTick;
+    @FXML
     public Label uDateTick;
+    @FXML
     public Label showTick;
+    @FXML
     public Button uInsertIcon;
+    @FXML
     public static int listIndex;
+    @FXML
     public File updateFile;
-
+    @FXML
     public static List<List<Object>> mainList = HelloController.mainList;
+    @FXML
     public Label showPromptUpdate;
+    @FXML
     public AnchorPane updatePane;
+    @FXML
     public Button backClubManage;
+    @FXML
     public AnchorPane clubManagePane;
 
     String preImage;
@@ -72,7 +89,6 @@ public class ManageClub {
                     updateClubMission.setText(String.valueOf(d.get(3)));
                     updateClubDescription.setText(String.valueOf(d.get(4)));
                     updateClubPresident.setText(String.valueOf(d.get(5)));
-                    //updateClubAdvisor.setText(String.valueOf(d.get(6)));
                     updateClubEmail.setText(String.valueOf(d.get(7)));
                     String contactShort = d.get(8).toString();
                     String contactNum = contactShort.substring(3,12);
@@ -197,30 +213,6 @@ public class ManageClub {
                 emptyCheck++;
             }
 
-            //setting the club advisor
-//            updateClubInstance.setClubAdvisorName(updateClubAdvisor.getText());
-//            //checking if the club advisor name is empty
-//            if (!updateClubInstance.getClubAdvisorName().isEmpty()) {
-//                //checking if the same club advisor exists
-//                for (List<Object> c : mainList) {
-//                    if (c.get(6).equals(updateClubInstance.getClubAdvisorName())) {
-//                        showPromptUpdate.setText("Club Advisor already exists!");
-//                        showPromptUpdate.setStyle("-fx-text-fill: red;");
-//                        updateClubAdvisor.setStyle("-fx-border-color: red;");
-//                        uAdvisorTick.setText("\u2717");
-//                        errorCheck++;
-//                    }
-//                }
-//                updateClubAdvisor.setStyle("-fx-border-color: green;");
-//                uAdvisorTick.setText("\u2713");
-//            } else {
-//                showPromptUpdate.setText("Please fill out all required inputs!");
-//                showPromptUpdate.setStyle("-fx-text-fill: red;");
-//                updateClubAdvisor.setStyle("-fx-border-color: red;");
-//                uAdvisorTick.setText("\u2605");
-//                emptyCheck++;
-//            }
-
 
             //setting the club email
             updateClubInstance.setEmail(updateClubEmail.getText());
@@ -316,7 +308,6 @@ public class ManageClub {
             subList.add(updateClubInstance.getMission());
             subList.add(updateClubInstance.getDescription());
             subList.add(updateClubInstance.getClubPresidentName());
-            //subList.add(updateClubInstance.getClubAdvisorName());
             subList.add(updateClubInstance.getEmail());
             subList.add(updateClubInstance.getContactNo());
             subList.add(image);

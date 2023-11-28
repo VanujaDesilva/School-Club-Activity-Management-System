@@ -3,7 +3,6 @@ package com.example.ood_cw;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,17 +13,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class ShowClubs implements Initializable {
 
+    //variable declarations
+    @FXML
     public AnchorPane showClubPane;
+    @FXML
     public Button backShowClubs;
     @FXML
     private TableColumn<Club, String> showClubAdvisorID;
@@ -58,10 +58,6 @@ public class ShowClubs implements Initializable {
     @FXML
     private TableView<Club> showClubTable;
 
-    public void onBackShowClubClick() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
-        showClubPane.getChildren().setAll(pane);
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -107,5 +103,11 @@ public class ShowClubs implements Initializable {
             clubs.add(viewClubs);
         }
         showClubTable.setItems(clubs);
+    }
+    
+    //back button functionality
+    public void onBackShowClubClick() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
+        showClubPane.getChildren().setAll(pane);
     }
 }
