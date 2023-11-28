@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="showEventScheduleForStudentAnchor" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.ShowEventScheduleForStudent">
    <children>
       <TableView fx:id="eventTableView" layoutX="18.0" layoutY="57.0" prefHeight="364.0" prefWidth="864.0">
@@ -23,7 +22,7 @@
             <TableColumn fx:id="showAdvisorId" prefWidth="65.5999755859375" text="Advisor ID" />
          </columns>
       </TableView>
-      <Button layoutX="18.0" layoutY="541.0" mnemonicParsing="false" text="Back">
+      <Button layoutX="18.0" layoutY="541.0" mnemonicParsing="false" onAction="#onShowEventsForStudentsBackButtonClick" text="Back">
          <font>
             <Font size="16.0" />
          </font>

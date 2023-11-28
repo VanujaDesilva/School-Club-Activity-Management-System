@@ -28,5 +28,10 @@
       <FontIcon />
       <Label fx:id="clubNameError" alignment="CENTER" layoutX="336.0" layoutY="495.0" prefHeight="18.0" prefWidth="228.0" textFill="RED" />
       <ListView fx:id="clubNamesView" layoutX="350.0" layoutY="117.0" prefHeight="214.0" prefWidth="200.0" />
+      <Button layoutX="27.0" layoutY="538.0" mnemonicParsing="false" onAction="#onEnterClubNameBackButtonClick" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
