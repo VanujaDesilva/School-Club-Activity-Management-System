@@ -135,7 +135,6 @@ public class Attendance implements Initializable {
         System.out.println(studentIds);
         for (int i = 0; i < studentIds.size(); i++) {
             for (List<Object> studentdetail : studentDetails) {
-                System.out.println("Badu awa");
                 if (studentdetail.get(0).equals(studentIds.get(i))) {
                     String stdId = String.valueOf(studentdetail.get(0));
                     String firstName = String.valueOf(studentdetail.get(1));
@@ -143,7 +142,7 @@ public class Attendance implements Initializable {
                     String dob = String.valueOf(studentdetail.get(3));
                     String telNo = String.valueOf(studentdetail.get(4));
 
-                    Student student = new Student(stdId, firstName, lastName, dob, telNo);
+                    Student student = new Student(stdId, firstName, lastName, telNo,dob);
                     data.add(student);
                 }
             }
