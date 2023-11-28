@@ -64,6 +64,8 @@ public class CreateClub {
     @FXML
     public Button backClubCreate;
 
+
+    //create club functionality
     public void onCreateButtonClick() throws SQLException {
         //creating an instance of the club object
         Club createClubInstance = new Club();
@@ -273,6 +275,7 @@ public class CreateClub {
         }
     }
 
+    //image insertion method
     public void onInsertImageClick() {
         imagePane.setStyle("-fx-border-color: black; -fx-border-width: 3;");
         FileChooser filePath = new FileChooser();
@@ -284,6 +287,7 @@ public class CreateClub {
         }
     }
 
+    //back button functionality
     public void onBackClubCreateClick() throws IOException{
         AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
         clubCreationPane.getChildren().setAll(pane);

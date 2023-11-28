@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -15,6 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManageClub {
+
+    //importing lists
+    @FXML
+    public static List<List<Object>> mainList = HelloController.mainList;
+
+    //variable declarations
     @FXML
     public DatePicker updateClubDate;
     @FXML
@@ -51,8 +56,7 @@ public class ManageClub {
     public static int listIndex;
     @FXML
     public File updateFile;
-    @FXML
-    public static List<List<Object>> mainList = HelloController.mainList;
+
     @FXML
     public Label showPromptUpdate;
     @FXML
@@ -65,8 +69,10 @@ public class ManageClub {
     String preImage;
     String image;
 
+    //creating object instance
     Club updateClubInstance = new Club();
 
+    //show club  functionality
     public void onShowClubButtonClick() throws IOException {
         updateClubInstance.setName(showName.getText());  //setting the club name input from the textField to the club object
 
@@ -85,7 +91,6 @@ public class ManageClub {
 
 //                    LocalDate updateFoundingDate = updateClubDate.getValue();
                     updateClubDate.setValue((LocalDate) d.get(2));
-
                     updateClubMission.setText(String.valueOf(d.get(3)));
                     updateClubDescription.setText(String.valueOf(d.get(4)));
                     updateClubPresident.setText(String.valueOf(d.get(5)));
@@ -97,9 +102,7 @@ public class ManageClub {
                     File Updatefile = new File(String.valueOf(d.get(9)));
                     Image updateImage = new Image(Updatefile.toURI().toString());
                     updateClubIcon.setImage(updateImage);
-
                     preImage = d.get(9).toString();
-
 
                 } else {
                     showName.setStyle("-fx-border-color: red;");
@@ -114,7 +117,7 @@ public class ManageClub {
     }
 
 
-
+    //update club functionality
     public void onUpdateButtonClick() throws IOException{
         updateClubInstance.setIcon(mainList.get(listIndex).get(9).toString());
         //mainList.remove(listIndex); //removing the old item data from the list
@@ -140,7 +143,7 @@ public class ManageClub {
                 //checking if the same club name exists
                 for (List<Object> a : mainList) {
                     if (a.get(1).equals(updateClubInstance.getName())) {
-                        showPromptUpdate.setText("Club already exists!");
+                        showPromptUpdate.setText("Club already exists!"); //displaying prompt text
                         showPromptUpdate.setStyle("-fx-text-fill: red;");
                         showName.setStyle("-fx-border-color: red;");
                         showTick.setText("\u2717");
@@ -149,8 +152,8 @@ public class ManageClub {
                 }
                 showName.setStyle("-fx-border-color: green;");
                 showTick.setText("\u2713");
-            } else {
-                showPromptUpdate.setText("Please fill out all required inputs!");
+            } else { //validation when club name is empty
+                showPromptUpdate.setText("Please fill out all required inputs!"); //displaying prompt text
                 showPromptUpdate.setStyle("-fx-text-fill: red;");
                 showName.setStyle("-fx-border-color: red;");
                 showTick.setText("\u2605");
@@ -168,14 +171,14 @@ public class ManageClub {
                     updateClubDate.setStyle("-fx-border-color: green;");
                     uDateTick.setText("\u2713"); //tick
                 } else {
-                    showPromptUpdate.setText("Founding Date cannot be in the future!");
+                    showPromptUpdate.setText("Founding Date cannot be in the future!"); //displaying prompt text
                     showPromptUpdate.setStyle("-fx-text-fill: red;");
                     updateClubDate.setStyle("-fx-border-color: red;");
                     uDateTick.setText("\u2717"); //cross
                     errorCheck++;
                 }
-            } else {
-                showPromptUpdate.setText("Please fill out all required inputs!");
+            } else { //validation when date is empty
+                showPromptUpdate.setText("Please fill out all required inputs!"); //displaying prompt text
                 showPromptUpdate.setStyle("-fx-text-fill: red;");
                 updateClubDate.setStyle("-fx-border-color: red;");
                 uDateTick.setText("\u2605");  //star
@@ -196,7 +199,7 @@ public class ManageClub {
                 //checking if the same club president exists
                 for (List<Object> b : mainList) {
                     if (b.get(5).equals(updateClubInstance.getClubPresidentName())) {
-                        showPromptUpdate.setText("Club President already exists!");
+                        showPromptUpdate.setText("Club President already exists!"); //displaying prompt text
                         showPromptUpdate.setStyle("-fx-text-fill: red;");
                         updateClubPresident.setStyle("-fx-border-color: red;");
                         uPresidentTick.setText("\u2717");
@@ -205,8 +208,8 @@ public class ManageClub {
                 }
                 updateClubPresident.setStyle("-fx-border-color: green;");
                 uPresidentTick.setText("\u2713");
-            } else {
-                showPromptUpdate.setText("Please fill out all required inputs!");
+            } else { //validation when president name is empty
+                showPromptUpdate.setText("Please fill out all required inputs!"); //displaying prompt text
                 showPromptUpdate.setStyle("-fx-text-fill: red;");
                 updateClubPresident.setStyle("-fx-border-color: red;");
                 uPresidentTick.setText("\u2605");
@@ -223,14 +226,14 @@ public class ManageClub {
                     updateClubEmail.setStyle("-fx-border-color: green;");
                     uEmailTick.setText("\u2713");
                 } else {
-                    showPromptUpdate.setText("Please enter valid email!");
+                    showPromptUpdate.setText("Please enter valid email!"); //displaying prompt text
                     showPromptUpdate.setStyle("-fx-text-fill: red;");
                     updateClubEmail.setStyle("-fx-border-color: red;");
                     uEmailTick.setText("\u2717");
                     errorCheck++;
                 }
-            } else {
-                showPromptUpdate.setText("Please fill out all required inputs!");
+            } else { //validation when  email is empty
+                showPromptUpdate.setText("Please fill out all required inputs!"); //displaying prompt text
                 showPromptUpdate.setStyle("-fx-text-fill: red;");
                 updateClubEmail.setStyle("-fx-border-color: red;");
                 uEmailTick.setText("\u2605");
@@ -247,14 +250,14 @@ public class ManageClub {
                     updateClubContactNo.setStyle("-fx-border-color: green;");
                     uContactTick.setText("\u2713");
                 } else {
-                    showPromptUpdate.setText("Please enter valid contact number!");
+                    showPromptUpdate.setText("Please enter valid contact number!"); //displaying prompt text
                     showPromptUpdate.setStyle("-fx-text-fill: red;");
                     updateClubContactNo.setStyle("-fx-border-color: red;");
                     uContactTick.setText("\u2717");
                     errorCheck++;
                 }
-            } else {
-                showPromptUpdate.setText("Please fill out all required inputs!");
+            } else {  //validation when contact number is empty
+                showPromptUpdate.setText("Please fill out all required inputs!"); //displaying prompt text
                 showPromptUpdate.setStyle("-fx-text-fill: red;");
                 updateClubContactNo.setStyle("-fx-border-color: red;");
                 uContactTick.setText("\u2605");
@@ -269,7 +272,7 @@ public class ManageClub {
             }
             //checking if image input is empty
             if (image == null) {
-                showPromptUpdate.setText("Please add an icon!");
+                showPromptUpdate.setText("Please add an icon!"); //displaying prompt text
                 showPromptUpdate.setStyle("-fx-text-fill: red;");
                 updatePane.setStyle("-fx-border-color: red; -fx-border-width: 3;");
                 errorCheck++;
@@ -285,6 +288,7 @@ public class ManageClub {
                 break;
             }
 
+            //generating clubID
             int max =0;
             for (int i = 0 ; i < mainList.size() ; i++){
                 String c = (String) mainList.get(i).get(0);
@@ -313,15 +317,16 @@ public class ManageClub {
             subList.add(image);
 
             mainList.add(subList); //adding the sublist to the main list
+            HelloController.clubs.add(mainList);
 
-            System.out.println(subList);
             System.out.println(mainList);
-            showPromptUpdate.setText("Club Successfully Created!");
+            showPromptUpdate.setText("Club Successfully Created!"); //displaying prompt text
             showPromptUpdate.setStyle("-fx-text-fill: green;");
             break;
         }
     }
 
+    //update image method
     public void onUpdateIconClick() throws IOException{
         FileChooser filePath = new FileChooser();
         updateFile = filePath.showOpenDialog(null); //assign file path to a File variable
@@ -331,6 +336,7 @@ public class ManageClub {
         }
     }
 
+    //back button functionality
     public void onBackClubManageClick() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
         clubManagePane.getChildren().setAll(pane);
