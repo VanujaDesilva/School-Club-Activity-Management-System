@@ -6,27 +6,58 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="AdvisorSignUpAnchorID" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
    <children>
-      <Label layoutX="53.0" layoutY="50.0" prefHeight="40.0" prefWidth="90.0" text="Name" />
-      <Label layoutX="52.0" layoutY="125.0" prefHeight="40.0" prefWidth="90.0" text="DOB" />
-      <Label layoutX="53.0" layoutY="185.0" prefHeight="40.0" prefWidth="90.0" text="Conatct No" />
-      <Label layoutX="53.0" layoutY="230.0" prefHeight="40.0" prefWidth="90.0" text="Email" />
-      <Label layoutX="53.0" layoutY="279.0" prefHeight="40.0" prefWidth="90.0" text="Password" />
-      <Button fx:id="AdvisorSignUpID" layoutX="441.0" layoutY="337.0" mnemonicParsing="false" onAction="#AdvisorSignUpClick" text="Sign Up" />
-      <TextField fx:id="AdvisorSignUpLNameID" layoutX="177.0" layoutY="85.0" prefHeight="40.0" prefWidth="250.0" />
-      <TextField fx:id="AdvisorSignUpFNameID" layoutX="177.0" layoutY="57.0" prefHeight="40.0" prefWidth="250.0" />
-      <TextField fx:id="AdvisorSignUpContactNoID" layoutX="177.0" layoutY="192.0" minHeight="-Infinity" prefHeight="26.0" prefWidth="175.0" />
-      <TextField fx:id="AdvisorSignUpEmailID" layoutX="177.0" layoutY="237.0" prefHeight="26.0" prefWidth="175.0" />
-      <Button fx:id="AdvisorSignUpBackID" layoutX="9.0" layoutY="25.0" mnemonicParsing="false" onAction="#AdvisorSignUpBackClick" text="Back" />
-      <DatePicker fx:id="AdvisorSignUpDOBID" layoutX="177.0" layoutY="132.0" />
-      <PasswordField fx:id="AdvisorSignUpPasswordID" layoutX="177.0" layoutY="279.0" prefHeight="26.0" prefWidth="175.0" />
-      <Label fx:id="AdvisorSignUpEmailAlert" layoutX="366.0" layoutY="224.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label fx:id="AdvisorSignUpFirstNameAlertID" layoutX="352.0" layoutY="56.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label fx:id="AdvisorSignUpLastNameAlertID" layoutX="352.0" layoutY="85.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label fx:id="AdvisorSignUpContactNolAlertID" layoutX="352.0" layoutY="171.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label fx:id="AdvisorSignUpDOBlAlertID" layoutX="366.0" layoutY="131.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label fx:id="AdvisorSignUpPasswordlAler" layoutX="365.0" layoutY="266.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label layoutX="230.0" layoutY="100.0" prefHeight="40.0" prefWidth="90.0" text="Name">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="230.0" layoutY="220.0" prefHeight="40.0" prefWidth="90.0" text="DOB">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="230.0" layoutY="290.0" prefHeight="40.0" prefWidth="90.0" text="Conatct No">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="230.0" layoutY="360.0" prefHeight="40.0" prefWidth="90.0" text="Email">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="230.0" layoutY="430.0" prefHeight="40.0" prefWidth="90.0" text="Password">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Button fx:id="AdvisorSignUpID" layoutX="750.0" layoutY="500.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AdvisorSignUpClick" prefHeight="40.0" prefWidth="80.0" text="Sign Up" />
+      <TextField fx:id="AdvisorSignUpLNameID" layoutX="360.0" layoutY="150.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Last Name">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <TextField fx:id="AdvisorSignUpFNameID" layoutX="360.0" layoutY="100.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your First Name">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <TextField fx:id="AdvisorSignUpContactNoID" layoutX="360.0" layoutY="290.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Contact Number">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <TextField fx:id="AdvisorSignUpEmailID" layoutX="360.0" layoutY="360.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Email">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <Button fx:id="AdvisorSignUpBackID" layoutX="10.0" layoutY="30.0" mnemonicParsing="false" onAction="#AdvisorSignUpBackClick" prefHeight="40.0" prefWidth="80.0" text="Back" />
+      <DatePicker fx:id="AdvisorSignUpDOBID" layoutX="360.0" layoutY="220.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Date of birth" />
+      <PasswordField fx:id="AdvisorSignUpPasswordID" layoutX="360.0" layoutY="430.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Password">
+         <font>
+            <Font size="16.0" />
+         </font></PasswordField>
+      <Label fx:id="AdvisorSignUpEmailAlert" layoutX="621.0" layoutY="367.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label fx:id="AdvisorSignUpFirstNameAlertID" layoutX="621.0" layoutY="107.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label fx:id="AdvisorSignUpLastNameAlertID" layoutX="621.0" layoutY="158.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label fx:id="AdvisorSignUpContactNolAlertID" layoutX="621.0" layoutY="297.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label fx:id="AdvisorSignUpDOBlAlertID" layoutX="621.0" layoutY="227.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label fx:id="AdvisorSignUpPasswordlAler" layoutX="621.0" layoutY="436.0" prefHeight="26.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
