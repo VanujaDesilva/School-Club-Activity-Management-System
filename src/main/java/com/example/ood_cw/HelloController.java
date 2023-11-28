@@ -979,6 +979,8 @@ public class HelloController{
         String id = String.format("%03d",max);
         id = "S"+id;
         System.out.println(id);
+        studentID.clear();
+        studentID.add(id);
         List<Object> student = new ArrayList<>();
         student.add(id);
         student.add(obj.getFirstName());
@@ -1112,6 +1114,8 @@ public class HelloController{
         max = max + 1;
         String id = String.format("%02d",max);
         id = "AD"+id;
+        advisorID.clear();
+        advisorID.add(id);
         List<Object> advisor = new ArrayList<>();
         advisor.add(id);
         advisor.add(obj.getFirstName());
@@ -1305,4 +1309,6 @@ public class HelloController{
         AnchorPane pane = FXMLLoader.load(getClass().getResource("AdvisorMenu.fxml"));
         clubMenuPane.getChildren().setAll(pane);
     }
+
+
 }

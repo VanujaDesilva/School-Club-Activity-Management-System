@@ -113,7 +113,7 @@ public class EnterClubName implements Initializable {
         club1.add("Dakuna perata");
         club1.add("Club description");
         club1.add("Sumahinda raja");
-        club1.add("AD02");
+        club1.add("AD01");
         club1.add("leo@gmail.com");
         club1.add("0771234567");
         clubs.add(club1);

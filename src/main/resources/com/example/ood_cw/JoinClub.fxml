@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
+   <children>
+      <Text layoutX="193.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <ComboBox fx:id="JoinClubComboBoxID" layoutX="259.0" layoutY="117.0" onAction="#JoinClubComboBoxClick" prefWidth="150.0" />
+   </children>
+</AnchorPane>
