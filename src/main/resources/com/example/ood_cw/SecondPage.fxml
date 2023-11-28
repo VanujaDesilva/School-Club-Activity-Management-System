@@ -7,8 +7,8 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
    <children>
-      <Button fx:id="StudentButtonID" layoutX="121.0" layoutY="292.0" mnemonicParsing="false" onAction="#onStudentClick" text="Student" />
-      <Button fx:id="advisorbuttonID" layoutX="406.0" layoutY="292.0" mnemonicParsing="false" onAction="#onAdvisorClick" text="Advisor" />
+      <Button fx:id="StudentButtonID" layoutX="116.0" layoutY="347.0" mnemonicParsing="false" onAction="#onStudentClick" text="Student" />
+      <Button fx:id="advisorbuttonID" layoutX="378.0" layoutY="347.0" mnemonicParsing="false" onAction="#onAdvisorClick" text="Advisor" />
       <Button fx:id="SecondBackButtonId" layoutX="7.0" layoutY="31.0" mnemonicParsing="false" onAction="#SecondBackButtonClick" text="BACK" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="64.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
          <image>
