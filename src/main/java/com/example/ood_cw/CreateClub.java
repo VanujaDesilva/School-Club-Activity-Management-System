@@ -192,7 +192,6 @@ public class CreateClub {
             }
 
             //setting the club contact number
-            //String contactNumFull = "+94" + clubContactNo.getText();
             createClubInstance.setContactNo("+94" + clubContactNo.getText());
             //checking if the contact number is empty
             if (clubContactNo.getText() != null) {
@@ -219,11 +218,14 @@ public class CreateClub {
                 promptLabelCreate.setText("Please add an icon!");
                 promptLabelCreate.setStyle("-fx-text-fill: red;");
                 imagePane.setStyle("-fx-border-color: red; -fx-border-width: 3;");
-//
                 errorCheck++;
             } else {
                 imagePane.setStyle("-fx-border-color: green; -fx-border-width: 3;");
                 createClubInstance.setIcon(createFile.getAbsolutePath());
+            }
+            //checking empty inputs
+            if (createClubInstance.getName().isEmpty() && createClubInstance.getFoundingDate()==null && createClubInstance.getClubPresidentName().isEmpty() && createClubInstance.getEmail().isEmpty() && clubContactNo.getText().isEmpty() && createFile==null){
+                promptLabelCreate.setText("Please fill out all required inputs!");
             }
 
             if (emptyCheck != 0) { //checking for any empty inputs
@@ -268,7 +270,6 @@ public class CreateClub {
 
             mainList.add(subList); //adding the sublist to the main list
 
-            System.out.println(subList);
             System.out.println(mainList);
             promptLabelCreate.setText("Club Successfully Created!");
             promptLabelCreate.setStyle("-fx-text-fill: green;");
