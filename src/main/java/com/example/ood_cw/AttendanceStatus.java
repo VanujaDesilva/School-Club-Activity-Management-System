@@ -60,6 +60,7 @@ public class AttendanceStatus implements Initializable {
     }
 
     public void onCheckButtonClick(ActionEvent actionEvent) {
+        attendanceStatusCheck.setText("Not Marked Yet");
         if(studentClubSelector != null && studentEventSelector != null){
           for(List<Object> event: allEvents){
               if(event.get(1).equals(studentEventSelector.getValue())){
@@ -72,8 +73,6 @@ public class AttendanceStatus implements Initializable {
                               attendanceStatusCheck.setText("Present");
                           } else if (String.valueOf(atten.get(2)).equals("Absent")) {
                               attendanceStatusCheck.setText("Absent");
-                          }else {
-                              attendanceStatusCheck.setText("Not Marked Yet");
                           }
                       }
                   }
@@ -86,13 +85,16 @@ public class AttendanceStatus implements Initializable {
     public void onClubSelectButtonCLick(ActionEvent actionEvent) {
         if(studentClubSelector.getValue()!= null){
             for(List<Object>club: clubs){
-                if(clubs.get(1).equals(studentClubSelector.getValue())){
+                if(club.get(1).equals(studentClubSelector.getValue())){
+                    System.out.println(club.get(0)+"wde wenawa");
                     clubId = String.valueOf(club.get(0));
+                    System.out.println(clubId);
                 }
             }
-            System.out.println("hi");
             for (List<Object> event : allEvents) {
-                if(event.get(8).equals(clubId)) {
+                System.out.println(event.get(8));
+                System.out.println(clubId);
+                if(String.valueOf(event.get(8)).equals(clubId)) {
                     String eName = String.valueOf(event.get(1));
                     if (Objects.equals(eName, " - ")) {
                         eName = String.valueOf(event.get(0));
