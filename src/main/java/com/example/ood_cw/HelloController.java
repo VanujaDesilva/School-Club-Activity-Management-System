@@ -192,6 +192,32 @@ public class HelloController{
 
 
 
+
+    }
+    public void onAvishkaButtonClick() throws IOException{
+        List<Object> student = new ArrayList<>();
+        student.add("S001");
+        student.add("Avishka");
+        student.add("Shenan");
+        student.add("2002-07-07");
+        student.add("0771234567");
+        student.add("avishkashenan@gmail.com");
+        student.add("avishka123");
+        studentDetails.add(student);
+
+
+        List<Object> advisor = new ArrayList<>();
+        advisor.add("AD01");
+        advisor.add("Avishka");
+        advisor.add("Shenan");
+        advisor.add("2002-07-07");
+        advisor.add("0771234567");
+        advisor.add("avishka@gmail.com");
+        advisor.add("avishka123");
+        advisorDetails.add(advisor);
+        System.out.println(studentDetails);
+        System.out.println(advisorDetails);
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Welcome.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
@@ -202,7 +228,6 @@ public class HelloController{
 //        Stage previousStage = (Stage) sampleAnchor.getScene().getWindow();
 //        previousStage.close();
     }
-
     public AnchorPane enterClubNameAnchor;
     public ListView<String> clubNamesView;
 
@@ -1283,6 +1308,7 @@ public class HelloController{
         AnchorPane pane = FXMLLoader.load(getClass().getResource("AdvisorMenu.fxml"));
         clubMenuPane.getChildren().setAll(pane);
     }
+
 
 
 }
