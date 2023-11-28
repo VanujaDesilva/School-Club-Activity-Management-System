@@ -20,12 +20,13 @@ import java.util.ResourceBundle;
 
 public class CreateClub {
     public static List<List<Object>> mainList = HelloController.mainList;
+    public static List<String> advisorList = HelloController.advisorID;
     public TextField clubName;
     public DatePicker clubDate;
     public TextField clubMission;
     public TextArea clubDescription;
     public TextField clubPresident;
-    public TextField clubAdvisor;
+    //public TextField clubAdvisor;
     public TextField clubEmail;
     public TextField clubContactNo;
     public ImageView clubIcon;
@@ -37,7 +38,7 @@ public class CreateClub {
     public Label emailTick;
     public Label contactTick;
     public Label presidentTick;
-    public Label advisorTick;
+    //public Label advisorTick;
     public Label nameTick;
     public AnchorPane imagePane;
     public Label promptLabelCreate;
@@ -143,28 +144,28 @@ public class CreateClub {
             }
 
             //setting the club advisor
-            createClubInstance.setClubAdvisorName(clubAdvisor.getText());
-            //checking if the club advisor name is empty
-            if (!createClubInstance.getClubAdvisorName().isEmpty()) {
-                //checking if the same club advisor exists
-                for (List<Object> c : mainList) {
-                    if (c.get(6).equals(createClubInstance.getClubAdvisorName())) {
-                        promptLabelCreate.setText("Club Advisor already exists!");
-                        promptLabelCreate.setStyle("-fx-text-fill: red;");
-                        clubAdvisor.setStyle("-fx-border-color: red;");
-                        advisorTick.setText("\u2717");
-                        errorCheck++;
-                    }
-                }
-                clubAdvisor.setStyle("-fx-border-color: green;");
-                advisorTick.setText("\u2713");
-            } else {
-                promptLabelCreate.setText("Please fill out all required inputs!");
-                promptLabelCreate.setStyle("-fx-text-fill: red;");
-                clubAdvisor.setStyle("-fx-border-color: red;");
-                advisorTick.setText("\u2605");
-                emptyCheck++;
-            }
+//            createClubInstance.setClubAdvisorName(clubAdvisor.getText());
+//            //checking if the club advisor name is empty
+//            if (!createClubInstance.getClubAdvisorName().isEmpty()) {
+//                //checking if the same club advisor exists
+//                for (List<Object> c : mainList) {
+//                    if (c.get(6).equals(createClubInstance.getClubAdvisorName())) {
+//                        promptLabelCreate.setText("Club Advisor already exists!");
+//                        promptLabelCreate.setStyle("-fx-text-fill: red;");
+//                        clubAdvisor.setStyle("-fx-border-color: red;");
+//                        advisorTick.setText("\u2717");
+//                        errorCheck++;
+//                    }
+//                }
+//                clubAdvisor.setStyle("-fx-border-color: green;");
+//                advisorTick.setText("\u2713");
+//            } else {
+//                promptLabelCreate.setText("Please fill out all required inputs!");
+//                promptLabelCreate.setStyle("-fx-text-fill: red;");
+//                clubAdvisor.setStyle("-fx-border-color: red;");
+//                advisorTick.setText("\u2605");
+//                emptyCheck++;
+//            }
 
 
             //setting the club email
@@ -245,6 +246,10 @@ public class CreateClub {
             String clubID = String.format("%03d",max);
             clubID="C"+clubID;
 
+            //adding advisorID
+            String advisorID = advisorList.get(0);
+            System.out.println(advisorID);
+
             //creating a sublist
             List<Object> subList = new ArrayList<>();
 
@@ -255,7 +260,8 @@ public class CreateClub {
             subList.add(createClubInstance.getMission());
             subList.add(createClubInstance.getDescription());
             subList.add(createClubInstance.getClubPresidentName());
-            subList.add(createClubInstance.getClubAdvisorName());
+            subList.add(advisorID);
+//            subList.add(createClubInstance.getClubAdvisorName());
             subList.add(createClubInstance.getEmail());
             subList.add(createClubInstance.getContactNo());
             subList.add(createClubInstance.getIcon());

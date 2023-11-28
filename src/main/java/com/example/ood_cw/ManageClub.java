@@ -21,7 +21,7 @@ public class ManageClub {
     public TextField updateClubMission;
     public TextArea updateClubDescription;
     public TextField updateClubPresident;
-    public TextField updateClubAdvisor;
+    //public TextField updateClubAdvisor;
     public TextField updateClubEmail;
     public TextField updateClubContactNo;
     public ImageView updateClubIcon;
@@ -29,9 +29,8 @@ public class ManageClub {
 
     public TextField showName;
     public Button updateClub;
-    public Label uNameTick;
     public Label uPresidentTick;
-    public Label uAdvisorTick;
+    //public Label uAdvisorTick;
     public Label uEmailTick;
     public Label uContactTick;
     public Label uDateTick;
@@ -70,7 +69,7 @@ public class ManageClub {
                     updateClubMission.setText(String.valueOf(d.get(3)));
                     updateClubDescription.setText(String.valueOf(d.get(4)));
                     updateClubPresident.setText(String.valueOf(d.get(5)));
-                    updateClubAdvisor.setText(String.valueOf(d.get(6)));
+                    //updateClubAdvisor.setText(String.valueOf(d.get(6)));
                     updateClubEmail.setText(String.valueOf(d.get(7)));
                     updateClubContactNo.setText(String.valueOf(d.get(8)));
 
@@ -191,28 +190,28 @@ public class ManageClub {
             }
 
             //setting the club advisor
-            updateClubInstance.setClubAdvisorName(updateClubAdvisor.getText());
-            //checking if the club advisor name is empty
-            if (!updateClubInstance.getClubAdvisorName().isEmpty()) {
-                //checking if the same club advisor exists
-                for (List<Object> c : mainList) {
-                    if (c.get(6).equals(updateClubInstance.getClubAdvisorName())) {
-                        showPromptUpdate.setText("Club Advisor already exists!");
-                        showPromptUpdate.setStyle("-fx-text-fill: red;");
-                        updateClubAdvisor.setStyle("-fx-border-color: red;");
-                        uAdvisorTick.setText("\u2717");
-                        errorCheck++;
-                    }
-                }
-                updateClubAdvisor.setStyle("-fx-border-color: green;");
-                uAdvisorTick.setText("\u2713");
-            } else {
-                showPromptUpdate.setText("Please fill out all required inputs!");
-                showPromptUpdate.setStyle("-fx-text-fill: red;");
-                updateClubAdvisor.setStyle("-fx-border-color: red;");
-                uAdvisorTick.setText("\u2605");
-                emptyCheck++;
-            }
+//            updateClubInstance.setClubAdvisorName(updateClubAdvisor.getText());
+//            //checking if the club advisor name is empty
+//            if (!updateClubInstance.getClubAdvisorName().isEmpty()) {
+//                //checking if the same club advisor exists
+//                for (List<Object> c : mainList) {
+//                    if (c.get(6).equals(updateClubInstance.getClubAdvisorName())) {
+//                        showPromptUpdate.setText("Club Advisor already exists!");
+//                        showPromptUpdate.setStyle("-fx-text-fill: red;");
+//                        updateClubAdvisor.setStyle("-fx-border-color: red;");
+//                        uAdvisorTick.setText("\u2717");
+//                        errorCheck++;
+//                    }
+//                }
+//                updateClubAdvisor.setStyle("-fx-border-color: green;");
+//                uAdvisorTick.setText("\u2713");
+//            } else {
+//                showPromptUpdate.setText("Please fill out all required inputs!");
+//                showPromptUpdate.setStyle("-fx-text-fill: red;");
+//                updateClubAdvisor.setStyle("-fx-border-color: red;");
+//                uAdvisorTick.setText("\u2605");
+//                emptyCheck++;
+//            }
 
 
             //setting the club email
@@ -309,7 +308,7 @@ public class ManageClub {
             subList.add(updateClubInstance.getMission());
             subList.add(updateClubInstance.getDescription());
             subList.add(updateClubInstance.getClubPresidentName());
-            subList.add(updateClubInstance.getClubAdvisorName());
+            //subList.add(updateClubInstance.getClubAdvisorName());
             subList.add(updateClubInstance.getEmail());
             subList.add(updateClubInstance.getContactNo());
             subList.add(updateClubInstance.getIcon());

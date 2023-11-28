@@ -176,19 +176,19 @@ public class HelloController{
 
     public void onTharushaButtonClick() throws IOException {
 
-        List<Object> subCheck1 = new ArrayList<>();
-        subCheck1.add("C001");
-        subCheck1.add("Interact Club");
-        subCheck1.add("2023-11-25");
-        subCheck1.add("Light from heaven");
-        subCheck1.add("Social Service");
-        subCheck1.add("Tharusha Fernando");
-        subCheck1.add("Uththara Godahenage");
-        subCheck1.add("interact@gmail.com");
-        subCheck1.add("+94712345672");
-        subCheck1.add("C:\\Users\\Tharusha\\Pictures\\abc.jpg");
-        mainList.add(subCheck1);
-        System.out.println(mainList);
+//        List<Object> subCheck1 = new ArrayList<>();
+//        subCheck1.add("C001");
+//        subCheck1.add("Interact Club");
+//        subCheck1.add("2023-11-25");
+//        subCheck1.add("Light from heaven");
+//        subCheck1.add("Social Service");
+//        subCheck1.add("Tharusha Fernando");
+//        subCheck1.add("Uththara Godahenage");
+//        subCheck1.add("interact@gmail.com");
+//        subCheck1.add("+94712345672");
+//        subCheck1.add("C:\\Users\\Tharusha\\Pictures\\abc.jpg");
+//        mainList.add(subCheck1);
+//        System.out.println(mainList);
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
         sampleAnchor.getChildren().setAll(pane);
