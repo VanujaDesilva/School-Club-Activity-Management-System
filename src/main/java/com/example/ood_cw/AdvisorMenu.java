@@ -45,7 +45,6 @@ public class AdvisorMenu {
     }
 
     public void AdvisorMenuClubCreationButtonClick(ActionEvent actionEvent) throws IOException {
-        System.out.println("Load the menu for advisor");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("clubMenu.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
