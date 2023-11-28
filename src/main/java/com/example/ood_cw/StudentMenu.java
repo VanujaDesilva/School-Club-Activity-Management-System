@@ -126,7 +126,6 @@ public class StudentMenu  {
     }
 
 
-
-
-
+    public void onViewAttendanceButtonClick(ActionEvent actionEvent) {
+    }
 }

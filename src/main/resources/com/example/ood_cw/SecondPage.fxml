@@ -4,21 +4,20 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
    <children>
-      <Button fx:id="StudentButtonID" layoutX="116.0" layoutY="347.0" mnemonicParsing="false" onAction="#onStudentClick" text="Student" />
-      <Button fx:id="advisorbuttonID" layoutX="378.0" layoutY="347.0" mnemonicParsing="false" onAction="#onAdvisorClick" text="Advisor" />
-      <Button fx:id="SecondBackButtonId" layoutX="7.0" layoutY="31.0" mnemonicParsing="false" onAction="#SecondBackButtonClick" text="BACK" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="64.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../IdeaProjects/OODCW3/src/main/resources/images/Student.png" />
+            <Image url="@../../../images/advisor%20student%20.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="334.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../../../IdeaProjects/OODCW3/src/main/resources/images/Advisor.jpg" />
-         </image>
-      </ImageView>
+      <Button fx:id="StudentButtonID" layoutX="297.0" layoutY="464.0" mnemonicParsing="false" onAction="#onStudentClick" text="Student" />
+      <Button fx:id="advisorbuttonID" layoutX="548.0" layoutY="464.0" mnemonicParsing="false" onAction="#onAdvisorClick" text="Advisor" />
+      <Button fx:id="SecondBackButtonId" layoutY="14.0" mnemonicParsing="false" onAction="#SecondBackButtonClick" prefHeight="63.0" prefWidth="149.0" style="-fx-background-radius: 0 60 60 0;" text="BACK">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
    </children>
 </AnchorPane>
