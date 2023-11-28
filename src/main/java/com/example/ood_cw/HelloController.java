@@ -64,8 +64,201 @@ public class HelloController{
     public static List<List<Object>> attendance = new ArrayList<>();
     public static List<List<Object>> registration = new ArrayList<>();
 
+    public void onYeranButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        stage.setTitle("Enter club name");
+        stage.setScene(scene);
+        stage.show();
+
+        Stage previousStage = (Stage) sampleAnchor.getScene().getWindow();
+        previousStage.close();
+    }
+
+    public void onVanujaButtonClick(ActionEvent actionEvent) throws IOException {
+        //sample event data
+        List<Object> event = new ArrayList<>();
+        event.add("E001");
+        event.add("Spandana");
+        event.add("Viharamahadevi");
+        event.add("08:30");
+        event.add("musical event");
+        event.add("2023-12-23");
+        event.add(" - ");
+        event.add(" - ");
+        event.add("C001");
+        event.add("AD01");
+        events.add(event);
+
+        List<Object> event1 = new ArrayList<>();
+        event1.add("M001");
+        event1.add(" - ");
+        event1.add("Hilton");
+        event1.add("08:30");
+        event1.add("Batch meeting");
+        event1.add("2023-12-23");
+        event1.add(" - ");
+        event1.add("2-hours");
+        event1.add("C002");
+        event1.add("AD01");
+        events.add(event1);
+
+        List<Object> event2 = new ArrayList<>();
+        event2.add("A001");
+        event2.add("Game Fiesta");
+        event2.add("Club Fusion");
+        event2.add("08:30");
+        event2.add("A game event");
+        event2.add("2023-12-23");
+        event2.add("2023-12-25");
+        event2.add(" - ");
+        event2.add("C003");
+        event2.add("AD01");
+        events.add(event2);
+
+        //sample club data
+        List<Object> subCheck1 = new ArrayList<>();
+        subCheck1.add("C001");
+        subCheck1.add("Interact Club");
+        subCheck1.add("2023-11-25");
+        subCheck1.add("Light from heaven");
+        subCheck1.add("Social Service");
+        subCheck1.add("Tharusha Fernando");
+        subCheck1.add("Uththara Godahenage");
+        subCheck1.add("interact@gmail.com");
+        subCheck1.add("+94712345672");
+        subCheck1.add("C:\\Users\\Tharusha\\Pictures\\abc.jpg");
+        checkList.add(subCheck1);
+
+        List<Object> subCheck2 = new ArrayList<>();
+        subCheck2.add("C002");
+        subCheck2.add("Leo Club");
+        subCheck2.add("2023-11-15");
+        subCheck2.add("We lead others follow");
+        subCheck2.add("Helping others");
+        subCheck2.add("Yeran Fernando");
+        subCheck2.add("Sarath Bandara");
+        subCheck2.add("leo@gmail.com");
+        subCheck2.add("+94771231167");
+        subCheck2.add("C:\\Users\\Tharusha\\Pictures\\def.jpg");
+        checkList.add(subCheck2);
+
+        List<Object> subCheck3 = new ArrayList<>();
+        subCheck3.add("C003");
+        subCheck3.add("IEEE Club");
+        subCheck3.add("2023-11-08");
+        subCheck3.add("Experimenting new virtues");
+        subCheck3.add("Spreading knowledge");
+        subCheck3.add("Vanuja Silva");
+        subCheck3.add("Oggy Perera");
+        subCheck3.add("ieee@gmail.com");
+        subCheck3.add("+94781231167");
+        subCheck3.add("C:\\Users\\Tharusha\\Pictures\\ghi.jpg");
+        checkList.add(subCheck3);
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Attendance.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        stage.setTitle("Attendance");
+        stage.setScene(scene);
+        stage.show();
+        Stage preStage = (Stage) sampleAnchor.getScene().getWindow();
+        preStage.close();
+    }
+
+    public void onTharushaButtonClick() throws IOException, SQLException {
+        mainList.clear();
+        List<Object> subCheck1 = new ArrayList<>();
+        subCheck1.add("C005");
+        subCheck1.add("Interact Club");
+        subCheck1.add("2023-11-25");
+        subCheck1.add("Light from heaven");
+        subCheck1.add("Social Service");
+        subCheck1.add("Tharusha Fernando");
+        subCheck1.add("AD01");
+        subCheck1.add("interact@gmail.com");
+        subCheck1.add("+94712345672");
+        subCheck1.add("C:\\Users\\Tharusha\\Pictures\\abc.jpg");
+        mainList.add(subCheck1);
+        List<Object> club = new ArrayList<>();
+        club.add("C006");
+        club.add("Rotrack");
+        club.add("2023-11-25");
+        club.add("Dakuna perata");
+        club.add("Club description");
+        club.add("Mahinda raja");
+        club.add("AD01");
+        club.add("rotrack@gmail.com");
+        club.add("0771234567");
+        club.add("path");
+        mainList.add(club);
+        List<Object> club1 = new ArrayList<>();
+        club1.add("C007");
+        club1.add("Leo");
+        club1.add("2023-11-25");
+        club1.add("Dakuna perata");
+        club1.add("Club description");
+        club1.add("Sumahinda raja");
+        club1.add("AD02");
+        club1.add("leo@gmail.com");
+        club1.add("0771234567");
+        club1.add("path");
+        mainList.add(club1);
+        DatabaseConnect.getDetailsOfClubs();
+        System.out.println(clubs);
+        for (int i = 0; i<mainList.size();i++){
+            DatabaseConnect.insertDetailsOfClubs(String.valueOf(mainList.get(i).get(0)),String.valueOf(mainList.get(i).get(1)),String.valueOf(mainList.get(i).get(2)),String.valueOf(mainList.get(i).get(3)),String.valueOf(mainList.get(i).get(4)),String.valueOf(mainList.get(i).get(5)),String.valueOf(mainList.get(i).get(6)),String.valueOf(mainList.get(i).get(7)),String.valueOf(mainList.get(i).get(8)),String.valueOf(mainList.get(i).get(9)));
+        }
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
+        sampleAnchor.getChildren().setAll(pane);
+    }
+
+    public void onAvishkaButtonClick() throws IOException, SQLException {
+        DatabaseConnect.getDetailsOfClubs();
+        System.out.println(clubs);
+//        for (int i = 0; i<mainList.size();i++){
+//            DatabaseConnect.insertDetailsOfClubs(String.valueOf(mainList.get(i).get(0)),String.valueOf(mainList.get(i).get(1)),String.valueOf(mainList.get(i).get(2)),String.valueOf(mainList.get(i).get(3)),String.valueOf(mainList.get(i).get(4)),String.valueOf(mainList.get(i).get(5)),String.valueOf(mainList.get(i).get(6)),String.valueOf(mainList.get(i).get(7)),String.valueOf(mainList.get(i).get(8)),String.valueOf(mainList.get(i).get(9)));
+//        }
+        List<Object> student = new ArrayList<>();
+        student.add("S001");
+        student.add("Avishka");
+        student.add("Shenan");
+        student.add("2002-07-07");
+        student.add("0771234567");
+        student.add("avishkashenan@gmail.com");
+        student.add("avishka123");
+        studentDetails.add(student);
+
+
+        List<Object> advisor = new ArrayList<>();
+        advisor.add("AD01");
+        advisor.add("Avishka");
+        advisor.add("Shenan");
+        advisor.add("2002-07-07");
+        advisor.add("0771234567");
+        advisor.add("avishka@gmail.com");
+        advisor.add("avishka123");
+        advisorDetails.add(advisor);
+        System.out.println(studentDetails);
+        System.out.println(advisorDetails);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Welcome.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        stage.setTitle("Enter club name");
+        stage.setScene(scene);
+        stage.show();
+
+//        Stage previousStage = (Stage) sampleAnchor.getScene().getWindow();
+//        previousStage.close();
+    }
+
     public AnchorPane enterClubNameAnchor;
     public ListView<String> clubNamesView;
+
+
 
     public void onScheduleEventButtonClick() throws IOException {
         events1.clear();
@@ -629,6 +822,41 @@ public class HelloController{
         eventSchedulingAnchor.getChildren().setAll(pane);
     }
     public static List<List<Object>> eventSchedule = new ArrayList<>();
+    public void onShowEventScheduleForStudentButtonClick() throws IOException {
+        DatabaseConnect.getScheduleOfClubSesion();
+        for (int j=0; j<allEvents.size();j++){
+            int sYear = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(0, 4));
+            int sMonth = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(5, 7));
+            int sDay = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(8, 10));
+            LocalDate date = LocalDate.of(sYear, sMonth, sDay);
+            allEvents.get(j).set(5,date);
+        }
+        LocalDate currentDate = LocalDate.now();
+        for (int j=0;j<allEvents.size();j++){
+            if (currentDate.isAfter((LocalDate) allEvents.get(j).get(5))){
+                allEvents.remove(j);
+            }
+        }
+        //need to be changed
+        List<Object> studentClubs = new ArrayList<>();
+        studentClubs.add("C001");
+        studentClubs.add("C002");
+        eventSchedule.clear();
+        for (int i=0;i<studentClubs.size();i++){
+            for (int j=0;j<allEvents.size();j++){
+                if (allEvents.get(j).get(8).equals(studentClubs.get(i))){
+                    eventSchedule.add(allEvents.get(j));
+                }
+            }
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowEventScheduleForStudent.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+        stage.setTitle("Show event Schedule");
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
     public void onCloseButtonClick(ActionEvent actionEvent) { //attendance notification close button
@@ -1113,8 +1341,6 @@ public class HelloController{
     }
 
 
-    public void onShowClubClick() throws IOException{
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("showClubs.fxml"));
-        clubMenuPane.getChildren().setAll(pane);
+    public void StudentSignUpClickID(ActionEvent actionEvent) {
     }
 }
