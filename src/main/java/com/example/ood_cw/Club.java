@@ -1,5 +1,6 @@
 package com.example.ood_cw;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 
 import java.time.LocalDate;
 
@@ -12,6 +13,7 @@ public class Club {
     private String description;
     private String email;
     private String contactNo;
+    private String stringDate;
     private String icon;
     private String clubPresidentName;
     private String clubAdvisorId;
@@ -30,16 +32,17 @@ public class Club {
         this.icon = icon;
     }
 
-    public Club(String id,String name, LocalDate foundingDate, String mission, String description, String presidentName, String clubAdvisorId,String email, String contactNo){
+    public Club(String id,String name, String stringDate, String mission, String description, String presidentName, String clubAdvisorId,String email, String contactNo, String icon){
         this.id = id;
         this.name = name;
-        this.foundingDate = foundingDate;
+        this.stringDate = stringDate;
         this.mission = mission;
         this.description = description;
         this.clubPresidentName = presidentName;
         this.clubAdvisorId = clubAdvisorId;
         this.email = email;
         this.contactNo = contactNo;
+        this.icon = icon;
     }
 
     //getters and setters
