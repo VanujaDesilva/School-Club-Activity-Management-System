@@ -50,11 +50,6 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="10.0" text="Club Advisor : ">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
             <Label layoutX="10.0" layoutY="27.0" text="Email : ">
                <font>
                   <Font size="15.0" />
@@ -70,7 +65,6 @@
       <VBox layoutX="601.0" layoutY="150.0" prefHeight="214.0" prefWidth="251.0" spacing="30.0">
          <children>
             <TextField fx:id="updateClubPresident" />
-            <TextField fx:id="updateClubAdvisor" />
             <TextField fx:id="updateClubEmail" />
             <TextField fx:id="updateClubContactNo" />
          </children>
@@ -110,13 +104,12 @@
       <Label fx:id="showTick" layoutX="730.0" layoutY="102.0" />
       <Label fx:id="uDateTick" layoutX="418.0" layoutY="156.0" />
       <Label fx:id="uPresidentTick" layoutX="868.0" layoutY="152.0" />
-      <Label fx:id="uAdvisorTick" layoutX="867.0" layoutY="208.0" prefHeight="17.0" prefWidth="0.0" />
-      <Label fx:id="uEmailTick" layoutX="867.0" layoutY="266.0" />
       <Button fx:id="backClubManage" layoutX="14.0" layoutY="545.0" mnemonicParsing="false" onAction="#onBackClubManageClick" text="Back">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="uContactTick" layoutX="870.0" layoutY="320.0" />
+      <Label fx:id="uEmailTick" layoutX="867.0" layoutY="210.0" />
+      <Label fx:id="uContactTick" layoutX="869.0" layoutY="264.0" />
    </children>
 </AnchorPane>
