@@ -5,8 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.ood_cw.HelloController.attendance;
-import static com.example.ood_cw.HelloController.clubs;
+import static com.example.ood_cw.HelloController.*;
 
 
 public class DatabaseConnect {
@@ -178,6 +177,133 @@ public class DatabaseConnect {
                 attend.setString(1, studentId);
                 attend.setString(2, sessionId);
                 attend.setString(3, studentStatus);
+                attend.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void clearTableOfStudent(){
+        try (Connection connection = getConnection()) {
+            String deleteQuery = "DELETE FROM student";
+            try (PreparedStatement deleteStmt = connection.prepareStatement(deleteQuery)) {
+                int rowsDeleted = deleteStmt.executeUpdate();
+                System.out.println("Deleted " + rowsDeleted + " rows from the event_schedule table.");
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void getStudentDetails(){
+        try (Connection connection = getConnection()) {
+            String selectQuery = "SELECT * FROM student";
+            try (PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
+                 ResultSet resultSet = selectStmt.executeQuery()) {
+                // Clear existing data in the events list
+                studentDetails.clear();
+                // Iterate through the result set and populate the events list
+                while (resultSet.next()) {
+                    List<Object> event = new ArrayList<>();
+                    event.add(resultSet.getString("studentID"));
+                    event.add(resultSet.getString("firstName"));
+                    event.add(resultSet.getString("lastName"));
+                    event.add(resultSet.getString("DOB"));
+                    event.add(resultSet.getString("telNo"));
+                    event.add(resultSet.getString("email"));
+                    event.add(resultSet.getString("password"));
+                    studentDetails.add(event);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void insertStudentDetails(String studentID, String firstName, String lastName, String DOB, String telNo,String email,String password) throws SQLException {
+        try (Connection connection = getConnection()) {
+            String query = "INSERT INTO student (studentID ,firstName,lastName, DOB,telNo,email,password) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement attend = connection.prepareStatement(query)) {
+                attend.setString(1, studentID);
+                attend.setString(2, firstName);
+                attend.setString(3, lastName);
+                attend.setString(4, DOB);
+                attend.setString(5, telNo);
+                attend.setString(6, email);
+                attend.setString(7, password);
+                attend.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void getAdvisorDetails(){
+        try (Connection connection = getConnection()) {
+            String selectQuery = "SELECT * FROM clubadvisor";
+            try (PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
+                 ResultSet resultSet = selectStmt.executeQuery()) {
+                // Clear existing data in the events list
+                advisorDetails.clear();
+                // Iterate through the result set and populate the events list
+                while (resultSet.next()) {
+                    List<Object> event = new ArrayList<>();
+                    event.add(resultSet.getString("advisorId"));
+                    event.add(resultSet.getString("firstName"));
+                    event.add(resultSet.getString("lastName"));
+                    event.add(resultSet.getString("DOB"));
+                    event.add(resultSet.getString("telNo"));
+                    event.add(resultSet.getString("email"));
+                    event.add(resultSet.getString("password"));
+                    advisorDetails.add(event);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertAdvisorDetails(String advisorId , String firstName, String lastName, String DOB, String telNo,String email,String password) throws SQLException {
+        try (Connection connection = getConnection()) {
+            String query = "INSERT INTO clubadvisor (advisorId  ,firstName,lastName, DOB,telNo,email,password) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement attend = connection.prepareStatement(query)) {
+                attend.setString(1, advisorId );
+                attend.setString(2, firstName);
+                attend.setString(3, lastName);
+                attend.setString(4, DOB);
+                attend.setString(5, telNo);
+                attend.setString(6, email);
+                attend.setString(7, password);
+                attend.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void getRegistrationDetails(){
+        try (Connection connection = getConnection()) {
+            String selectQuery = "SELECT * FROM registration";
+            try (PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
+                 ResultSet resultSet = selectStmt.executeQuery()) {
+                // Clear existing data in the events list
+                registration.clear();
+                // Iterate through the result set and populate the events list
+                while (resultSet.next()) {
+                    List<Object> event = new ArrayList<>();
+                    event.add(resultSet.getString("studentId"));
+                    event.add(resultSet.getString("clubId"));
+                    event.add(resultSet.getString("joinDate"));
+                    registration.add(event);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void insertRegistrationDetails(String studentId, String clubId, String joinDate) throws SQLException {
+        try (Connection connection = getConnection()) {
+            String query = "INSERT INTO attendance (studentId,clubId,joinDate) VALUES (?, ?, ?)";
+            try (PreparedStatement attend = connection.prepareStatement(query)) {
+                attend.setString(1, studentId);
+                attend.setString(2, clubId);
+                attend.setString(3, joinDate);
                 attend.executeUpdate();
             }
         } catch (Exception e) {

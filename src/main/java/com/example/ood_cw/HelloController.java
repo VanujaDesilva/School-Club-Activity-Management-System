@@ -62,6 +62,7 @@ public class HelloController{
     public static List<Object> studentID = new ArrayList<>();
     public static List<List<Object>> clubs = new ArrayList<>();
     public static List<List<Object>> attendance = new ArrayList<>();
+    public static List<List<Object>> registration = new ArrayList<>();
 
     public void onYeranButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
@@ -217,31 +218,22 @@ public class HelloController{
     public void onAvishkaButtonClick() throws IOException, SQLException {
         DatabaseConnect.getDetailsOfClubs();
         System.out.println(clubs);
+        DatabaseConnect.getScheduleOfClubSesion();
+        System.out.println(allEvents);
+        DatabaseConnect.getAttendance();
+        System.out.println(attendance);
+        DatabaseConnect.getScheduleOfClubSesion();
+        System.out.println(allEvents);
+        DatabaseConnect.getStudentDetails();
+        System.out.println(studentDetails);
+        DatabaseConnect.getAdvisorDetails();
+        System.out.println(advisorDetails);
+        DatabaseConnect.getRegistrationDetails();
+        System.out.println(registration);
 //        for (int i = 0; i<mainList.size();i++){
 //            DatabaseConnect.insertDetailsOfClubs(String.valueOf(mainList.get(i).get(0)),String.valueOf(mainList.get(i).get(1)),String.valueOf(mainList.get(i).get(2)),String.valueOf(mainList.get(i).get(3)),String.valueOf(mainList.get(i).get(4)),String.valueOf(mainList.get(i).get(5)),String.valueOf(mainList.get(i).get(6)),String.valueOf(mainList.get(i).get(7)),String.valueOf(mainList.get(i).get(8)),String.valueOf(mainList.get(i).get(9)));
 //        }
-        List<Object> student = new ArrayList<>();
-        student.add("S001");
-        student.add("Avishka");
-        student.add("Shenan");
-        student.add("2002-07-07");
-        student.add("0771234567");
-        student.add("avishkashenan@gmail.com");
-        student.add("avishka123");
-        studentDetails.add(student);
-
-
-        List<Object> advisor = new ArrayList<>();
-        advisor.add("AD01");
-        advisor.add("Avishka");
-        advisor.add("Shenan");
-        advisor.add("2002-07-07");
-        advisor.add("0771234567");
-        advisor.add("avishka@gmail.com");
-        advisor.add("avishka123");
-        advisorDetails.add(advisor);
-        System.out.println(studentDetails);
-        System.out.println(advisorDetails);
+        
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Welcome.fxml"));
         Stage stage = new Stage();
