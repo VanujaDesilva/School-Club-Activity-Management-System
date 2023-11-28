@@ -13,7 +13,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import static com.example.ood_cw.HelloController.*;
 
 public class StudentMenu  {
     @FXML
@@ -56,14 +61,47 @@ public class StudentMenu  {
     }
 
     public void StudentMenuViewEventButtonClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowEventScheduleForStudent.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
+            DatabaseConnect.getScheduleOfClubSesion();
+            for (int j=0; j<allEvents.size();j++){
+                int sYear = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(0, 4));
+                int sMonth = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(5, 7));
+                int sDay = Integer.parseInt(String.valueOf(allEvents.get(j).get(5)).substring(8, 10));
+                LocalDate date = LocalDate.of(sYear, sMonth, sDay);
+                allEvents.get(j).set(5,date);
+            }
+            LocalDate currentDate = LocalDate.now();
+            List<List<Object>> dateValidEvents = new ArrayList<>();
+            for (int j=0;j<allEvents.size();j++){
+                if (currentDate.isAfter((LocalDate) allEvents.get(j).get(5))){
+                    dateValidEvents.add(allEvents.get(j));
+                }
+            }
+            //need to be changed
+            List<Object> studentClubs = new ArrayList<>();
+            studentClubs.add("C001");
+            studentClubs.add("C002");
+            DatabaseConnect.getRegistrationDetails();
+            for (List<Object> i : registration){
+                if (String.valueOf(i.get(0)).equals(String.valueOf(studentID.get(0)))){
+                    studentClubs.add(i.get(2));
+                }
+            }
+            eventSchedule.clear();
+            for (int i=0;i<studentClubs.size();i++){
+                for (int j=0;j<dateValidEvents.size();j++){
+                    if (dateValidEvents.get(j).get(8).equals(studentClubs.get(i))){
+                        eventSchedule.add(dateValidEvents.get(j));
+                    }
+                }
+            }
 
-
-        Stage primaryStage = (Stage) StudentMenuJoinClubButtonID.getScene().getWindow();
-        primaryStage.setScene(scene);
-        primaryStage.show();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowEventScheduleForStudent.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load(), 900,  600);
+            stage.setTitle("Show event Schedule");
+            stage.setScene(scene);
+            stage.show();
+        
     }
 
 
