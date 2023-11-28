@@ -38,7 +38,7 @@ public class StudentMenu  {
 
 
     public void StudentMenuViewClubButtonClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("showClub.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("showClubs.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 

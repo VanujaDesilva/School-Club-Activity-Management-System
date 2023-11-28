@@ -63,7 +63,7 @@ public class Attendance implements Initializable {
             }
         }
         System.out.println(liveClubId);
-        for (List<Object> reg : registration){
+        for (List<Object> reg : attendance){
             if (reg.get(1).equals(liveClubId)){
                 studentIds.add(String.valueOf(reg.get(0)));
             }

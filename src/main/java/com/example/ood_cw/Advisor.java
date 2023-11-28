@@ -13,6 +13,9 @@ public class Advisor {
 
     }
 
+    public static void setStyle(String s) {
+    }
+
     public void setAdId(String adId) {
         AdId = adId;
     }
