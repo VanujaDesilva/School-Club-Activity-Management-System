@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,10 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateClub {
+
+    //importing lists from controller
     @FXML
     public static List<List<Object>> mainList = HelloController.mainList;
     @FXML
     public static List<String> advisorList = HelloController.advisorID;
+
+    //variable declarations
     @FXML
     public TextField clubName;
     @FXML
@@ -86,7 +89,7 @@ public class CreateClub {
                 //checking if the same club name exists
                 for (List<Object> a : mainList) {
                     if (a.get(1).equals(createClubInstance.getName())) {
-                        promptLabelCreate.setText("Club already exists!");
+                        promptLabelCreate.setText("Club already exists!"); //displaying prompt text
                         promptLabelCreate.setStyle("-fx-text-fill: red;");
                         clubName.setStyle("-fx-border-color: red;");
                         nameTick.setText("\u2717");
@@ -95,8 +98,8 @@ public class CreateClub {
                 }
                 clubName.setStyle("-fx-border-color: green;");
                 nameTick.setText("\u2713");
-            } else {
-                promptLabelCreate.setText("Please fill out all required inputs!");
+            } else {  //validation when club name is empty
+                promptLabelCreate.setText("Please fill out all required inputs!");//displaying prompt text
                 promptLabelCreate.setStyle("-fx-text-fill: red;");
                 clubName.setStyle("-fx-border-color: red;");
                 nameTick.setText("\u2605");
@@ -114,14 +117,14 @@ public class CreateClub {
                     clubDate.setStyle("-fx-border-color: green;");
                     dateTick.setText("\u2713"); //tick
                 } else {
-                    promptLabelCreate.setText("Founding Date cannot be in the future!");
+                    promptLabelCreate.setText("Founding Date cannot be in the future!"); //displaying prompt text
                     promptLabelCreate.setStyle("-fx-text-fill: red;");
                     clubDate.setStyle("-fx-border-color: red;");
                     dateTick.setText("\u2717"); //cross
                     errorCheck++;
                 }
-            } else {
-                promptLabelCreate.setText("Please fill out all required inputs!");
+            } else { //validation when date is empty
+                promptLabelCreate.setText("Please fill out all required inputs!"); //displaying prompt text
                 promptLabelCreate.setStyle("-fx-text-fill: red;");
                 clubDate.setStyle("-fx-border-color: red;");
                 dateTick.setText("\u2605");  //star
@@ -142,7 +145,7 @@ public class CreateClub {
                 //checking if the same club president exists
                 for (List<Object> b : mainList) {
                     if (b.get(5).equals(createClubInstance.getClubPresidentName())) {
-                        promptLabelCreate.setText("Club President already exists!");
+                        promptLabelCreate.setText("Club President already exists!"); //displaying prompt text
                         promptLabelCreate.setStyle("-fx-text-fill: red;");
                         clubPresident.setStyle("-fx-border-color: red;");
                         presidentTick.setText("\u2717");
@@ -151,8 +154,8 @@ public class CreateClub {
                 }
                 clubPresident.setStyle("-fx-border-color: green;");
                 presidentTick.setText("\u2713");
-            } else {
-                promptLabelCreate.setText("Please fill out all required inputs!");
+            } else {  //validation when president name is empty
+                promptLabelCreate.setText("Please fill out all required inputs!"); //displaying prompt text
                 promptLabelCreate.setStyle("-fx-text-fill: red;");
                 clubPresident.setStyle("-fx-border-color: red;");
                 presidentTick.setText("\u2605");
@@ -168,14 +171,14 @@ public class CreateClub {
                     clubEmail.setStyle("-fx-border-color: green;");
                     emailTick.setText("\u2713");
                 } else {
-                    promptLabelCreate.setText("Please enter valid email!");
+                    promptLabelCreate.setText("Please enter valid email!"); //displaying prompt text
                     promptLabelCreate.setStyle("-fx-text-fill: red;");
                     clubEmail.setStyle("-fx-border-color: red;");
                     emailTick.setText("\u2717");
                     errorCheck++;
                 }
-            } else {
-                promptLabelCreate.setText("Please fill out all required inputs!");
+            } else {  //validation when email is empty
+                promptLabelCreate.setText("Please fill out all required inputs!"); //displaying prompt text
                 promptLabelCreate.setStyle("-fx-text-fill: red;");
                 clubEmail.setStyle("-fx-border-color: red;");
                 emailTick.setText("\u2605");
@@ -190,14 +193,14 @@ public class CreateClub {
                     clubContactNo.setStyle("-fx-border-color: green;");
                     contactTick.setText("\u2713");
                 } else {
-                    promptLabelCreate.setText("Please enter valid contact number!");
+                    promptLabelCreate.setText("Please enter valid contact number!"); //displaying prompt text
                     promptLabelCreate.setStyle("-fx-text-fill: red;");
                     clubContactNo.setStyle("-fx-border-color: red;");
                     contactTick.setText("\u2717");
                     errorCheck++;
                 }
-            } else {
-                promptLabelCreate.setText("Please fill out all required inputs!");
+            } else {  //validation when contact number is empty
+                promptLabelCreate.setText("Please fill out all required inputs!"); //displaying prompt text
                 promptLabelCreate.setStyle("-fx-text-fill: red;");
                 clubContactNo.setStyle("-fx-border-color: red;");
                 contactTick.setText("\u2605");
@@ -216,7 +219,7 @@ public class CreateClub {
             }
             //checking empty inputs
             if (createClubInstance.getName().isEmpty() && createClubInstance.getFoundingDate()==null && createClubInstance.getClubPresidentName().isEmpty() && createClubInstance.getEmail().isEmpty() && clubContactNo.getText().isEmpty() && createFile==null){
-                promptLabelCreate.setText("Please fill out all required inputs!");
+                promptLabelCreate.setText("Please fill out all required inputs!"); //displaying prompt text
             }
 
             if (emptyCheck != 0) { //checking for any empty inputs
@@ -226,7 +229,7 @@ public class CreateClub {
                 break;
             }
 
-            //adding ClubID
+            //generating clubID
             int max =0;
             for (int i = 0 ; i < mainList.size() ; i++){
                 String c = (String) mainList.get(i).get(0);
@@ -239,7 +242,7 @@ public class CreateClub {
             String clubID = String.format("%03d",max);
             clubID="C"+clubID;
 
-            //adding advisorID
+            //importing advisorID
             String advisorID = advisorList.get(0);
 
 
@@ -262,7 +265,8 @@ public class CreateClub {
             HelloController.clubs.add(subList);
 
             System.out.println(mainList);
-            promptLabelCreate.setText("Club Successfully Created!");
+            System.out.println(HelloController.clubs);
+            promptLabelCreate.setText("Club Successfully Created!"); //displaying prompt text
             DatabaseConnect.insertDetailsOfClubs(String.valueOf(clubID),String.valueOf(createClubInstance.getName()), String.valueOf(createClubInstance.getFoundingDate()), String.valueOf(createClubInstance.getMission()), String.valueOf(createClubInstance.getDescription()), String.valueOf(createClubInstance.getClubPresidentName()), String.valueOf(advisorID), String.valueOf(createClubInstance.getEmail()), String.valueOf(createClubInstance.getContactNo()), String.valueOf(createClubInstance.getIcon()));
             promptLabelCreate.setStyle("-fx-text-fill: green;");
             break;

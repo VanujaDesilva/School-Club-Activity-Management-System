@@ -85,9 +85,12 @@ public class ShowClubs implements Initializable {
             }
             return new ReadOnlyObjectWrapper<>(image);
         });
+
         ObservableList<Club> clubs = FXCollections.observableArrayList();
+        //importing clubs list from the controller
         List<List<Object>> clubView = HelloController.clubs;
         for (List<Object> i : clubView){
+            //creating sub list
             Club viewClubs = new Club(
                     (String)i.get(0),
                     (String)i.get(1),
@@ -100,11 +103,13 @@ public class ShowClubs implements Initializable {
                     (String)i.get(8),
                     (String)i.get(9)
             );
+            //adding sublist to the main list
             clubs.add(viewClubs);
         }
+        //displaying values in the table
         showClubTable.setItems(clubs);
     }
-    
+
     //back button functionality
     public void onBackShowClubClick() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
