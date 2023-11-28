@@ -45,16 +45,48 @@ public class Attendance implements Initializable {
     public Button atendanceBackButton;
     public AnchorPane attendancePane;
     public Label clubNameShow;
+    public Button backButton;
     @FXML
     private TableView<Student> attendanceTable;
     @FXML
     private Button saveButton;
     private final List<Object> eventNames = new ArrayList<>();
     private List<String> studentIds = new ArrayList<>();
-
     private String liveClubId;
     private String liveClubName;
     private ObservableList<Student> data;
+
+    private String sessionId,studentId,studentStatus;
+
+    public Attendance(String sessionId, String studentId, String studentStatus) {
+        this.sessionId = sessionId;
+        this.studentId = studentId;
+        this.studentStatus = studentStatus;
+    }
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getStudentStatus() {
+        return studentStatus;
+    }
+
+    public void setStudentStatus(String studentStatus) {
+        this.studentStatus = studentStatus;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         data = FXCollections.observableArrayList();
@@ -167,7 +199,7 @@ public class Attendance implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AdvisorMenu.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Enter club name");
+        stage.setTitle("Main menu");
         stage.setScene(scene);
         stage.show();
         Stage preStage = (Stage) attendancePane.getScene().getWindow();

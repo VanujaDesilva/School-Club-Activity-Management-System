@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="attendanceStudent" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.AttendanceStatus">
+   <children>
+      <Label alignment="CENTER" layoutX="255.0" layoutY="14.0" prefHeight="47.0" prefWidth="390.0" text="Check Attendance Status">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="138.0" layoutY="141.0" text="Select Club: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="studentClubSelector" layoutX="220.0" layoutY="138.0" prefWidth="150.0" />
+      <Label layoutX="481.0" layoutY="141.0" text="Select Event:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="studentEventSelector" layoutX="568.0" layoutY="138.0" prefWidth="150.0" />
+      <Label layoutX="255.0" layoutY="362.0" text="Your Attendance Status is:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="attendanceStatusCheck" layoutX="436.0" layoutY="362.0" prefHeight="18.0" prefWidth="76.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="checkButton" layoutX="765.0" layoutY="138.0" mnemonicParsing="false" onAction="#onCheckButtonClick" text="Check">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="324.0" layoutY="209.0" text="Held Location: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="344.0" layoutY="247.0" text="Held Date:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="301.0" layoutY="290.0" text="Event Description: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="heldLocation" layoutX="429.0" layoutY="210.0" prefHeight="18.0" prefWidth="150.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="heldDate" layoutX="429.0" layoutY="248.0" prefHeight="18.0" prefWidth="150.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="description" layoutX="429.0" layoutY="291.0" prefHeight="18.0" prefWidth="150.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="backButton" layoutX="403.0" layoutY="513.0" mnemonicParsing="false" onAction="#onAttendanceBackButtonClick" prefHeight="30.0" prefWidth="65.0" text="Back">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
