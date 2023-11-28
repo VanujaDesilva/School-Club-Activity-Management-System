@@ -317,7 +317,7 @@ public class ManageClub {
             subList.add(image);
 
             mainList.add(subList); //adding the sublist to the main list
-            HelloController.clubs.add(mainList);
+            HelloController.clubs.add(subList);
 
             System.out.println(mainList);
             showPromptUpdate.setText("Club Successfully Created!"); //displaying prompt text
