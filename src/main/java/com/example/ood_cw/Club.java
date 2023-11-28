@@ -13,7 +13,6 @@ public class Club {
     private String description;
     private String email;
     private String contactNo;
-    private String stringDate;
     private String icon;
     private String clubPresidentName;
     private String clubAdvisorId;
@@ -32,10 +31,10 @@ public class Club {
         this.icon = icon;
     }
 
-    public Club(String id,String name, String stringDate, String mission, String description, String presidentName, String clubAdvisorId,String email, String contactNo, String icon){
+    public Club(String id,String name, LocalDate foundingDate, String mission, String description, String presidentName, String clubAdvisorId,String email, String contactNo, String icon){
         this.id = id;
         this.name = name;
-        this.stringDate = stringDate;
+        this.foundingDate = foundingDate;
         this.mission = mission;
         this.description = description;
         this.clubPresidentName = presidentName;
@@ -119,9 +118,13 @@ public class Club {
         this.clubPresidentName = clubPresidentName;
     }
 
+    public String getAdvisorId() {
+        return clubAdvisorId;
+    }
 
-
-
+    public void setAdvisorId(String advisorId) {
+        this.clubAdvisorId = clubAdvisorId;
+    }
 
     public static boolean isValidContactNo(String contactNumber) {
         return contactNumber.matches("\\d{9}");
