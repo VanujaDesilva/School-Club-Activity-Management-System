@@ -34,7 +34,7 @@ public class HelloController{
     public static List<List<Object>> activity = new ArrayList<>();
     public static List<String> advisorID = EnterClubName.advisorID;
     public static List<String> clubID = EnterClubName.clubID;
-    public static List<List<Object>> mainList;
+    public static List<List<Object>> mainList = new ArrayList<>();
     public AnchorPane eventSchedulingAnchor;
     public Label eventAddSuccessfull;
     public Label meetingAddSuccessfull;
@@ -43,6 +43,11 @@ public class HelloController{
     public Label clubNameError;
     public Button closeButton;
     public AnchorPane notificationPane;
+    public AnchorPane clubMenuPane;
+    public Button createClubs;
+    public Button showClubs;
+    public Button manageClubs;
+    public Button backClubMenu;
     @FXML
     private AnchorPane sampleAnchor;
     public TextField eventNameText;
@@ -63,6 +68,7 @@ public class HelloController{
     public static List<List<Object>> studentDetails = new ArrayList<>();
     public static List<List<Object>> advisorDetails = new ArrayList<>();
     public static List<Object> studentID = new ArrayList<>();
+    public static List<List<Object>> clubs = new ArrayList<>();
 
     public void onYeranButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
@@ -169,15 +175,46 @@ public class HelloController{
     }
 
     public void onTharushaButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CreateClub.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 900,  600);
-        stage.setTitle("Enter club name");
-        stage.setScene(scene);
-        stage.show();
-
-        Stage previousStage = (Stage) sampleAnchor.getScene().getWindow();
-        previousStage.close();
+        mainList.clear();
+        List<Object> subCheck1 = new ArrayList<>();
+        subCheck1.add("C003");
+        subCheck1.add("Interact Club");
+        subCheck1.add("2023-11-25");
+        subCheck1.add("Light from heaven");
+        subCheck1.add("Social Service");
+        subCheck1.add("Tharusha Fernando");
+        subCheck1.add("AD01");
+        subCheck1.add("interact@gmail.com");
+        subCheck1.add("+94712345672");
+        subCheck1.add("C:\\Users\\Tharusha\\Pictures\\abc.jpg");
+        mainList.add(subCheck1);
+        List<Object> club = new ArrayList<>();
+        club.add("C001");
+        club.add("Rotrack");
+        club.add("2023-11-25");
+        club.add("Dakuna perata");
+        club.add("Club description");
+        club.add("Mahinda raja");
+        club.add("AD01");
+        club.add("rotrack@gmail.com");
+        club.add("0771234567");
+        club.add("path");
+        mainList.add(club);
+        List<Object> club1 = new ArrayList<>();
+        club1.add("C002");
+        club1.add("Leo");
+        club1.add("2023-11-25");
+        club1.add("Dakuna perata");
+        club1.add("Club description");
+        club1.add("Sumahinda raja");
+        club1.add("AD02");
+        club1.add("leo@gmail.com");
+        club1.add("0771234567");
+        club1.add("path");
+        mainList.add(club1);
+        System.out.println(mainList);
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
+        sampleAnchor.getChildren().setAll(pane);
     }
 
     public void onAvishkaButtonClick() throws IOException {
@@ -965,6 +1002,8 @@ public class HelloController{
         String id = String.format("%03d",max);
         id = "S"+id;
         System.out.println(id);
+        studentID.clear();
+        studentID.add(id);
         List<Object> student = new ArrayList<>();
         student.add(id);
         student.add(obj.getFirstName());
@@ -1087,7 +1126,21 @@ public class HelloController{
         if (count>0){
             return;
         }
+        int max =0;
+        for (int i = 0 ; i < advisorDetails.size() ; i++){
+            String e = (String) advisorDetails.get(i).get(0);
+            int curValue = Integer.parseInt(e.substring(2,4));
+            if (max < curValue){
+                max = curValue;
+            }
+        }
+        max = max + 1;
+        String id = String.format("%02d",max);
+        id = "AD"+id;
+        advisorID.clear();
+        advisorID.add(id);
         List<Object> advisor = new ArrayList<>();
+        advisor.add(id);
         advisor.add(obj.getFirstName());
         advisor.add(obj.getLastName());
         advisor.add(obj.getDob());
@@ -1096,7 +1149,6 @@ public class HelloController{
         advisor.add(password);
         advisorDetails.add(advisor);
         System.out.println("Advisor details successfully added to the list and should be added to the database");
-
     }
 
     public void AdvisorSignUpBackClick(ActionEvent actionEvent) throws IOException {
@@ -1126,7 +1178,8 @@ public class HelloController{
     @FXML
     private TextField StudentLoginUserNameID;
 
-    public void StudentLoginButtonClick(ActionEvent actionEvent) {
+    public void StudentLoginButtonClick(ActionEvent actionEvent) throws IOException {
+
         Student obj = new Student();
         obj.setEmail(StudentLoginUserNameID.getText());
         String password = StudentLoginPasswordID.getText();
@@ -1148,6 +1201,14 @@ public class HelloController{
                 studentID.clear();
                 studentID.add(String.valueOf(studentDetails.get(i).get(0)));
                 System.out.println("Load the menu for students");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentMenu.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+
+                Stage primaryStage = (Stage) StudentLoginButtonID.getScene().getWindow();
+                primaryStage.setScene(scene);
+                primaryStage.show();
+
                 return;
             }
         }
@@ -1196,7 +1257,7 @@ public class HelloController{
 
     @FXML
     private Button AdvisorLoginPageSignUpId;
-    public void AdvisorLoginButtonClick(ActionEvent actionEvent) {
+    public void AdvisorLoginButtonClick(ActionEvent actionEvent) throws IOException {
         Advisor obj = new Advisor();
         obj.setEmail(AdvisorLoginUserNameID.getText());
         String password = AdvisorLoginPasswordID.getText();
@@ -1218,6 +1279,15 @@ public class HelloController{
                 advisorID.clear();
                 advisorID.add(String.valueOf(advisorDetails.get(i).get(0)));
                 System.out.println("Load the menu for advisor");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorMenu.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+
+
+                Stage primaryStage = (Stage) AdvisorLoginButtonID.getScene().getWindow();
+                primaryStage.setScene(scene);
+                primaryStage.show();
+
                 return;
             }
         }
@@ -1247,4 +1317,21 @@ public class HelloController{
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+    public void onCreateClubClick() throws IOException{
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("CreateClub.fxml"));
+        clubMenuPane.getChildren().setAll(pane);
+    }
+
+    public void onManageClubClick() throws IOException{
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("ManageClub.fxml"));
+        clubMenuPane.getChildren().setAll(pane);
+    }
+
+    public void onBackClubMenuClick() throws IOException{
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("AdvisorMenu.fxml"));
+        clubMenuPane.getChildren().setAll(pane);
+    }
+
+
 }
