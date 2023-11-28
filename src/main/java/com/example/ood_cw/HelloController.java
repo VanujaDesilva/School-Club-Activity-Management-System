@@ -35,7 +35,6 @@ public class HelloController{
     public static List<String> advisorID = EnterClubName.advisorID;
     public static List<String> clubID = EnterClubName.clubID;
     public static List<List<Object>> mainList = new ArrayList<>();
-
     public AnchorPane eventSchedulingAnchor;
     public Label eventAddSuccessfull;
     public Label meetingAddSuccessfull;
@@ -69,6 +68,7 @@ public class HelloController{
     public static List<List<Object>> studentDetails = new ArrayList<>();
     public static List<List<Object>> advisorDetails = new ArrayList<>();
     public static List<Object> studentID = new ArrayList<>();
+    public static List<List<Object>> clubs = new ArrayList<>();
 
     public void onYeranButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("EnterClubName.fxml"));
@@ -190,33 +190,7 @@ public class HelloController{
 //        mainList.add(subCheck1);
 //        System.out.println(mainList);
 
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("clubMenu.fxml"));
-        sampleAnchor.getChildren().setAll(pane);
-    }
 
-    public void onAvishkaButtonClick() throws IOException {
-        List<Object> student = new ArrayList<>();
-        student.add("S001");
-        student.add("Avishka");
-        student.add("Shenan");
-        student.add("2002-07-07");
-        student.add("0771234567");
-        student.add("avishkashenan@gmail.com");
-        student.add("avishka123");
-        studentDetails.add(student);
-
-
-        List<Object> advisor = new ArrayList<>();
-        advisor.add("AD01");
-        advisor.add("Avishka");
-        advisor.add("Shenan");
-        advisor.add("2002-07-07");
-        advisor.add("0771234567");
-        advisor.add("avishka@gmail.com");
-        advisor.add("avishka123");
-        advisorDetails.add(advisor);
-        System.out.println(studentDetails);
-        System.out.println(advisorDetails);
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Welcome.fxml"));
         Stage stage = new Stage();
