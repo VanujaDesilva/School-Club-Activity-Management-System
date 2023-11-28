@@ -8,9 +8,9 @@
 
 <AnchorPane fx:id="StudentLoginAnchor" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
    <children>
-      <Text layoutX="94.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name:" wrappingWidth="81.33673095703125" />
+      <Text layoutX="94.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="81.33673095703125" />
       <Text layoutX="94.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" wrappingWidth="81.33673095703125" />
-      <TextField fx:id="StudentLoginUserNameID" layoutX="183.0" layoutY="83.0" promptText="Enter Name" />
+      <TextField fx:id="StudentLoginEmailID" layoutX="183.0" layoutY="83.0" promptText="Enter Name" />
       <Button fx:id="StudentLoginButtonID" layoutX="140.0" layoutY="187.0" mnemonicParsing="false" onAction="#StudentLoginButtonClick" prefHeight="26.0" prefWidth="88.0" text="Log In" />
       <Text layoutX="94.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account" wrappingWidth="149.5999999999999" />
       <Button fx:id="StudentLoginPageSignUpId" layoutX="244.0" layoutY="265.0" mnemonicParsing="false" onAction="#StudentLoginPageSignUpButtonClick" prefHeight="26.0" prefWidth="68.0" text="Sign Up" />
