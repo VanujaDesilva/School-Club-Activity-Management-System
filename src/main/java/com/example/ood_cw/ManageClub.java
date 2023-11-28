@@ -45,6 +45,9 @@ public class ManageClub {
     public Button backClubManage;
     public AnchorPane clubManagePane;
 
+    String preImage;
+    String image;
+
     Club updateClubInstance = new Club();
 
     public void onShowClubButtonClick() throws IOException {
@@ -53,7 +56,7 @@ public class ManageClub {
         //checking if the club name is empty
         try {
             //checking if the same club name exists
-            for (List<Object> d : mainList) {
+            for ( List<Object> d : mainList) {
                 if (d.get(1).equals(updateClubInstance.getName())) {
                     listIndex =mainList.indexOf(d);
                     showPromptUpdate.setText("Club found!");
@@ -71,11 +74,16 @@ public class ManageClub {
                     updateClubPresident.setText(String.valueOf(d.get(5)));
                     //updateClubAdvisor.setText(String.valueOf(d.get(6)));
                     updateClubEmail.setText(String.valueOf(d.get(7)));
-                    updateClubContactNo.setText(String.valueOf(d.get(8)));
+                    String contactShort = d.get(8).toString();
+                    String contactNum = contactShort.substring(3,12);
+                    updateClubContactNo.setText(contactNum);
 
                     File Updatefile = new File(String.valueOf(d.get(9)));
                     Image updateImage = new Image(Updatefile.toURI().toString());
                     updateClubIcon.setImage(updateImage);
+
+                    preImage = d.get(9).toString();
+
 
                 } else {
                     showName.setStyle("-fx-border-color: red;");
@@ -93,7 +101,7 @@ public class ManageClub {
 
     public void onUpdateButtonClick() throws IOException{
         updateClubInstance.setIcon(mainList.get(listIndex).get(9).toString());
-        mainList.remove(listIndex); //removing the old item data from the list
+        //mainList.remove(listIndex); //removing the old item data from the list
 
         outer:
         while (true) {
@@ -261,21 +269,21 @@ public class ManageClub {
                 emptyCheck++;
             }
 
+            try {
+                image = updateFile.getAbsolutePath();
+            }
+            catch (NullPointerException e){
+                image = preImage;
+            }
             //checking if image input is empty
-            if (updateFile == null) {
+            if (image == null) {
                 showPromptUpdate.setText("Please add an icon!");
                 showPromptUpdate.setStyle("-fx-text-fill: red;");
                 updatePane.setStyle("-fx-border-color: red; -fx-border-width: 3;");
-//            Stage emptyImageInput = new Stage(); //loading the error window
-//            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("errorImage.fxml"));
-//            Scene scene = new Scene(fxmlLoader.load(), 400, 200);
-//            emptyImageInput.setTitle("ERROR!");
-//            emptyImageInput.setScene(scene);
-//            emptyImageInput.show();
                 errorCheck++;
             } else {
                 updatePane.setStyle("-fx-border-color: green; -fx-border-width: 3;");
-                updateClubInstance.setIcon(updateFile.getAbsolutePath());
+                updateClubInstance.setIcon(image);
             }
 
             if (emptyCheck != 0) { //checking for any empty inputs
@@ -311,7 +319,7 @@ public class ManageClub {
             //subList.add(updateClubInstance.getClubAdvisorName());
             subList.add(updateClubInstance.getEmail());
             subList.add(updateClubInstance.getContactNo());
-            subList.add(updateClubInstance.getIcon());
+            subList.add(image);
 
             mainList.add(subList); //adding the sublist to the main list
 

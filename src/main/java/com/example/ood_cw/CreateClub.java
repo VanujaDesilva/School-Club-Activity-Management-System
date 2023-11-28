@@ -267,6 +267,7 @@ public class CreateClub {
             subList.add(createClubInstance.getEmail());
             subList.add(createClubInstance.getContactNo());
             subList.add(createClubInstance.getIcon());
+            System.out.println(createClubInstance.getIcon());
 
             mainList.add(subList); //adding the sublist to the main list
 
