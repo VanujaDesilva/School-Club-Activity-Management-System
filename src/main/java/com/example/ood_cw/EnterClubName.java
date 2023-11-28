@@ -99,6 +99,7 @@ public class EnterClubName implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
 //        enterClubNameAnchor.getChildren().remove(nextButton);
         clubs.clear();
         List<Object> club = new ArrayList<>();
