@@ -77,87 +77,6 @@ public class HelloController{
     }
 
     public void onVanujaButtonClick(ActionEvent actionEvent) throws IOException {
-        //sample event data
-        List<Object> event = new ArrayList<>();
-        event.add("E001");
-        event.add("Spandana");
-        event.add("Viharamahadevi");
-        event.add("08:30");
-        event.add("musical event");
-        event.add("2023-12-23");
-        event.add(" - ");
-        event.add(" - ");
-        event.add("C001");
-        event.add("AD01");
-        events.add(event);
-
-        List<Object> event1 = new ArrayList<>();
-        event1.add("M001");
-        event1.add(" - ");
-        event1.add("Hilton");
-        event1.add("08:30");
-        event1.add("Batch meeting");
-        event1.add("2023-12-23");
-        event1.add(" - ");
-        event1.add("2-hours");
-        event1.add("C002");
-        event1.add("AD01");
-        events.add(event1);
-
-        List<Object> event2 = new ArrayList<>();
-        event2.add("A001");
-        event2.add("Game Fiesta");
-        event2.add("Club Fusion");
-        event2.add("08:30");
-        event2.add("A game event");
-        event2.add("2023-12-23");
-        event2.add("2023-12-25");
-        event2.add(" - ");
-        event2.add("C003");
-        event2.add("AD01");
-        events.add(event2);
-
-        //sample club data
-        List<Object> subCheck1 = new ArrayList<>();
-        subCheck1.add("C001");
-        subCheck1.add("Interact Club");
-        subCheck1.add("2023-11-25");
-        subCheck1.add("Light from heaven");
-        subCheck1.add("Social Service");
-        subCheck1.add("Tharusha Fernando");
-        subCheck1.add("Uththara Godahenage");
-        subCheck1.add("interact@gmail.com");
-        subCheck1.add("+94712345672");
-        subCheck1.add("C:\\Users\\Tharusha\\Pictures\\abc.jpg");
-        checkList.add(subCheck1);
-
-        List<Object> subCheck2 = new ArrayList<>();
-        subCheck2.add("C002");
-        subCheck2.add("Leo Club");
-        subCheck2.add("2023-11-15");
-        subCheck2.add("We lead others follow");
-        subCheck2.add("Helping others");
-        subCheck2.add("Yeran Fernando");
-        subCheck2.add("Sarath Bandara");
-        subCheck2.add("leo@gmail.com");
-        subCheck2.add("+94771231167");
-        subCheck2.add("C:\\Users\\Tharusha\\Pictures\\def.jpg");
-        checkList.add(subCheck2);
-
-        List<Object> subCheck3 = new ArrayList<>();
-        subCheck3.add("C003");
-        subCheck3.add("IEEE Club");
-        subCheck3.add("2023-11-08");
-        subCheck3.add("Experimenting new virtues");
-        subCheck3.add("Spreading knowledge");
-        subCheck3.add("Vanuja Silva");
-        subCheck3.add("Oggy Perera");
-        subCheck3.add("ieee@gmail.com");
-        subCheck3.add("+94781231167");
-        subCheck3.add("C:\\Users\\Tharusha\\Pictures\\ghi.jpg");
-        checkList.add(subCheck3);
-
-
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Attendance.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 900,  600);
@@ -216,24 +135,11 @@ public class HelloController{
     }
 
     public void onAvishkaButtonClick() throws IOException, SQLException {
-        DatabaseConnect.getDetailsOfClubs();
-        System.out.println(clubs);
-        DatabaseConnect.getScheduleOfClubSesion();
-        System.out.println(allEvents);
-        DatabaseConnect.getAttendance();
-        System.out.println(attendance);
-        DatabaseConnect.getScheduleOfClubSesion();
-        System.out.println(allEvents);
-        DatabaseConnect.getStudentDetails();
-        System.out.println(studentDetails);
-        DatabaseConnect.getAdvisorDetails();
-        System.out.println(advisorDetails);
-        DatabaseConnect.getRegistrationDetails();
-        System.out.println(registration);
+
 //        for (int i = 0; i<mainList.size();i++){
 //            DatabaseConnect.insertDetailsOfClubs(String.valueOf(mainList.get(i).get(0)),String.valueOf(mainList.get(i).get(1)),String.valueOf(mainList.get(i).get(2)),String.valueOf(mainList.get(i).get(3)),String.valueOf(mainList.get(i).get(4)),String.valueOf(mainList.get(i).get(5)),String.valueOf(mainList.get(i).get(6)),String.valueOf(mainList.get(i).get(7)),String.valueOf(mainList.get(i).get(8)),String.valueOf(mainList.get(i).get(9)));
 //        }
-        
+
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Welcome.fxml"));
         Stage stage = new Stage();
