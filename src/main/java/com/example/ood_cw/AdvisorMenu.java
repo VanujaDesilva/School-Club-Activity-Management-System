@@ -57,11 +57,18 @@ public class AdvisorMenu {
 
     }
 
-    public void AdvisorMenuAttendanceTrackingButtonClick(ActionEvent actionEvent) {
+    public void AdvisorMenuAttendanceTrackingButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Attendance.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+
+        Stage primaryStage = (Stage) AdvisorMenuAttendanceTrackingButtonID.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public void AdvisorMenuBackButtonClick(ActionEvent actionEvent) throws IOException {
-        System.out.println("Load the menu for advisor");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorLogin.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
