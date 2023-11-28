@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static com.example.ood_cw.HelloController.clubs;
+import static com.example.ood_cw.HelloController.mainList;
+
 public class AdvisorMenu {
     @FXML
     private AnchorPane AdvisorMenuAnchorID;
@@ -45,6 +48,9 @@ public class AdvisorMenu {
     }
 
     public void AdvisorMenuClubCreationButtonClick(ActionEvent actionEvent) throws IOException {
+        for (int i =0; i < clubs.size();i++){
+            mainList.add(clubs.get(i));
+        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("clubMenu.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);

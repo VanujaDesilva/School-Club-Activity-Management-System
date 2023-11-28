@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class CreateClub {
     public AnchorPane clubCreationPane;
     public Button backClubCreate;
 
-    public void onCreateButtonClick() throws IOException {
+    public void onCreateButtonClick() throws IOException, SQLException {
         //creating an instance of the club object
         Club createClubInstance = new Club();
 
@@ -267,12 +268,12 @@ public class CreateClub {
             subList.add(createClubInstance.getEmail());
             subList.add(createClubInstance.getContactNo());
             subList.add(createClubInstance.getIcon());
-            System.out.println(createClubInstance.getIcon());
 
             mainList.add(subList); //adding the sublist to the main list
 
             System.out.println(mainList);
             promptLabelCreate.setText("Club Successfully Created!");
+            DatabaseConnect.insertDetailsOfClubs(String.valueOf(clubID),String.valueOf(createClubInstance.getName()), String.valueOf(createClubInstance.getFoundingDate()), String.valueOf(createClubInstance.getMission()), String.valueOf(createClubInstance.getDescription()), String.valueOf(createClubInstance.getClubPresidentName()), String.valueOf(advisorID), String.valueOf(createClubInstance.getEmail()), String.valueOf(createClubInstance.getContactNo()), String.valueOf(createClubInstance.getIcon()));
             promptLabelCreate.setStyle("-fx-text-fill: green;");
             break;
         }
