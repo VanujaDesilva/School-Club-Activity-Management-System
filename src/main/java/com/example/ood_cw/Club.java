@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class Club {
 
+    private String id;
     private String name;
     private LocalDate foundingDate;
     private String mission;
@@ -26,10 +27,30 @@ public class Club {
         this.email = email;
         this.contactNo = contactNo;
         this.icon = icon;
+    }
 
+    public Club(String id,String name, LocalDate foundingDate, String mission, String description, String presidentName, String advisorId,String email, String contactNo, String icon){
+        this.id = id;
+        this.name = name;
+        this.foundingDate = foundingDate;
+        this.mission = mission;
+        this.description = description;
+        this.clubPresidentName = presidentName;
+        this.email = email;
+        this.contactNo = contactNo;
+        this.icon = icon;
     }
 
     //getters and setters
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
