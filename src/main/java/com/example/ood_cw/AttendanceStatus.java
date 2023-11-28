@@ -31,7 +31,9 @@ public class AttendanceStatus implements Initializable {
     public Label description;
     public Button backButton;
     public AnchorPane attendanceStudent;
+    public Button clubSelectButton;
     private List<Object> clubsNames = new ArrayList<>();
+    private String clubId;
     private List<Object> eventNames = new ArrayList<>();
     @Override
     public void initialize(URL url,ResourceBundle resourceBundle){
@@ -45,18 +47,6 @@ public class AttendanceStatus implements Initializable {
             }
         }
         studentClubSelector.getItems().addAll(clubsNames);
-        if(studentClubSelector.getValue()!= null){
-        for (List<Object> event : allEvents) {
-            if(event.get(8).equals(studentClubSelector.getValue())) {
-                String eName = String.valueOf(event.get(1));
-                if (Objects.equals(eName, " - ")) {
-                    eName = String.valueOf(event.get(0));
-                }
-                    eventNames.add(eName);
-                }
-            }
-        }
-        studentEventSelector.getItems().addAll(eventNames);
     }
     public void onAttendanceBackButtonClick(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AdvisorMenu.fxml"));
@@ -91,5 +81,26 @@ public class AttendanceStatus implements Initializable {
           }
 
         }
+    }
+
+    public void onClubSelectButtonCLick(ActionEvent actionEvent) {
+        if(studentClubSelector.getValue()!= null){
+            for(List<Object>club: clubs){
+                if(clubs.get(1).equals(studentClubSelector.getValue())){
+                    clubId = String.valueOf(club.get(0));
+                }
+            }
+            System.out.println("hi");
+            for (List<Object> event : allEvents) {
+                if(event.get(8).equals(clubId)) {
+                    String eName = String.valueOf(event.get(1));
+                    if (Objects.equals(eName, " - ")) {
+                        eName = String.valueOf(event.get(0));
+                    }
+                    eventNames.add(eName);
+                }
+            }
+        }
+        studentEventSelector.getItems().addAll(eventNames);
     }
 }
