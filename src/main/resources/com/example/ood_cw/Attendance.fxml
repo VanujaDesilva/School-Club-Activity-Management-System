@@ -10,11 +10,11 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.Attendance">
     <children>
-        <AnchorPane fx:id="attendancePane" prefHeight="600.0" prefWidth="900.0">
+        <AnchorPane fx:id="attendancePane" layoutY="6.0" prefHeight="600.0" prefWidth="900.0">
             <children>
                 <Button fx:id="atendanceBackButton" layoutX="42.0" layoutY="37.0" mnemonicParsing="false" onAction="#onAttendanceBackButtonClick" prefHeight="25.0" prefWidth="46.0" text="Back" />
-                <Label layoutX="140.0" layoutY="101.0" prefHeight="17.0" prefWidth="87.0" text="Select Event:" />
-                <ChoiceBox fx:id="eventSelector" layoutX="221.0" layoutY="97.0" prefWidth="150.0" />
+                <Label layoutX="434.0" layoutY="105.0" prefHeight="17.0" prefWidth="87.0" text="Select Event:" />
+                <ChoiceBox fx:id="eventSelector" layoutX="515.0" layoutY="101.0" prefWidth="150.0" />
                 <TableView fx:id="attendanceTable" layoutX="142.0" layoutY="141.0" prefHeight="377.0" prefWidth="616.0">
                 <columns>
                     <!-- Existing columns -->
@@ -26,14 +26,19 @@
                     <TableColumn fx:id="attendanceStatusCol" prefWidth="125.0" text="Attendance Status" />
                 </columns>
                 </TableView>
-                <Button fx:id="showButton" layoutX="393.0" layoutY="97.0" mnemonicParsing="false" onAction="#onShowButtonClick" prefHeight="25.0" prefWidth="55.0" text="Show" />
+                <Button fx:id="showButton" layoutX="687.0" layoutY="101.0" mnemonicParsing="false" onAction="#onShowButtonClick" prefHeight="25.0" prefWidth="55.0" text="Show" />
                 <Button layoutX="413.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" prefHeight="36.0" prefWidth="74.0" text="Save" />
-                <Label alignment="CENTER" layoutX="294.0" layoutY="27.0" prefHeight="39.0" prefWidth="312.0" text="Attendance">
+                <Label alignment="CENTER" layoutX="294.0" layoutY="14.0" prefHeight="39.0" prefWidth="312.0" text="Attendance">
                     <font>
-                        <Font size="30.0" />
+                        <Font name="System Bold" size="30.0" />
                     </font>
                 </Label>
-            <Label fx:id="eventSelectionError" layoutX="221.0" layoutY="73.0" prefHeight="18.0" prefWidth="150.0" textFill="RED" />
+            <Label fx:id="eventSelectionError" alignment="CENTER" contentDisplay="CENTER" layoutX="436.0" layoutY="82.0" prefHeight="18.0" prefWidth="342.0" text="Note: Future events can not be selected!" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="System Bold Italic" size="10.0" />
+               </font></Label>
+            <Label layoutX="142.0" layoutY="105.0" text="Club Name: " />
+            <Label fx:id="clubNameShow" layoutX="208.0" layoutY="104.0" prefHeight="18.0" prefWidth="101.0" />
             </children>
         </AnchorPane>
     </children>

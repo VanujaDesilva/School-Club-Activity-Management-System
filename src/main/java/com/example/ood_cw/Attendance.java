@@ -44,6 +44,7 @@ public class Attendance implements Initializable {
     public AnchorPane notificationPane;
     public Button atendanceBackButton;
     public AnchorPane attendancePane;
+    public Label clubNameShow;
     @FXML
     private TableView<Student> attendanceTable;
     @FXML
@@ -52,6 +53,7 @@ public class Attendance implements Initializable {
     private List<String> studentIds = new ArrayList<>();
 
     private String liveClubId;
+    private String liveClubName;
     private ObservableList<Student> data;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,11 +61,12 @@ public class Attendance implements Initializable {
         System.out.println(advisorID.get(0));
         for(List<Object> club: clubs){
             if(club.get(6).equals(advisorID.get(0))){
+                clubNameShow.setText(String.valueOf(club.get(1)));
                 liveClubId = String.valueOf(club.get(0));
             }
         }
         System.out.println(liveClubId);
-        for (List<Object> reg : attendance){
+        for (List<Object> reg : registration){
             if (reg.get(1).equals(liveClubId)){
                 studentIds.add(String.valueOf(reg.get(0)));
             }
@@ -129,11 +132,10 @@ public class Attendance implements Initializable {
     }
 
     public void onShowButtonClick() throws IOException {
-
-
         System.out.println(studentIds);
         for (int i = 0; i < studentIds.size(); i++) {
             for (List<Object> studentdetail : studentDetails) {
+                System.out.println("Badu awa");
                 if (studentdetail.get(0).equals(studentIds.get(i))) {
                     String stdId = String.valueOf(studentdetail.get(0));
                     String firstName = String.valueOf(studentdetail.get(1));
