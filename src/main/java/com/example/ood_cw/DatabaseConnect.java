@@ -336,7 +336,6 @@ public class DatabaseConnect {
             e.printStackTrace();
         }
     }
-
     public static void main(String[] args) {
         try {
             clearTableOfClubSession();

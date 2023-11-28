@@ -1064,7 +1064,6 @@ public class HelloController{
         studentDetails.add(student);
         System.out.println(studentDetails);
         System.out.println("Student details successfully added to the list and should be added to the database");
-
     }
 
     public void StuSignUpBackClick(ActionEvent actionEvent) throws IOException {
