@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/advisor%20student%20.jpg" />
+            <Image url="@../../../images/AdvisorStudent.jpg" />
          </image>
       </ImageView>
       <Button fx:id="StudentButtonID" layoutX="520.0" layoutY="433.0" mnemonicParsing="false" onAction="#onStudentClick" prefHeight="46.0" prefWidth="105.0" style="-fx-background-radius: 30 30 30 30; -fx-border-color: red; -fx-border-radius: 30 30 30 30; -fx-background-color: white;" text="STUDENT">
