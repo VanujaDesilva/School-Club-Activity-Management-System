@@ -1237,6 +1237,9 @@ public class HelloController{
         clubMenuPane.getChildren().setAll(pane);
     }
 
-
-
+    
+    public void onShowClubClick() throws IOException{
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("showClubs.fxml"));
+        clubMenuPane.getChildren().setAll(pane);
+    }
 }

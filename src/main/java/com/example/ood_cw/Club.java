@@ -14,7 +14,8 @@ public class Club {
     private String contactNo;
     private String icon;
     private String clubPresidentName;
-    //private String clubAdvisorName;
+    private String clubAdvisorId;
+
 
     public Club(){}
 
@@ -29,16 +30,16 @@ public class Club {
         this.icon = icon;
     }
 
-    public Club(String id,String name, LocalDate foundingDate, String mission, String description, String presidentName, String advisorId,String email, String contactNo, String icon){
+    public Club(String id,String name, LocalDate foundingDate, String mission, String description, String presidentName, String clubAdvisorId,String email, String contactNo){
         this.id = id;
         this.name = name;
         this.foundingDate = foundingDate;
         this.mission = mission;
         this.description = description;
         this.clubPresidentName = presidentName;
+        this.clubAdvisorId = clubAdvisorId;
         this.email = email;
         this.contactNo = contactNo;
-        this.icon = icon;
     }
 
     //getters and setters
@@ -115,13 +116,6 @@ public class Club {
         this.clubPresidentName = clubPresidentName;
     }
 
-//    public String getClubAdvisorName() {
-//        return clubAdvisorName;
-//    }
-//
-//    public void setClubAdvisorName(String clubAdvisorName) {
-//        this.clubAdvisorName = clubAdvisorName;
-//    }
 
 
 
