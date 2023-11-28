@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 import static com.example.ood_cw.HelloController.*;
 
 public class StudentMenu  {
+    public Button viewAttendanceButton;
     @FXML
     private AnchorPane StudentMenuAnchor;
 
@@ -126,6 +127,13 @@ public class StudentMenu  {
     }
 
 
-    public void onViewAttendanceButtonClick(ActionEvent actionEvent) {
+    public void onViewAttendanceButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendanceStudent.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage primaryStage = (Stage) viewAttendanceButton.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

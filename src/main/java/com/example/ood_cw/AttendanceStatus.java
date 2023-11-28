@@ -77,7 +77,7 @@ public class AttendanceStatus implements Initializable {
                   heldDate.setText(String.valueOf(event.get(5)));
                   description.setText(String.valueOf(event.get(4)));
                   for(List<Object> atten: attendance){
-                      if(atten.get(0).equals(event.get(0))){
+                      if(atten.get(1).equals(event.get(0))){
                           if(String.valueOf(atten.get(2)).equals("Present")){
                               attendanceStatusCheck.setText("Present");
                           } else if (String.valueOf(atten.get(2)).equals("Absent")) {
