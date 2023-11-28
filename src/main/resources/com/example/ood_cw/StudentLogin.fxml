@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="StudentLoginAnchor" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
+<AnchorPane fx:id="StudentLoginAnchor" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
    <children>
       <Text layoutX="94.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name:" wrappingWidth="81.33673095703125" />
       <Text layoutX="94.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" wrappingWidth="81.33673095703125" />
