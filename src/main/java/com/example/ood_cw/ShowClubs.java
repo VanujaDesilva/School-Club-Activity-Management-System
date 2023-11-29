@@ -82,7 +82,6 @@ public class ShowClubs implements Initializable {
             );
             //adding sublist to the main list
             clubViewMain.add(viewClubs);
-            System.out.println(clubViewMain);
 
             //setting the club details to the table columns
             showClubID.setCellValueFactory(new PropertyValueFactory<Club,String>("id"));
@@ -101,7 +100,7 @@ public class ShowClubs implements Initializable {
                 image.setFitHeight(80);
                 Club clubImageTable = column.getValue();
                 String path = clubImageTable.getIcon();
-                System.out.println(path);
+                System.out.println(path+"check1");
                 if(path != null && !path.isEmpty()){
                     try {
                         image.setImage(new Image(new File(path).toURI().toString()));
