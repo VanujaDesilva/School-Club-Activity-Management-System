@@ -274,6 +274,7 @@ public class ManageClub {
                 uContactTick.setText("\u2605");
                 emptyCheck++;
             }
+            String contactNum = "+94"+updateClubInstance.getContactNo();
 
             try {
                 image = updateFile.getAbsolutePath();
@@ -312,14 +313,14 @@ public class ManageClub {
             subList.add(updateClubInstance.getClubPresidentName());
             subList.add(advisorId);
             subList.add(updateClubInstance.getEmail());
-            subList.add(updateClubInstance.getContactNo());
+            subList.add(contactNum);
             System.out.println(updateClubInstance.getContactNo());
             subList.add(image);
 
             mainList.add(subList); //adding the sublist to the main list
 //            clubs.add(subList);
-            DatabaseConnect.onUpdateClubTableField((String) subList.get(0), (String) subList.get(1), (String) subList.get(2), (String) subList.get(3), (String) subList.get(4), (String) subList.get(5), (String) subList.get(6), (String) subList.get(7), (String) subList.get(9));
-
+            DatabaseConnect.onUpdateClubTableField((String) subList.get(0), (String) subList.get(1), (String) subList.get(2), (String) subList.get(3), (String) subList.get(4), (String) subList.get(5), (String) subList.get(7), (String) subList.get(8), (String) subList.get(9));
+            DatabaseConnect.getDetailsOfClubs();
             System.out.println(mainList);
             showPromptUpdate.setText("Club Successfully Created!"); //displaying prompt text
             showPromptUpdate.setStyle("-fx-text-fill: green;");
