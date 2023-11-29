@@ -1,5 +1,6 @@
 package com.example.ood_cw;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +34,8 @@ public class AttendanceStatus implements Initializable {
     public Button backButton;
     public AnchorPane attendanceStudent;
     public Button clubSelectButton;
+    public Label selectClubErrorLable;
+    public Label selectEventErrorLabel;
     private List<Object> clubsNames = new ArrayList<>();
     private String clubId;
     private List<Object> eventNames = new ArrayList<>();
@@ -60,6 +64,7 @@ public class AttendanceStatus implements Initializable {
     }
 
     public void onCheckButtonClick(ActionEvent actionEvent) {
+
         attendanceStatusCheck.setText("Not Marked Yet");
         if(studentClubSelector != null && studentEventSelector != null){
           for(List<Object> event: allEvents){
@@ -76,6 +81,28 @@ public class AttendanceStatus implements Initializable {
                           }
                       }
                   }
+              }else if (studentClubSelector!= null && studentEventSelector == null){
+                  studentEventSelector.setStyle("-fx-border-color: red");
+                  selectEventErrorLabel.setText("Please select an event");
+                  PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                  pause.setOnFinished(even -> {
+                      selectEventErrorLabel.setText("");
+                      studentEventSelector.setStyle("-fx-border-color: none;");
+                  });
+                  pause.play();
+              }else {
+                  studentClubSelector.setStyle("-fx-border-color: red");
+                  selectClubErrorLable.setText("Please select a club");
+                  studentEventSelector.setStyle("-fx-border-color: red");
+                  selectEventErrorLabel.setText("Please select an event");
+                  PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                  pause.setOnFinished(even -> {
+                      selectEventErrorLabel.setText("");
+                      studentEventSelector.setStyle("-fx-border-color: none;");
+                      studentClubSelector.setStyle("-fx-border-color: none");
+                      selectClubErrorLable.setText("-fx-border-color: none;");
+                  });
+                  pause.play();
               }
           }
 
@@ -86,7 +113,6 @@ public class AttendanceStatus implements Initializable {
         if(studentClubSelector.getValue()!= null){
             for(List<Object>club: clubs){
                 if(club.get(1).equals(studentClubSelector.getValue())){
-                    System.out.println(club.get(0)+"wde wenawa");
                     clubId = String.valueOf(club.get(0));
                     System.out.println(clubId);
                 }
@@ -102,7 +128,16 @@ public class AttendanceStatus implements Initializable {
                     eventNames.add(eName);
                 }
             }
+        }else {
+            selectClubErrorLable.setText("Select a club first");
+            studentClubSelector.setStyle("-fx-border-color: red");
         }
         studentEventSelector.getItems().addAll(eventNames);
+        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+        pause.setOnFinished(even -> {
+            selectEventErrorLabel.setText("");
+            studentEventSelector.setStyle("-fx-border-color: none;");
+        });
+        pause.play();
     }
 }
