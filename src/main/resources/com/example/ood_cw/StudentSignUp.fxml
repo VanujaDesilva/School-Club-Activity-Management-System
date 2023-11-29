@@ -25,35 +25,35 @@
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label alignment="CENTER_RIGHT" layoutX="499.0" layoutY="147.0" prefHeight="40.0" prefWidth="90.0" text="Conatct No:" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="488.0" layoutY="150.0" prefHeight="40.0" prefWidth="90.0" text="Conatct No:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label alignment="CENTER_RIGHT" layoutX="499.0" layoutY="245.0" prefHeight="40.0" prefWidth="90.0" text="Email:" textFill="#fafafa">
+      <Label alignment="CENTER_RIGHT" layoutX="499.0" layoutY="251.0" prefHeight="40.0" prefWidth="90.0" text="Email:" textFill="#fafafa">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label alignment="CENTER_RIGHT" layoutX="499.0" layoutY="350.0" prefHeight="40.0" prefWidth="90.0" text="Password:" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="505.0" layoutY="350.0" prefHeight="40.0" prefWidth="90.0" text="Password:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Button fx:id="StuSignUpID" layoutX="380.0" layoutY="464.0" mnemonicParsing="false" onAction="#StudentSignUpClickID" prefHeight="46.0" prefWidth="216.0" style="-fx-background-radius: 30 30 30 30; -fx-border-color: red; -fx-border-radius: 30 30 30 30;" text="Sign Up">
+      <Button fx:id="StuSignUpID" layoutX="380.0" layoutY="450.0" mnemonicParsing="false" onAction="#StudentSignUpClickID" prefHeight="46.0" prefWidth="216.0" style="-fx-background-radius: 30 30 30 30; -fx-border-color: red; -fx-border-radius: 30 30 30 30;" text="Sign Up">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Button>
-      <TextField fx:id="StudentSignUpLastNameID" layoutX="130.0" layoutY="251.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Last Name" style="-fx-background-radius: 10 10 10 10;">
+      <TextField fx:id="StudentSignUpLastNameID" layoutX="140.0" layoutY="250.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Last Name" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font></TextField>
-      <TextField fx:id="StudentSignUpFirstNameID" layoutX="130.0" layoutY="150.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your First Name" style="-fx-background-radius: 10 10 10 10;">
+      <TextField fx:id="StudentSignUpFirstNameID" layoutX="140.0" layoutY="150.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your First Name" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font></TextField>
-      <TextField fx:id="StudentSignUpContactNoID" layoutX="615.0" layoutY="147.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Contact Number" style="-fx-background-radius: 10 10 10 10;">
+      <TextField fx:id="StudentSignUpContactNoID" layoutX="615.0" layoutY="150.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Contact Number" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font></TextField>
-      <TextField fx:id="StudentSignUpEmailID" layoutX="615.0" layoutY="245.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Email" style="-fx-background-radius: 10 10 10 10;">
+      <TextField fx:id="StudentSignUpEmailID" layoutX="615.0" layoutY="250.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Email" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font></TextField>
@@ -61,7 +61,7 @@
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font></Button>
-      <DatePicker fx:id="StudentSignUpDOBID" layoutX="130.0" layoutY="357.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Date of birth" />
+      <DatePicker fx:id="StudentSignUpDOBID" layoutX="140.0" layoutY="350.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Date of birth" />
       <PasswordField fx:id="StudentSignUpPassword" layoutX="615.0" layoutY="350.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Password" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
