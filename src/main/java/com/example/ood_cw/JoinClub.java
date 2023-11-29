@@ -86,11 +86,12 @@ public class JoinClub implements Initializable {
 
     public void onJoinButtonClick(ActionEvent actionEvent) throws IOException, SQLException {
         String clubId= null;
+        confirmationLabel.setStyle("-fx-text-fill: Green");
         confirmationLabel.setText("Club join successfully!");
         String id = String.valueOf(studentID.get(0));
         for (List<Object> club: clubs){
             if(club.get(1).equals(clubSelectBox.getValue())){
-                 clubId = (String) club.get(1);
+                 clubId = (String) club.get(0);
             }
         }
         String date = String.valueOf(LocalDate.now());
