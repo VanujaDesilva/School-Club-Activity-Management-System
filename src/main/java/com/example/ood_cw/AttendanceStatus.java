@@ -100,7 +100,7 @@ public class AttendanceStatus implements Initializable {
                       selectEventErrorLabel.setText("");
                       studentEventSelector.setStyle("-fx-border-color: none;");
                       studentClubSelector.setStyle("-fx-border-color: none");
-                      selectClubErrorLable.setText("-fx-border-color: none;");
+                      selectClubErrorLable.setText("");
                   });
                   pause.play();
               }
