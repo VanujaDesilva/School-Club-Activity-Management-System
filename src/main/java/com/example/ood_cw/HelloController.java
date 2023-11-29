@@ -280,7 +280,7 @@ public class HelloController{
 
 
 
-    public void onScheduleEventButtonClick() throws IOException {
+    public void onScheduleEventButtonClick() throws IOException { //load the fxml to schedule events
         events1.clear();
         for (int i = 0; i<events.size(); i++){
             String e = (String) events.get(i).get(0);
@@ -294,7 +294,7 @@ public class HelloController{
         eventSchedulingAnchor.getChildren().setAll(pane);
     }
 
-    public void onScheduleMeetingButtonClick() throws IOException{
+    public void onScheduleMeetingButtonClick() throws IOException{ //load the fxml to schedule meetings
         meetings.clear();
         for (int i = 0; i<events.size(); i++){
             String e = (String) events.get(i).get(0);
@@ -308,7 +308,7 @@ public class HelloController{
         eventSchedulingAnchor.getChildren().setAll(pane);
     }
 
-    public void onScheduleActivityButtonClick() throws IOException{
+    public void onScheduleActivityButtonClick() throws IOException{ //load the fxml to schedule activities
         activity.clear();
         for (int i = 0; i<events.size(); i++){
             String e = (String) events.get(i).get(0);
@@ -328,7 +328,7 @@ public class HelloController{
     }
 
 
-    public void onScheduleEventsButtonClick() throws IOException, SQLException {
+    public void onScheduleEventsButtonClick() throws IOException, SQLException { //when user select the event schedule button
         outerloop:
         while (true){
             int errors = 0;
@@ -366,7 +366,7 @@ public class HelloController{
             if (enteredDate.equals("null")){
                 obj.setLabel(dateError,eventDateText,eventDateTick);
                 errors++;
-            } else {
+            } else { //checking the date
                 try {
                     year = Integer.parseInt(enteredDate.substring(0, 4));
                     month = Integer.parseInt(enteredDate.substring(5, 7));
@@ -404,13 +404,11 @@ public class HelloController{
                     eventLocationText.setStyle("-fx-border-color: none;");
                     eventTimeText.setStyle("-fx-border-color: none;");
                     eventDateText.setStyle("-fx-border-color: none;");
-
                 });
                 pause.play();
                 break;
             }
             String date = String.valueOf(obj.getEventDate());
-
             List<List<Object>> allEvents1 = new ArrayList<>();
             for (int j = 0; j<allEvents.size(); j++){
                 String e = (String) allEvents.get(j).get(0);
@@ -419,9 +417,7 @@ public class HelloController{
                     allEvents1.add(allEvents.get(j));
                 }
             }
-
-            System.out.println(allEvents1);
-            for (int i = 0; i < allEvents1.size(); i++){
+            for (int i = 0; i < allEvents1.size(); i++){ //checking if the user entered event already exist or not
                 if (allEvents1.get(i).get(1).equals(obj.getEventName()) && String.valueOf(allEvents1.get(i).get(5)).equals(date)){
                     eventAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
                     eventAddSuccessfull.setText("Entered Event already exist!");
@@ -436,7 +432,7 @@ public class HelloController{
                     break outerloop;
                 }
             }
-            int max =0;
+            int max =0; //getting the id
             for (int i = 0 ; i < allEvents1.size() ; i++){
                 String e = (String) allEvents1.get(i).get(0);
                 int curValue = Integer.parseInt(e.substring(1,4));
@@ -462,10 +458,6 @@ public class HelloController{
             events1.add(event);
             allEvents1.add(event);
             allEvents.add(event);
-//            DatabaseConnect.clearTableOfClubSession();
-//            for (int i=0 ;i<allEvents.size(); i++){
-//                DatabaseConnect.insertScheduleOfClubSession(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
-//            }
             DatabaseConnect.insertScheduleOfClubSession(String.valueOf(event.get(0)),String.valueOf(event.get(1)),String.valueOf(event.get(2)),String.valueOf(event.get(3)),String.valueOf(event.get(4)),String.valueOf(event.get(5)),String.valueOf(event.get(6)),String.valueOf(event.get(7)),String.valueOf(event.get(8)),String.valueOf(event.get(9)));
             eventAddSuccessfull.setStyle("-fx-text-fill: #13e57d;");
             eventAddSuccessfull.setText("Event added Successfully");
@@ -480,7 +472,6 @@ public class HelloController{
             break;
         }
     }
-
     public void onScheduleEventsBackButtonClick() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("EventScheduling.fxml"));
         scheduleEventAnchor.getChildren().setAll(pane);
@@ -532,7 +523,7 @@ public class HelloController{
                 obj.setLabel(meetingDateError,meetingDateText,meetDateTick);
                 errors++;
             } else {
-                try {
+                try { // converting the date to local date
                     year = Integer.parseInt(enteredDate.substring(0, 4));
                     month = Integer.parseInt(enteredDate.substring(5, 7));
                     day = Integer.parseInt(enteredDate.substring(8, 10));
@@ -559,7 +550,7 @@ public class HelloController{
             String date = String.valueOf(obj.getEventDate());
 
             List<List<Object>> allMeetings = new ArrayList<>();
-            for (int j = 0; j<allEvents.size(); j++){
+            for (int j = 0; j<allEvents.size(); j++){ //getting all the meetings
                 String e = (String) allEvents.get(j).get(0);
                 e = e.substring(0,1);
                 if (e.equals("M")){
@@ -567,7 +558,7 @@ public class HelloController{
                 }
             }
 
-            for (int i = 0; i < allMeetings.size(); i++){
+            for (int i = 0; i < allMeetings.size(); i++){ //checking if the meeting already exists or not
                 if (allMeetings.get(i).get(2).equals(obj.getEventLocation()) && String.valueOf(allMeetings.get(i).get(5)).equals(date) && allMeetings.get(i).get(3).equals(obj.getEventTime())){
                     meetingAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
                     meetingAddSuccessfull.setText("Entered Meeting already exist!");
@@ -582,7 +573,7 @@ public class HelloController{
                     break outerloop;
                 }
             }
-            int max =0;
+            int max =0; //generating the id mor the meeting
             for (int i = 0 ; i < allMeetings.size() ; i++){
                 String e = (String) allMeetings.get(i).get(0);
                 int curValue = Integer.parseInt(e.substring(1,4));
@@ -607,10 +598,6 @@ public class HelloController{
             events.add(meeting);
             meetings.add(meeting);
             allEvents.add(meeting);
-//            DatabaseConnect.clearTableOfClubSession();
-//            for (int i=0 ;i<allEvents.size(); i++){
-//                DatabaseConnect.insertScheduleOfClubSession(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
-//            }
             DatabaseConnect.insertScheduleOfClubSession(String.valueOf(meeting.get(0)),String.valueOf(meeting.get(1)),String.valueOf(meeting.get(2)),String.valueOf(meeting.get(3)),String.valueOf(meeting.get(4)),String.valueOf(meeting.get(5)),String.valueOf(meeting.get(6)),String.valueOf(meeting.get(7)),String.valueOf(meeting.get(8)),String.valueOf(meeting.get(9)));
             meetingAddSuccessfull.setStyle("-fx-text-fill: #13e57d;");
             meetingAddSuccessfull.setText("Meeting added Successfully");
@@ -625,7 +612,6 @@ public class HelloController{
             break;
         }
     }
-
     public void onSheduleMeetingsBackButtonClick() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("EventScheduling.fxml"));
         scheduleMeetingAnchor.getChildren().setAll(pane);
@@ -690,7 +676,7 @@ public class HelloController{
             if (startDate.equals("null")){
                 obj.setLabel(activityStartDateError,activityStartDateText,activityStartDateTick);
                 errors++;
-            } else {
+            } else { //converting the start date into localDate type
                 try {
                     sYear = Integer.parseInt(startDate.substring(0, 4));
                     sMonth = Integer.parseInt(startDate.substring(5, 7));
