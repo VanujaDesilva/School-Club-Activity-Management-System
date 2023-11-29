@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -126,7 +127,7 @@ public class ManageClub {
 
 
     //update club functionality
-    public void onUpdateButtonClick() throws IOException{
+    public void onUpdateButtonClick() throws IOException, SQLException {
         updateClubInstance.setIcon(mainList.get(listIndex).get(9).toString());
         String clubID = String.valueOf(mainList.get(listIndex).get(0));
         String advisorId = String.valueOf(mainList.get(listIndex).get(6));
@@ -207,7 +208,7 @@ public class ManageClub {
             //checking if the club president name is empty
             if (!updateClubInstance.getClubPresidentName().isEmpty()) {
                 //checking if the same club president exists
-                for (List<Object> b : clubs) {
+                for (List<Object> b : mainList) {
                     if (b.get(5).equals(updateClubInstance.getClubPresidentName())) {
                         showPromptUpdate.setText("Club President already exists!"); //displaying prompt text
                         showPromptUpdate.setStyle("-fx-text-fill: red;");
@@ -251,9 +252,9 @@ public class ManageClub {
             }
 
             //setting the club contact number
-            String contactNumSub = updateClubContactNo.getText();
-            String contactNumReduced = contactNumSub.substring(3);
-            updateClubInstance.setContactNo(contactNumReduced);
+//            String contactNumSub = updateClubContactNo.getText();
+//            String contactNumReduced = contactNumSub.substring(3);
+            updateClubInstance.setContactNo(updateClubContactNo.getText());
             //checking if the contact number is empty
             if (updateClubContactNo.getText() != null) {
                 if (Club.isValidContactNo(updateClubContactNo.getText())) {
@@ -298,20 +299,6 @@ public class ManageClub {
                 break;
             }
 
-            //generating clubID
-//            int max =0;
-//            for (int i = 0 ; i < mainList.size() ; i++){
-//                String c = (String) mainList.get(i).get(0);
-//                int currentValue = Integer.parseInt(c.substring(1,4));
-//                if (max < currentValue){
-//                    max = currentValue;
-//                }
-//            }
-//            max++;
-//            String clubID = String.format("%03d",max);
-//            clubID="C"+clubID;
-
-
             //creating a sublist
             List<Object> subList = new ArrayList<>();
             String date = String.valueOf(updateClubInstance.getFoundingDate());
@@ -326,10 +313,12 @@ public class ManageClub {
             subList.add(advisorId);
             subList.add(updateClubInstance.getEmail());
             subList.add(updateClubInstance.getContactNo());
+            System.out.println(updateClubInstance.getContactNo());
             subList.add(image);
 
             mainList.add(subList); //adding the sublist to the main list
-            clubs.add(subList);
+//            clubs.add(subList);
+            DatabaseConnect.onUpdateClubTableField((String) subList.get(0), (String) subList.get(1), (String) subList.get(2), (String) subList.get(3), (String) subList.get(4), (String) subList.get(5), (String) subList.get(6), (String) subList.get(7), (String) subList.get(9));
 
             System.out.println(mainList);
             showPromptUpdate.setText("Club Successfully Created!"); //displaying prompt text

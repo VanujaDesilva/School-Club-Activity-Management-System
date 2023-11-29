@@ -100,7 +100,6 @@ public class ShowClubs implements Initializable {
                 image.setFitHeight(80);
                 Club clubImageTable = column.getValue();
                 String path = clubImageTable.getIcon();
-                System.out.println(path+"check1");
                 if(path != null && !path.isEmpty()){
                     try {
                         image.setImage(new Image(new File(path).toURI().toString()));

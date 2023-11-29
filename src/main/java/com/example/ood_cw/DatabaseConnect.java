@@ -336,6 +336,28 @@ public class DatabaseConnect {
             e.printStackTrace();
         }
     }
+
+    public static void onUpdateClubTableField(String cId,String cName, String fDate, String cMission, String cDescription, String cPresidentName, String cEmail, String cTelNo, String iconPath) throws SQLException {
+        try (Connection connection = getConnection()) {
+            String query = "UPDATE club " +
+                    "SET clubName = ?,foundingDate = ?,mission = ?, description = ?, presidentName = ?,email = ?, telNo = ?, clubIcon = ?" +
+                    "WHERE clubId = ?; ";
+            try (PreparedStatement attend = connection.prepareStatement(query)) {
+                attend.setString(1, cName);
+                attend.setString(2, fDate);
+                attend.setString(3, cMission);
+                attend.setString(4, cDescription);
+                attend.setString(5, cPresidentName);
+                attend.setString(6, cEmail);
+                attend.setString(7, cTelNo);
+                attend.setString(8, iconPath);
+                attend.setString(9, cId);
+                attend.executeUpdate();
+            }
+        }catch (SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
         try {
             clearTableOfClubSession();
