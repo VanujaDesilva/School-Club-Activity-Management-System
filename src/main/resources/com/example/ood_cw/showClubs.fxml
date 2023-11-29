@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="showClubPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.ShowClubs">
+<AnchorPane fx:id="showClubPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.ShowClubs">
    <children>
-      <TableView fx:id="showClubTable" layoutX="27.0" layoutY="85.0" prefHeight="393.0" prefWidth="848.0">
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/BackGround2.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="showClubTable" layoutX="26.0" layoutY="122.0" prefHeight="393.0" prefWidth="848.0">
         <columns>
           <TableColumn fx:id="showClubID" prefWidth="48.66667175292969" text="Club ID" />
           <TableColumn fx:id="showClubName" prefWidth="87.55554962158203" text="Club Name" />
@@ -24,12 +32,18 @@
             <TableColumn fx:id="showClubIcon" prefWidth="109.77783203125" text="Club Icon" />
         </columns>
       </TableView>
-      <Button fx:id="backShowClubs" layoutX="14.0" layoutY="550.0" mnemonicParsing="false" onAction="#onBackShowClubClick" text="Back">
+      <Button fx:id="backShowClubs" alignment="BASELINE_LEFT" layoutY="30.0" mnemonicParsing="false" onAction="#onBackShowClubClick" prefHeight="60.0" prefWidth="110.0" style="-fx-background-radius: 0 60 60 0;" text="Back">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <InnerShadow />
+         </effect>
       </Button>
-      <Label layoutX="370.0" layoutY="19.0" text="SHOW CLUBS">
+      <Label layoutX="369.0" layoutY="28.0" text="SHOW CLUBS">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
