@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.JoinClub">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.JoinClub">
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -32,23 +28,24 @@
       <ChoiceBox fx:id="clubSelectBox" layoutX="381.0" layoutY="116.0" prefWidth="150.0" />
       <Button fx:id="viewButton" layoutX="553.0" layoutY="116.0" mnemonicParsing="false" onAction="#onViewButtonClick" text="View" />
       <Label alignment="CENTER_RIGHT" layoutX="96.0" layoutY="245.0" prefHeight="18.0" prefWidth="82.0" text="Club Name: " textFill="WHITE" />
-      <Label fx:id="clubName" layoutX="195.0" layoutY="245.0" prefHeight="18.0" prefWidth="157.0" />
+      <Label fx:id="clubName" layoutX="195.0" layoutY="245.0" prefHeight="18.0" prefWidth="157.0" textFill="WHITE" />
       <Label alignment="CENTER_RIGHT" layoutX="106.0" layoutY="291.0" text="Starting Date:" textFill="WHITE" />
-      <Label fx:id="clubFoundingDate" layoutX="195.0" layoutY="291.0" prefHeight="18.0" prefWidth="157.0" />
+      <Label fx:id="clubFoundingDate" layoutX="195.0" layoutY="291.0" prefHeight="18.0" prefWidth="157.0" textFill="WHITE" />
       <Label alignment="CENTER_RIGHT" layoutX="94.0" layoutY="335.0" prefHeight="18.0" prefWidth="81.0" text="Mission:" textFill="WHITE" />
       <Label alignment="CENTER_RIGHT" layoutX="69.0" layoutY="379.0" prefHeight="18.0" prefWidth="110.0" text="Founder's Name:" textFill="WHITE" />
-      <Label fx:id="clubMission" layoutX="195.0" layoutY="335.0" prefHeight="18.0" prefWidth="305.0" />
-      <Label fx:id="clubFounder" layoutX="195.0" layoutY="379.0" prefHeight="18.0" prefWidth="157.0" />
+      <Label fx:id="clubMission" layoutX="195.0" layoutY="335.0" prefHeight="18.0" prefWidth="305.0" textFill="WHITE" />
+      <Label fx:id="clubFounder" layoutX="195.0" layoutY="379.0" prefHeight="18.0" prefWidth="157.0" textFill="#f4f4f4" />
       <Label alignment="CENTER_RIGHT" layoutX="85.0" layoutY="430.0" prefHeight="18.0" prefWidth="93.0" text="Club email:" textFill="WHITE" />
-      <Label fx:id="clubEmail" layoutX="190.0" layoutY="430.0" prefHeight="18.0" prefWidth="157.0" />
+      <Label fx:id="clubEmail" layoutX="190.0" layoutY="430.0" prefHeight="18.0" prefWidth="157.0" textFill="WHITE" />
       <Label alignment="CENTER_RIGHT" layoutX="505.0" layoutY="245.0" prefHeight="18.0" prefWidth="123.0" text="Contact Number:" textFill="WHITE" />
-      <Label fx:id="clubTelNo" layoutX="640.0" layoutY="245.0" prefHeight="18.0" prefWidth="157.0" />
+      <Label fx:id="clubTelNo" layoutX="640.0" layoutY="245.0" prefHeight="18.0" prefWidth="157.0" textFill="WHITE" />
       <Label alignment="CENTER_RIGHT" layoutX="534.0" layoutY="291.0" prefHeight="18.0" prefWidth="93.0" text="Club Icon:" textFill="WHITE" />
-      <Label fx:id="confirmationLabel" alignment="CENTER" layoutX="214.0" layoutY="478.0" prefHeight="27.0" prefWidth="470.0">
+      <Label fx:id="confirmationLabel" alignment="CENTER" layoutX="214.0" layoutY="478.0" prefHeight="27.0" prefWidth="470.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Button fx:id="joinButton" layoutX="408.0" layoutY="525.0" mnemonicParsing="false" onAction="#onJoinButtonClick" prefHeight="36.0" prefWidth="82.0" text="Join" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="654.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

@@ -752,13 +752,14 @@ public class HelloController{
             for (int j = 0; j<allEvents.size(); j++){
                 String e = (String) allEvents.get(j).get(0);
                 e = e.substring(0,1);
-                if (e.equals("M")){
+                if (e.equals("A")){
                     allActivities.add(allEvents.get(j));
                 }
             }
 
             for (int i = 0; i < allActivities.size(); i++){
                 if (allActivities.get(i).get(1).equals(obj.getEventName()) && String.valueOf(allActivities.get(i).get(5)).equals(date) && String.valueOf(allActivities.get(i).get(6)).equals(date1)){
+
                     activityAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
                     activityAddSuccessfull.setText("Entered Activity already exist!");
                     PauseTransition pause = new PauseTransition(Duration.seconds(4));
@@ -802,7 +803,7 @@ public class HelloController{
 //                DatabaseConnect.insertScheduleOfClubSession(String.valueOf(allEvents.get(i).get(0)),String.valueOf(allEvents.get(i).get(1)),String.valueOf(allEvents.get(i).get(2)),String.valueOf(allEvents.get(i).get(3)),String.valueOf(allEvents.get(i).get(4)),String.valueOf(allEvents.get(i).get(5)),String.valueOf(allEvents.get(i).get(6)),String.valueOf(allEvents.get(i).get(7)),String.valueOf(allEvents.get(i).get(8)),String.valueOf(allEvents.get(i).get(9)));
 //            }
             DatabaseConnect.insertScheduleOfClubSession(String.valueOf(activity1.get(0)),String.valueOf(activity1.get(1)),String.valueOf(activity1.get(2)),String.valueOf(activity1.get(3)),String.valueOf(activity1.get(4)),String.valueOf(activity1.get(5)),String.valueOf(activity1.get(6)),String.valueOf(activity1.get(7)),String.valueOf(activity1.get(8)),String.valueOf(activity1.get(9)));
-            activityAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
+            activityAddSuccessfull.setStyle("-fx-text-fill: #13e57d;");
             activityAddSuccessfull.setText("Activity added Successfully");
             PauseTransition pause = new PauseTransition(Duration.seconds(4));
             // Set the action to be performed when the pause is finished
@@ -1080,7 +1081,7 @@ public class HelloController{
         Stage primaryStage = (Stage) StuSignUpAnchorID.getScene().getWindow();
         primaryStage.setScene(scene);
         primaryStage.show();
-        
+
     }
 
 
@@ -1312,7 +1313,7 @@ public class HelloController{
         if (match==0){
             StudentLoginPasswordAlert.setStyle("-fx-text-fill: red;");
             StudentLoginPasswordAlert.setText("Entered email and password doesn't match");
-            StudentLoginEmailID.setStyle("-fx-border-color: none`;");
+            StudentLoginEmailID.setStyle("-fx-border-color: none;");
         }
     }
 

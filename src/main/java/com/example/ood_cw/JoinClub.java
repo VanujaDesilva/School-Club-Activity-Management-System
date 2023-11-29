@@ -63,9 +63,7 @@ public class JoinClub implements Initializable {
 
             }
         }
-
         clubSelectBox.getItems().addAll(cNames);
-
     }
 
     public void onViewButtonClick(ActionEvent actionEvent) throws IOException {

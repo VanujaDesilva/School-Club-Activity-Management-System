@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scheduleActivityAnchor" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
+<AnchorPane fx:id="scheduleActivityAnchor" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="906.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -146,7 +146,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="activityAddSuccessfull" layoutX="630.0" layoutY="557.0" prefHeight="18.0" prefWidth="256.0">
+      <Label fx:id="activityAddSuccessfull" alignment="CENTER" contentDisplay="CENTER" layoutX="322.0" layoutY="566.0" prefHeight="18.0" prefWidth="256.0">
          <font>
             <Font size="14.0" />
          </font>
