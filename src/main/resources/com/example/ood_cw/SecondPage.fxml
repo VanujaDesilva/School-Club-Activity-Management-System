@@ -32,9 +32,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="SecondBackButtonId" alignment="BASELINE_LEFT" contentDisplay="TOP" layoutY="26.0" mnemonicParsing="false" onAction="#SecondBackButtonClick" prefHeight="60.0" prefWidth="114.0" style="-fx-background-radius: 0 60 60 0; -fx-border-color: black; -fx-border-radius: 0 60 60 0;" text="BACK">
+      <Button fx:id="SecondBackButtonId" alignment="BASELINE_LEFT" contentDisplay="TOP" layoutY="30.0" mnemonicParsing="false" onAction="#SecondBackButtonClick" prefHeight="60.0" prefWidth="110.0" style="-fx-background-radius: 0 60 60 0; -fx-border-color: black; -fx-border-radius: 0 60 60 0;" text="BACK">
          <font>
-            <Font name="System Bold Italic" size="21.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />

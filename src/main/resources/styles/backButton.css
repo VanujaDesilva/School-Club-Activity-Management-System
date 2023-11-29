@@ -1,0 +1,18 @@
+#AdvisorMenuBackButtonID {
+    -fx-background-radius: 0 60 60 0;
+    -fx-border-color: black;
+    -fx-border-radius: 0 60 60 0;
+}
+
+#AdvisorMenuBackButtonID .text {
+    -fx-font-family: "System Bold Italic";
+    -fx-font-size: 20.0;
+}
+
+#AdvisorMenuBackButtonID .cursor {
+    -fx-cursor: hand;
+}
+
+#AdvisorMenuBackButtonID .effect {
+    -fx-effect: inner-shadow;
+}

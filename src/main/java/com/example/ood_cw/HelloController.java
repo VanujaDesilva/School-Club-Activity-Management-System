@@ -1388,11 +1388,6 @@ public class HelloController{
         }
         if (count>0){
             return;
-        } else {
-            AdvisorLoginPasswordAlert.setText("incorrect Password");
-            AdvisorLoginPasswordAlert.setStyle("-fx-text-fill: red;");
-            AdvisorLoginPasswordAlert.setStyle("-fx-border-color: red;");
-
         }
     }
 

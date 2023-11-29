@@ -15,7 +15,7 @@
             <Image url="@../../../images/BackGround2.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="AdvisorMenuScheduleEventButtonID" layoutX="300.0" layoutY="120.0" mnemonicParsing="false" onAction="#AdvisorMenuScheduleEventButtonClick" prefHeight="52.0" prefWidth="178.0" text="Schedule Event">
+      <Button fx:id="AdvisorMenuScheduleEventButtonID" alignment="CENTER" layoutX="299.0" layoutY="120.0" mnemonicParsing="false" onAction="#AdvisorMenuScheduleEventButtonClick" prefHeight="50.0" prefWidth="300.0" text="Schedule Event">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -25,7 +25,7 @@
          <effect>
             <InnerShadow />
          </effect></Button>
-      <Button fx:id="AdvisorMenuReportingButtonID" layoutX="300.0" layoutY="420.0" mnemonicParsing="false" onAction="#AdvisorMenuReportingButtonClcik" prefHeight="52.0" prefWidth="178.0" text="Reporting">
+      <Button fx:id="AdvisorMenuReportingButtonID" layoutX="299.0" layoutY="420.0" mnemonicParsing="false" onAction="#AdvisorMenuReportingButtonClcik" prefHeight="50.0" prefWidth="300.0" text="Reporting">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -35,7 +35,7 @@
          <effect>
             <InnerShadow />
          </effect></Button>
-      <Button fx:id="AdvisorMenuClubCreationbuttonID" layoutX="300.0" layoutY="220.0" mnemonicParsing="false" onAction="#AdvisorMenuClubCreationButtonClick" prefHeight="52.0" prefWidth="178.0" text="Clubs">
+      <Button fx:id="AdvisorMenuClubCreationbuttonID" layoutX="299.0" layoutY="220.0" mnemonicParsing="false" onAction="#AdvisorMenuClubCreationButtonClick" prefHeight="50.0" prefWidth="300.0" text="Clubs">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -45,7 +45,7 @@
          <effect>
             <InnerShadow />
          </effect></Button>
-      <Button fx:id="AdvisorMenuAttendanceTrackingButtonID" layoutX="300.0" layoutY="320.0" mnemonicParsing="false" onAction="#AdvisorMenuAttendanceTrackingButtonClick" prefHeight="52.0" prefWidth="178.0" text="Attendance Tracking">
+      <Button fx:id="AdvisorMenuAttendanceTrackingButtonID" layoutX="299.0" layoutY="320.0" mnemonicParsing="false" onAction="#AdvisorMenuAttendanceTrackingButtonClick" prefHeight="50.0" prefWidth="300.0" text="Attendance Tracking">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

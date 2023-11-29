@@ -15,7 +15,7 @@
             <Image url="@../../../images/BackGround2.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="StudentMenuViewlubButtonID" layoutX="299.0" layoutY="208.0" mnemonicParsing="false" onAction="#StudentMenuViewClubButtonClick" prefHeight="50.0" prefWidth="300.0" style="-fx-background-radius: 10 10 10 10;" text="View Club">
+      <Button fx:id="StudentMenuViewlubButtonID" layoutX="300.0" layoutY="210.0" mnemonicParsing="false" onAction="#StudentMenuViewClubButtonClick" prefHeight="50.0" prefWidth="300.0" style="-fx-background-radius: 10 10 10 10;" text="View Club">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -25,7 +25,7 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>
-      <Button fx:id="StudentMenuJoinClubButtonID" layoutX="299.0" layoutY="114.0" mnemonicParsing="false" onAction="#StudentMenuJoinClubButtonClick" prefHeight="50.0" prefWidth="300.0" style="-fx-background-radius: 10 10 10 10;" text="Join Club">
+      <Button fx:id="StudentMenuJoinClubButtonID" layoutX="299.0" layoutY="120.0" mnemonicParsing="false" onAction="#StudentMenuJoinClubButtonClick" prefHeight="50.0" prefWidth="300.0" style="-fx-background-radius: 10 10 10 10;" text="Join Club">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

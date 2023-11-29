@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +19,7 @@
             <Image url="@../../../images/BackGround2.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER_RIGHT" layoutX="27.0" layoutY="150.0" prefHeight="40.0" prefWidth="90.0" text="First Name:" textAlignment="CENTER" textFill="#fffdfd">
+      <Label alignment="CENTER_RIGHT" layoutX="37.0" layoutY="150.0" prefHeight="40.0" prefWidth="90.0" text="First Name:" textAlignment="CENTER" textFill="#fffdfd">
          <font>
             <Font size="16.0" />
          </font></Label>
@@ -25,7 +27,7 @@
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label alignment="CENTER_RIGHT" layoutX="488.0" layoutY="150.0" prefHeight="40.0" prefWidth="90.0" text="Conatct No:" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="499.0" layoutY="150.0" prefHeight="40.0" prefWidth="90.0" text="Conatct No:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
@@ -39,8 +41,11 @@
          </font></Label>
       <Button fx:id="StuSignUpID" layoutX="380.0" layoutY="450.0" mnemonicParsing="false" onAction="#StudentSignUpClickID" prefHeight="46.0" prefWidth="216.0" style="-fx-background-radius: 30 30 30 30; -fx-border-color: red; -fx-border-radius: 30 30 30 30;" text="Sign Up">
          <font>
-            <Font name="System Bold" size="17.0" />
-         </font></Button>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <TextField fx:id="StudentSignUpLastNameID" layoutX="140.0" layoutY="250.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Last Name" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
@@ -57,11 +62,20 @@
          <font>
             <Font size="16.0" />
          </font></TextField>
-      <Button fx:id="StuSignUpBackID" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#StuSignUpBackClick" prefHeight="45.0" prefWidth="105.0" style="-fx-background-radius: 0 60 60 0; -fx-border-color: black; -fx-border-radius: 0 60 60 0;" text="Back">
+      <Button fx:id="StuSignUpBackID" alignment="BASELINE_LEFT" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#StuSignUpBackClick" prefHeight="60.0" prefWidth="110.0" style="-fx-background-radius: 0 60 60 0; -fx-border-color: black; -fx-border-radius: 0 60 60 0;" text="Back">
          <font>
-            <Font name="System Bold Italic" size="18.0" />
-         </font></Button>
-      <DatePicker fx:id="StudentSignUpDOBID" layoutX="140.0" layoutY="350.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Date of birth" />
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <DatePicker fx:id="StudentSignUpDOBID" layoutX="140.0" layoutY="350.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Date of birth">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></DatePicker>
       <PasswordField fx:id="StudentSignUpPassword" layoutX="615.0" layoutY="350.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Password" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
@@ -72,7 +86,7 @@
       <Label fx:id="StudentSignUpLastNameAlertID" layoutX="140.0" layoutY="291.0" prefHeight="30.0" prefWidth="202.0" />
       <Label fx:id="StudentSignUpDOBlAlertID" layoutX="135.0" layoutY="404.0" prefHeight="30.0" prefWidth="226.0" />
       <Label fx:id="StudentSignUpPasswordlAlertID" layoutX="622.0" layoutY="397.0" prefHeight="30.0" prefWidth="202.0" />
-      <Label alignment="CENTER_RIGHT" layoutX="27.0" layoutY="251.0" prefHeight="40.0" prefWidth="90.0" text="Last Name:" textAlignment="CENTER" textFill="#fffdfd">
+      <Label alignment="CENTER_RIGHT" layoutX="37.0" layoutY="251.0" prefHeight="40.0" prefWidth="90.0" text="Last Name:" textAlignment="CENTER" textFill="#fffdfd">
          <font>
             <Font size="16.0" />
          </font>
