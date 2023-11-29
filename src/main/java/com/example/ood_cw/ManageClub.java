@@ -75,22 +75,20 @@ public class ManageClub {
     //show club  functionality
     public void onShowClubButtonClick() throws IOException {
         updateClubInstance.setName(showName.getText());  //setting the club name input from the textField to the club object
-
+        int count =0;
         //checking if the club name is empty
         try {
             //checking if the same club name exists
             for ( List<Object> d : mainList) {
                 if (d.get(1).equals(updateClubInstance.getName())) {
+                    count++;
                     listIndex =mainList.indexOf(d);
-                    showPromptUpdate.setText("Club found!");
-                    showName.setStyle("-fx-border-color: green;");
-                    showTick.setText("\u2713");
 
                     //displays the existing item details
                     showName.setText(String.valueOf(d.get(1)));
 
 //                    LocalDate updateFoundingDate = updateClubDate.getValue();
-                    updateClubDate.setValue((LocalDate) d.get(2));
+                    updateClubDate.setValue(LocalDate.parse((String) d.get(2)));
                     updateClubMission.setText(String.valueOf(d.get(3)));
                     updateClubDescription.setText(String.valueOf(d.get(4)));
                     updateClubPresident.setText(String.valueOf(d.get(5)));
@@ -104,10 +102,16 @@ public class ManageClub {
                     updateClubIcon.setImage(updateImage);
                     preImage = d.get(9).toString();
 
-                } else {
-                    showName.setStyle("-fx-border-color: red;");
-                    showTick.setText("\u2717");
                 }
+            }
+            if (count==0){
+                showPromptUpdate.setText("");
+                showName.setStyle("-fx-border-color: red;");
+                showTick.setText("\u2717");
+            } else {
+                showPromptUpdate.setText("Club found!");
+                showName.setStyle("-fx-border-color: green;");
+                showTick.setText("\u2713");
             }
         }
         catch (NullPointerException e) {
@@ -120,7 +124,9 @@ public class ManageClub {
     //update club functionality
     public void onUpdateButtonClick() throws IOException{
         updateClubInstance.setIcon(mainList.get(listIndex).get(9).toString());
-        //mainList.remove(listIndex); //removing the old item data from the list
+        String clubID = String.valueOf(mainList.get(listIndex).get(0));
+        String advisorId = String.valueOf(mainList.get(listIndex).get(6));
+        mainList.remove(listIndex); //removing the old item data from the list
 
         outer:
         while (true) {
@@ -289,29 +295,31 @@ public class ManageClub {
             }
 
             //generating clubID
-            int max =0;
-            for (int i = 0 ; i < mainList.size() ; i++){
-                String c = (String) mainList.get(i).get(0);
-                int currentValue = Integer.parseInt(c.substring(1,4));
-                if (max < currentValue){
-                    max = currentValue;
-                }
-            }
-            max++;
-            String clubID = String.format("%03d",max);
-            clubID="C"+clubID;
+//            int max =0;
+//            for (int i = 0 ; i < mainList.size() ; i++){
+//                String c = (String) mainList.get(i).get(0);
+//                int currentValue = Integer.parseInt(c.substring(1,4));
+//                if (max < currentValue){
+//                    max = currentValue;
+//                }
+//            }
+//            max++;
+//            String clubID = String.format("%03d",max);
+//            clubID="C"+clubID;
 
 
             //creating a sublist
             List<Object> subList = new ArrayList<>();
+            String date = String.valueOf(updateClubInstance.getFoundingDate());
 
             //adding the item instances to the sublist
             subList.add(clubID);
             subList.add(updateClubInstance.getName());
-            subList.add(updateClubInstance.getFoundingDate());
+            subList.add(date);
             subList.add(updateClubInstance.getMission());
             subList.add(updateClubInstance.getDescription());
             subList.add(updateClubInstance.getClubPresidentName());
+            subList.add(advisorId);
             subList.add(updateClubInstance.getEmail());
             subList.add(updateClubInstance.getContactNo());
             subList.add(image);
