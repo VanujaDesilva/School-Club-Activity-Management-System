@@ -77,6 +77,6 @@
       </Button>
       <Button fx:id="clubSelectButton" layoutX="383.0" layoutY="138.0" mnemonicParsing="false" onAction="#onClubSelectButtonCLick" text="Select" />
       <Label fx:id="selectClubErrorLable" layoutX="220.0" layoutY="113.0" prefHeight="18.0" prefWidth="150.0" textFill="RED" />
-      <Label fx:id="selectEventErrorLabel" layoutX="568.0" layoutY="113.0" prefHeight="18.0" prefWidth="150.0" textFill="RED" />
+      <Label fx:id="selectEventErrorLabel" layoutX="568.0" layoutY="113.0" prefHeight="18.0" prefWidth="170.0" textFill="RED" />
    </children>
 </AnchorPane>
