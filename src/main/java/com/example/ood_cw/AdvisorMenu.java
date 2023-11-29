@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -82,11 +84,46 @@ public class AdvisorMenu {
                 }
             }
             eventAttend.add(eventNames.get(i));
+            eventAttend.add(eventIds.get(i));
             eventAttend.add(scheduleDates.get(i));
             eventAttend.add(attendCount);
             eventAttendance.add(eventAttend);
         }
         System.out.println(eventAttendance);
+        String fileName =clubId+".html";
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            writer.write("<html><body>");
+            writer.write("<center><p style=\"font-size: 20px;\"><strong>Advisor ID:</strong> " + advisorID.get(0) + "</p></center>");
+            writer.write("<center><p style=\"font-size: 20px;\"><strong>Club name:</strong> " + clubName + "</p></center>");
+            writer.write("<center><p style=\"font-size: 20px;\"><strong>Members count:</strong> " + registeredCount + "</p></center>");
+            writer.write("<br>");
+            writer.write("<br>");
+            for(List<Object> i : eventAttendance){
+                writer.write("<p style=\"font-size: 16px;\"><strong>Event name:</strong> " + i.get(0)+ "</p>");
+                writer.write("<p style=\"font-size: 16px;\"><strong>Event ID:</strong> " + i.get(1)+ "</p>");
+                writer.write("<p style=\"font-size: 16px;\"><strong>Event Date:</strong> " + i.get(2)+ "</p>");
+                writer.write("<p style=\"font-size: 16px;\"><strong>Event Attendance:</strong> " + i.get(3)+ "</p>");
+                writer.write("<br>");
+            }
+            writer.write("</body></html>");
+//            writer.write("Advisor id: "+advisorID.get(0)+"\n");
+//            writer.write("Club name: "+clubName+"\n");
+//            writer.write("Members count: "+registeredCount+"\n");
+//            writer.write("\n");
+//            writer.write("\n");
+//            writer.write("\n");
+//            for(List<Object> i : eventAttendance){
+//                writer.write("Event name: "+i.get(0)+"\n");
+//                writer.write("Event id: "+i.get(1)+"\n");
+//                writer.write("Date: "+i.get(2)+"\n");
+//                writer.write("Event attendance: "+i.get(3)+"\n");
+//                writer.write("\n");
+//            }
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void AdvisorMenuClubCreationButtonClick() throws IOException {
