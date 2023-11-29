@@ -45,12 +45,12 @@ public class AttendanceStatus implements Initializable {
             if(reg.get(0).equals(studentID.get(0))){
                 for(List<Object> club: clubs){
                     if(club.get(0).equals(reg.get(1))){
-                        clubsNames.add(club.get(1));
+                        clubsNames.add(club.get(1)); //select relevant clubs
                     }
                 }
             }
         }
-        studentClubSelector.getItems().addAll(clubsNames);
+        studentClubSelector.getItems().addAll(clubsNames); //add clubs into the choice box
     }
     public void onAttendanceBackButtonClick(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AdvisorMenu.fxml"));
@@ -60,12 +60,12 @@ public class AttendanceStatus implements Initializable {
         stage.setScene(scene);
         stage.show();
         Stage preStage = (Stage) attendanceStudent.getScene().getWindow();
-        preStage.close();
+        preStage.close(); // navigate to previous stage
     }
 
     public void onCheckButtonClick(ActionEvent actionEvent) {
 
-        attendanceStatusCheck.setText("Not Marked Yet");
+        attendanceStatusCheck.setText("Not Marked Yet"); 
         if(studentClubSelector != null && studentEventSelector != null){
           for(List<Object> event: allEvents){
               if(event.get(1).equals(studentEventSelector.getValue())){
