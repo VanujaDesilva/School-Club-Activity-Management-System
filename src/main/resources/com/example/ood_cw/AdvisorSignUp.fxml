@@ -26,46 +26,46 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" layoutX="23.0" layoutY="356.0" prefHeight="40.0" prefWidth="90.0" text="DOB:" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="29.0" layoutY="350.0" prefHeight="40.0" prefWidth="90.0" text="DOB:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="488.0" layoutY="150.0" prefHeight="40.0" prefWidth="90.0" text="Conatct No:" textFill="WHITE">
+      <Label layoutX="505.0" layoutY="150.0" prefHeight="40.0" prefWidth="90.0" text="Conatct No:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="488.0" layoutY="257.0" prefHeight="40.0" prefWidth="90.0" text="Email:" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="499.0" layoutY="250.0" prefHeight="40.0" prefWidth="90.0" text="Email:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="488.0" layoutY="356.0" prefHeight="40.0" prefWidth="90.0" text="Password:" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="505.0" layoutY="350.0" prefHeight="40.0" prefWidth="90.0" text="Password:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="AdvisorSignUpID" layoutX="380.0" layoutY="454.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AdvisorSignUpClick" prefHeight="46.0" prefWidth="216.0" style="-fx-background-radius: 30 30 30 30; -fx-border-color: red; -fx-border-radius: 30 30 30 30;" text="Sign Up">
+      <Button fx:id="AdvisorSignUpID" layoutX="380.0" layoutY="450.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AdvisorSignUpClick" prefHeight="46.0" prefWidth="216.0" style="-fx-background-radius: 30 30 30 30; -fx-border-color: red; -fx-border-radius: 30 30 30 30;" text="Sign Up">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>
-      <TextField fx:id="AdvisorSignUpLNameID" layoutX="142.0" layoutY="257.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Last Name" style="-fx-background-radius: 10 10 10 10;">
+      <TextField fx:id="AdvisorSignUpLNameID" layoutX="140.0" layoutY="250.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Last Name" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="AdvisorSignUpFNameID" layoutX="142.0" layoutY="151.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your First Name" style="-fx-background-radius: 10 10 10 10;">
+      <TextField fx:id="AdvisorSignUpFNameID" layoutX="140.0" layoutY="150.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your First Name" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="AdvisorSignUpContactNoID" layoutX="585.0" layoutY="151.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Contact Number" style="-fx-background-radius: 10 10 10 10;">
+      <TextField fx:id="AdvisorSignUpContactNoID" layoutX="615.0" layoutY="150.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Contact Number" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="AdvisorSignUpEmailID" layoutX="585.0" layoutY="257.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Email" style="-fx-background-radius: 10 10 10 10;">
+      <TextField fx:id="AdvisorSignUpEmailID" layoutX="615.0" layoutY="250.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Email" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font>
@@ -80,19 +80,19 @@
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font></Button>
-      <DatePicker fx:id="AdvisorSignUpDOBID" layoutX="142.0" layoutY="356.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Date of birth" />
-      <PasswordField fx:id="AdvisorSignUpPasswordID" layoutX="585.0" layoutY="356.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Password" style="-fx-background-radius: 10 10 10 10;">
+      <DatePicker fx:id="AdvisorSignUpDOBID" layoutX="140.0" layoutY="350.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Date of birth" />
+      <PasswordField fx:id="AdvisorSignUpPasswordID" layoutX="615.0" layoutY="350.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Password" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font>
       </PasswordField>
-      <Label fx:id="AdvisorSignUpEmailAlert" layoutX="599.0" layoutY="310.0" prefHeight="26.0" prefWidth="200.0" />
+      <Label fx:id="AdvisorSignUpEmailAlert" layoutX="623.0" layoutY="290.0" prefHeight="26.0" prefWidth="227.0" />
       <Label fx:id="AdvisorSignUpFirstNameAlertID" layoutX="142.0" layoutY="191.0" prefHeight="26.0" prefWidth="234.0" />
       <Label fx:id="AdvisorSignUpLastNameAlertID" layoutX="142.0" layoutY="300.0" prefHeight="26.0" prefWidth="234.0" />
-      <Label fx:id="AdvisorSignUpContactNolAlertID" layoutX="585.0" layoutY="191.0" prefHeight="26.0" prefWidth="234.0" />
+      <Label fx:id="AdvisorSignUpContactNolAlertID" layoutX="623.0" layoutY="190.0" prefHeight="26.0" prefWidth="234.0" />
       <Label fx:id="AdvisorSignUpDOBlAlertID" layoutX="153.0" layoutY="403.0" prefHeight="26.0" prefWidth="227.0" />
-      <Label fx:id="AdvisorSignUpPasswordlAler" layoutX="596.0" layoutY="428.0" prefHeight="26.0" prefWidth="206.0" />
-      <Label layoutX="45.0" layoutY="257.0" prefHeight="40.0" prefWidth="90.0" text="Last Name:" textFill="#fff9f9">
+      <Label fx:id="AdvisorSignUpPasswordlAler" layoutX="623.0" layoutY="396.0" prefHeight="26.0" prefWidth="216.0" />
+      <Label layoutX="45.0" layoutY="250.0" prefHeight="40.0" prefWidth="90.0" text="Last Name:" textFill="#fff9f9">
          <font>
             <Font size="16.0" />
          </font>
