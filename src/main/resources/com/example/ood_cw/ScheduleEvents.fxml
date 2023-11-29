@@ -1,107 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="scheduleEventAnchor" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
    <children>
-      <Label layoutX="221.0" layoutY="104.0" text="Event name: ">
+      <ImageView fitHeight="600.0" fitWidth="908.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 10 10 10 10;">
+         <image>
+            <Image url="@../../../images/BackGround2.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="34.0" layoutY="180.0" text="Event name: " textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="eventNameText" layoutX="411.0" layoutY="98.0" prefHeight="38.0" prefWidth="262.0" promptText="Enter Event Name">
+      <TextField fx:id="eventNameText" layoutX="135.0" layoutY="170.0" prefHeight="38.0" prefWidth="262.0" promptText="Enter Event Name">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="221.0" layoutY="162.0" text="Event Location: ">
+      <Label layoutX="4.0" layoutY="260.0" text="Event Location: " textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="eventLocationText" layoutX="411.0" layoutY="156.0" prefHeight="37.0" prefWidth="262.0" promptText="Enter Event Location">
+      <TextField fx:id="eventLocationText" layoutX="135.0" layoutY="250.0" prefHeight="37.0" prefWidth="262.0" promptText="Enter Event Location" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="221.0" layoutY="220.0" text="Event Time: ">
+      <Label layoutX="36.0" layoutY="338.0" text="Event Time: " textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="eventTimeText" layoutX="411.0" layoutY="214.0" prefHeight="37.0" prefWidth="262.0" promptText="Ex -: 16:30">
+      <TextField fx:id="eventTimeText" layoutX="135.0" layoutY="330.0" prefHeight="37.0" prefWidth="262.0" promptText="Ex -: 16:30" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="221.0" layoutY="330.0" text="Event Description: ">
+      <Label layoutX="450.0" layoutY="268.0" text="Event Description: " textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextArea fx:id="eventDescriptionText" layoutX="411.0" layoutY="330.0" prefHeight="130.0" prefWidth="262.0" promptText="Enter Event Description">
+      <TextArea fx:id="eventDescriptionText" layoutX="590.0" layoutY="250.0" prefHeight="130.0" prefWidth="262.0" promptText="Enter Event Description">
          <font>
             <Font size="14.0" />
          </font>
       </TextArea>
-      <Button layoutX="799.0" layoutY="528.0" mnemonicParsing="false" onAction="#onScheduleEventsButtonClick" prefHeight="38.0" prefWidth="74.0" text="Shedule">
+      <Button layoutX="314.0" layoutY="428.0" mnemonicParsing="false" onAction="#onScheduleEventsButtonClick" prefHeight="50.0" prefWidth="300.0" style="-fx-background-radius: 30 30 30 30;" text="Shedule">
          <font>
             <Font size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <InnerShadow />
+         </effect>
       </Button>
-      <Label fx:id="nameError" layoutX="411.0" layoutY="135.0" prefHeight="15.0" prefWidth="105.0" textFill="RED">
+      <Label fx:id="nameError" layoutX="149.0" layoutY="211.0" prefHeight="15.0" prefWidth="105.0" textFill="RED">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="locationError" layoutX="411.0" layoutY="193.0" prefHeight="15.0" prefWidth="105.0" textFill="RED">
+      <Label fx:id="locationError" layoutX="143.0" layoutY="273.0" prefHeight="15.0" prefWidth="105.0" textFill="RED">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="timeError" layoutX="411.0" layoutY="251.0" prefHeight="15.0" prefWidth="105.0" textFill="RED">
+      <Label fx:id="timeError" layoutX="137.0" layoutY="379.0" prefHeight="15.0" prefWidth="105.0" textFill="RED">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label layoutX="221.0" layoutY="277.0" text="Event Date: ">
+      <Label layoutX="490.0" layoutY="180.0" text="Event Date: " textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="dateError" layoutX="411.0" layoutY="308.0" prefHeight="15.0" prefWidth="158.0" textFill="RED">
+      <Label fx:id="dateError" layoutX="595.0" layoutY="218.0" prefHeight="15.0" prefWidth="158.0" textFill="RED">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <DatePicker fx:id="eventDateText" layoutX="411.0" layoutY="271.0" prefHeight="38.0" prefWidth="262.0" />
-      <Button layoutX="34.0" layoutY="528.0" mnemonicParsing="false" onAction="#onScheduleEventsBackButtonClick" prefHeight="38.0" prefWidth="52.0" text="Back">
+      <DatePicker fx:id="eventDateText" layoutX="590.0" layoutY="173.0" prefHeight="38.0" prefWidth="262.0" />
+      <Button layoutY="30.0" mnemonicParsing="false" onAction="#onScheduleEventsBackButtonClick" prefHeight="60.0" prefWidth="110.0" style="-fx-background-radius: 0 60 60 0;" text="Back">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <InnerShadow />
+         </effect>
       </Button>
-      <Label fx:id="eventNameTick" layoutX="688.0" layoutY="106.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
+      <Label fx:id="eventNameTick" layoutX="405.0" layoutY="183.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="eventLocTick" layoutX="688.0" layoutY="164.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
+      <Label fx:id="eventLocTick" layoutX="411.0" layoutY="245.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="eventTimeTick" layoutX="688.0" layoutY="223.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
+      <Label fx:id="eventTimeTick" layoutX="405.0" layoutY="351.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="eventDateTick" layoutX="688.0" layoutY="280.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
+      <Label fx:id="eventDateTick" layoutX="854.0" layoutY="183.0" prefHeight="18.0" prefWidth="38.0" textFill="#13e57d">
          <font>
             <Font size="14.0" />
          </font>
