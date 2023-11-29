@@ -90,12 +90,16 @@ public class AdvisorMenu {
             eventAttendance.add(eventAttend);
         }
         System.out.println(eventAttendance);
+        if (clubId==""){
+            clubId="NoClub";
+        }
         String fileName =clubId+".html";
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
             writer.write("<html><body>");
             writer.write("<center><p style=\"font-size: 20px;\"><strong>Advisor ID:</strong> " + advisorID.get(0) + "</p></center>");
             writer.write("<center><p style=\"font-size: 20px;\"><strong>Club name:</strong> " + clubName + "</p></center>");
+            writer.write("<center><p style=\"font-size: 20px;\"><strong>Club ID:</strong> " + clubId + "</p></center>");
             writer.write("<center><p style=\"font-size: 20px;\"><strong>Members count:</strong> " + registeredCount + "</p></center>");
             writer.write("<br>");
             writer.write("<br>");

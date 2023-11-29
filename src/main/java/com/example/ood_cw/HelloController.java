@@ -1067,8 +1067,6 @@ public class HelloController{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentMenu.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-
-
         Stage primaryStage = (Stage) StuSignUpID.getScene().getWindow();
         primaryStage.setScene(scene);
         primaryStage.show();
