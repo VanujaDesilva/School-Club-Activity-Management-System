@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,6 +23,7 @@ import java.util.ResourceBundle;
 import static com.example.ood_cw.HelloController.*;
 
 public class JoinClub implements Initializable {
+    LocalDate localDate;
     public ChoiceBox clubSelectBox;
     public Label clubName;
     public Label clubFoundingDate;
@@ -48,9 +51,19 @@ public class JoinClub implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        for(List<Object>club: clubs){
-            cNames.add(club.get(1));
+        for(List<Object> reg: registration){
+            if(reg.get(0).equals(studentID.get(0))){
+                for(List<Object> club: clubs){
+                    if(club.get(0).equals(reg.get(1))){
+                    }
+                    else {
+                        cNames.add(club.get(1));
+                    }
+                }
+
+            }
         }
+
         clubSelectBox.getItems().addAll(cNames);
 
     }
@@ -71,14 +84,19 @@ public class JoinClub implements Initializable {
 
         }    }
 
-    public void onJoinButtonClick(ActionEvent actionEvent) throws IOException {
-        for(List<Object> reg: registration) {
-            if (reg.get(0).equals(studentID.get(0))) {
-                confirmationLabel.setText("You already joined this club...");
-                break;
-//            }else if (studentID.get(0)!= reg.get(0))
+    public void onJoinButtonClick(ActionEvent actionEvent) throws IOException, SQLException {
+        String clubId= null;
+        confirmationLabel.setText("Club join successfully!");
+        String id = String.valueOf(studentID.get(0));
+        for (List<Object> club: clubs){
+            if(club.get(1).equals(clubSelectBox.getValue())){
+                 clubId = (String) club.get(1);
             }
         }
+        String date = String.valueOf(LocalDate.now());
+        DatabaseConnect.insertRegistrationDetails(id,clubId,date);
+        DatabaseConnect.getRegistrationDetails();
 
     }
+
 }
