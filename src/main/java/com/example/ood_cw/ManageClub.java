@@ -13,6 +13,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.ood_cw.HelloController.clubs;
+
 public class ManageClub {
 
     //importing lists
@@ -90,7 +92,8 @@ public class ManageClub {
                     showName.setText(String.valueOf(d.get(1)));
 
 //                    LocalDate updateFoundingDate = updateClubDate.getValue();
-                    updateClubDate.setValue((LocalDate) d.get(2));
+                    System.out.println(d.get(2));
+                    updateClubDate.setValue(LocalDate.parse((String) d.get(2)));
                     updateClubMission.setText(String.valueOf(d.get(3)));
                     updateClubDescription.setText(String.valueOf(d.get(4)));
                     updateClubPresident.setText(String.valueOf(d.get(5)));
@@ -197,7 +200,7 @@ public class ManageClub {
             //checking if the club president name is empty
             if (!updateClubInstance.getClubPresidentName().isEmpty()) {
                 //checking if the same club president exists
-                for (List<Object> b : mainList) {
+                for (List<Object> b : clubs) {
                     if (b.get(5).equals(updateClubInstance.getClubPresidentName())) {
                         showPromptUpdate.setText("Club President already exists!"); //displaying prompt text
                         showPromptUpdate.setStyle("-fx-text-fill: red;");
@@ -317,7 +320,7 @@ public class ManageClub {
             subList.add(image);
 
             mainList.add(subList); //adding the sublist to the main list
-            HelloController.clubs.add(subList);
+            clubs.add(subList);
 
             System.out.println(mainList);
             showPromptUpdate.setText("Club Successfully Created!"); //displaying prompt text
