@@ -17,35 +17,35 @@
             <Image url="@../../../images/BackGround2.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER_RIGHT" layoutX="53.0" layoutY="152.0" prefHeight="40.0" prefWidth="90.0" text="First Name:" textAlignment="CENTER" textFill="#fffdfd">
+      <Label alignment="CENTER_RIGHT" layoutX="27.0" layoutY="150.0" prefHeight="40.0" prefWidth="90.0" text="First Name:" textAlignment="CENTER" textFill="#fffdfd">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label alignment="CENTER_RIGHT" layoutX="53.0" layoutY="355.0" prefHeight="40.0" prefWidth="90.0" text="DOB:" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="27.0" layoutY="350.0" prefHeight="40.0" prefWidth="90.0" text="DOB:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label alignment="CENTER_RIGHT" layoutX="485.0" layoutY="145.0" prefHeight="40.0" prefWidth="90.0" text="Conatct No:" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="499.0" layoutY="147.0" prefHeight="40.0" prefWidth="90.0" text="Conatct No:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label alignment="CENTER_RIGHT" layoutX="491.0" layoutY="245.0" prefHeight="40.0" prefWidth="90.0" text="Email:" textFill="#fafafa">
+      <Label alignment="CENTER_RIGHT" layoutX="499.0" layoutY="245.0" prefHeight="40.0" prefWidth="90.0" text="Email:" textFill="#fafafa">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label alignment="CENTER_RIGHT" layoutX="491.0" layoutY="350.0" prefHeight="40.0" prefWidth="90.0" text="Password:" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="499.0" layoutY="350.0" prefHeight="40.0" prefWidth="90.0" text="Password:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Button fx:id="StuSignUpID" layoutX="342.0" layoutY="519.0" mnemonicParsing="false" onAction="#StudentSignUpClickID" prefHeight="40.0" prefWidth="202.0" style="-fx-background-radius: 30 30 30 30; -fx-border-color: red; -fx-border-radius: 30 30 30 30;" text="Sign Up">
+      <Button fx:id="StuSignUpID" layoutX="380.0" layoutY="464.0" mnemonicParsing="false" onAction="#StudentSignUpClickID" prefHeight="46.0" prefWidth="216.0" style="-fx-background-radius: 30 30 30 30; -fx-border-color: red; -fx-border-radius: 30 30 30 30;" text="Sign Up">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Button>
-      <TextField fx:id="StudentSignUpLastNameID" layoutX="183.0" layoutY="245.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Last Name" style="-fx-background-radius: 10 10 10 10;">
+      <TextField fx:id="StudentSignUpLastNameID" layoutX="130.0" layoutY="251.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Last Name" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font></TextField>
-      <TextField fx:id="StudentSignUpFirstNameID" layoutX="183.0" layoutY="147.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your First Name" style="-fx-background-radius: 10 10 10 10;">
+      <TextField fx:id="StudentSignUpFirstNameID" layoutX="130.0" layoutY="150.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your First Name" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font></TextField>
@@ -59,20 +59,20 @@
          </font></TextField>
       <Button fx:id="StuSignUpBackID" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#StuSignUpBackClick" prefHeight="45.0" prefWidth="105.0" style="-fx-background-radius: 0 60 60 0; -fx-border-color: black; -fx-border-radius: 0 60 60 0;" text="Back">
          <font>
-            <Font name="System Italic" size="18.0" />
+            <Font name="System Bold Italic" size="18.0" />
          </font></Button>
-      <DatePicker fx:id="StudentSignUpDOBID" layoutX="183.0" layoutY="355.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Date of birth" />
+      <DatePicker fx:id="StudentSignUpDOBID" layoutX="130.0" layoutY="357.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Date of birth" />
       <PasswordField fx:id="StudentSignUpPassword" layoutX="615.0" layoutY="350.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Password" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font></PasswordField>
-      <Label fx:id="StudentSignUpEmailAlert" layoutX="620.0" layoutY="365.0" prefHeight="30.0" prefWidth="150.0" />
-      <Label fx:id="StudentSignUpContactNoAlert" layoutX="620.0" layoutY="235.0" prefHeight="30.0" prefWidth="150.0" />
-      <Label fx:id="StudentSignUpFirstNameAlertID" layoutX="620.0" layoutY="105.0" prefHeight="30.0" prefWidth="150.0" />
-      <Label fx:id="StudentSignUpLastNameAlertID" layoutX="620.0" layoutY="155.0" prefHeight="30.0" prefWidth="150.0" />
-      <Label fx:id="StudentSignUpDOBlAlertID" layoutX="620.0" layoutY="165.0" prefHeight="30.0" prefWidth="150.0" />
-      <Label fx:id="StudentSignUpPasswordlAlertID" layoutX="620.0" layoutY="435.0" prefHeight="30.0" prefWidth="150.0" />
-      <Label alignment="CENTER_RIGHT" layoutX="53.0" layoutY="245.0" prefHeight="40.0" prefWidth="90.0" text="Last Name:" textAlignment="CENTER" textFill="#fffdfd">
+      <Label fx:id="StudentSignUpEmailAlert" layoutX="631.0" layoutY="291.0" prefHeight="30.0" prefWidth="192.0" />
+      <Label fx:id="StudentSignUpContactNoAlert" layoutX="631.0" layoutY="192.0" prefHeight="30.0" prefWidth="150.0" />
+      <Label fx:id="StudentSignUpFirstNameAlertID" layoutX="140.0" layoutY="192.0" prefHeight="30.0" prefWidth="216.0" />
+      <Label fx:id="StudentSignUpLastNameAlertID" layoutX="140.0" layoutY="291.0" prefHeight="30.0" prefWidth="202.0" />
+      <Label fx:id="StudentSignUpDOBlAlertID" layoutX="135.0" layoutY="404.0" prefHeight="30.0" prefWidth="226.0" />
+      <Label fx:id="StudentSignUpPasswordlAlertID" layoutX="622.0" layoutY="397.0" prefHeight="30.0" prefWidth="202.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="27.0" layoutY="251.0" prefHeight="40.0" prefWidth="90.0" text="Last Name:" textAlignment="CENTER" textFill="#fffdfd">
          <font>
             <Font size="16.0" />
          </font>

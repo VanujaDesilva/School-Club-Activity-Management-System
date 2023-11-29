@@ -1,75 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="AdvisorSignUpAnchorID" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood_cw.HelloController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="900.0" layoutX="1.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="230.0" layoutY="100.0" prefHeight="40.0" prefWidth="90.0" text="Name">
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/BackGround2.jpg" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></ImageView>
+      <Label layoutX="45.0" layoutY="150.0" prefHeight="40.0" prefWidth="90.0" text="First Name:" textFill="#fff9f9">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="230.0" layoutY="220.0" prefHeight="40.0" prefWidth="90.0" text="DOB">
+      <Label alignment="CENTER_RIGHT" layoutX="23.0" layoutY="356.0" prefHeight="40.0" prefWidth="90.0" text="DOB:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="230.0" layoutY="290.0" prefHeight="40.0" prefWidth="90.0" text="Conatct No">
+      <Label layoutX="488.0" layoutY="150.0" prefHeight="40.0" prefWidth="90.0" text="Conatct No:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="230.0" layoutY="360.0" prefHeight="40.0" prefWidth="90.0" text="Email">
+      <Label layoutX="488.0" layoutY="257.0" prefHeight="40.0" prefWidth="90.0" text="Email:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="230.0" layoutY="430.0" prefHeight="40.0" prefWidth="90.0" text="Password">
+      <Label layoutX="488.0" layoutY="356.0" prefHeight="40.0" prefWidth="90.0" text="Password:" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="AdvisorSignUpID" layoutX="750.0" layoutY="500.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AdvisorSignUpClick" prefHeight="40.0" prefWidth="80.0" text="Sign Up" />
-      <TextField fx:id="AdvisorSignUpLNameID" layoutX="360.0" layoutY="150.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Last Name">
+      <Button fx:id="AdvisorSignUpID" layoutX="380.0" layoutY="454.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AdvisorSignUpClick" prefHeight="46.0" prefWidth="216.0" style="-fx-background-radius: 30 30 30 30; -fx-border-color: red; -fx-border-radius: 30 30 30 30;" text="Sign Up">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Button>
+      <TextField fx:id="AdvisorSignUpLNameID" layoutX="142.0" layoutY="257.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Last Name" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="AdvisorSignUpFNameID" layoutX="360.0" layoutY="100.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your First Name">
+      <TextField fx:id="AdvisorSignUpFNameID" layoutX="142.0" layoutY="151.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your First Name" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="AdvisorSignUpContactNoID" layoutX="360.0" layoutY="290.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Contact Number">
+      <TextField fx:id="AdvisorSignUpContactNoID" layoutX="585.0" layoutY="151.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Contact Number" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="AdvisorSignUpEmailID" layoutX="360.0" layoutY="360.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Email">
+      <TextField fx:id="AdvisorSignUpEmailID" layoutX="585.0" layoutY="257.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Email" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Button fx:id="AdvisorSignUpBackID" layoutX="10.0" layoutY="30.0" mnemonicParsing="false" onAction="#AdvisorSignUpBackClick" prefHeight="40.0" prefWidth="80.0" text="Back" />
-      <DatePicker fx:id="AdvisorSignUpDOBID" layoutX="360.0" layoutY="220.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Date of birth" />
-      <PasswordField fx:id="AdvisorSignUpPasswordID" layoutX="360.0" layoutY="430.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Password">
+      <Button fx:id="AdvisorSignUpBackID" layoutY="28.0" mnemonicParsing="false" onAction="#AdvisorSignUpBackClick" prefHeight="53.0" prefWidth="106.0" style="-fx-background-radius: 0 60 60 0; -fx-border-color: red; -fx-border-radius: 0 60 60 0;" text="Back">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font></Button>
+      <DatePicker fx:id="AdvisorSignUpDOBID" layoutX="142.0" layoutY="356.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Date of birth" />
+      <PasswordField fx:id="AdvisorSignUpPasswordID" layoutX="585.0" layoutY="356.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter Your Password" style="-fx-background-radius: 10 10 10 10;">
          <font>
             <Font size="16.0" />
          </font>
       </PasswordField>
-      <Label fx:id="AdvisorSignUpEmailAlert" layoutX="621.0" layoutY="367.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label fx:id="AdvisorSignUpFirstNameAlertID" layoutX="621.0" layoutY="107.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label fx:id="AdvisorSignUpLastNameAlertID" layoutX="621.0" layoutY="158.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label fx:id="AdvisorSignUpContactNolAlertID" layoutX="621.0" layoutY="297.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label fx:id="AdvisorSignUpDOBlAlertID" layoutX="621.0" layoutY="227.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label fx:id="AdvisorSignUpPasswordlAler" layoutX="621.0" layoutY="436.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label fx:id="AdvisorSignUpEmailAlert" layoutX="599.0" layoutY="310.0" prefHeight="26.0" prefWidth="200.0" />
+      <Label fx:id="AdvisorSignUpFirstNameAlertID" layoutX="142.0" layoutY="191.0" prefHeight="26.0" prefWidth="234.0" />
+      <Label fx:id="AdvisorSignUpLastNameAlertID" layoutX="142.0" layoutY="300.0" prefHeight="26.0" prefWidth="234.0" />
+      <Label fx:id="AdvisorSignUpContactNolAlertID" layoutX="585.0" layoutY="191.0" prefHeight="26.0" prefWidth="234.0" />
+      <Label fx:id="AdvisorSignUpDOBlAlertID" layoutX="153.0" layoutY="403.0" prefHeight="26.0" prefWidth="227.0" />
+      <Label fx:id="AdvisorSignUpPasswordlAler" layoutX="596.0" layoutY="428.0" prefHeight="26.0" prefWidth="206.0" />
+      <Label layoutX="45.0" layoutY="257.0" prefHeight="40.0" prefWidth="90.0" text="Last Name:" textFill="#fff9f9">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
