@@ -61,34 +61,11 @@ public class ShowClubs implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        showClubID.setCellValueFactory(new PropertyValueFactory<Club,String>("id"));
-        showClubName.setCellValueFactory(new PropertyValueFactory<Club,String>("name"));
-        showClubDate.setCellValueFactory(new PropertyValueFactory<Club,String>("stringDate"));
-        showClubMission.setCellValueFactory(new PropertyValueFactory<Club,String>("mission"));
-        showClubDescription.setCellValueFactory(new PropertyValueFactory<Club,String>("description"));
-        showClubPresidentName.setCellValueFactory(new PropertyValueFactory<Club,String>("clubPresidentName"));
-        showClubAdvisorID.setCellValueFactory(new PropertyValueFactory<Club,String>("clubAdvisorId"));
-        showClubEmail.setCellValueFactory(new PropertyValueFactory<Club,String>("email"));
-        showClubContactNo.setCellValueFactory(new PropertyValueFactory<Club,String>("contactNo"));
-        showClubIcon.setCellValueFactory(column->{
-            ImageView image = new ImageView();
-            image.setFitWidth(80);
-            image.setFitHeight(80);
-            Club club = column.getValue();
-            String path = club.getIcon();
-            if(path != null){
-                File file = new File(path);
-                if(file.exists()){
-                    image.setImage(new Image(path));
-
-                }
-            }
-            return new ReadOnlyObjectWrapper<>(image);
-        });
-
-        ObservableList<Club> clubs = FXCollections.observableArrayList();
         //importing clubs list from the controller
-        List<List<Object>> clubView = HelloController.clubs;
+        List<List<Object>> clubView = HelloController.mainList;
+
+        ObservableList<Club> clubViewMain = FXCollections.observableArrayList();
+
         for (List<Object> i : clubView){
             //creating sub list
             Club viewClubs = new Club(
@@ -104,10 +81,41 @@ public class ShowClubs implements Initializable {
                     (String)i.get(9)
             );
             //adding sublist to the main list
-            clubs.add(viewClubs);
+            clubViewMain.add(viewClubs);
+            System.out.println(clubViewMain);
+
+            //setting the club details to the table columns
+            showClubID.setCellValueFactory(new PropertyValueFactory<Club,String>("id"));
+            showClubName.setCellValueFactory(new PropertyValueFactory<Club,String>("name"));
+            showClubDate.setCellValueFactory(new PropertyValueFactory<Club,String>("stringDate"));
+            showClubMission.setCellValueFactory(new PropertyValueFactory<Club,String>("mission"));
+            showClubDescription.setCellValueFactory(new PropertyValueFactory<Club,String>("description"));
+            showClubPresidentName.setCellValueFactory(new PropertyValueFactory<Club,String>("clubPresidentName"));
+            showClubAdvisorID.setCellValueFactory(new PropertyValueFactory<Club,String>("clubAdvisorId"));
+            showClubEmail.setCellValueFactory(new PropertyValueFactory<Club,String>("email"));
+            showClubContactNo.setCellValueFactory(new PropertyValueFactory<Club,String>("contactNo"));
+
+            showClubIcon.setCellValueFactory(column->{
+                ImageView image = new ImageView();
+                image.setFitWidth(80);
+                image.setFitHeight(80);
+                Club clubImageTable = column.getValue();
+                String path = clubImageTable.getIcon();
+                System.out.println(path);
+                if(path != null && !path.isEmpty()){
+                    try {
+                        image.setImage(new Image(new File(path).toURI().toString()));
+                    }
+                    catch (Exception e){
+                        System.out.println("error");
+                    }
+                }
+                return new ReadOnlyObjectWrapper<>(image);
+            });
+
+            //displaying values in the table
+            showClubTable.setItems(clubViewMain);
         }
-        //displaying values in the table
-        showClubTable.setItems(clubs);
     }
 
     //back button functionality
