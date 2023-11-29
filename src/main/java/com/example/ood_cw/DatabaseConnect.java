@@ -297,12 +297,12 @@ public class DatabaseConnect {
             e.printStackTrace();
         }
     }
-    public static void insertRegistrationDetails(String studentId, String clubId, String joinDate) throws SQLException {
+    public static void insertRegistrationDetails(String studentId, String sessionId, String joinDate) throws SQLException {
         try (Connection connection = getConnection()) {
-            String query = "INSERT INTO attendance (studentId,clubId,joinDate) VALUES (?, ?, ?)";
+            String query = "INSERT INTO attendance (studentI,sessionId,joinDate) VALUES (?, ?, ?)";
             try (PreparedStatement attend = connection.prepareStatement(query)) {
                 attend.setString(1, studentId);
-                attend.setString(2, clubId);
+                attend.setString(2,sessionId);
                 attend.setString(3, joinDate);
                 attend.executeUpdate();
             }
