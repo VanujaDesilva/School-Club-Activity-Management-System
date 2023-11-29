@@ -706,7 +706,7 @@ public class HelloController{
             if (endDate.equals("null")){
                 obj.setLabel(activityEndDateError,activityEndDateText,activityEndDateTick);
                 errors++;
-            }else {
+            }else { //converting the lastDate to local date type
                 try {
                     eYear = Integer.parseInt(endDate.substring(0, 4));
                     eMonth = Integer.parseInt(endDate.substring(5, 7));
@@ -735,7 +735,7 @@ public class HelloController{
             String date1 = String.valueOf(obj.getEndDate());
 
             List<List<Object>> allActivities = new ArrayList<>();
-            for (int j = 0; j<allEvents.size(); j++){
+            for (int j = 0; j<allEvents.size(); j++){ //getting all the activities
                 String e = (String) allEvents.get(j).get(0);
                 e = e.substring(0,1);
                 if (e.equals("A")){
@@ -743,7 +743,7 @@ public class HelloController{
                 }
             }
 
-            for (int i = 0; i < allActivities.size(); i++){
+            for (int i = 0; i < allActivities.size(); i++){ //checking if the activity already exists
                 if (allActivities.get(i).get(1).equals(obj.getEventName()) && String.valueOf(allActivities.get(i).get(5)).equals(date) && String.valueOf(allActivities.get(i).get(6)).equals(date1)){
 
                     activityAddSuccessfull.setStyle("-fx-text-fill: #ff0000;");
@@ -759,7 +759,7 @@ public class HelloController{
                     break outerloop;
                 }
             }
-            int max =0;
+            int max =0; //generating the activity id
             for (int i = 0 ; i < allActivities.size() ; i++){
                 String e = (String) allActivities.get(i).get(0);
                 int curValue = Integer.parseInt(e.substring(1,4));
@@ -811,7 +811,7 @@ public class HelloController{
     public static List<List<Object>> eventView = new ArrayList<>();
     public void onEventSchedulingViewOrDeleteButtonClick() throws IOException {
         eventView.clear();
-        for (int i=0; i<events.size();i++){
+        for (int i=0; i<events.size();i++){ //converting all the data of the events to String
             List<Object> event = new ArrayList<>();
             event.add(String.valueOf(events.get(i).get(0)));
             event.add(String.valueOf(events.get(i).get(1)));
