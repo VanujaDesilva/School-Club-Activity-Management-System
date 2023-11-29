@@ -104,6 +104,7 @@ public class ShowClubs implements Initializable {
                 if(path != null && !path.isEmpty()){
                     try {
                         image.setImage(new Image(new File(path).toURI().toString()));
+
                     }
                     catch (Exception e){
                         System.out.println("error");
