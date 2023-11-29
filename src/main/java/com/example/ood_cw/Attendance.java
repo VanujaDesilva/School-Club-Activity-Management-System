@@ -63,33 +63,31 @@ public class Attendance implements Initializable {
         System.out.println(advisorID.get(0));
         for(List<Object> club: clubs){
             if(club.get(6).equals(advisorID.get(0))){
-                clubNameShow.setText(String.valueOf(club.get(1)));
-                liveClubId = String.valueOf(club.get(0));
+                clubNameShow.setText(String.valueOf(club.get(1))); //Display club advisor's club
+                liveClubId = String.valueOf(club.get(0));// get relevant club id
             }
         }
-        System.out.println(liveClubId);
         for (List<Object> reg : registration){
             if (reg.get(1).equals(liveClubId)){
-                studentIds.add(String.valueOf(reg.get(0)));
+                studentIds.add(String.valueOf(reg.get(0)));//get all th students that registerd in the club
             }
         }
-        System.out.println(studentIds);
         String eDate;
         int eYear,eMonth,eDay;
         for (List<Object> event : allEvents) {
             if(event.get(8).equals(liveClubId)) {
                 String eName = String.valueOf(event.get(1));
-                if (Objects.equals(eName, " - ")) {
+                if (Objects.equals(eName, " - ")) {//get session id if there is no name for the session
                     eName = String.valueOf(event.get(0));
                 }
                 eDate = String.valueOf(event.get(5));
-                eYear = Integer.parseInt(eDate.substring(0,4));
+                eYear = Integer.parseInt(eDate.substring(0,4));// getting session date to validate part
                 eMonth = Integer.parseInt(eDate.substring(5,7));
                 eDay = Integer.parseInt(eDate.substring(8,10));
                 LocalDate eventDate = LocalDate.of(eYear,eMonth,eDay);
                 LocalDate currentDate = LocalDate.now();
-                if(eventDate.isBefore(currentDate) || eventDate.equals(currentDate)){
-                    eventNames.add(eName);
+                if(eventDate.isBefore(currentDate) || eventDate.equals(currentDate)){ //check whether the event is held today or previous to mark the attendace
+                    eventNames.add(eName); // if yes added to event choice box
                 }
             }
         }
@@ -112,25 +110,23 @@ public class Attendance implements Initializable {
             }
         }
         for (Student std : savedAttendanceList) {
-            if (std.getStatus().isSelected()) {
+            if (std.getStatus().isSelected()) { // get check box value and pass database to attendance status according to that
                 attendance = "Present";
             } else {
                 attendance = "Absent";
             }
-            System.out.println("Student ID: " + std.getStdId() + ", Attendance Status: " + attendance);
-            DatabaseConnect.insertAttendance(std.getStdId(), eventId, attendance);
-            DatabaseConnect.getAttendance();
+            DatabaseConnect.insertAttendance(std.getStdId(), eventId, attendance); // insert data into data
+            DatabaseConnect.getAttendance(); // retrieve data from data base
         }
         DatabaseConnect.getAttendance();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AttendanceSave.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 600,  400);
-        stage.setTitle("Enter club name");
+        stage.setTitle("Confirmation message");
         stage.setScene(scene);
         stage.show();
-
         attendanceTable.getItems().clear();
-        eventSelector.getItems().clear();
+        eventSelector.getItems().clear();    //Clear all the fields
         eventSelector.setStyle("-fx-border-color: none;");
     }
 
@@ -146,22 +142,22 @@ public class Attendance implements Initializable {
                     String telNo = String.valueOf(studentdetail.get(4));
 
                     Student student = new Student(stdId, firstName, lastName, telNo,dob);
-                    data.add(student);
+                    data.add(student); // insert all the students into the table
                 }
             }
         }
-        String selectedEvent = (String) eventSelector.getValue();
+        String selectedEvent = (String) eventSelector.getValue(); // get event name
 
         if  (selectedEvent != null) {
             this.attendanceTable.setItems(data);
-            eventSelector.setStyle("-fx-border-color: green;");
+            eventSelector.setStyle("-fx-border-color: green;"); // validation
         } else {
             eventSelectionError.setText("Select event");
             eventSelector.setStyle("-fx-border-color: red;");
             PauseTransition pause = new PauseTransition(Duration.seconds(3));
             pause.setOnFinished(event -> {
                 eventSelectionError.setText("");
-                eventSelector.setStyle("-fx-border-color: none;");
+                eventSelector.setStyle("-fx-border-color: none;"); // validation
             });
             pause.play();
         }
@@ -174,6 +170,6 @@ public class Attendance implements Initializable {
         stage.setScene(scene);
         stage.show();
         Stage preStage = (Stage) attendancePane.getScene().getWindow();
-        preStage.close();
+        preStage.close(); // navigate to previous stage
     }
 }
