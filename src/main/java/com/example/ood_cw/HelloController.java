@@ -948,12 +948,12 @@ public class HelloController{
     @FXML
     private Button StuSignUpBackID;
 
-    public void StudentSignUpClickID() throws IOException {
+    public void StudentSignUpClickID() throws IOException, SQLException {
         Student obj = new Student();
         obj.setFirstName(StudentSignUpFirstNameID.getText());
         obj.setLastName(StudentSignUpLastNameID.getText());
         obj.setDob(String.valueOf(StudentSignUpDOBID.getValue()));
-        obj.setTelNo("+94" + StudentSignUpContactNoID.getText());
+        obj.setTelNo(StudentSignUpContactNoID.getText());
         obj.setEmail(StudentSignUpEmailID.getText());
         String password = StudentSignUpPassword.getText();
         int count =0;
@@ -974,15 +974,8 @@ public class HelloController{
             count++;
         } else {
             StudentSignUpLastNameID.setStyle("-fx-border-color: green;");
+            StudentSignUpLastNameAlertID.setText("");
         }
-        for (List<Object> i : studentDetails){
-            if(String.valueOf(i.get(5)).equals(obj.getEmail())){
-                count++;
-                //label.setText("Email already exixts!");
-                System.out.println("email already exists");
-            }
-        }
-
         if (obj.getDob().equals("null")){
             StudentSignUpDOBID.setStyle("-fx-border-color: red;");
             StudentSignUpDOBlAlertID.setText("Fill the Blanks");
@@ -990,40 +983,46 @@ public class HelloController{
             count++;
         } else {
             StudentSignUpDOBID.setStyle("-fx-border-color: green;");
+            StudentSignUpDOBlAlertID.setText("");
         }
-
         if (obj.getEmail().isEmpty()){
             StudentSignUpEmailID.setStyle("-fx-border-color: red;");
             StudentSignUpEmailAlert.setText("Fill the Blanks");
             StudentSignUpEmailAlert.setStyle("-fx-text-fill: red;");
             count++;
         } else if (Club.isValidEmail(obj.getEmail())) {
-
             StudentSignUpEmailID.setStyle("-fx-border-color: green;");
-
+            StudentSignUpEmailAlert.setText("");
+            for (List<Object> i : studentDetails){
+                if(String.valueOf(i.get(5)).equals(obj.getEmail())){
+                    count++;
+                    StudentSignUpEmailAlert.setStyle("-fx-text-fill: red;");
+                    StudentSignUpEmailAlert.setText("Email already exist!");
+                    StudentSignUpEmailID.setStyle("-fx-border-color: none;");
+                }
+            }
         } else {
-            StudentSignUpEmailAlert.setText("Please enter valid email!");
             StudentSignUpEmailAlert.setStyle("-fx-text-fill: red;");
+            StudentSignUpEmailAlert.setText("Please enter valid email!");
             count++;
         }
-        {
-
-            StudentSignUpEmailID.setStyle("-fx-border-color: green;");
-        }
-
         if (obj.getTelNo().isEmpty()) {
             StudentSignUpContactNoID.setStyle("-fx-border-color: red;");
-            StudentSignUpContactNoAlert.setText("Fill the Blanks");
             StudentSignUpContactNoAlert.setStyle("-fx-text-fill: red;");
+            StudentSignUpContactNoAlert.setText("Fill the Blanks");
             count++;
-        } else if (Club.isValidContactNo(StudentSignUpContactNoID.getText())){
-            StudentSignUpContactNoID.setStyle("-fx-border-color: green");
         } else {
-            StudentSignUpContactNoAlert.setText("Please enter a valid Conatct No");
-            StudentSignUpContactNoID.setStyle("-fx-text-fill: red;");
-            count++;
+            StudentSignUpContactNoID.setStyle("-fx-border-color: green");
+            StudentSignUpContactNoAlert.setText("");
         }
 
+//        if (Club.isValidContactNo("+94"+obj.getTelNo())){
+//            StudentSignUpContactNoID.setStyle("-fx-border-color: green");
+//        } else {
+//            StudentSignUpContactNoAlert.setStyle("-fx-text-fill: red;");
+//            StudentSignUpContactNoAlert.setText("Please enter a valid Conatct No");
+//            count++;
+//        }
 
 
 
@@ -1034,6 +1033,7 @@ public class HelloController{
             count++;
         } else {
             StudentSignUpPassword.setStyle("-fx-border-color: green;");
+            StudentSignUpPasswordlAlertID.setText("");
         }
 
         if (count>0){
@@ -1062,8 +1062,16 @@ public class HelloController{
         student.add(obj.getEmail());
         student.add(password);
         studentDetails.add(student);
-        System.out.println(studentDetails);
-        System.out.println("Student details successfully added to the list and should be added to the database");
+        DatabaseConnect.insertStudentDetails(String.valueOf(student.get(0)),String.valueOf(student.get(1)),String.valueOf(student.get(2)),String.valueOf(student.get(3)),String.valueOf(student.get(4)),String.valueOf(student.get(5)),String.valueOf(student.get(6)));
+        DatabaseConnect.getStudentDetails();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentMenu.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+
+        Stage primaryStage = (Stage) StuSignUpID.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public void StuSignUpBackClick(ActionEvent actionEvent) throws IOException {
@@ -1105,7 +1113,7 @@ public class HelloController{
     @FXML
     private PasswordField AdvisorSignUpPasswordID;
 
-    public void AdvisorSignUpClick() throws IOException {
+    public void AdvisorSignUpClick() throws IOException, SQLException {
         System.out.println(advisorDetails);
         Advisor obj = new Advisor();
         obj.setFirstName(AdvisorSignUpFNameID.getText());
@@ -1117,32 +1125,22 @@ public class HelloController{
         int count =0;
         if (obj.getFirstName().isEmpty()){
             AdvisorSignUpFNameID.setStyle("-fx-border-color: red;");
-            AdvisorSignUpFirstNameAlertID.setText("Fill the blanks");
+            AdvisorSignUpFirstNameAlertID.setText("Fill this field");
             AdvisorSignUpFirstNameAlertID.setStyle("-fx-text-fill: red;");
-
             count++;
         } else {
             AdvisorSignUpFNameID.setStyle("-fx-border-color: green;");
             AdvisorSignUpFirstNameAlertID.setText("");
         }
-
         if (obj.getLastName().isEmpty()){
             AdvisorSignUpLNameID.setStyle("-fx-border-color: red;");
-            AdvisorSignUpLastNameAlertID.setText("Fill the blanks");
+            AdvisorSignUpLastNameAlertID.setText("Fill this field");
             AdvisorSignUpLastNameAlertID.setStyle("-fx-text-fill: red;");
             count++;
         } else {
             AdvisorSignUpLNameID.setStyle("-fx-border-color: green;");
             AdvisorSignUpLastNameAlertID.setText("");
         }
-        for (List<Object> i : advisorDetails){
-            if(String.valueOf(i.get(5)).equals(obj.getEmail())){
-                count++;
-                //label.setText("Email already exixts!");
-                System.out.println("email already exists");
-            }
-        }
-
         if (obj.getDob().equals("null")){
             AdvisorSignUpDOBID.setStyle("-fx-border-color: red;");
             AdvisorSignUpDOBlAlertID.setText("Fill the blanks");
@@ -1153,6 +1151,7 @@ public class HelloController{
             AdvisorSignUpDOBlAlertID.setText("");
         }
 
+
         if (obj.getEmail().isEmpty()){
             AdvisorSignUpEmailID.setStyle("-fx-border-color: red;");
             AdvisorSignUpEmailAlert.setText("Fill the blanks");
@@ -1161,31 +1160,34 @@ public class HelloController{
         } else if (Club.isValidEmail(obj.getEmail())){
             AdvisorSignUpEmailID.setStyle("-fx-border-color: green;");
             AdvisorSignUpEmailAlert.setText("");
+            for (List<Object> i : advisorDetails){
+                if(String.valueOf(i.get(5)).equals(obj.getEmail())){
+                    count++;
+                    AdvisorSignUpEmailAlert.setText("Email already exixts!");
+                    AdvisorSignUpEmailID.setStyle("-fx-border-color: none;");
+                }
+            }
         } else {
             AdvisorSignUpEmailAlert.setText("Please enter valid email!");
             AdvisorSignUpEmailAlert.setStyle("-fx-text-fill: red;");
             count++;
         }
         if (obj.getTelNo().isEmpty()){
-            Advisor.setStyle("-fx-border-color: red;");
-            AdvisorSignUpContactNolAlertID.setText("Fill the blanks");
+            AdvisorSignUpContactNoID.setStyle("-fx-border-color: red;");
+            AdvisorSignUpContactNolAlertID.setText("Fill this fields blanks");
             AdvisorSignUpContactNolAlertID.setStyle("-fx-text-fill: red;");
             count++;
         } else if (Club.isValidContactNo(AdvisorSignUpContactNoID.getText())){
             AdvisorSignUpContactNoID.setStyle("-fx-border-color: green;");
             AdvisorSignUpContactNolAlertID.setText("");
         } else {
-            AdvisorSignUpContactNolAlertID.setText("Please enter valid contact number!");
             AdvisorSignUpContactNolAlertID.setStyle("-fx-text-fill: red;");
+            AdvisorSignUpContactNolAlertID.setText("Please enter valid contact number!");
             count++;
-
         }
-
-
-
         if (password.isEmpty()){
             AdvisorSignUpPasswordID.setStyle("-fx-border-color: red;");
-            AdvisorSignUpPasswordlAler.setText("Fill the blanks");
+            AdvisorSignUpPasswordlAler.setText("Fill this field");
             AdvisorSignUpPasswordlAler.setStyle("-fx-text-fill: red;");
             count++;
         } else {
@@ -1218,7 +1220,16 @@ public class HelloController{
         advisor.add(obj.getEmail());
         advisor.add(password);
         advisorDetails.add(advisor);
-        System.out.println("Advisor details successfully added to the list and should be added to the database");
+        DatabaseConnect.insertAdvisorDetails(String.valueOf(advisor.get(0)),String.valueOf(advisor.get(1)),String.valueOf(advisor.get(2)),String.valueOf(advisor.get(3)),String.valueOf(advisor.get(4)),String.valueOf(advisor.get(5)),String.valueOf(advisor.get(6)));
+        DatabaseConnect.getAdvisorDetails();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorMenu.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+
+        Stage primaryStage = (Stage) AdvisorSignUpID.getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public void AdvisorSignUpBackClick(ActionEvent actionEvent) throws IOException {
@@ -1378,7 +1389,6 @@ public class HelloController{
                 match++;
                 advisorID.clear();
                 advisorID.add(String.valueOf(advisorDetails.get(i).get(0)));
-                System.out.println("Load the menu for advisor");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorMenu.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
