@@ -1249,32 +1249,40 @@ public class HelloController{
     private TextField StudentLoginEmailID;
 
     public void StudentLoginButtonClick(ActionEvent actionEvent) throws IOException {
-
-
         Student obj = new Student();
         obj.setEmail(StudentLoginEmailID.getText());
         String password = StudentLoginPasswordID.getText();
         int count =0;
         if (obj.getEmail().isEmpty()){
             StudentLoginEmailID.setStyle("-fx-border-color: red;");
-            StudentLoginEmailAlert.setText("Please Fill the Blanks");
+            StudentLoginEmailAlert.setText("Please provide a email");
             StudentLoginEmailAlert.setStyle("-fx-text-fill: red;");
             count++;
         } else {
-            StudentLoginEmailID.setStyle("-fx-border-color: green;");
-            StudentLoginEmailAlert.setText("");
+            if (Club.isValidEmail(obj.getEmail())){
+                StudentLoginEmailID.setStyle("-fx-border-color: green;");
+                StudentLoginEmailAlert.setText("");
+            } else {
+                StudentLoginEmailID.setStyle("-fx-border-color: red;");
+                StudentLoginEmailAlert.setText("Please provide a valid email");
+                StudentLoginEmailAlert.setStyle("-fx-text-fill: red;");
+                count++;
+            }
 
         }
         if (password.isEmpty()){
             StudentLoginPasswordID.setStyle("-fx-border-color: red;");
-            StudentLoginPasswordAlert.setText("Please Fill the Blanks");
+            StudentLoginPasswordAlert.setText("Please provide a password");
             StudentLoginPasswordAlert.setStyle("-fx-text-fill: red;");
             count++;
         } else {
-            StudentLoginPasswordID.setStyle("-fx-border-color: green;");
+            StudentLoginPasswordAlert.setText("");
+            StudentLoginPasswordID.setStyle("-fx-border-color: none;");
         }
+        int match =0;
         for (int i = 0; i<studentDetails.size();i++){
             if (studentDetails.get(i).get(5).equals(obj.getEmail()) && studentDetails.get(i).get(6).equals(password)){
+                match++;
                 studentID.clear();
                 studentID.add(String.valueOf(studentDetails.get(i).get(0)));
                 System.out.println("Load the menu for students");
@@ -1291,12 +1299,11 @@ public class HelloController{
         }
         if (count>0){
             return;
-        } else {
-            System.out.println("No student for the given information!");
-            StudentLoginEmailAlert.setText("Please enter valid email");
-            StudentLoginEmailAlert.setStyle("-fx-text-fill: red;");
-            StudentLoginPasswordAlert.setText("Incorrect Password ");
+        }
+        if (match==0){
             StudentLoginPasswordAlert.setStyle("-fx-text-fill: red;");
+            StudentLoginPasswordAlert.setText("Entered email and password doesn't match");
+            StudentLoginEmailID.setStyle("-fx-border-color: none`;");
         }
     }
 
@@ -1348,29 +1355,27 @@ public class HelloController{
                 AdvisorLoginEmailID.setStyle("-fx-border-color: green;");
             }
             else {
-                AdvisorLoginEmailAlert.setText("Please Fill the Email blank");
+                AdvisorLoginEmailAlert.setText("Invalid email");
                 AdvisorLoginEmailAlert.setStyle("-fx-text-fill: red;");
-                AdvisorLoginEmailID.setStyle("-fx-border-color: red;");
                 count++;
             }
         }else {
-            AdvisorLoginEmailAlert.setText("Please Enter verified email");
+            count++;
+            AdvisorLoginEmailAlert.setText("Please enter an email");
             AdvisorLoginEmailAlert.setStyle("-fx-text-fill: red;");
-            AdvisorLoginEmailID.setStyle("-fx-border-color: red;");
-
-
         }
         if (password.isEmpty()){
-            AdvisorLoginPasswordID.setStyle("-fx-border-color: red;");
-            AdvisorLoginPasswordAlert.setText("incorrect Password");
+            AdvisorLoginPasswordAlert.setText("Please enter a password!");
             AdvisorLoginPasswordAlert.setStyle("-fx-text-fill: red;");
             count++;
         } else {
             AdvisorLoginPasswordID.setStyle("-fx-border-color: none;");
 
         }
+        int match =0;
         for (int i = 0; i<advisorDetails.size();i++){
             if (advisorDetails.get(i).get(5).equals(obj.getEmail()) && advisorDetails.get(i).get(6).equals(password)){
+                match++;
                 advisorID.clear();
                 advisorID.add(String.valueOf(advisorDetails.get(i).get(0)));
                 System.out.println("Load the menu for advisor");
@@ -1389,6 +1394,11 @@ public class HelloController{
         if (count>0){
             return;
         }
+        if (match==0){
+            AdvisorLoginEmailAlert.setText("");
+            AdvisorLoginPasswordAlert.setText("Entered email and password does not match!");
+        }
+
     }
 
     public void AdvisorLoginPageSignUpButtonClick(ActionEvent actionEvent) throws IOException {
